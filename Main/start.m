@@ -8,17 +8,6 @@ clear
 clc
 close all
 
-% I (General)
-addpath('I');
-% II (In-Air)
-addpath('II');
-% III (On-Ground)
-addpath('III');
-% General functions to call upon
-addpath('functions');
-% Saving variables per iteration
-addpath('records');
-
 % Variables iit and jit iterate for in-air trajectories and 
 % on-ground time segments respectively.  The following variables 
 % set the maximum limits of their for loops.  If jitMax is too 
