@@ -1,0 +1,10 @@
+big{1,nit} = v_V;
+big{2,nit} = xt;
+big{3,nit} = yt;
+big{4,nit} = zt;
+big{5,nit} = time_equation;
+big{6,nit} = t_i;
+big{7,nit} = dxt;
+big{8,nit} = dyt;
+big{9,nit} = dzt;
+big{10,nit} = v_v;
