@@ -1,0 +1,10 @@
+b{iit}.velocityStart = vpa(velocityStart);
+b{iit}.xt = vpa(xt);
+b{iit}.yt = vpa(yt);
+b{iit}.zt = vpa(zt);
+b{iit}.timeImpact = timeImpact;
+b{iit}.dxt = vpa(dxt);
+b{iit}.dyt = vpa(dyt);
+b{iit}.dzt = vpa(dzt);
+b{iit}.velocityHit = vpa(velocityHit);
+b{iit}.S = vpa(S);
