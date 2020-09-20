@@ -1,18 +1,13 @@
 # LSPIS
-
-<html>  
-<body>  
   <table>  
     <tr>  
       <td width="700">The Lunar Supply Pod Impact Simulation (LSPIS) is a computer model meant to simulate collisions from a supply pod onto the lunar (or Martian) surface without fuel or pre-existing structures. We hope to discover if this method of delivery is a practical possibility to deliver supplies to residents on the moon. It calculates in-air trajectories, changes in velocity, changing environment, changes in spin, deformation, elasticity, and both elastic and inelastic collisions from different initial conditions and demonstrates the forces and survivability of the pod (and its contents) when dropped onto the surface.
 
 \
 General presentations and information can be seen [here](https://sites.google.com/view/lunar-supply-pods).</td>  
-      <td><img src="https://i.imgur.com/b68WLn6.png" alt="LSPIS"></td>  
+      <td width="280"><img src="https://i.imgur.com/b68WLn6.png" alt="LSPIS"></td>  
     </tr>  
   </table>  
-</body>  
-</html>  
 
 ## Example Usage
 
