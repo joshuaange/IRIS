@@ -4,7 +4,7 @@ domain = domainMin:domainInt:domainMax;
 % Dummy unit vector
 U = [0 0 0 ; 0 0 1];
 % Finds general conditions
-[terminalVelocity, podPoisson, podMaterialProp] = I_main(mass,gravity,airDensity,surfaceArea,dragCoefficient,podYoungsMod,podModRigidity);
+[terminalVelocity, podPoisson, podMaterialProp, dLdx, dLdy] = I_main(mass,gravity,airDensity,surfaceArea,dragCoefficient,podYoungsMod,podModRigidity,L);
 % Inter-iterative records
 b = cell(iitMax,1);
 s = cell(iitMax,jitMax);
@@ -13,7 +13,7 @@ s = cell(iitMax,jitMax);
 for iit = 1:iitMax
     
     % In-air calculations
-    [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit] = II_main(velocityStart, airDensity, gravity, L);
+    [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit] = II_main(velocityStart, terminalVelocity, gravity, L);
     S = [xt(timeImpact) yt(timeImpact) zt(timeImpact)];
     
     % Recording iteration data
@@ -29,7 +29,7 @@ for iit = 1:iitMax
     for jit = 1:jitMax
         
         % Directional/Planar setup
-        [dLdx, dLdy, dLdxS, dLdyS, N, vec_N, vec_PN, vec_P, vec_B, mag, S_2, vec_O] = III_directions(L, S, velocityHit, T);
+        [dLdxS, dLdyS, N, vec_N, vec_PN, vec_P, vec_B, mag, S_2, vec_O] = III_directions(L, S, velocityHit, T, dLdx, dLdy);
         % Reaction forces
         [vec_VR, vec_VG, K_avg, DV, vec_VE, vec_BG, F_avg, FJ, vec_VF] = III_reactions(S, T, velocityHit, mass, gravity, K, F, dLdxS, dLdyS, S_2, vec_O);
         % Final equations

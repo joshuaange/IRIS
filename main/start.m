@@ -42,6 +42,7 @@ T = 0.008;
 diameter = 0.0627;
 podYoungsMod = 265126210;
 podModRigidity = 219238980;
+
 % Initial Conditions
 velocityStart = [0 0 1; 2.7 0.0001 0];
 

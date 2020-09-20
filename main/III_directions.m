@@ -1,10 +1,7 @@
-function [dLdx, dLdy, dLdxS, dLdyS, N, vec_N, vec_PN, vec_P, vec_B, mag, S_2, vec_O] = III_directions(L, S, velocityHit, T)
+function [dLdxS, dLdyS, N, vec_N, vec_PN, vec_P, vec_B, mag, S_2, vec_O] = III_directions(L, S, velocityHit, T, dLdx, dLdy)
 % Directional/Planar setup
 %   Called by control.m
-% Getting Partial Derivatives
 syms x y M
-dLdx = matlabFunction(diff(L,x),'Vars',[x y]);
-dLdy = matlabFunction(diff(L,y),'Vars',[x y]);
 % Normal/Tangent Plane
 dLdxS = dLdx(S(1),S(2));
 dLdyS = dLdy(S(1),S(2));

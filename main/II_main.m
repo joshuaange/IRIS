@@ -1,10 +1,10 @@
-function [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit] = II_main(velocityStart, airDensity, gravity, L)
+function [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit] = II_main(velocityStart, terminalVelocity, gravity, L)
 % In-air calculations
 %   Called by control.m
 % Trajectory Functions
-xt = @(t) velocityStart(2,1)*(airDensity/gravity)*(1-exp(-(gravity*t)/airDensity))+velocityStart(1,1);
-yt = @(t) velocityStart(2,2)*(airDensity/gravity)*(1-exp(-(gravity*t)/airDensity))+velocityStart(1,2);
-zt = @(t) (airDensity/gravity)*(velocityStart(2,3)+airDensity)*(1-exp(-(gravity*t)/airDensity))-(airDensity*t)+velocityStart(1,3);
+xt = @(t) velocityStart(2,1)*(terminalVelocity/gravity)*(1-exp(-(gravity*t)/terminalVelocity))+velocityStart(1,1);
+yt = @(t) velocityStart(2,2)*(terminalVelocity/gravity)*(1-exp(-(gravity*t)/terminalVelocity))+velocityStart(1,2);
+zt = @(t) (terminalVelocity/gravity)*(velocityStart(2,3)+terminalVelocity)*(1-exp(-(gravity*t)/terminalVelocity))-(terminalVelocity*t)+velocityStart(1,3);
 
 % Time of impact
 syms t
