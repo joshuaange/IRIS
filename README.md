@@ -3,6 +3,35 @@
 
 General presentations and information can be seen [here](https://sites.google.com/view/lunar-supply-pods). 
 
+## Built With
+
+- [MATLAB](https://www.mathworks.com/products/matlab.html)
+- [Simulink](https://www.mathworks.com/products/simulink.html)
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/joshuaange/LSPIS/tags).
+
+1. MAJOR version: *Feature-complete* 
+2. MINOR version: S*pecific large-scale goal*
+3. PATCH version: S*pecific small-scale goal*
+
+See versions [here](https://sites.google.com/view/lunar-supply-pods/work).
+
+## Authors
+
+- **Joshua Ange** - *Math Modeling and Simulation, Overall Program Structure*
+- **Jonathan Andrews** - *User Interface Development, Pod CAD Design*
+- **Amber Glory** - *Publication Management, Pod Design and Integration*
+
+## Acknowledgments
+
+- **Joseph Abboud** - [PodSim](https://github.com/SpamSPez/PodSim)
+- **Reilly Moore** - [PodSim](https://github.com/SpamSPez/PodSim)
+- **Michael Hayes** - [iSchool of Lewisville (CAPSTONE / Engineering)](https://sites.google.com/responsiveed.com/capstoneengineering)
+- **Glenn Johnson** - [NASA Hunch Mentor](glenn.f.johnson@nasa.gov)
+- **Ally Westover** - [NASA Hunch Mentor](allison.r.westover@nasa.gov)
+
 ## Example Usage
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. As of current experimental development, the project requires a MATLAB and Simulink license to run.
@@ -191,32 +220,3 @@ These instructions will get you a copy of the project up and running on your loc
     "j (N) = 52, Velocity: 0.0099121"
     END
     ```
-
-## Built With
-
-- [MATLAB](https://www.mathworks.com/products/matlab.html)
-- [Simulink](https://www.mathworks.com/products/simulink.html)
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/joshuaange/LSPIS/tags).
-
-1. MAJOR version: *Feature-complete* 
-2. MINOR version: S*pecific large-scale goal*
-3. PATCH version: S*pecific small-scale goal*
-
-See versions [here](https://sites.google.com/view/lunar-supply-pods/work).
-
-## Authors
-
-- **Joshua Ange** - *Math Modeling and Simulation, Overall Program Structure*
-- **Jonathan Andrews** - *User Interface Development, Pod CAD Design*
-- **Amber Glory** - *Publication Management, Pod Design and Integration*
-
-## Acknowledgments
-
-- **Joseph Abboud** - [PodSim](https://github.com/SpamSPez/PodSim)
-- **Reilly Moore** - [PodSim](https://github.com/SpamSPez/PodSim)
-- **Michael Hayes** - [iSchool of Lewisville (CAPSTONE / Engineering)](https://sites.google.com/responsiveed.com/capstoneengineering)
-- **Glenn Johnson** - [NASA Hunch Mentor](glenn.f.johnson@nasa.gov)
-- **Ally Westover** - [NASA Hunch Mentor](allison.r.westover@nasa.gov)
