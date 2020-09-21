@@ -35,7 +35,7 @@ These instructions will get you a copy of the project up and running on your loc
 2. Clear *Test Output* document
 3. Open *start.m* and input the initial conditions
 
-    (*start.m* for the initial conditions of [1.2.5 (8/10/20) Comparison Data](https://docs.google.com/document/d/1UaSsgVu8Rk4wNMqUWcixTLCLEq9EOTmeIq7yFU6eM3U/edit?usp=sharing)):
+    (example *start.m* for the initial conditions of [1.2.5 (8/10/20) Comparison Data](https://docs.google.com/document/d/1UaSsgVu8Rk4wNMqUWcixTLCLEq9EOTmeIq7yFU6eM3U/edit?usp=sharing)):
 
     ```matlab
     clear
@@ -92,7 +92,7 @@ These instructions will get you a copy of the project up and running on your loc
 4. Click *run*
 5. Open *Test Output* for important variable outputs or look at *s* and *b* cell arrays for all outputs
 
-    (*Test Output* for the initial conditions of [1.2.5 (8/10/20) Comparison Data](https://docs.google.com/document/d/1UaSsgVu8Rk4wNMqUWcixTLCLEq9EOTmeIq7yFU6eM3U/edit?usp=sharing)):
+    (example *Test Output* for the initial conditions of [1.2.5 (8/10/20) Comparison Data](https://docs.google.com/document/d/1UaSsgVu8Rk4wNMqUWcixTLCLEq9EOTmeIq7yFU6eM3U/edit?usp=sharing)):
 
     ```
     i = 1
