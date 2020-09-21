@@ -31,7 +31,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. As of current experimental development, the project requires a MATLAB and Simulink license to run.
 
-1. Download latest release (v1.3.0)
+1. Download the [latest release](https://github.com/joshuaange/LSPIS/releases)
 2. Clear *Test Output* document
 3. Open *start.m* and input the initial conditions
 
