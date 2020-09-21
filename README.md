@@ -13,24 +13,14 @@ General presentations and information can be seen [here](https://sites.google.co
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. 
-
-For math model versions available, see [here](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing)
-
-For MATLAB versions available, see [here](https://github.com/joshuaange/LSPIS/tags).
+ - For math model versions (alpha-v1.2.5), see [here](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing) 
+ - For MATLAB versions (v1.3.0), see [here](https://github.com/joshuaange/LSPIS/tags).
 
 ## Authors
 
  - **Joshua Ange** - [Math Modeling and Simulation, Overall Program Structure](https://sites.google.com/view/lunar-supply-pods/about_us)
  - **Jonathan Andrews** - [User Interface Development, Pod CAD Design](https://sites.google.com/view/lunar-supply-pods/about_us)
  - **Amber Glory** - [Publication Management, Pod Design and Integration](https://sites.google.com/view/lunar-supply-pods/about_us)
-
-## Acknowledgments
-
-- **Joseph Abboud** - [PodSim](https://github.com/SpamSPez/PodSim)
-- **Reilly Moore** - [PodSim](https://github.com/SpamSPez/PodSim)
-- **Michael Hayes** - [iSchool of Lewisville (CAPSTONE / Engineering)](https://sites.google.com/responsiveed.com/capstoneengineering)
-- **Glenn Johnson** - [NASA Hunch Mentor](glenn.f.johnson@nasa.gov)
-- **Ally Westover** - [NASA Hunch Mentor](allison.r.westover@nasa.gov)
 
 ## Example Usage
 
@@ -220,3 +210,11 @@ These instructions will get you a copy of the project up and running on your loc
     "j (N) = 52, Velocity: 0.0099121"
     END
     ```
+
+## Acknowledgments
+
+- **Joseph Abboud** - [PodSim](https://github.com/SpamSPez/PodSim)
+- **Reilly Moore** - [PodSim](https://github.com/SpamSPez/PodSim)
+- **Michael Hayes** - [iSchool of Lewisville (CAPSTONE / Engineering)](https://sites.google.com/responsiveed.com/capstoneengineering)
+- **Glenn Johnson** - [NASA Hunch Mentor](glenn.f.johnson@nasa.gov)
+- **Ally Westover** - [NASA Hunch Mentor](allison.r.westover@nasa.gov)
