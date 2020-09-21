@@ -5,21 +5,24 @@ General presentations and information can be seen [here](https://sites.google.co
 
 ## Built With
 
-- [MATLAB](https://www.mathworks.com/products/matlab.html)
-- [Simulink](https://www.mathworks.com/products/simulink.html)
+<img src="https://www.mathworks.com/company/newsletters/articles/the-mathworks-logo-is-an-eigenfunction-of-the-wave-equation/_jcr_content/mainParsys/image_2.adapt.480.high.gif/1469941373397.gif" alt="LSPIS" width="20"> **[MATLAB](https://www.mathworks.com/products/matlab.html)**
+ 
+<img src="https://upload.wikimedia.org/wikipedia/en/3/36/Simulink_Logo_%28non-wordmark%29.png" alt="LSPIS" width="20"> **[Simulink](https://www.mathworks.com/products/simulink.html)**
+
 
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. 
 
-For the pure math versions available, see [here](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing)
-For the versions available, see the [here](https://github.com/joshuaange/LSPIS/tags).
+For math model versions available, see [here](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing)
+
+For MATLAB versions available, see [here](https://github.com/joshuaange/LSPIS/tags).
 
 ## Authors
 
-- **Joshua Ange** - *Math Modeling and Simulation, Overall Program Structure*
-- **Jonathan Andrews** - *User Interface Development, Pod CAD Design*
-- **Amber Glory** - *Publication Management, Pod Design and Integration*
+ - **Joshua Ange** - [Math Modeling and Simulation, Overall Program Structure](https://sites.google.com/view/lunar-supply-pods/about_us)
+ - **Jonathan Andrews** - [User Interface Development, Pod CAD Design](https://sites.google.com/view/lunar-supply-pods/about_us)
+ - **Amber Glory** - [Publication Management, Pod Design and Integration](https://sites.google.com/view/lunar-supply-pods/about_us)
 
 ## Acknowledgments
 
