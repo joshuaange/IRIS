@@ -10,13 +10,10 @@ General presentations and information can be seen [here](https://sites.google.co
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/joshuaange/LSPIS/tags).
+We use [SemVer](http://semver.org/) for versioning. 
 
-1. MAJOR version: *Feature-complete* 
-2. MINOR version: S*pecific large-scale goal*
-3. PATCH version: S*pecific small-scale goal*
-
-See versions [here](https://sites.google.com/view/lunar-supply-pods/work).
+For the pure math versions available, see [here](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing)
+For the versions available, see the [here](https://github.com/joshuaange/LSPIS/tags).
 
 ## Authors
 
