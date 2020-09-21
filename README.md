@@ -13,14 +13,14 @@ General presentations and information can be seen [here](https://sites.google.co
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. 
- - **Pure math model** - [v0.0.1 - v1.2.5](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing) 
- - **Math model with MATLAB** - [v1.3.0](https://github.com/joshuaange/LSPIS/tags)
+ - **Pure math model** : [v0.0.1 - v1.2.5](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing) 
+ - **Math model with MATLAB** : [v1.3.0](https://github.com/joshuaange/LSPIS/tags)
 
 ## Authors
 
- - **Joshua Ange** - [Math Modeling and Simulation, Overall Program Structure](https://sites.google.com/view/lunar-supply-pods/about_us)
- - **Jonathan Andrews** - [User Interface Development, Pod CAD Design](https://sites.google.com/view/lunar-supply-pods/about_us)
- - **Amber Glory** - [Publication Management, Pod Design and Integration](https://sites.google.com/view/lunar-supply-pods/about_us)
+ - **Joshua Ange** : [Math Modeling and Simulation, Overall Program Structure](https://sites.google.com/view/lunar-supply-pods/about_us)
+ - **Jonathan Andrews** : [User Interface Development, Pod CAD Design](https://sites.google.com/view/lunar-supply-pods/about_us)
+ - **Amber Glory** : [Publication Management, Pod Design and Integration](https://sites.google.com/view/lunar-supply-pods/about_us)
 
 ## Example Usage
 
@@ -213,8 +213,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Acknowledgments
 
-- **Joseph Abboud** - [PodSim](https://github.com/SpamSPez/PodSim)
-- **Reilly Moore** - [PodSim](https://github.com/SpamSPez/PodSim)
-- **Michael Hayes** - [iSchool of Lewisville (CAPSTONE / Engineering)](https://sites.google.com/responsiveed.com/capstoneengineering)
-- **Glenn Johnson** - [NASA Hunch Mentor](glenn.f.johnson@nasa.gov)
-- **Ally Westover** - [NASA Hunch Mentor](allison.r.westover@nasa.gov)
+- **Joseph Abboud** : [PodSim](https://github.com/SpamSPez/PodSim)
+- **Reilly Moore** : [PodSim](https://github.com/SpamSPez/PodSim)
+- **Michael Hayes** : [iSchool of Lewisville (CAPSTONE / Engineering)](https://sites.google.com/responsiveed.com/capstoneengineering)
+- **Glenn Johnson** : [NASA Hunch Mentor](glenn.f.johnson@nasa.gov)
+- **Ally Westover** : [NASA Hunch Mentor](allison.r.westover@nasa.gov)
