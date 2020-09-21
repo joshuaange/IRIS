@@ -6,7 +6,7 @@
  **[Design](https://sites.google.com/view/lunar-supply-pods/design)** |
  **[Development](https://sites.google.com/view/lunar-supply-pods/development)** |
  **[Misc.](https://sites.google.com/view/lunar-supply-pods/misc)** |
- **[About Us](https://sites.google.com/view/lunar-supply-pods/about_us)**
+ **[About Us](https://sites.google.com/view/lunar-supply-pods/about-us)**
 
 ## Authors
 
