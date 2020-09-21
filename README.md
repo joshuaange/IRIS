@@ -13,8 +13,8 @@ General presentations and information can be seen [here](https://sites.google.co
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. 
- - **Math model** - [alpha-v1.2.5](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing) 
- - **Math model + MATLAB** - [v1.3.0-_._._](https://github.com/joshuaange/LSPIS/tags)
+ - **Pure math model** - [alpha-v1.2.5](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing) 
+ - **Math model with MATLAB** - [v1.3.0](https://github.com/joshuaange/LSPIS/tags)
 
 ## Authors
 
