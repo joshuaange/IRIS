@@ -10,9 +10,9 @@
 
 ## Authors
 
- - **Joshua Ange** : [Math Modeling and Simulation, Overall Program Structure](https://sites.google.com/view/lunar-supply-pods/about_us)
- - **Jonathan Andrews** : [User Interface Development, Pod CAD Design](https://sites.google.com/view/lunar-supply-pods/about_us)
- - **Amber Glory** : [Publication Management, Pod Design and Integration](https://sites.google.com/view/lunar-supply-pods/about_us)
+ - **Joshua Ange** : [Math Modeling and Simulation, Overall Program Structure](https://sites.google.com/view/lunar-supply-pods/about-us)
+ - **Jonathan Andrews** : [User Interface Development, Pod CAD Design](https://sites.google.com/view/lunar-supply-pods/about-us)
+ - **Amber Glory** : [Publication Management, Pod Design and Integration](https://sites.google.com/view/lunar-supply-pods/about-us)
 
 ## Built With
 
