@@ -1,4 +1,4 @@
-function [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit] = II_main(velocityStart, terminalVelocity, gravity, L)
+function [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit] = II_main(velocityStart, terminalVelocity, gravity, L, minimumIgnore)
 % In-air calculations
 %   Called by control.m
 % Trajectory Functions
@@ -8,7 +8,7 @@ zt = @(t) (terminalVelocity/gravity)*(velocityStart(2,3)+terminalVelocity)*(1-ex
 
 % Time of impact
 syms t
-timeImpact = vpasolve(L(xt(t),yt(t)) == zt(t), t, [0, Inf]);
+timeImpact = vpasolve(L(xt(t),yt(t)) == zt(t), t, [minimumIgnore, Inf]);
 
 % Differential of trajectory functions
 dxt = matlabFunction(diff(xt(t)));

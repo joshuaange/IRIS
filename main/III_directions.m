@@ -16,10 +16,10 @@ vec_P = [S(1) S(2) S(3); T*vec_PN(1) T*vec_PN(2) T*vec_PN(3)];
 vec_B = [(S(1) + vec_P(2,1)) (S(2) + vec_P(2,2)) (S(3) + vec_P(2,3)); dLdxS dLdyS -1];
 
 % Finding Magnitude to Terrain
-mag = vpasolve(L(M*cos((vec_alpha(vec_B)))+T*vec_P(2,1)+S(1),M*cos(vec_beta(vec_B))+T*vec_P(2,2)+S(2))==M*cos(vec_gamma(vec_B))+T*vec_P(2,3)+S(3), M);
+mag = vpasolve(L(M*cos((vec_alpha(vec_B)))+vec_P(2,1)+S(1),M*cos(vec_beta(vec_B))+vec_P(2,2)+S(2))==M*cos(vec_gamma(vec_B))+vec_P(2,3)+S(3), M);
 
 % Next Starting Point Location
-S_2 = [(mag*cos(vec_alpha(vec_B))+T*vec_P(2,1)+S(1)) (mag*cos(vec_beta(vec_B))+T*vec_P(2,2)+S(2)) (mag*cos(vec_gamma(vec_B))+T*vec_P(2,3)+S(3))];
+S_2 = [(mag*cos(vec_alpha(vec_B))+T*vec_PN(1)+S(1)) (mag*cos(vec_beta(vec_B))+T*vec_PN(2)+S(2)) (mag*cos(vec_gamma(vec_B))+T*vec_PN(3)+S(3))];
 
 % Traced Segment Vector
 vec_O = [S(1) S(2) S(3); S_2(1)-S(1) S_2(2)-S(2) S_2(3)-S(3)];

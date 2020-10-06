@@ -13,17 +13,14 @@ s = cell(iitMax,jitMax);
 for iit = 1:iitMax
     
     % In-air calculations
-    [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit] = II_main(velocityStart, terminalVelocity, gravity, L);
+    [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit] = II_main(velocityStart, terminalVelocity, gravity, L, minimumIgnore);
     S = [xt(timeImpact) yt(timeImpact) zt(timeImpact)];
     
     % Recording iteration data
     run('big');
     
     % DISPLAY
-    A = "i = " + iit;
-    writematrix(A,'Test Output','WriteMode','append');
-    % display("i = " + iit);
-    % DISPLAY
+    writematrix("i = " + iit,'Test Output','WriteMode','append');
     
     % In-air iteration (jit)
     for jit = 1:jitMax
@@ -64,29 +61,17 @@ for iit = 1:iitMax
         run('small');
         
         if (-stopRange<vec_mag(velocityEnd)) && (vec_mag(velocityEnd)<+stopRange)
-            % DISPLAY
-            D = "j (N) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd));
-            writematrix(D,'Test Output','WriteMode','append');
-            % display("j (N) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)));
-            % DISPLAY
+            writematrix("j (N) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)),'Test Output','WriteMode','append');
             break
         end;
         if ret > 0
             velocityStart = s{iit,jit}.velocityEnd;
-            % DISPLAY
-            B = "j (Air) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd));
-            writematrix(B,'Test Output','WriteMode','append');
-            % display("j (Air) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)));
-            % DISPLAY
+            writematrix("j (Air) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)),'Test Output','WriteMode','append');
             break
         else
             velocityHit = s{iit,jit}.velocityEnd;
             S = s{iit,jit}.S_2;
-            % DISPLAY
-            C = "j (Ground) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd));
-            writematrix(C,'Test Output','WriteMode','append');
-            % display("j (Ground) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)));
-            % DISPLAY
+            writematrix("j (Ground) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)),'Test Output','WriteMode','append');
         end;
         
     end;
@@ -95,6 +80,19 @@ for iit = 1:iitMax
     end;
 end;
 
-E = "END";
-writematrix(E,'Test Output','WriteMode','append');
+writematrix("END",'Test Output','WriteMode','append');
+
+%Graphing
+figure_main = figure('Name','Trajectory','OuterPosition',[10 195 600 350]);
+view(3);
+surf(xx,yy,L(xx,yy),'DisplayName','Surface Topology','FaceAlpha',0.8);
+hold on;
+run('bigGraph');
+xlim([domainMin domainMax]);
+ylim([domainMin domainMax]);
+zlim([domainMin domainMax]);
+grid minor;
+%legend([surf_L curve_trajectory vec_velocityStart vec_velocityHit point_impact]);
+hold off;
+
 display("END");
