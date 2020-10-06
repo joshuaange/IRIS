@@ -28,6 +28,28 @@ for iit = 1:iitMax
     % In-air iteration (jit)
     for jit = 1:jitMax
         
+%         % EXPERIMENTAL v v %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%         Y_avgtest = (Y(S(1),S(2)));
+%         G_avgtest = (G(S(1),S(2)));
+%         landPoissontest = (Y_avgtest)/(2*G_avgtest-1);
+%         landMaterialProptest = (1-landPoissontest^2)/(pi*Y_avgtest);
+%         
+%         syms TT Tt;
+%         
+%         %EWTEST = double((Y_avgtest*podYoungsMod)/(((podYoungsMod)-(podYoungsMod*(landPoissontest^2)))+((Y_avgtest)-(Y_avgtest*(podPoisson^2)))));
+%         EWTEST = 0.8*10^6.1;
+%         
+%         %1.1.2
+%         %timeEquationTest = 1000*(((3^(2/3))*((mass*(vec_mag(velocityHit)/TT)))^(2/3))/((4^(2/3))*((EWTEST)^(2/3))*(diameter/2)^(1/3)))==((((3*pi/2)^2/3)*(101.97*(mass*(vec_mag(velocityHit)/TT)))^2/3*(landMaterialProptest+podMaterialProp)^2/3*(1/(1000*diameter)))^1/3)/1000;
+%         %1.0.1
+%         timeEquationTest = (((3^(2/5))*((mass*(vec_mag(velocityHit)/TT)))*2^(1/5))/((4^(2/5))*((EWTEST)^(2/5))*(diameter)^(1/5)))==((((3*pi/2)^2/3)*(101.97*(mass*(vec_mag(velocityHit)/TT)))^2/3*(landMaterialProptest+podMaterialProp)*(1/(1000*diameter)))^1/3)/1000;
+%         
+%         Tt = vpasolve(timeEquationTest, TT);
+%         T = Tt + EWTEST*Tt;
+%         
+%         % EXPERIMENTAL ^ ^ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
         % Directional/Planar setup
         [dLdxS, dLdyS, N, vec_N, vec_PN, vec_P, vec_B, mag, S_2, vec_O] = III_directions(L, S, velocityHit, T, dLdx, dLdy);
         % Reaction forces
