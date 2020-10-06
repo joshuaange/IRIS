@@ -19,3 +19,77 @@ i = 9
 i = 10
 "j (N) = 1, Velocity: 0.90495"
 END
+i = 1
+"j (Ground) = 1, Velocity: 2.1363"
+"j (Air) = 2, Velocity: 2.7302"
+i = 2
+"j (Air) = 1, Velocity: 1.8585"
+i = 3
+"j (Ground) = 1, Velocity: 2.1339"
+"j (Air) = 2, Velocity: 1.9248"
+END
+i = 1
+"j (Air) = 1, Velocity: 244.9166"
+i = 2
+"j (Air) = 1, Velocity: 1035.8873"
+i = 3
+"j (Air) = 1, Velocity: 1035.778"
+END
+i = 1
+"j (Air) = 1, Velocity: 45.7503"
+i = 2
+"j (Air) = 1, Velocity: 165.5712"
+i = 3
+"j (Air) = 1, Velocity: 191.4163"
+END
+i = 1
+"j (Air) = 1, Velocity: 20.9088"
+i = 2
+"j (Air) = 1, Velocity: 52.9241"
+i = 3
+"j (Air) = 1, Velocity: 77.3657"
+END
+i = 1
+"j (Ground) = 1, Velocity: 2.1363"
+"j (Air) = 2, Velocity: 2.7302"
+i = 2
+"j (Air) = 1, Velocity: 1.8585"
+i = 3
+"j (Ground) = 1, Velocity: 2.1339"
+"j (Air) = 2, Velocity: 1.9248"
+END
+i = 1
+"j (Air) = 1, Velocity: 2.3071"
+i = 2
+"j (Air) = 1, Velocity: 2.4162"
+i = 3
+"j (Air) = 1, Velocity: 1.9497"
+END
+i = 1
+"j (Air) = 1, Velocity: 6.2354"
+i = 2
+"j (Air) = 1, Velocity: 6.1003"
+i = 3
+"j (Air) = 1, Velocity: 5.8885"
+END
+i = 1
+"j (Air) = 1, Velocity: 4.4164"
+i = 2
+"j (Air) = 1, Velocity: 3.3324"
+i = 3
+"j (Air) = 1, Velocity: 2.5714"
+END
+i = 1
+"j (Air) = 1, Velocity: 4.4164"
+i = 2
+"j (Air) = 1, Velocity: 3.3324"
+i = 3
+"j (Air) = 1, Velocity: 2.5714"
+END
+i = 1
+"j (Air) = 1, Velocity: 2.2418"
+i = 2
+"j (Air) = 1, Velocity: 2.0128"
+i = 3
+"j (Air) = 1, Velocity: 2.0027"
+END
