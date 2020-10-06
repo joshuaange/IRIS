@@ -1,0 +1,6 @@
+i = 1
+"j (Air) = 1, Velocity: 4.142"
+i = 2
+"j (Ground) = 1, Velocity: 3.7507"
+"j (Air) = 2, Velocity: 3.3953"
+END
