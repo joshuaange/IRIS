@@ -40,12 +40,21 @@ gravity = 9.81;
 airDensity = 1.2;
 surfaceArea = 0.012;
 dragCoefficient = 0.5;
-T = 0.016;
+T = 0.008;
 diameter = 0.0627;
 podYoungsMod = 265126210;
 podModRigidity = 219238980;
 
 % Initial Conditions
 velocityStart = [0 0 1; 2.7 0.0001 0];
+
+% Initial pod temperature, to be changed with each on-ground iteration
+TP = 1;
+% Heat capacity
+heatCapacity = 2;
+% Temperature of ground
+TE = @(x,y) 0*x + 0*y + 40000000;
+% Thermal conductivity between pod and ground
+TC = @(x,y) 0*x + 0*y + 5000000;
 
 run('control.m')

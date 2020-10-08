@@ -52,26 +52,30 @@ for iit = 1:iitMax
         % Reaction forces
         [vec_VR, vec_VG, K_avg, DV, vec_VE, vec_BG, F_avg, FJ, vec_VF] = III_reactions(S, T, velocityHit, mass, gravity, K, F, dLdxS, dLdyS, S_2, vec_O);
         % Final equations
-        [velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation] = III_final(S_2, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, Y, G, diameter, podMaterialProp, S);
+        [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation] = III_final(S_2, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, Y, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP);
         
         % Return
         ret = vpa(velocityEnd(2,3)+S_2(3)-L((velocityEnd(2,1)+S_2(1)),(velocityEnd(2,2)+S_2(2))));
         
         % Recording iteration data
         run('small');
-        
+        TP = s{iit,jit}.TP_new;
+
         if (-stopRange<vec_mag(velocityEnd)) && (vec_mag(velocityEnd)<+stopRange)
             writematrix("j (N) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)),'Test Output','WriteMode','append');
+            writematrix("              End Temperature = " + double(TP),'Test Output','WriteMode','append');
             break
         end;
         if ret > 0
             velocityStart = s{iit,jit}.velocityEnd;
             writematrix("j (Air) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)),'Test Output','WriteMode','append');
+            writematrix("              New Temperature = " + double(TP),'Test Output','WriteMode','append');
             break
         else
             velocityHit = s{iit,jit}.velocityEnd;
             S = s{iit,jit}.S_2;
             writematrix("j (Ground) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)),'Test Output','WriteMode','append');
+            writematrix("              New Temperature = " + double(TP),'Test Output','WriteMode','append');
         end;
         
     end;
