@@ -25,7 +25,7 @@
 
 We use [SemVer](http://semver.org/) for versioning. 
  - **Pure math model** : [v0.0.1 - v1.2.5](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing) 
- - **Math model with MATLAB** : [v1.3.0](https://github.com/joshuaange/LSPIS/tags)
+ - **Math model with MATLAB** : [v1.3.1](https://github.com/joshuaange/LSPIS/tags)
 
 ## Example Usage
 
@@ -35,7 +35,7 @@ These instructions will get you a copy of the project up and running on your loc
 2. Clear *Test Output* document
 3. Open *start.m* and input the initial conditions
 
-    (example *start.m* for the initial conditions of [1.2.5 (8/10/20) Comparison Data](https://docs.google.com/document/d/1UaSsgVu8Rk4wNMqUWcixTLCLEq9EOTmeIq7yFU6eM3U/edit?usp=sharing)):
+    (example *start.m* for the initial conditions of [1.2.5 (8/10/20) Comparison Data](https://docs.google.com/document/d/1UaSsgVu8Rk4wNMqUWcixTLCLEq9EOTmeIq7yFU6eM3U/edit?usp=sharing) with v1.3.0):
 
     ```matlab
     clear
@@ -92,7 +92,7 @@ These instructions will get you a copy of the project up and running on your loc
 4. Click *run*
 5. Open *Test Output* for important variable outputs or look at *s* and *b* cell arrays for all outputs
 
-    (example *Test Output* for the initial conditions of [1.2.5 (8/10/20) Comparison Data](https://docs.google.com/document/d/1UaSsgVu8Rk4wNMqUWcixTLCLEq9EOTmeIq7yFU6eM3U/edit?usp=sharing)):
+    (example *Test Output* for the initial conditions of [1.2.5 (8/10/20) Comparison Data](https://docs.google.com/document/d/1UaSsgVu8Rk4wNMqUWcixTLCLEq9EOTmeIq7yFU6eM3U/edit?usp=sharing) with v1.3.0)):
 
     ```
     i = 1
