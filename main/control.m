@@ -92,6 +92,7 @@ view(3);
 surf(xx,yy,L(xx,yy),'DisplayName','Surface Topology','FaceAlpha',0.8);
 hold on;
 run('bigGraph');
+run('smallGraph');
 xlim([domainMin domainMax]);
 ylim([domainMin domainMax]);
 zlim([domainMin domainMax]);

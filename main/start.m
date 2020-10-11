@@ -7,8 +7,8 @@ close all
 % set the maximum limits of their for loops.  If jitMax is too 
 % low (meaning it registers as still continuing along the 
 % ground), the result will be an error.
-iitMax = 3;
-jitMax = 2;
+iitMax = 10;
+jitMax = 10;
 % Acceptable range of velocity to be considered 0
 stopRange = 1;
 % Limits of surface mesh minimum, maximum, and interval
@@ -17,9 +17,9 @@ domainMax = 10;
 domainInt = 0.33;
 % Limits (time) of trajectory display
 trajectoryMin = 0;
-trajectoryMax = 2;
+trajectoryMax = 1;
 % Minimum ignore condition for timeImpact
-minimumIgnore = 0.0000000000000000000000001;
+minimumIgnore = 0.000000000000000000000001;
 
 % Terrain (Surface Topology)
 L = @(x,y) 0*x + 0*y + 0;
@@ -40,21 +40,21 @@ gravity = 9.81;
 airDensity = 1.2;
 surfaceArea = 0.012;
 dragCoefficient = 0.5;
-T = 0.0000001;
+T = 0.016;
 diameter = 0.0627;
 podYoungsMod = 265126210;
 podModRigidity = 219238980;
 
 % Initial Conditions
-velocityStart = [0 0 1; 2.7 0.0001 -50000000];
+velocityStart = [0 0 1; 2.7 0.0001 0];
 
-% Initial pod temperature, to be changed with each on-ground iteration (K)
+% Initial pod temperature, to be changed with each on-ground iteration
 TP = 100;
-% Heat capacity (J/K)
+% Heat capacity
 heatCapacity = 200;
-% Temperature of ground (K)
+% Temperature of ground
 TE = @(x,y) 0*x + 0*y + 40;
-% Thermal conductivity between pod and ground (W/m*k)
+% Thermal conductivity between pod and ground
 TC = @(x,y) 0*x + 0*y + 5000000;
 
 run('control.m')

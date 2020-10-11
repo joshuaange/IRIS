@@ -27,7 +27,11 @@ TC_avg = (TC(S(1),S(2))+TC(S_2(1),S_2(2)))/2;
 % Finding heat flux (W/m^2)
 heatFlux = ((TC_avg)*((TP-TE_avg))/(deformation));
 % Heat transfer coefficient (W/(m^2*K))
-heatTransfer = heatFlux/((TP-TE_avg));
+if TP == TE_avg
+	heatTransfer = 0;
+else
+	heatTransfer = (heatFlux)/(TP-TE_avg);
+end;
 % Area of heat exchange (m^2)
 areaGround = pi*((diameter/2)^2-((diameter/2)-deformation)^2);
 % Cooling coefficient (1/s)
