@@ -1,11 +1,11 @@
-function [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation] = III_final(S_2, velocityHit, vec_FR, vec_FF, vec_FG, vec_FE, mass, T, Y, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP)
+function [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation] = III_final(S_2, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, Y, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP)
 % Final equations
 %   Called by control.m
 % New Velocity
 velocityEnd = [S_2(1) S_2(2) S_2(3); 0 0 0];
-velocityEnd(2,1) = (T/mass)*(velocityHit(2,1) + (vec_FR(2,1)) + vec_FF(2,1) + vec_FG(2,1) + vec_FE(2,1));
-velocityEnd(2,2) = (T/mass)*(velocityHit(2,2) + (vec_FR(2,2)) + vec_FF(2,2) + vec_FG(2,2) + vec_FE(2,2));
-velocityEnd(2,3) = (T/mass)*(velocityHit(2,3) + (vec_FR(2,3)) + vec_FF(2,3) + vec_FG(2,3) + vec_FE(2,3));
+velocityEnd(2,1) = (velocityHit(2,1) + (vec_VR(2,1)) + vec_VF(2,1) + vec_VG(2,1) + vec_VE(2,1));
+velocityEnd(2,2) = (velocityHit(2,2) + (vec_VR(2,2)) + vec_VF(2,2) + vec_VG(2,2) + vec_VE(2,2));
+velocityEnd(2,3) = (velocityHit(2,3) + (vec_VR(2,3)) + vec_VF(2,3) + vec_VG(2,3) + vec_VE(2,3));
 
 % Force of Impact
 FI = mass*((vec_mag(velocityEnd) - vec_mag(velocityHit))/T);
