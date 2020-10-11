@@ -19,7 +19,7 @@ domainInt = 0.33;
 trajectoryMin = 0;
 trajectoryMax = 2;
 % Minimum ignore condition for timeImpact
-minimumIgnore = 0.0000000000000000000000000000001;
+minimumIgnore = 0.0000000000000000000000001;
 
 % Terrain (Surface Topology)
 L = @(x,y) 0*x + 0*y + 0;
@@ -40,21 +40,21 @@ gravity = 9.81;
 airDensity = 1.2;
 surfaceArea = 0.012;
 dragCoefficient = 0.5;
-T = 0.008;
+T = 0.0000001;
 diameter = 0.0627;
 podYoungsMod = 265126210;
 podModRigidity = 219238980;
 
 % Initial Conditions
-velocityStart = [0 0 1; 2.7 0.0001 0];
+velocityStart = [0 0 1; 2.7 0.0001 -50000000];
 
-% Initial pod temperature, to be changed with each on-ground iteration
-TP = 1;
-% Heat capacity
-heatCapacity = 2;
-% Temperature of ground
-TE = @(x,y) 0*x + 0*y + 40000000;
-% Thermal conductivity between pod and ground
+% Initial pod temperature, to be changed with each on-ground iteration (K)
+TP = 100;
+% Heat capacity (J/K)
+heatCapacity = 200;
+% Temperature of ground (K)
+TE = @(x,y) 0*x + 0*y + 40;
+% Thermal conductivity between pod and ground (W/m*k)
 TC = @(x,y) 0*x + 0*y + 5000000;
 
 run('control.m')

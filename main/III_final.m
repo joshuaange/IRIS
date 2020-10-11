@@ -24,14 +24,14 @@ deformation = ((((3*pi/2)^2/3)*(101.97*(-FI))^2/3*(landMaterialProp+podMaterialP
 % Average values 
 TE_avg = (TE(S(1),S(2))+TE(S_2(1),S_2(2)))/2;
 TC_avg = (TC(S(1),S(2))+TC(S_2(1),S_2(2)))/2;
-% Finding heat flux
-heatFlux = (TC_avg)/((TP-TE_avg)/(deformation));
-% Heat transfer coefficient
-heatTransfer = heatFlux/(TP-TE_avg);
-% Area of heat exchange
+% Finding heat flux (W/m^2)
+heatFlux = ((TC_avg)*((TP-TE_avg))/(deformation));
+% Heat transfer coefficient (W/(m^2*K))
+heatTransfer = heatFlux/((TP-TE_avg));
+% Area of heat exchange (m^2)
 areaGround = pi*((diameter/2)^2-((diameter/2)-deformation)^2);
-% Cooling coefficient
+% Cooling coefficient (1/s)
 cooling = heatTransfer*(areaGround/heatCapacity);
-% Temperature change
+% New Temperature (K)
 TP_new = TE_avg+(TP-TE_avg)*exp(-cooling*T);
 end
