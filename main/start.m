@@ -8,9 +8,9 @@ close all
 % low (meaning it registers as still continuing along the 
 % ground), the result will be an error.
 iitMax = 1;
-jitMax = 30;
+jitMax = 5;
 % Acceptable range of velocity to be considered 0
-stopRange = 1;
+stopRange = 0.001;
 % Limits of surface mesh minimum, maximum, and interval
 domainMin = -10;
 domainMax = 10;
@@ -40,7 +40,7 @@ gravity = 9.81;
 airDensity = 1.2;
 surfaceArea = 0.012;
 dragCoefficient = 0.5;
-T = 0.001;
+T = 30;
 diameter = 0.0627;
 podYoungsMod = 265126210;
 podModRigidity = 219238980;
