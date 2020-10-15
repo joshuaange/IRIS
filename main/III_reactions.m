@@ -11,6 +11,16 @@ vec_VG = [S(1) S(2) S(3); 0 0 -T*mass*gravity];
 K_avg = (K(S(1),S(2))+K(S_2(1),S_2(2)))/2;
 DV = (T*K_avg*(vec_mag(velocityHit)))/mass;
 vec_VE = [S_2(1) S_2(2) S_2(3); DV*cos(vec_alpha(vec_VR)) DV*cos(vec_beta(vec_VR)) DV*cos(vec_gamma(vec_VR))];
+if vec_VR(2,1) == 0
+    vec_VE(2,1) = 0;
+end;
+if vec_VR(2,2) == 0
+    vec_VE(2,2) = 0;
+end;
+if vec_VR(2,3) == 0
+    vec_VE(2,3) = 0;
+end;
+%vec_VE = [S_2(1) S_2(2) S_2(3) ; 0 0 0];
 
 % Frictional Reaction Vector
 vec_BG = [S(1) S(2) S(3); T*mass*gravity*dLdxS T*mass*gravity*dLdyS -T*mass*gravity];
@@ -20,7 +30,8 @@ FJ = sqrt((F_avg*(vec_VR(2,1)+vec_VE(2,1)+vec_BG(2,1)))^2+(F_avg*(vec_VR(2,2)+ve
 if vec_mag(vec_O) == 0 
 	vec_VF = [S_2(1) S_2(2) S_2(3); 0 0 0];
 else
-	vec_VF = [S_2(1) S_2(2) S_2(3); (FJ*((S(1)-S_2(1))/vec_mag(vec_O))) (FJ*((S(2)-S_2(2))/vec_mag(vec_O))) ((S(3)-S_2(3))/vec_mag(vec_O))];
+    vec_VF = [0 0 0 ; 0 0 0];
+	%vec_VF = [S_2(1) S_2(2) S_2(3); (FJ*((S(1)-S_2(1))/vec_mag(vec_O))) (FJ*((S(2)-S_2(2))/vec_mag(vec_O))) ((S(3)-S_2(3))/vec_mag(vec_O))];
 end;
 end
 

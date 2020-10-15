@@ -1,4 +1,4 @@
-function [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit] = II_main(velocityStart, terminalVelocity, gravity, L, minimumIgnore)
+function [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit, S] = II_main(velocityStart, terminalVelocity, gravity, L, minimumIgnore)
 % In-air calculations
 %   Called by control.m
 % Trajectory Functions
@@ -16,5 +16,7 @@ dyt = matlabFunction(diff(yt(t)));
 dzt = matlabFunction(diff(zt(t)));
 % Velocity of impact
 velocityHit = [xt(timeImpact) yt(timeImpact) zt(timeImpact) ; dxt(timeImpact) dyt(timeImpact) dzt(timeImpact)];
+% Point of impact
+S = [xt(timeImpact) yt(timeImpact) zt(timeImpact)];
 end
 

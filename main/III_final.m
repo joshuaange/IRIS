@@ -25,7 +25,11 @@ deformation = ((((3*pi/2)^2/3)*(101.97*(-FI))^2/3*(landMaterialProp+podMaterialP
 TE_avg = (TE(S(1),S(2))+TE(S_2(1),S_2(2)))/2;
 TC_avg = (TC(S(1),S(2))+TC(S_2(1),S_2(2)))/2;
 % Finding heat flux (W/m^2)
-heatFlux = ((TC_avg)*((TP-TE_avg))/(deformation));
+if deformation == 0
+    heatFlux = 0;
+else
+    heatFlux = ((TC_avg)*((TP-TE_avg))/(deformation));
+end;
 % Heat transfer coefficient (W/(m^2*K))
 if TP == TE_avg
 	heatTransfer = 0;

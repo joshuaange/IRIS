@@ -15,8 +15,7 @@ writematrix("Test Output:",'Test Output');
 for iit = 1:iitMax
     
     % In-air calculations
-    [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit] = II_main(velocityStart, terminalVelocity, gravity, L, minimumIgnore);
-    S = [xt(timeImpact) yt(timeImpact) zt(timeImpact)];
+    [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit, S] = II_main(velocityStart, terminalVelocity, gravity, L, minimumIgnore);
     
     % Recording iteration data
     run('big');
@@ -56,6 +55,7 @@ for iit = 1:iitMax
         writematrix("              vec_VF = " + double(vec_mag(vec_VF)),'Test Output','WriteMode','append');
         writematrix("              vec_VG = " + double(vec_mag(vec_VG)),'Test Output','WriteMode','append');
         writematrix("              vec_VE = " + double(vec_mag(vec_VE)),'Test Output','WriteMode','append');
+        writematrix("              POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
 
             velocityStart = s{iit,jit}.velocityEnd;
             
@@ -71,6 +71,7 @@ for iit = 1:iitMax
         writematrix("              vec_VF = " + double(vec_mag(vec_VF)),'Test Output','WriteMode','append');
         writematrix("              vec_VG = " + double(vec_mag(vec_VG)),'Test Output','WriteMode','append');
         writematrix("              vec_VE = " + double(vec_mag(vec_VE)),'Test Output','WriteMode','append');
+        writematrix("              POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
 
             velocityHit = s{iit,jit}.velocityEnd;
         
