@@ -29,7 +29,7 @@ for iit = 1:iitMax
         % Directional/Planar setup
         [dLdxS, dLdyS, N, vec_N, vec_PN, vec_P, vec_B, mag, S_2, vec_O] = III_directions(L, S, velocityHit, T, dLdx, dLdy);
         % Reaction forces
-        [vec_VR, vec_VG, K_avg, DV, vec_VE, vec_BG, F_avg, FJ, vec_VF] = III_reactions(S, T, velocityHit, mass, gravity, K, F, dLdxS, dLdyS, S_2, vec_O);
+        [vec_VR, vec_VG, K_avg, vec_VE, vec_BG, F_avg, FJ, vec_VF] = III_reactions(S, T, velocityHit, mass, gravity, K, F, dLdxS, dLdyS, S_2, vec_O);
         % Final equations
         [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation] = III_final(S_2, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, Y, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP);
         
@@ -45,7 +45,7 @@ for iit = 1:iitMax
             writematrix("              End Temperature = " + double(TP),'Test Output','WriteMode','append');
             break
         end;
-        if ret > 0
+        if ret > minimumIgnore
             writematrix("j (Air) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)),'Test Output','WriteMode','append');
             writematrix("              New Temperature = " + double(TP),'Test Output','WriteMode','append');
             

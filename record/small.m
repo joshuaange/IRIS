@@ -15,7 +15,6 @@ s{iit,jit}.S = vpa(S);
 s{iit,jit}.vec_VR = vpa(vec_VR);
 s{iit,jit}.vec_VG = vpa(vec_VG);
 s{iit,jit}.K_avg = vpa(K_avg);
-s{iit,jit}.DV = vpa(DV);
 s{iit,jit}.vec_VE = vpa(vec_VE);
 s{iit,jit}.vec_BG = vpa(vec_BG);
 s{iit,jit}.F_avg = vpa(F_avg);

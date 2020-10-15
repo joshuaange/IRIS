@@ -1,4 +1,4 @@
-function [vec_VR, vec_VG, K_avg, DV, vec_VE, vec_BG, F_avg, FJ, vec_VF] = III_reactions(S, T, velocityHit, mass, gravity, K, F, dLdxS, dLdyS, S_2, vec_O)
+function [vec_VR, vec_VG, K_avg, vec_VE, vec_BG, F_avg, FJ, vec_VF] = III_reactions(S, T, velocityHit, mass, gravity, K, F, dLdxS, dLdyS, S_2, vec_O)
 %Reaction forces
 %   Called by control.m
 % Equal Reaction Vector
@@ -9,8 +9,10 @@ vec_VG = [S(1) S(2) S(3); 0 0 -T*mass*gravity];
 
 % Elasticity Reaction Vector
 K_avg = (K(S(1),S(2))+K(S_2(1),S_2(2)))/2;
-DV = (T*K_avg*(vec_mag(velocityHit)))/mass;
-vec_VE = [S_2(1) S_2(2) S_2(3); DV*cos(vec_alpha(vec_VR)) DV*cos(vec_beta(vec_VR)) DV*cos(vec_gamma(vec_VR))];
+vec_VEx = K_avg*vec_VR(2,1);
+vec_VEy = K_avg*vec_VR(2,2);
+vec_VEz = K_avg*vec_VR(2,3);
+vec_VE = [S_2(1) S_2(2) S_2(3); vec_VEx vec_VEy vec_VEz];
 if vec_VR(2,1) == 0
     vec_VE(2,1) = 0;
 end;
@@ -20,7 +22,6 @@ end;
 if vec_VR(2,3) == 0
     vec_VE(2,3) = 0;
 end;
-%vec_VE = [S_2(1) S_2(2) S_2(3) ; 0 0 0];
 
 % Frictional Reaction Vector
 vec_BG = [S(1) S(2) S(3); T*mass*gravity*dLdxS T*mass*gravity*dLdyS -T*mass*gravity];
