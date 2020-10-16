@@ -1,4 +1,4 @@
-function [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit, S] = II_main(velocityStart, terminalVelocity, gravity, L, minimumIgnore)
+function [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit, S, timeTop] = II_main(velocityStart, terminalVelocity, gravity, L, minimumIgnore, podSpringConstant, diameter)
 % In-air calculations
 %   Called by control.m
 % Trajectory Functions
@@ -18,5 +18,8 @@ dzt = matlabFunction(diff(zt(t)));
 velocityHit = [xt(timeImpact) yt(timeImpact) zt(timeImpact) ; dxt(timeImpact) dyt(timeImpact) dzt(timeImpact)];
 % Point of impact
 S = [xt(timeImpact) yt(timeImpact) zt(timeImpact)];
+
+% Time of final impact
+timeTop = (vec_mag(velocityHit))/(100*podSpringConstant*diameter);
 end
 

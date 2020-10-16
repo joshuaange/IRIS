@@ -15,7 +15,7 @@ writematrix("Test Output:",'Test Output');
 for iit = 1:iitMax
     
     % In-air calculations
-    [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit, S] = II_main(velocityStart, terminalVelocity, gravity, L, minimumIgnore);
+    [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit, S, timeTop] = II_main(velocityStart, terminalVelocity, gravity, L, minimumIgnore, podSpringConstant, diameter);
     
     % Recording iteration data
     run('big');
@@ -29,7 +29,7 @@ for iit = 1:iitMax
         % Directional/Planar setup
         [dLdxS, dLdyS, N, vec_N, vec_PN, vec_P, vec_B, mag, S_2, vec_O] = III_directions(L, S, velocityHit, T, dLdx, dLdy);
         % Reaction forces
-        [vec_VR, vec_VG, K_avg, vec_VE, vec_BG, F_avg, FJ, vec_VF] = III_reactions(S, T, velocityHit, mass, gravity, K, F, dLdxS, dLdyS, S_2, vec_O);
+        [vec_VR, vec_VG, K_avg, vec_VE, vec_BG, F_avg, FJ, vec_VF] = III_reactions(S, T, velocityHit, mass, gravity, K, F, dLdxS, dLdyS, S_2, vec_O, timeTop, jit);
         % Final equations
         [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation] = III_final(S_2, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, Y, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP);
         
