@@ -29,18 +29,18 @@ for iit = 1:iitMax
         % Directional/Planar setup
         [dLdxS, dLdyS, N, vec_N, vec_PN, vec_P, vec_B, mag, S_2, vec_O] = III_directions(L, S, velocityHit, T, dLdx, dLdy);
         % Reaction forces
-        [vec_VR, vec_VG, vec_VE, vec_VF, K_avg] = III_reactions(S, T, gravity, velocityHit, jit, S_2, K, s, iit, minimumRestitution);
+        [vec_VR, vec_VG, vec_VE, vec_VF, K_avg] = III_reactions(S, T, gravity, velocityHit, jit, S_2, K, s, iit, minimumRestitution, KT);
         % Final equations
         [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation] = III_final(S_2, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, Y, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP);
         
         % Return
         ret = vpa(velocityEnd(2,3)+S_2(3)-L((velocityEnd(2,1)+S_2(1)),(velocityEnd(2,2)+S_2(2))));
-        
+        returnVelocity = (vec_mag(velocityEnd));
         % Recording iteration data
         run('small');
         TP = s{iit,jit}.TP_new;
         
-        if (-stopRange<vec_mag(velocityEnd)) && (vec_mag(velocityEnd)<+stopRange)
+        if (-stopRange<returnVelocity) && (returnVelocity<+stopRange)
             writematrix("j (N) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)),'Test Output','WriteMode','append');
             writematrix("              End Temperature = " + double(TP),'Test Output','WriteMode','append');
             break
@@ -78,7 +78,7 @@ for iit = 1:iitMax
         end;
         
     end;
-    if (-stopRange<vec_mag(velocityEnd)) && (vec_mag(velocityEnd)<+stopRange)
+    if (-stopRange<returnVelocity) && (returnVelocity<+stopRange)
             break
     end;
 end;
