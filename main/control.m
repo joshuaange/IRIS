@@ -29,7 +29,7 @@ for iit = 1:iitMax
         % Directional/Planar setup
         [dLdxS, dLdyS, N, vec_N, vec_PN, vec_P, vec_B, mag, S_2, vec_O] = III_directions(L, S, velocityHit, T, dLdx, dLdy);
         % Reaction forces
-        [vec_VR, vec_VG, vec_VE, vec_VF, K_avg] = III_reactions(S, T, gravity, velocityHit, jit, S_2, K, s, iit, minimumRestitution, KT);
+        [vec_VR, vec_VG, vec_VE, vec_VF, K_avg] = III_reactions(S, T, gravity, velocityHit, jit, S_2, K, s, iit, minimumRestitution, KT, vec_O, F);
         % Final equations
         [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation] = III_final(S_2, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, Y, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP);
         

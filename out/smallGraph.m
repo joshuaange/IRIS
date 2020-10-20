@@ -6,7 +6,7 @@ for iit = 1:iitMax
             quiver3(s{iit,jit}.vec_VR(1,1),s{iit,jit}.vec_VR(1,2),s{iit,jit}.vec_VR(1,3),s{iit,jit}.vec_VR(2,1),s{iit,jit}.vec_VR(2,2),s{iit,jit}.vec_VR(2,3),'lineWidth',1,'Color','magenta','MaxHeadSize',0.5,'DisplayName','vec_VR');
             quiver3(s{iit,jit}.vec_VE(1,1),s{iit,jit}.vec_VE(1,2),s{iit,jit}.vec_VE(1,3),s{iit,jit}.vec_VE(2,1),s{iit,jit}.vec_VE(2,2),s{iit,jit}.vec_VE(2,3),'lineWidth',1,'Color','cyan','MaxHeadSize',0.5,'DisplayName','vec_VE');
             quiver3(s{iit,jit}.velocityEnd(1,1),s{iit,jit}.velocityEnd(1,2),s{iit,jit}.velocityEnd(1,3),s{iit,jit}.velocityEnd(2,1),s{iit,jit}.velocityEnd(2,2),s{iit,jit}.velocityEnd(2,3),'lineWidth',1,'Color','green','MaxHeadSize',0.5,'DisplayName','New Velocity');
-
+            quiver3(s{iit,jit}.vec_VF(1,1),s{iit,jit}.vec_VF(1,2),s{iit,jit}.vec_VF(1,3),s{iit,jit}.vec_VF(2,1),s{iit,jit}.vec_VF(2,2),s{iit,jit}.vec_VF(2,3),'lineWidth',1,'Color','yellow','MaxHeadSize',0.5,'DisplayName','vec_VF');
         end;
     end;
 end;

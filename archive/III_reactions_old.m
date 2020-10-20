@@ -32,8 +32,7 @@ FJ = sqrt((F_avg*(vec_VR(2,1)+vec_VE(2,1)+vec_BG(2,1)))^2+(F_avg*(vec_VR(2,2)+ve
 if vec_mag(vec_O) == 0 
 	vec_VF = [S_2(1) S_2(2) S_2(3); 0 0 0];
 else
-    vec_VF = [S_2(1) S_2(2) S_2(3); 0 0 0];
-	%vec_VF = [S_2(1) S_2(2) S_2(3); (FJ*((S(1)-S_2(1))/vec_mag(vec_O))) (FJ*((S(2)-S_2(2))/vec_mag(vec_O))) ((S(3)-S_2(3))/vec_mag(vec_O))];
+	vec_VF = [S_2(1) S_2(2) S_2(3); (FJ*((S(1)-S_2(1))/vec_mag(vec_O))) (FJ*((S(2)-S_2(2))/vec_mag(vec_O))) ((S(3)-S_2(3))/vec_mag(vec_O))];
 end;
 end
 

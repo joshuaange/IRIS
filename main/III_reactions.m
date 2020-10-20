@@ -1,4 +1,4 @@
-function [vec_VR, vec_VG, vec_VE, vec_VF, K_avg] = III_reactions(S, T, gravity, velocityHit, jit, S_2, K, s, iit, minimumRestitution, KT)
+function [vec_VR, vec_VG, vec_VE, vec_VF, K_avg] = III_reactions(S, T, gravity, velocityHit, jit, S_2, K, s, iit, minimumRestitution, KT, vec_O, F)
 %Reaction forces
 %   Called by control.m
 % Equal Reaction Vector
@@ -24,5 +24,6 @@ end;
 
 
 % Frictional Reaction Vector
-vec_VF = [S(1) S(2) S(3) ; 0 0 0];
+F_avg = ((F(S(1),S(2))+F(S_2(1),S_2(2)))/2);
+vec_VF = [vec_O(1,1)+vec_O(2,1) vec_O(1,2)+vec_O(2,2) vec_O(1,3)+vec_O(2,3) ; -F_avg*vec_O(2,1) -F_avg*vec_O(2,2) -F_avg*vec_O(2,3)];
 end
