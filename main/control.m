@@ -42,48 +42,46 @@ for iit = 1:iitMax
         
         if (-stopRange<returnVelocity) && (returnVelocity<+stopRange)
             writematrix("j (N) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)),'Test Output','WriteMode','append');
-            writematrix("              End Temperature = " + double(TP),'Test Output','WriteMode','append');
+            writematrix("              velocityHit = " + double(vec_mag(velocityHit)),'Test Output','WriteMode','append');
+            writematrix("              vec_VR = " + double(vec_mag(vec_VR)),'Test Output','WriteMode','append');
+            writematrix("              vec_VF = " + double(vec_mag(vec_VF)),'Test Output','WriteMode','append');
+            writematrix("              vec_VG = " + double(vec_mag(vec_VG)),'Test Output','WriteMode','append');
+            writematrix("              vec_VE = " + double(vec_mag(vec_VE)),'Test Output','WriteMode','append');
+            writematrix("             Spin = [ " + double(quatV_next(2,1)) + ", " + double(quatV_next(2,2)) + ", " + double(quatV_next(2,3)) + " ], " + double(quatA_next),'Test Output','WriteMode','append');
+            writematrix("             POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
             break
         end;
         if ret > minimumIgnore
             writematrix("j (Air) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)),'Test Output','WriteMode','append');
             writematrix("              New Temperature = " + double(TP),'Test Output','WriteMode','append');
-            
-                            % SEE OTHER VALUES
-        writematrix("              velocityHit = " + double(vec_mag(velocityHit)),'Test Output','WriteMode','append');
-        writematrix("              vec_VR = " + double(vec_mag(vec_VR)),'Test Output','WriteMode','append');
-        writematrix("              vec_VF = " + double(vec_mag(vec_VF)),'Test Output','WriteMode','append');
-        writematrix("              vec_VG = " + double(vec_mag(vec_VG)),'Test Output','WriteMode','append');
-        writematrix("              vec_VE = " + double(vec_mag(vec_VE)),'Test Output','WriteMode','append');
-%        writematrix("             Spin = [ " + double(quatV_next(2,1)) + ", " + double(quatV_next(2,2)) + ", " + double(quatV_next(2,3)) + " ], " + double(quatA_next),'Test Output','WriteMode','append');
-        writematrix("             POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
+            writematrix("              velocityHit = " + double(vec_mag(velocityHit)),'Test Output','WriteMode','append');
+            writematrix("              vec_VR = " + double(vec_mag(vec_VR)),'Test Output','WriteMode','append');
+            writematrix("              vec_VF = " + double(vec_mag(vec_VF)),'Test Output','WriteMode','append');
+            writematrix("              vec_VG = " + double(vec_mag(vec_VG)),'Test Output','WriteMode','append');
+            writematrix("              vec_VE = " + double(vec_mag(vec_VE)),'Test Output','WriteMode','append');
+            writematrix("             Spin = [ " + double(quatV_next(2,1)) + ", " + double(quatV_next(2,2)) + ", " + double(quatV_next(2,3)) + " ], " + double(quatA_next),'Test Output','WriteMode','append');
+            writematrix("             POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
 
             velocityStart = s{iit,jit}.velocityEnd;
-            %quatV_air = [s{iit,jit}.quatV_next(1,1) s{iit,jit}.quatV_next(1,2) s{iit,jit}.quatV_next(1,3); s{iit,jit}.quatV_next(2,1) s{iit,jit}.quatV_next(2,2) s{iit,jit}.quatV_next(2,3)];
-            %quatA_air = s{iit,jit}.quatA_next;
-            quatV_air = 0
-            quatA_air = 0
+            quatV_air = [s{iit,jit}.quatV_next(1,1) s{iit,jit}.quatV_next(1,2) s{iit,jit}.quatV_next(1,3); s{iit,jit}.quatV_next(2,1) s{iit,jit}.quatV_next(2,2) s{iit,jit}.quatV_next(2,3)];
+            quatA_air = s{iit,jit}.quatA_next;
             
             break
         else
             S = s{iit,jit}.S_2;
             writematrix("j (Ground) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)),'Test Output','WriteMode','append');
             writematrix("              New Temperature = " + double(TP),'Test Output','WriteMode','append');
-                    
-                            % SEE OTHER VALUES
-        writematrix("              velocityHit = " + double(vec_mag(velocityHit)),'Test Output','WriteMode','append');
-        writematrix("              vec_VR = " + double(vec_mag(vec_VR)),'Test Output','WriteMode','append');
-        writematrix("              vec_VF = " + double(vec_mag(vec_VF)),'Test Output','WriteMode','append');
-        writematrix("              vec_VG = " + double(vec_mag(vec_VG)),'Test Output','WriteMode','append');
-        writematrix("              vec_VE = " + double(vec_mag(vec_VE)),'Test Output','WriteMode','append');
-%        writematrix("             Spin = [ " + double(quatV_next(2,1)) + ", " + double(quatV_next(2,2)) + ", " + double(quatV_next(2,3)) + " ], " + double(quatA_next),'Test Output','WriteMode','append');
-        writematrix("             POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
+            writematrix("              velocityHit = " + double(vec_mag(velocityHit)),'Test Output','WriteMode','append');
+            writematrix("              vec_VR = " + double(vec_mag(vec_VR)),'Test Output','WriteMode','append');
+            writematrix("              vec_VF = " + double(vec_mag(vec_VF)),'Test Output','WriteMode','append');
+            writematrix("              vec_VG = " + double(vec_mag(vec_VG)),'Test Output','WriteMode','append');
+            writematrix("              vec_VE = " + double(vec_mag(vec_VE)),'Test Output','WriteMode','append');
+            writematrix("             Spin = [ " + double(quatV_next(2,1)) + ", " + double(quatV_next(2,2)) + ", " + double(quatV_next(2,3)) + " ], " + double(quatA_next),'Test Output','WriteMode','append');
+            writematrix("             POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
 
             velocityHit = s{iit,jit}.velocityEnd;
-            %quatV_ground = [s{iit,jit}.quatV_next(1,1) s{iit,jit}.quatV_next(1,2) s{iit,jit}.quatV_next(1,3); s{iit,jit}.quatV_next(2,1) s{iit,jit}.quatV_next(2,2) s{iit,jit}.quatV_next(2,3)];
-            %quatA_ground = s{iit,jit}.quatA_next;
-            quatV_ground = 0
-            quatA_ground = 0
+            quatV_ground = [s{iit,jit}.quatV_next(1,1) s{iit,jit}.quatV_next(1,2) s{iit,jit}.quatV_next(1,3); s{iit,jit}.quatV_next(2,1) s{iit,jit}.quatV_next(2,2) s{iit,jit}.quatV_next(2,3)];
+            quatA_ground = s{iit,jit}.quatA_next;
         
         end;
         

@@ -10,6 +10,9 @@ zt = @(t) (terminalVelocity/gravity)*(velocityStart(2,3)+terminalVelocity)*(1-ex
 % Time of impact
 syms t
 timeImpact = vpasolve(L(xt(t),yt(t)) == zt(t), t, [minimumIgnore, Inf]);
+if isempty(timeImpact) == 1
+    writematrix("ERROR : timeImpact is zero",'Test Output','WriteMode','append');
+end;
 
 % Differential of trajectory functions
 dxt = matlabFunction(diff(xt(t)));
@@ -21,9 +24,7 @@ velocityHit = [xt(timeImpact) yt(timeImpact) zt(timeImpact) ; dxt(timeImpact) dy
 S = [xt(timeImpact) yt(timeImpact) zt(timeImpact)];
 
 % Spin
-%quatV_ground = [S(1) S(2) S(3); quatV_air(2,1) quatV_air(2,2) quatV_air(2,3)];
-%quatA_ground = quatA_air;
-quatV_ground = 0
-quatA_ground = 0
+quatV_ground = [S(1) S(2) S(3); quatV_air(2,1) quatV_air(2,2) quatV_air(2,3)];
+quatA_ground = quatA_air;
 end
 
