@@ -15,7 +15,7 @@ writematrix("Test Output:",'Test Output');
 for iit = 1:iitMax
     
     % In-air calculations
-    [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit, S] = II_main(velocityStart, terminalVelocity, gravity, L, minimumIgnore, podSpringConstant, diameter);
+    [xt, yt, zt, timeImpact, dxt, dyt, dzt, velocityHit, S, quatV_ground, quatA_ground] = II_main(velocityStart, terminalVelocity, gravity, L, minimumIgnore, podSpringConstant, diameter, quatV_air, quatA_air);
     
     % Recording iteration data
     run('big');
@@ -29,13 +29,13 @@ for iit = 1:iitMax
         % Directional/Planar setup
         [dLdxS, dLdyS, N, vec_N, vec_PN, vec_P, vec_B, mag, S_2, vec_O] = III_directions(L, S, velocityHit, T, dLdx, dLdy);
         % Reaction forces
-        [vec_VR, vec_VG, vec_VE, vec_VF, K_avg] = III_reactions(S, T, gravity, velocityHit, jit, S_2, K, s, iit, minimumRestitution, KT, vec_O, F);
+        [vec_VR, vec_VG, vec_VE, vec_VF, K_avg, quatV_pInfluence, quatA_pInfluence, quatV_next quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_2, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N);
         % Final equations
-        [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation] = III_final(S_2, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, Y, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP);
+        [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation, deltarKE] = III_final(S_2, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, Y, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP, vec_rotVelocity, momentOfInertia, quatA_next, quatA_ground);
         
         % Return
         ret = vpa(velocityEnd(2,3)+S_2(3)-L((velocityEnd(2,1)+S_2(1)),(velocityEnd(2,2)+S_2(2))));
-        returnVelocity = (vec_mag(velocityEnd));
+        returnVelocity = vpa(vec_mag(velocityEnd));
         % Recording iteration data
         run('small');
         TP = s{iit,jit}.TP_new;
@@ -55,9 +55,14 @@ for iit = 1:iitMax
         writematrix("              vec_VF = " + double(vec_mag(vec_VF)),'Test Output','WriteMode','append');
         writematrix("              vec_VG = " + double(vec_mag(vec_VG)),'Test Output','WriteMode','append');
         writematrix("              vec_VE = " + double(vec_mag(vec_VE)),'Test Output','WriteMode','append');
-        writematrix("              POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
+%        writematrix("             Spin = [ " + double(quatV_next(2,1)) + ", " + double(quatV_next(2,2)) + ", " + double(quatV_next(2,3)) + " ], " + double(quatA_next),'Test Output','WriteMode','append');
+        writematrix("             POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
 
             velocityStart = s{iit,jit}.velocityEnd;
+            %quatV_air = [s{iit,jit}.quatV_next(1,1) s{iit,jit}.quatV_next(1,2) s{iit,jit}.quatV_next(1,3); s{iit,jit}.quatV_next(2,1) s{iit,jit}.quatV_next(2,2) s{iit,jit}.quatV_next(2,3)];
+            %quatA_air = s{iit,jit}.quatA_next;
+            quatV_air = 0
+            quatA_air = 0
             
             break
         else
@@ -71,9 +76,14 @@ for iit = 1:iitMax
         writematrix("              vec_VF = " + double(vec_mag(vec_VF)),'Test Output','WriteMode','append');
         writematrix("              vec_VG = " + double(vec_mag(vec_VG)),'Test Output','WriteMode','append');
         writematrix("              vec_VE = " + double(vec_mag(vec_VE)),'Test Output','WriteMode','append');
-        writematrix("              POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
+%        writematrix("             Spin = [ " + double(quatV_next(2,1)) + ", " + double(quatV_next(2,2)) + ", " + double(quatV_next(2,3)) + " ], " + double(quatA_next),'Test Output','WriteMode','append');
+        writematrix("             POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
 
             velocityHit = s{iit,jit}.velocityEnd;
+            %quatV_ground = [s{iit,jit}.quatV_next(1,1) s{iit,jit}.quatV_next(1,2) s{iit,jit}.quatV_next(1,3); s{iit,jit}.quatV_next(2,1) s{iit,jit}.quatV_next(2,2) s{iit,jit}.quatV_next(2,3)];
+            %quatA_ground = s{iit,jit}.quatA_next;
+            quatV_ground = 0
+            quatA_ground = 0
         
         end;
         
@@ -96,7 +106,6 @@ xlim([domainMin domainMax]);
 ylim([domainMin domainMax]);
 zlim([domainMin domainMax]);
 grid minor;
-%legend([surf_L curve_trajectory vec_velocityStart vec_velocityHit point_impact]);
 hold off;
 
 display("END");

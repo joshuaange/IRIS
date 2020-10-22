@@ -9,3 +9,5 @@ b{iit}.dzt = vpa(dzt);
 b{iit}.velocityHit = vpa(velocityHit);
 b{iit}.S = vpa(S);
 b{iit}.TP = vpa(TP);
+b{iit}.quatV_air = vpa(quatV_air);
+b{iit}.quatA_air = vpa(quatA_air);
