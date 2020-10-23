@@ -104,6 +104,8 @@ xlim([domainMin domainMax]);
 ylim([domainMin domainMax]);
 zlim([domainMin domainMax]);
 grid minor;
+legend;
+axis equal;
 hold off;
 
 display("END");
