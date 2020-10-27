@@ -1,12 +1,30 @@
 Test Output:
 i = 1
-"j (Ground) = 1, Velocity: 7.5731"
+"j (Ground) = 1, Velocity: 7.3016"
               New Temperature = 40
-              velocityHit = 7.6249
-              vec_VR = 0.029263
-              vec_VF = 0.024053
-              vec_VG = 0.001
+              velocityHit = 9.8349
+              vec_VR = 2.4587
+              vec_VF = 0.59259
+              vec_VG = 0.025
               vec_VE = 0
-"             Spin = [ 0.33848, 0.94097, 0 ], 1e-39"
-"             POSITION = (2.1943, 0.0028262, -0.18745)"
+"             Spin = [ 0.31129, 0.95032, 0 ], 1e-39"
+"             POSITION = (5.8427, 4.8681, -1.6733)"
+"j (Ground) = 2, Velocity: 1.3912"
+              New Temperature = 40
+              velocityHit = 7.3016
+              vec_VR = 3.6508
+              vec_VF = 0.24452
+              vec_VG = 0.025
+              vec_VE = 2.2251
+"             Spin = [ 0.062336, -0.99806, 0 ], 1.0084"
+"             POSITION = (5.9385, 5.3703, -1.5357)"
+"j (Air) = 3, Velocity: 0.76085"
+              New Temperature = 40
+              velocityHit = 1.3912
+              vec_VR = 1.0434
+              vec_VF = 0.073684
+              vec_VG = 0.025
+              vec_VE = 1.1013
+"             Spin = [ -0.13232, -0.99121, 0 ], 1.0181"
+"             POSITION = (5.145, 4.3688, -2.1433)"
 END

@@ -91,12 +91,14 @@ for dimOne = 1:x_limit
 end
 S = [totalX/count totalY/count totalZ/count];
 plot3(S(1), S(2), S(3),'Marker','o','DisplayName','Impact Point','Color','cyan');
-% Movement of new working impact point
+% ----- ----- ----- ----- ----- ----- %
 vec_O = [S(1) S(2) S(3); 1 -0.75 L(S(1)+1,S(2)-0.75)];
 quiver3(vec_O(1,1),vec_O(1,2),vec_O(1,3),vec_O(2,1),vec_O(2,2),vec_O(2,3),'lineWidth',1,'Color','blue','MaxHeadSize',0.5,'DisplayName','Traced Segment Vector');
+% ----- ----- ----- ----- ----- ----- %
+% New working impact point
 vec_OM = [C(1) C(2) C(3); vec_O(2,1) vec_O(2,2) vec_O(2,3)];
 quiver3(vec_OM(1,1),vec_OM(1,2),vec_OM(1,3),vec_OM(2,1),vec_OM(2,2),vec_OM(2,3),'lineWidth',1,'Color','blue','MaxHeadSize',0.5,'DisplayName','Center Movement Segment Vector','LineStyle','--');
-% Finds New Working Impact Point
+% New Working Impact Point
 X4 = X*(diameter/2) + vec_OM(1,1)+vec_OM(2,1);
 Y4 = Y*(diameter/2) + vec_OM(1,2)+vec_OM(2,2);
 Z4 = Z*(diameter/2) + vec_OM(1,3)+vec_OM(2,3);

@@ -1,8 +1,8 @@
-function [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation, deltarKE] = III_final(S_2, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, Y, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP, vec_rotVelocity, momentOfInertia, quatA_next, quatA_ground)
+function [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation, deltarKE] = III_final(S_new, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, YM, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP, vec_rotVelocity, momentOfInertia, quatA_next, quatA_ground, C_new)
 % Final equations
 %   Called by control.m
 % New Velocity
-velocityEnd = [S_2(1) S_2(2) S_2(3); 0 0 0];
+velocityEnd = [C_new(1) C_new(2) C_new(3); 0 0 0];
 velocityEnd(2,1) = (vec_rotVelocity(2,1) + velocityHit(2,1) + (vec_VR(2,1)) + vec_VF(2,1) + vec_VG(2,1) + vec_VE(2,1));
 velocityEnd(2,2) = (vec_rotVelocity(2,2) + velocityHit(2,2) + (vec_VR(2,2)) + vec_VF(2,2) + vec_VG(2,2) + vec_VE(2,2));
 velocityEnd(2,3) = (vec_rotVelocity(2,3) + velocityHit(2,3) + (vec_VR(2,3)) + vec_VF(2,3) + vec_VG(2,3) + vec_VE(2,3));
@@ -16,15 +16,15 @@ deltarKE=0.5*momentOfInertia*((quatA_next/(2*pi))^2 - (quatA_ground/(2*pi))^2);
 deltaKE = deltalKE+deltarKE;
 
 % Deformation
-Y_avg = (Y(S(1),S(2))+Y(S_2(1),S_2(2)))/2;
-G_avg = (G(S(1),S(2))+G(S_2(1),S_2(2)))/2;
+Y_avg = (YM(S(1),S(2))+YM(S_new(1),S_new(2)))/2;
+G_avg = (G(S(1),S(2))+G(S_new(1),S_new(2)))/2;
 landPoisson = (Y_avg)/(2*G_avg-1);
 landMaterialProp = (1-landPoisson^2)/(pi*Y_avg);
 deformation = ((((3*pi/2)^2/3)*(101.97*(-FI))^2/3*(landMaterialProp+podMaterialProp)^2/3*(1/(1000*diameter)))^1/3)/1000;
 
 % Average values 
-TE_avg = (TE(S(1),S(2))+TE(S_2(1),S_2(2)))/2;
-TC_avg = (TC(S(1),S(2))+TC(S_2(1),S_2(2)))/2;
+TE_avg = (TE(S(1),S(2))+TE(S_new(1),S_new(2)))/2;
+TC_avg = (TC(S(1),S(2))+TC(S_new(1),S_new(2)))/2;
 % Finding heat flux (W/m^2)
 if deformation == 0
     heatFlux = 0;
