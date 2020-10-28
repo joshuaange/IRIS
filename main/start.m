@@ -7,8 +7,8 @@ close all
 % set the maximum limits of their for loops.  If jitMax is too 
 % low (meaning it registers as still continuing along the 
 % ground), the result will be an error.
-iitMax = 1;
-jitMax = 3;
+iitMax = 3;
+jitMax = 10;
 % Acceptable range of velocity to be considered 0
 stopRange = 0.01;
 % Limits of surface mesh minimum, maximum, and interval
