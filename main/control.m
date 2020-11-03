@@ -46,7 +46,7 @@ for iit = 1:iitMax
         [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation, deltarKE] = III_final(S_new, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, YM, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP, vec_rotVelocity, momentOfInertia, quatA_next, quatA_ground, C_new);
         
         % Return
-        ret = vpa(velocityEnd(2,3)+S_2(3)-L((velocityEnd(2,1)+S_2(1)),(velocityEnd(2,2)+S_2(2))));
+        ret = vpa(velocityEnd(2,3)+S_new(3)-L((velocityEnd(2,1)+S_new(1)),(velocityEnd(2,2)+S_new(2))));
         returnVelocity = vpa(vec_mag(velocityEnd));
         % Recording iteration data
         run('small');
@@ -78,7 +78,6 @@ for iit = 1:iitMax
             quatA_air = s{iit,jit}.quatA_next;
             break
         else
-            S = s{iit,jit}.S_new;
             writematrix("j (Ground) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)),'Test Output','WriteMode','append');
             writematrix("              New Temperature = " + double(TP),'Test Output','WriteMode','append');
             writematrix("              velocityHit = " + double(vec_mag(velocityHit)),'Test Output','WriteMode','append');
@@ -88,9 +87,13 @@ for iit = 1:iitMax
             writematrix("              vec_VE = " + double(vec_mag(vec_VE)),'Test Output','WriteMode','append');
             writematrix("             Spin = [ " + double(quatV_next(2,1)) + ", " + double(quatV_next(2,2)) + ", " + double(quatV_next(2,3)) + " ], " + double(quatA_next),'Test Output','WriteMode','append');
             writematrix("             POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
+            S = s{iit,jit}.S_new;
             velocityHit = s{iit,jit}.velocityEnd;
             quatV_ground = [s{iit,jit}.quatV_next(1,1) s{iit,jit}.quatV_next(1,2) s{iit,jit}.quatV_next(1,3); s{iit,jit}.quatV_next(2,1) s{iit,jit}.quatV_next(2,2) s{iit,jit}.quatV_next(2,3)];
             quatA_ground = s{iit,jit}.quatA_next;
+            if jit == jitMax
+                writematrix("ERROR : not enough jit",'Test Output','WriteMode','append');
+            end
         end
     end
     if (-stopRange<returnVelocity) && (returnVelocity<+stopRange)

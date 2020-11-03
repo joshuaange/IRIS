@@ -26,10 +26,10 @@ for timeTest = timeImpactFinal:-minimumStep:0
                 Y = YSphere*(diameter/2) + C(2);
                 Z = ZSphere*(diameter/2) + C(3);
                 timeImpact = timeTest;
-            end;
-        end;
-    end;
-end;
+            end
+        end
+    end
+end
 end
 
 

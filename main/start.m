@@ -7,7 +7,7 @@ close all
 % set the maximum limits of their for loops.  If jitMax is too 
 % low (meaning it registers as still continuing along the 
 % ground), the result will be an error.
-iitMax = 3;
+iitMax = 2;
 jitMax = 10;
 % Acceptable range of velocity to be considered 0
 stopRange = 0.01;
@@ -27,15 +27,15 @@ minimumStep = 0.01;
 minimumEqual = 0.008;
 
 % Terrain (Surface Topology)
-L = @(x,y) 1*(sin(x)) + 0.25*(sin(y)) - 1;
+L = @(x,y) 0.1*(sin(x)) + 0.1*(sin(y)) - 1;
 % Terrain (Coefficient of Restitution)
-K = @(x,y) 0*x + 0*y + 0.01;
+K = @(x,y) 0*x + 0*y + 0.5;
 % Terrain (Proportion of Time of Coefficient of Restitution)
-KT = @(x,y) 0*x + 0*y + 0.3;
+KT = @(x,y) 0*x + 0*y + 0.5;
 % Terrain (Proportion of Friction)
-F = @(x,y) 0*x + 0*y + 0.5;
+F = @(x,y) 0*x + 0*y + 0;
 % Terrain (Proportion of Rolling Friction)
-R = @(x,y) 0*x + 0*y + 0.5;
+R = @(x,y) 0*x + 0*y + 0;
 % Terrain (Young's Modulus)
 YM = @(x,y) 0*x + 0*y + 4180836470;
 % Terrain (Modulus of Rigidity)
@@ -47,7 +47,7 @@ gravity = 10;
 airDensity = 1.2;
 surfaceArea = 0.012;
 dragCoefficient = 0.5;
-T = 0.25;
+T = 0.05;
 diameter = 1;
 podYoungsMod = 265126210;
 podModRigidity = 219238980;
@@ -55,9 +55,9 @@ podSpringConstant = 15; %(Some Elasticity Factor)
 momentOfInertia = 0.00009173009999999997;
 
 % Initial Conditions
-velocityStart = [-1.4 0 3; 8 5 0];
+velocityStart = [-1.4 0 3; 6 3 0];
 quatV_air = [velocityStart(1,1) velocityStart(1,2) velocityStart(1,3); 0 1 0];
-quatA_air = 0.1;
+quatA_air = 0.00000000000000000000000000000001;
 
 % Initial pod temperature, to be changed with each on-ground iteration
 TP = 100;

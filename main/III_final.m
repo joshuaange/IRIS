@@ -30,13 +30,13 @@ if deformation == 0
     heatFlux = 0;
 else
     heatFlux = ((TC_avg)*((TP-TE_avg))/(deformation));
-end;
+end
 % Heat transfer coefficient (W/(m^2*K))
 if TP == TE_avg
 	heatTransfer = 0;
 else
 	heatTransfer = (heatFlux)/(TP-TE_avg);
-end;
+end
 % Area of heat exchange (m^2)
 areaGround = pi*((diameter/2)^2-((diameter/2)-deformation)^2);
 % Cooling coefficient (1/s)

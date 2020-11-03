@@ -22,9 +22,9 @@ for dimOne = 1:x_limit
             totalX = totalX + X(dimOne,dimTwo);
             totalY = totalY + Y(dimOne,dimTwo);
             totalZ = totalZ + Z(dimOne,dimTwo);
-        end;
-    end;
-end;
+        end
+    end
+end
 % Impact Point
 S = [totalX/count totalY/count totalZ/count];
 % Spin

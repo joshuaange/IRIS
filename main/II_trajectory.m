@@ -12,6 +12,6 @@ syms t
 timeImpactFinal = vpasolve(L(xt(t),yt(t)) == zt(t), t, [minimumIgnore, Inf]);
 if isempty(timeImpactFinal) == 1
     writematrix("ERROR : timeImpact is zero",'Test Output','WriteMode','append');
-end;
+end
 end
 
