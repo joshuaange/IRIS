@@ -1,18 +1,18 @@
 # LSPIS
 <img src="https://i.imgur.com/b68WLn6.png" alt="LSPIS" img align="right" width="275"> The Lunar Supply Pod Impact Simulation (LSPIS) is a computer model meant to simulate collisions from a supply pod onto the lunar (or Martian) surface without fuel or pre-existing structures. We hope to discover if this method of delivery is a practical possibility to deliver supplies to residents on the moon. It calculates in-air trajectories, changes in velocity, changing environment, changes in spin, deformation, elasticity, and both elastic and inelastic collisions from different initial conditions and demonstrates the forces and survivability of the pod (and its contents) when dropped onto the surface. 
 
- **[Project Description](https://sites.google.com/view/lunar-supply-pods/home)** |
- **[Research](https://sites.google.com/view/lunar-supply-pods/research)** |
- **[Design](https://sites.google.com/view/lunar-supply-pods/design)** |
- **[Development](https://sites.google.com/view/lunar-supply-pods/development)** |
- **[Misc.](https://sites.google.com/view/lunar-supply-pods/misc)** |
- **[About Us](https://sites.google.com/view/lunar-supply-pods/about-us)**
+ **[Project Description](https://sites.google.com/view/lspis/home)** |
+ **[Research](https://sites.google.com/view/lspis/research)** |
+ **[Design](https://sites.google.com/view/lspis/design)** |
+ **[Development](https://sites.google.com/view/lspis/development)** |
+ **[Misc.](https://sites.google.com/view/lspis/misc)** |
+ **[About Us](https://sites.google.com/view/lspis/about-us)**
 
 ## Authors
 
- - **Joshua Ange** : [Math Modeling and Simulation, Overall Program Structure](https://sites.google.com/view/lunar-supply-pods/about-us)
- - **Jonathan Andrews** : [User Interface Development, Pod CAD Design](https://sites.google.com/view/lunar-supply-pods/about-us)
- - **Amber Glory** : [Publication Management, Pod Design and Integration](https://sites.google.com/view/lunar-supply-pods/about-us)
+ - **Joshua Ange** : [Math Modeling and Simulation, Overall Program Structure](https://sites.google.com/view/lspis/about-us)
+ - **Jonathan Andrews** : [User Interface Development, Pod CAD Design](https://sites.google.com/view/lspis/about-us)
+ - **Amber Glory** : [Publication Management, Pod Design and Integration](https://sites.google.com/view/lspis/about-us)
 
 ## Built With
 
