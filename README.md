@@ -10,9 +10,9 @@
 
 ## Authors
 
- - **Joshua Ange** : [Math Modeling and Simulation, Overall Program Structure](https://sites.google.com/view/lspis/about-us)
- - **Jonathan Andrews** : [User Interface Development, Pod CAD Design](https://sites.google.com/view/lspis/about-us)
- - **Amber Glory** : [Publication Management, Pod Design and Integration](https://sites.google.com/view/lspis/about-us)
+ - **Joshua Ange** : [Physics Math Modeling and Simulation, Overall Program Development](https://sites.google.com/view/lspis/about-us)
+ - **Jonathan Andrews** : [User Interface Development, Output Animation Development](https://sites.google.com/view/lspis/about-us)
+ - **Amber Glory** : [Pod Design and Integration, Publication Management](https://sites.google.com/view/lspis/about-us)
 
 ## Built With
 
