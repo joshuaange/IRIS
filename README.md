@@ -24,8 +24,9 @@
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. 
- - **Pure math model** : [v0.0.1 - v1.2.5](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing) 
- - **Math model with MATLAB** : [v1.3.3](https://github.com/joshuaange/LSPIS/tags)
+ - **Pure Math Model** : [v0.0.1 - v1.2.5](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing) 
+ - **Computer Model** : [v1.3.0 - v1.3.3](https://github.com/joshuaange/LSPIS/tags)
+ - **User-Friendly Software** : [TBD](https://github.com/joshuaange/LSPIS/tags)
 
 ## Example Usage
 
