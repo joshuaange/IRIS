@@ -6,8 +6,6 @@ syms t
 dxt = matlabFunction(diff(xt(t)));
 dyt = matlabFunction(diff(yt(t)));
 dzt = matlabFunction(diff(zt(t)));
-% Velocity of impact
-velocityHit = [C(1) C(2) C(3) ; dxt(timeImpact) dyt(timeImpact) dzt(timeImpact)];
 % Finds Average of Impact Points
 totalX = 0;
 totalY = 0;
@@ -27,6 +25,8 @@ for dimOne = 1:x_limit
 end
 % Impact Point
 S = [totalX/count totalY/count totalZ/count];
+% Velocity of impact
+velocityHit = [S(1) S(2) S(3) ; dxt(timeImpact) dyt(timeImpact) dzt(timeImpact)];
 % Spin
 quatV_ground = [S(1) S(2) S(3); quatV_air(2,1) quatV_air(2,2) quatV_air(2,3)];
 quatA_ground = quatA_air;

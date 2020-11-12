@@ -38,10 +38,10 @@ for iit = 1:iitMax
         
         % Directional/Planar setup
         [dLdxS, dLdyS, N, vec_N, vec_PN, vec_P, vec_B, mag, S_2, vec_O] = III_directions(L, S, velocityHit, T, dLdx, dLdy);
-        % Reaction forces
-        [vec_VR, vec_VG, vec_VE, vec_VF, K_avg, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_2, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N);
         % Pod equations
         [X_new, Y_new, Z_new, C_new, x_limit, y_limit, vec_OM, S_new, vec_N_new, X_newFinal, Y_newFinal, Z_newFinal, vec_M] = III_pod(C, vec_O, ZSphere, XSphere, YSphere, diameter, dLdx, dLdy, L, minimumEqual);
+        % Reaction forces
+        [vec_VR, vec_VG, vec_VE, vec_VF, K_avg, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N);
         % Final equations
         [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation, deltarKE] = III_final(S_new, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, YM, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP, vec_rotVelocity, momentOfInertia, quatA_next, quatA_ground, C_new);
         
@@ -63,7 +63,7 @@ for iit = 1:iitMax
             writematrix("             POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
             break
         end
-        if ret > minimumIgnore
+        if ret > minimumIgnoreIteration
             writematrix("j (Air) = " + jit + ", Velocity: " + double(vec_mag(velocityEnd)),'Test Output','WriteMode','append');
             writematrix("              New Temperature = " + double(TP),'Test Output','WriteMode','append');
             writematrix("              velocityHit = " + double(vec_mag(velocityHit)),'Test Output','WriteMode','append');
@@ -88,6 +88,7 @@ for iit = 1:iitMax
             writematrix("             Spin = [ " + double(quatV_next(2,1)) + ", " + double(quatV_next(2,2)) + ", " + double(quatV_next(2,3)) + " ], " + double(quatA_next),'Test Output','WriteMode','append');
             writematrix("             POSITION = (" + double(vec_O(1,1)+vec_O(2,1)) + ", " + double(vec_O(1,2)+vec_O(2,2)) + ", " + double(vec_O(1,3)+vec_O(2,3)) + ")",'Test Output','WriteMode','append');
             S = s{iit,jit}.S_new;
+            C = s{iit,jit}.C_new;
             velocityHit = s{iit,jit}.velocityEnd;
             quatV_ground = [s{iit,jit}.quatV_next(1,1) s{iit,jit}.quatV_next(1,2) s{iit,jit}.quatV_next(1,3); s{iit,jit}.quatV_next(2,1) s{iit,jit}.quatV_next(2,2) s{iit,jit}.quatV_next(2,3)];
             quatA_ground = s{iit,jit}.quatA_next;
@@ -103,7 +104,7 @@ end
 
 writematrix("END",'Test Output','WriteMode','append');
 
-%Graphing
+% General Graphing
 run('bigGraph');
 run('smallGraph');
 xlim([domainMin domainMax]);
@@ -113,5 +114,10 @@ grid minor;
 legend;
 axis equal;
 hold off;
+% Specific Graphs
+run('posTime');
+run('velTime');
+run('KETime');
+
 
 display("END");

@@ -7,10 +7,10 @@ close all
 % set the maximum limits of their for loops.  If jitMax is too 
 % low (meaning it registers as still continuing along the 
 % ground), the result will be an error.
-iitMax = 2;
-jitMax = 10;
+iitMax = 5;
+jitMax = 3;
 % Acceptable range of velocity to be considered 0
-stopRange = 0.01;
+stopRange = 0.1;
 % Limits of surface mesh minimum, maximum, and interval
 domainMin = -10;
 domainMax = 10;
@@ -20,22 +20,24 @@ trajectoryMin = 0;
 trajectoryMax = 2;
 % Minimum ignore condition for timeImpact
 minimumIgnore = 0.0000000000000000000000000001;
+% Minimum ignore condition for next iteration
+minimumIgnoreIteration = 0.6;
 % Minimum ignore condition for coefficient of restitution
 minimumRestitution = 0.4/50;
 % Finding pod collision
-minimumStep = 0.01;
+minimumStep = 0.1;
 minimumEqual = 0.008;
 
 % Terrain (Surface Topology)
-L = @(x,y) 0.1*(sin(x)) + 0.1*(sin(y)) - 1;
+L = @(x,y) 0.0001*x+0.0001*y;
 % Terrain (Coefficient of Restitution)
 K = @(x,y) 0*x + 0*y + 0.5;
 % Terrain (Proportion of Time of Coefficient of Restitution)
-KT = @(x,y) 0*x + 0*y + 0.5;
+KT = @(x,y) 0*x + 0*y + 1;
 % Terrain (Proportion of Friction)
-F = @(x,y) 0*x + 0*y + 0;
+F = @(x,y) 0*x + 0*y + 0.075;
 % Terrain (Proportion of Rolling Friction)
-R = @(x,y) 0*x + 0*y + 0;
+R = @(x,y) 0*x + 0*y + 0.1;
 % Terrain (Young's Modulus)
 YM = @(x,y) 0*x + 0*y + 4180836470;
 % Terrain (Modulus of Rigidity)
@@ -47,15 +49,15 @@ gravity = 10;
 airDensity = 1.2;
 surfaceArea = 0.012;
 dragCoefficient = 0.5;
-T = 0.05;
-diameter = 1;
+T = 0.1;
+diameter = 0.25;
 podYoungsMod = 265126210;
 podModRigidity = 219238980;
 podSpringConstant = 15; %(Some Elasticity Factor)
 momentOfInertia = 0.00009173009999999997;
 
 % Initial Conditions
-velocityStart = [-1.4 0 3; 6 3 0];
+velocityStart = [4 4 5; -1 -3 0];
 quatV_air = [velocityStart(1,1) velocityStart(1,2) velocityStart(1,3); 0 1 0];
 quatA_air = 0.00000000000000000000000000000001;
 

@@ -9,7 +9,7 @@ for iit = 1:iitMax
         quiver3(b{iit}.quatV_air(1,1),b{iit}.quatV_air(1,2),b{iit}.quatV_air(1,3),b{iit}.quatV_air(2,1),b{iit}.quatV_air(2,2),b{iit}.quatV_air(2,3),'lineWidth',0.5,'Color','black','MaxHeadSize',0.1,'DisplayName','Quaternion_{Air}','LineStyle','--');
         % Pod Shape
         surf(X, Y, Z,'DisplayName','Pod','facealpha',0.75,'edgealpha',0.5);
-        plot3(C(1),C(2),C(3),'Marker','o','DisplayName','Center Impact Point','Color','red');
+        plot3(b{iit}.C(1),b{iit}.C(2),b{iit}.C(3),'Marker','o','DisplayName','Center Impact Point','Color','red');
         for dimOne = 1:x_limit
             for dimTwo = 1:y_limit
                 if abs(L(X(dimOne,dimTwo),Y(dimOne,dimTwo))-Z(dimOne,dimTwo))<minimumEqual
@@ -17,6 +17,6 @@ for iit = 1:iitMax
                 end;
             end;
         end;
-        plot3(S(1), S(2), S(3),'Marker','o','DisplayName','Average Impact Point','Color','cyan');
+        plot3(b{iit}.S(1), b{iit}.S(2), b{iit}.S(3),'Marker','o','DisplayName','Average Impact Point','Color','cyan');
     end;
 end;
