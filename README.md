@@ -3,8 +3,8 @@
 
  **[Project Description](https://sites.google.com/view/lspis/home)** |
  **[Research](https://sites.google.com/view/lspis/research)** |
- **[Design](https://sites.google.com/view/lspis/design)** |
  **[Development](https://sites.google.com/view/lspis/development)** |
+ **[Pod Design](https://sites.google.com/view/lspis/pod-design)** |
  **[Misc.](https://sites.google.com/view/lspis/misc)** |
  **[About Us](https://sites.google.com/view/lspis/about-us)**
 
