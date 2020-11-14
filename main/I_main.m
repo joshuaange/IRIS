@@ -3,6 +3,7 @@ function [terminalVelocity, podPoisson, podMaterialProp, dLdx, dLdy] = I_main(ma
 %   Called by control.m
 syms x y
 terminalVelocity = sqrt((2*mass*gravity)/(airDensity*surfaceArea*dragCoefficient));
+terminalVelocity = terminalVelocity*1.4;
 podPoisson = (podYoungsMod)/(2*podModRigidity-1);
 podMaterialProp = (1-podPoisson^2)/(pi*podYoungsMod);
 % Getting Partial Derivatives

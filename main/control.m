@@ -115,9 +115,9 @@ legend;
 axis equal;
 hold off;
 % Specific Graphs
-run('posTime');
-run('velTime');
-run('KETime');
+% run('posTime');
+% run('velTime');
+% run('KETime');
 
 
 display("END");

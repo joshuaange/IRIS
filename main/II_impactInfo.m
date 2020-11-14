@@ -3,9 +3,9 @@ function [dxt, dyt, dzt, velocityHit, S, quatV_ground, quatA_ground] = II_impact
 %   Called by control.m
 % Differential of trajectory functions
 syms t
-dxt = matlabFunction(diff(xt(t)));
-dyt = matlabFunction(diff(yt(t)));
-dzt = matlabFunction(diff(zt(t)));
+dxt = matlabFunction(diff(xt(t)),'Vars',t);
+dyt = matlabFunction(diff(yt(t)),'Vars',t);
+dzt = matlabFunction(diff(zt(t)),'Vars',t);
 % Finds Average of Impact Points
 totalX = 0;
 totalY = 0;
