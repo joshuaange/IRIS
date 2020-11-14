@@ -17,7 +17,7 @@ domainMax = 300;
 domainInt = 0.25;
 % Limits (time) of trajectory display
 trajectoryMin = 0;
-trajectoryMax = 10;
+trajectoryMax = 14;
 % Minimum ignore condition for timeImpact
 minimumIgnore = 0.01;
 % Minimum ignore condition for next iteration
@@ -57,7 +57,7 @@ podSpringConstant = 15; %(Some Elasticity Factor)
 momentOfInertia = 0.00009173009999999997;
 
 % Initial Conditions
-velocityStart = [0 0 1; 2.7 0 0];
+velocityStart = [0 0 0.001; 13.9 0 78.8];
 quatV_air = [velocityStart(1,1) velocityStart(1,2) velocityStart(1,3); 0 1 0];
 quatA_air = 0.00000000000000000000000000000001;
 
