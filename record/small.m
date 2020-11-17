@@ -53,3 +53,5 @@ s{iit,jit}.Y_newFinal = vpa(Y_newFinal);
 s{iit,jit}.Z_newFinal = vpa(Z_newFinal);
 s{iit,jit}.vec_M = vpa(vec_M);
 s{iit,jit}.C_new = vpa(C_new);
+s{iit,jit}.W = vpa(W);
+s{iit,jit}.theta = vpa(theta);

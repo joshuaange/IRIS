@@ -1,12 +1,9 @@
-function [vec_VR, vec_VG, vec_VE, vec_VF, K_avg, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N)
+function [W, theta, vec_VR, vec_VG, vec_VE, vec_VF, K_avg, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N, U, vec_N_new)
 %Reaction forces
 %   Called by control.m
 % Equal Reaction Vector
 vec_VRfake = [(S(1)+(T)*velocityHit(2,1)) (S(2)+(T)*velocityHit(2,2)) (S(3)+(T)*velocityHit(2,3)); (S_new(1)-(S(1)+(T)*velocityHit(2,1))) (S_new(2)-(S(2)+(T)*velocityHit(2,2))) (S_new(3)-(S(3)+(T)*velocityHit(2,3)))];
 vec_VR = [vec_VRfake(1,1) vec_VRfake(1,2) vec_VRfake(1,3); ((jit)*vec_mag(vec_VRfake))*cos(vec_alpha(vec_VRfake)) ((jit)*vec_mag(vec_VRfake))*cos(vec_beta(vec_VRfake)) ((jit)*vec_mag(vec_VRfake))*cos(vec_gamma(vec_VRfake))];
-
-% Gravitational Reaction Vector
-vec_VG = [S(1) S(2) S(3); 0 0 -T*0.01*gravity];
 
 % Elasticity Reaction Vector
 K_avg = ((K(S(1),S(2))+K(S_new(1),S_new(2)))/2);
@@ -41,4 +38,10 @@ quatV_next = vec_normalize(quatV_nextFake);
 
 vec_rotVelocityFake = [S_new(1) S_new(2) S_new(3); -quatV_next(2,2) quatV_next(2,1) N(S_new(1)-quatV_next(2,2), S_new(2)+quatV_next(2,1))-S_new(3)];
 vec_rotVelocity = [S_new(1) S_new(2) S_new(3); (diameter/2)*(quatA_next/(2*pi))*cos(vec_alpha(vec_rotVelocityFake)) (diameter/2)*(quatA_next/(2*pi))*cos(vec_beta(vec_rotVelocityFake)) (diameter/2)*(quatA_next/(2*pi))*cos(vec_gamma(vec_rotVelocityFake))];
+
+% Gravitational Reaction Vector
+vec_N_new_tangent = vec_normalize(vec_N_new);
+theta = acos((((U(2,1))*(vec_N_new_tangent(2,1)))+((U(2,2))*(vec_N_new_tangent(2,2)))+((U(2,3))*(vec_N_new_tangent(2,3))))/(vec_mag(U)*vec_mag(vec_N_new_tangent)));
+W = (T*gravity)*sin(theta);
+vec_VG = [S(1) S(2) S(3); W*cos(vec_alpha(vec_O)) W*cos(vec_beta(vec_O)) W*cos(vec_gamma(vec_O))];
 end
