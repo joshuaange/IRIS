@@ -1,4 +1,4 @@
-function [timeImpact, X, Y, Z, C, x_limit, y_limit, XSphere, YSphere, ZSphere] = II_podCollision(L, diameter, xt, yt, zt, timeImpactFinal, minimumStep, minimumEqual)
+function [timeImpact, X, Y, Z, C, x_limit, y_limit, XSphere, YSphere, ZSphere] = II_podCollision(L, diameter, xt, yt, zt, timeImpactFinal, minimumStep, minimumEqual, minimumIgnore)
 % Shaped collision
 %   Called by control.m
 % Collision cycle from final impact moment to 0
@@ -11,7 +11,7 @@ C = [0 0 0];
 % What are the limits of the vertice matrixes?
 x_limit = size(XSphere,1);
 y_limit = size(XSphere,2);
-for timeTest = timeImpactFinal:-minimumStep:0
+for timeTest = timeImpactFinal:-minimumStep:minimumIgnore
     % Forming sphere
     XMoved = XSphere*(diameter/2) + double(xt(timeTest));
     YMoved = YSphere*(diameter/2) + double(yt(timeTest));
