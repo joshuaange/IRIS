@@ -8,7 +8,7 @@ close all
 % low (meaning it registers as still continuing along the 
 % ground), the result will be an error.
 iitMax = 1;
-jitMax = 5;
+jitMax = 40;
 % Acceptable range of velocity to be considered 0
 stopRange = 0.05;
 % Limits of surface mesh minimum, maximum, and interval
@@ -35,7 +35,7 @@ K = @(x,y) 0*x + 0*y + 0;
 % Terrain (Proportion of Time of Coefficient of Restitution)
 KT = @(x,y) 0*x + 0*y + 0;
 % Terrain (Proportion of Friction)
-F = @(x,y) 0*x + 0*y + 0;
+F = @(x,y) 0*x + 0*y + 1;
 % Terrain (Proportion of Rolling Friction)
 R = @(x,y) 0*x + 0*y + 0;
 % Terrain (Young's Modulus)

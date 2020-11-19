@@ -1,4 +1,4 @@
-function [W, theta, vec_VR, vec_VG, vec_VE, vec_VF, K_avg, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N, U, vec_N_new, L, mag, vec_B)
+function [W, theta, vec_VR, vec_VG, vec_VE, vec_VF, K_avg, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N, U, vec_N_new, L, mag, vec_P)
 %Reaction forces
 %   Called by control.m
 % Equal Reaction Vector
@@ -25,7 +25,8 @@ end
 
 % Frictional Reaction Vector
 F_avg = ((F(S(1),S(2))+F(S_new(1),S_new(2)))/2);
-vec_VF = [vec_O(1,1)+vec_O(2,1) vec_O(1,2)+vec_O(2,2) vec_O(1,3)+vec_O(2,3) ; -F_avg*vec_O(2,1) -F_avg*vec_O(2,2) -F_avg*vec_O(2,3)];
+%vec_VF = [vec_O(1,1)+vec_O(2,1) vec_O(1,2)+vec_O(2,2) vec_O(1,3)+vec_O(2,3) ; T*(-F_avg*vec_mag(vec_O))*cos(vec_alpha(vec_O)) T*(-F_avg*vec_mag(vec_O))*cos(vec_beta(vec_O)) T*(-F_avg*vec_mag(vec_O))*cos(vec_gamma(vec_O))];
+vec_VF = [vec_O(1,1)+vec_O(2,1) vec_O(1,2)+vec_O(2,2) vec_O(1,3)+vec_O(2,3) ; ((-F_avg*vec_mag(vec_P)*cos(vec_alpha(vec_O)))) ((-F_avg*vec_mag(vec_P)*cos(vec_beta(vec_O)))) ((-F_avg*vec_mag(vec_P)*cos(vec_gamma(vec_O))))];
 
 % Spin
 quatV_pInfluence = [S(1) S(2) S(3); -(dLdyS)/(sqrt((dLdyS^2)+(dLdxS^2))) (dLdxS)/(sqrt((dLdyS^2)+(dLdxS^2))) 0];
