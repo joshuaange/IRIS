@@ -7,8 +7,8 @@ close all
 % set the maximum limits of their for loops.  If jitMax is too 
 % low (meaning it registers as still continuing along the 
 % ground), the result will be an error.
-iitMax = 1;
-jitMax = 1;
+iitMax = 4;
+jitMax = 30;
 % Acceptable range of velocity to be considered 0 and stop
 stopRange = 0.05;
 % Limits of surface mesh minimum, maximum, and interval
@@ -31,9 +31,9 @@ minimumStep = 0.01;
 minimumEqual = 0.008;
 
 % Terrain (Surface Topology)
-L = @(x,y) 0.000000000000000000000000000000000001*x+0.000000000000000000000000000000000001*y;
+L = @(x,y) -0.000000000000000000000000000000000001*x+-0.000000000000000000000000000000000001*y;
 % Terrain (Coefficient of Restitution)
-K = @(x,y) 0*x + 0*y + 5/7;
+K = @(x,y) 0*x + 0*y + 0.7;
 % Terrain (Proportion of Time of Coefficient of Restitution)
 KT = @(x,y) 0*x + 0*y + 1;
 % Terrain (Proportion of Friction)
@@ -51,15 +51,14 @@ gravity = 9.81;
 airDensity = 1.2;
 surfaceArea = 0.012;
 dragCoefficient = 0.5;
-T = 1/60;
-diameter = 0.0627;
+T = 1/10;
+diameter = 0.05715;
 podYoungsMod = 265126210;
 podModRigidity = 219238980;
-podSpringConstant = 15; %(Some Elasticity Factor)
 momentOfInertia = 0.00009173009999999997;
 
 % Initial Conditions
-velocityStart = [-5 -5 4; 2.4 0 -1.25];
+velocityStart = [0 0 1; 2.7 0 0];
 quatV_air = [velocityStart(1,1) velocityStart(1,2) velocityStart(1,3); 0 0 0];
 quatA_air = 0;
 
