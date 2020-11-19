@@ -6,6 +6,12 @@ plot(0,velocityStart(1,2),'^','Color','green','DisplayName',"Y");
 plot(0,velocityStart(1,3),'s','Color','red','DisplayName',"Z");
 for iit = 1:iitMax
     if isempty(b{iit}) == 0
+        for iteration = 1:floor(b{iit}.timeImpact/T)
+            multitude = iteration*(T);
+            plot(timeA+multitude,b{iit}.xt(multitude),'o','Color','blue','HandleVisibility','off');
+            plot(timeA+multitude,b{iit}.yt(multitude),'^','Color','green','HandleVisibility','off');
+            plot(timeA+multitude,b{iit}.zt(multitude),'s','Color','red','HandleVisibility','off');
+        end;
         timeA = timeA + b{iit}.timeImpact;
         plot(timeA,b{iit}.C(1),'o','Color','blue','HandleVisibility','off');
         plot(timeA,b{iit}.C(2),'^','Color','green','HandleVisibility','off');

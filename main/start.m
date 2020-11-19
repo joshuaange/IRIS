@@ -8,7 +8,7 @@ close all
 % low (meaning it registers as still continuing along the 
 % ground), the result will be an error.
 iitMax = 1;
-jitMax = 20;
+jitMax = 5;
 % Acceptable range of velocity to be considered 0
 stopRange = 0.05;
 % Limits of surface mesh minimum, maximum, and interval
@@ -29,8 +29,7 @@ minimumStep = 0.01;
 minimumEqual = 0.005;
 
 % Terrain (Surface Topology)
-%L = @(x,y) (-82/122.8)*x+0*y;
-L = @(x,y) (0.96560593*x^4)-(3.0158021*x^3)+(3.64161703*x^2)-(2.3591902*x)-0.0301626 + 0*y;
+L = @(x,y) (-82/122.8)*x+0*y;
 % Terrain (Coefficient of Restitution)
 K = @(x,y) 0*x + 0*y + 0;
 % Terrain (Proportion of Time of Coefficient of Restitution)
@@ -58,7 +57,7 @@ podSpringConstant = 15; %(Some Elasticity Factor)
 momentOfInertia = 0.00009173009999999997;
 
 % Initial Conditions
-velocityStart = [0 0 1; 0 0 0];
+velocityStart = [0 0 1; 0.0001 0.0001 0.0001];
 quatV_air = [velocityStart(1,1) velocityStart(1,2) velocityStart(1,3); 0 0 0];
 quatA_air = 0;
 
