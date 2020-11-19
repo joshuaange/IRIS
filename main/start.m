@@ -8,13 +8,13 @@ close all
 % low (meaning it registers as still continuing along the 
 % ground), the result will be an error.
 iitMax = 1;
-jitMax = 9;
+jitMax = 20;
 % Acceptable range of velocity to be considered 0
 stopRange = 0.05;
 % Limits of surface mesh minimum, maximum, and interval
-domainMin = 0;
-domainMax = 1.3;
-domainInt = 0.5;
+domainMin = -1.5;
+domainMax = 1.5;
+domainInt = 0.1;
 % Limits (time) of trajectory display
 trajectoryMin = 0;
 trajectoryMax = 0.5;
@@ -26,10 +26,11 @@ minimumIgnoreIteration = 0.6;
 minimumRestitution = 0.4/50;
 % Finding pod collision
 minimumStep = 0.01;
-minimumEqual = 0.01;
+minimumEqual = 0.005;
 
 % Terrain (Surface Topology)
-L = @(x,y) (-82/122.8)*x;
+%L = @(x,y) (-82/122.8)*x+0*y;
+L = @(x,y) (0.96560593*x^4)-(3.0158021*x^3)+(3.64161703*x^2)-(2.3591902*x)-0.0301626 + 0*y;
 % Terrain (Coefficient of Restitution)
 K = @(x,y) 0*x + 0*y + 0;
 % Terrain (Proportion of Time of Coefficient of Restitution)
@@ -49,7 +50,7 @@ gravity = 9.81;
 airDensity = 1.2;
 surfaceArea = 0.012;
 dragCoefficient = 0.5;
-T = 0.125;
+T = 0.05;
 diameter = 0.0627;
 podYoungsMod = 265126210;
 podModRigidity = 219238980;

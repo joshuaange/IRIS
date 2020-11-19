@@ -1,6 +1,5 @@
 % Graphing
 domain = domainMin:domainInt:domainMax;
-[xx,yy] = meshgrid(domain,domain);
 % Dummy unit vector
 U = [0 0 0 ; 0 0 1];
 % Finds general conditions
@@ -14,7 +13,7 @@ writematrix("Test Output:",'Test Output');
 % Graphing
 figure_main = figure('Name','Trajectory','OuterPosition',[10 195 600 350]);
 view(3);
-surf(xx,yy,L(xx,yy),'DisplayName','Surface Topology','FaceAlpha',0.8);
+fsurf(L,'DisplayName','Surface Topology','FaceAlpha',0.8);
 hold on;
 
 % On-ground iteration (iit)
@@ -41,7 +40,7 @@ for iit = 1:iitMax
         % Pod equations
         [X_new, Y_new, Z_new, C_new, x_limit, y_limit, vec_OM, S_new, vec_N_new, X_newFinal, Y_newFinal, Z_newFinal, vec_M] = III_pod(C, vec_O, ZSphere, XSphere, YSphere, diameter, dLdx, dLdy, L, minimumEqual);
         % Reaction forces
-        [W, theta, vec_VR, vec_VG, vec_VE, vec_VF, K_avg, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N, U, vec_N_new);
+        [W, theta, vec_VR, vec_VG, vec_VE, vec_VF, K_avg, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N, U, vec_N_new, L, mag, vec_B);
         % Final equations
         [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation, deltarKE] = III_final(S_new, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, YM, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP, vec_rotVelocity, momentOfInertia, quatA_next, quatA_ground, C_new);
         
@@ -107,17 +106,18 @@ writematrix("END",'Test Output','WriteMode','append');
 % General Graphing
 run('bigGraph');
 run('smallGraph');
-xlim([domainMin domainMax]);
-ylim([domainMin domainMax]);
-zlim([domainMin domainMax]);
 grid minor;
 legend;
 axis equal;
+xlim([domainMin domainMax]);
+ylim([domainMin domainMax]);
+zlim([domainMin domainMax]);
 hold off;
 % Specific Graphs
 run('posTime');
 run('velTime');
 run('KETime');
+run('reactionTime');
 
 
 display("END");

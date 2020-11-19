@@ -1,9 +1,11 @@
-function [W, theta, vec_VR, vec_VG, vec_VE, vec_VF, K_avg, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N, U, vec_N_new)
+function [W, theta, vec_VR, vec_VG, vec_VE, vec_VF, K_avg, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N, U, vec_N_new, L, mag, vec_B)
 %Reaction forces
 %   Called by control.m
 % Equal Reaction Vector
 vec_VRfake = [(S(1)+(T)*velocityHit(2,1)) (S(2)+(T)*velocityHit(2,2)) (S(3)+(T)*velocityHit(2,3)); (S_new(1)-(S(1)+(T)*velocityHit(2,1))) (S_new(2)-(S(2)+(T)*velocityHit(2,2))) (S_new(3)-(S(3)+(T)*velocityHit(2,3)))];
-vec_VR = [vec_VRfake(1,1) vec_VRfake(1,2) vec_VRfake(1,3); ((jit)*vec_mag(vec_VRfake))*cos(vec_alpha(vec_VRfake)) ((jit)*vec_mag(vec_VRfake))*cos(vec_beta(vec_VRfake)) ((jit)*vec_mag(vec_VRfake))*cos(vec_gamma(vec_VRfake))];
+%vec_VR = [vec_VRfake(1,1) vec_VRfake(1,2) vec_VRfake(1,3); ((jit)*vec_mag(vec_VRfake))*cos(vec_alpha(vec_VRfake)) ((jit)*vec_mag(vec_VRfake))*cos(vec_beta(vec_VRfake)) ((jit)*vec_mag(vec_VRfake))*cos(vec_gamma(vec_VRfake))];
+vec_VR = vec_VRfake;
+%vec_VR = [velocityHit(1,1)+T*velocityHit(2,1) velocityHit(1,2)+T*velocityHit(2,2) velocityHit(1,3)+T*velocityHit(2,3); T*mag*cos(vec_alpha(vec_B)) T*mag*cos(vec_beta(vec_B)) T*mag*cos(vec_gamma(vec_B))];
 
 % Elasticity Reaction Vector
 K_avg = ((K(S(1),S(2))+K(S_new(1),S_new(2)))/2);
@@ -43,5 +45,12 @@ vec_rotVelocity = [S_new(1) S_new(2) S_new(3); (diameter/2)*(quatA_next/(2*pi))*
 vec_N_new_tangent = vec_normalize(vec_N_new);
 theta = acos((((U(2,1))*(vec_N_new_tangent(2,1)))+((U(2,2))*(vec_N_new_tangent(2,2)))+((U(2,3))*(vec_N_new_tangent(2,3))))/(vec_mag(U)*vec_mag(vec_N_new_tangent)));
 W = (T*gravity)*sin(theta);
-vec_VG = [S(1) S(2) S(3); W*cos(vec_alpha(vec_O)) W*cos(vec_beta(vec_O)) W*cos(vec_gamma(vec_O))];
+%vec_VG = [S(1) S(2) S(3); W*cos(vec_alpha(vec_O)) W*cos(vec_beta(vec_O)) W*cos(vec_gamma(vec_O))];
+%vec_VG = [S(1) S(2) S(3); W*cos(vec_alpha(vec_O)) W*cos(vec_beta(vec_O)) L(S(1)+W*cos(vec_alpha(vec_O)),S(2)+W*cos(vec_beta(vec_O)))];
+syms x y
+dNdx = matlabFunction(diff(N,x),'Vars',[x y]);
+dNdy = matlabFunction(diff(N,y),'Vars',[x y]);
+dNdxS = dNdx(S(1),S(2));
+dNdyS = dNdy(S(1),S(2));
+vec_VG = [S(1) S(2) S(3); -(dNdxS)/(sqrt((dNdyS^2)+(dNdxS^2))) -(dNdyS)/(sqrt((dNdyS^2)+(dNdxS^2))) N(S(1)-((dNdxS)/(sqrt((dNdyS^2)+(dNdxS^2)))),S(2)-((dNdyS)/(sqrt((dNdyS^2)+(dNdxS^2)))))];
 end

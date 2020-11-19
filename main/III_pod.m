@@ -24,7 +24,11 @@ for dimOne = 1:x_limit
         end
     end
 end
-S_new = [totalX_new/count_new totalY_new/count_new totalZ_new/count_new];
+try
+    S_new = [totalX_new/count_new totalY_new/count_new totalZ_new/count_new];
+catch
+    writematrix("ERROR : couldn't find a collision within accepted range",'Test Output','WriteMode','append');
+end;
 % Find normal vector
 dLdxS_new = dLdx(S_new(1),S_new(2));
 dLdyS_new = dLdy(S_new(1),S_new(2));
