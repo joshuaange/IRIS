@@ -48,4 +48,8 @@ cooling = heatTransfer*(areaGround/heatCapacity);
 % New Temperature (K)
 TP_between = TE_avg+(TP-TE_avg)*exp(-cooling*T);
 
+% Temperature from Kinetic Energy
+Collision_Temp = (HeatPercentage*LostKE)/(heatCapacity/(1000*mass));
+TP_new = TP_between + Collision_Temp;
+
 end

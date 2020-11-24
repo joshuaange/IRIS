@@ -27,7 +27,7 @@ for iit = 1:iitMax
     % Shaped collision
     [timeImpact, X, Y, Z, C, x_limit, y_limit, XSphere, YSphere, ZSphere] = II_podCollision(L, diameter, xt, yt, zt, timeImpactFinal, minimumStep, minimumEqual, minimumIgnore);
     % Impact information
-    [LostKE, dxt, dyt, dzt, velocityHit, S, quatV_ground, quatA_ground, EndingKE] = II_impactInfo(x_limit, y_limit, C, xt, yt, zt, quatV_air, quatA_air, timeImpact, X, Y, Z, L, minimumEqual, EndingKE, HeatPercentage);
+    [LostKE, dxt, dyt, dzt, velocityHit, S, quatV_ground, quatA_ground, EndingKE, TP] = II_impactInfo(x_limit, y_limit, C, xt, yt, zt, quatV_air, quatA_air, timeImpact, X, Y, Z, L, minimumEqual, EndingKE, HeatPercentage, TP, TCT);
     
     % Recording iteration data
     run('big');

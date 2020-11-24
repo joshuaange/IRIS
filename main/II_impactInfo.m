@@ -1,4 +1,4 @@
-function [LostKE, dxt, dyt, dzt, velocityHit, S, quatV_ground, quatA_ground, EndingKE] = II_impactInfo(x_limit, y_limit, C, xt, yt, zt, quatV_air, quatA_air, timeImpact, X, Y, Z, L, minimumEqual, EndingKE, HeatPercentage)
+function [LostKE, dxt, dyt, dzt, velocityHit, S, quatV_ground, quatA_ground, EndingKE, TP] = II_impactInfo(x_limit, y_limit, C, xt, yt, zt, quatV_air, quatA_air, timeImpact, X, Y, Z, L, minimumEqual, EndingKE, HeatPercentage, TP, TCT)
 % Impact information
 %   Called by control.m
 % Differential of trajectory functions

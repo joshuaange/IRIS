@@ -30,6 +30,7 @@ minimumFlatness = 0.000001;
 minimumStep = 0.01;
 minimumEqual = 0.008;
 
+
 % Terrain (Surface Topology)
 L = @(x,y) 0.000000000000000000000000000000000001*x+0.000000000000000000000000000000000001*y;
 % Terrain (Coefficient of Restitution)
@@ -55,7 +56,7 @@ diameter = 0.075;
 podYoungsMod = 265126210;
 podModRigidity = 219238980;
 momentOfInertia = 0.13;
-HeatPercentage = 0.5;
+HeatPercentage = 1;
 
 % Initial Conditions
 velocityStart = [0 0 0; 30 0 25];
