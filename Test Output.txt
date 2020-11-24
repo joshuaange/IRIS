@@ -1,45 +1,35 @@
 Test Output:
 i = 1
-"j (Air) = 1, Velocity: 5.0847"
-              New Temperature = Inf
-              velocityHit = 4.769
-              vec_VR = 0.41894
+"j (Air) = 1, Velocity: 14.3828"
+              New Temperature = 300.1962
+              velocityHit = 15.2048
+              vec_VR = 1.4236
               vec_VF = 0
-              vec_VG = 8.2606e-20
-              vec_VE = 8.3017
+              vec_VG = 1.9275e-19
+              vec_VE = 26.1537
 "             Spin = [ 0.70711, -0.70711, 0 ], 1e-39"
-"             POSITION = (1.3796, -1.597e-18, -1.3796e-36)"
+"             POSITION = (57.6764, -1.3768e-19, 5.7676e-35)"
 i = 2
-"j (Air) = 1, Velocity: 4.281"
-              New Temperature = Inf
-              velocityHit = 4.4035
-              vec_VR = 0.40726
+"j (Air) = 1, Velocity: 8.2677"
+              New Temperature = 300.3919
+              velocityHit = 9.7589
+              vec_VR = 0.95595
               vec_VF = 0
-              vec_VG = 8.2606e-20
-              vec_VE = 7.5935
+              vec_VG = 1.9275e-19
+              vec_VE = 16.6267
 "             Spin = [ 0.70711, -0.70711, 0 ], 1e-39"
-"             POSITION = (3.2782, -0.031803, -3.2464e-36)"
+"             POSITION = (65.7782, -0.086176, 6.5692e-35)"
 i = 3
-"j (Air) = 1, Velocity: 3.5179"
-              New Temperature = Inf
-              velocityHit = 3.7248
-              vec_VR = 0.34655
+"j (Air) = 1, Velocity: 5.4516"
+              New Temperature = 300.5873
+              velocityHit = 6.5744
+              vec_VR = 0.64894
               vec_VF = 0
-              vec_VG = 0.0069634
-              vec_VE = 6.4095
-"             Spin = [ 0.70711, -0.70711, 0 ], 1.5561"
-"             POSITION = (4.5313, -0.078419, -4.4528e-36)"
-i = 4
-"j (Air) = 1, Velocity: 2.9084"
-              New Temperature = Inf
-              velocityHit = 3.1235
-              vec_VR = 0.29469
-              vec_VF = 0
-              vec_VG = 0.0034111
-              vec_VE = 5.3641
-"             Spin = [ 0.70711, -0.70711, 0 ], 2.4349"
-"             POSITION = (5.3674, -0.10501, -5.2624e-36)"
+              vec_VG = 1.9275e-19
+              vec_VE = 11.1822
+"             Spin = [ -0.70711, 0.70711, 0 ], 1e-39"
+"             POSITION = (68.065, -0.17232, 6.7893e-35)"
 END
-Time Elapsed: 3.1294s
-Kinetic Energy: 4.7873 J
-Time Elapsed: 3.1294s
+Time Elapsed: 8.1134s
+Kinetic Energy: 20.6493 J
+Time Elapsed: 8.1134s

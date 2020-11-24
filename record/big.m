@@ -12,3 +12,5 @@ b{iit}.C = vpa(C);
 b{iit}.TP = vpa(TP);
 b{iit}.quatV_air = vpa(quatV_air);
 b{iit}.quatA_air = vpa(quatA_air);
+b{iit}.EndingKE = vpa(EndingKE);
+b{iit}.LostKE = double(LostKE);

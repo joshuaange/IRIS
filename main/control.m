@@ -3,7 +3,10 @@ domain = domainMin:domainInt:domainMax;
 % Dummy unit vector
 U = [0 0 0 ; 0 0 1];
 % Finds general conditions
+surfaceArea = (4*pi*(diameter/2)^2)/2; % frontal area
 [terminalVelocity, podPoisson, podMaterialProp, dLdx, dLdy] = I_main(mass,gravity,airDensity,surfaceArea,dragCoefficient,podYoungsMod,podModRigidity,L);
+StartingKE = 0.5*mass*(vec_mag(velocityStart))^2;
+EndingKE = StartingKE;
 % Inter-iterative records
 b = cell(iitMax,1);
 s = cell(iitMax,jitMax);
@@ -24,7 +27,7 @@ for iit = 1:iitMax
     % Shaped collision
     [timeImpact, X, Y, Z, C, x_limit, y_limit, XSphere, YSphere, ZSphere] = II_podCollision(L, diameter, xt, yt, zt, timeImpactFinal, minimumStep, minimumEqual, minimumIgnore);
     % Impact information
-    [dxt, dyt, dzt, velocityHit, S, quatV_ground, quatA_ground] = II_impactInfo(x_limit, y_limit, C, xt, yt, zt, quatV_air, quatA_air, timeImpact, X, Y, Z, L, minimumEqual);
+    [LostKE, dxt, dyt, dzt, velocityHit, S, quatV_ground, quatA_ground, EndingKE] = II_impactInfo(x_limit, y_limit, C, xt, yt, zt, quatV_air, quatA_air, timeImpact, X, Y, Z, L, minimumEqual, EndingKE, HeatPercentage);
     
     % Recording iteration data
     run('big');
@@ -42,7 +45,7 @@ for iit = 1:iitMax
         % Reaction forces
         [W, theta, vec_VR, vec_VG, vec_VE, vec_VF, K_avg, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N, U, vec_N_new, L, mag, vec_P, minimumFlatness);
         % Final equations
-        [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation, deltarKE] = III_final(S_new, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, YM, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP, vec_rotVelocity, momentOfInertia, quatA_next, quatA_ground, C_new);
+        [LostKE, TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation, deltarKE, EndingKE, CollisionKelvin] = III_final(S_new, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, YM, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP, vec_rotVelocity, momentOfInertia, quatA_next, quatA_ground, C_new, EndingKE, TCT, HeatPercentage, b, iit, jit);
         
         % Return
         ret = vpa(velocityEnd(2,3)+S_new(3)-L((velocityEnd(2,1)+S_new(1)),(velocityEnd(2,2)+S_new(2))));
@@ -111,13 +114,14 @@ legend;
 axis equal;
 xlim([domainMin domainMax]);
 ylim([domainMin domainMax]);
-zlim([domainMin domainMax]);
 hold off;
 % Specific Graphs
 run('posTime');
 run('velTime');
 run('KETime');
 run('reactionTime');
+run('temperatureTime');
+run('deformationTime');
 
 
 display("END");

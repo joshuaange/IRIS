@@ -3,11 +3,9 @@ function [terminalVelocity, podPoisson, podMaterialProp, dLdx, dLdy] = I_main(ma
 %   Called by control.m
 syms x y
 terminalVelocity = sqrt((2*mass*gravity)/(airDensity*surfaceArea*dragCoefficient));
-terminalVelocity = terminalVelocity*1.375; %Multiplies by constant
 podPoisson = (podYoungsMod)/(2*podModRigidity-1);
 podMaterialProp = (1-podPoisson^2)/(pi*podYoungsMod);
 % Getting Partial Derivatives
 dLdx = matlabFunction(diff(L,x),'Vars',[x y]);
 dLdy = matlabFunction(diff(L,y),'Vars',[x y]);
 end
-

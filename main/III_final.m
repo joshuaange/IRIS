@@ -1,4 +1,4 @@
-function [TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation, deltarKE] = III_final(S_new, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, YM, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP, vec_rotVelocity, momentOfInertia, quatA_next, quatA_ground, C_new)
+function [LostKE, TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation, deltarKE, EndingKE, Collision_Temp] = III_final(S_new, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, YM, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP, vec_rotVelocity, momentOfInertia, quatA_next, quatA_ground, C_new, EndingKE, TCT, HeatPercentage, b, iit, jit)
 % Final equations
 %   Called by control.m
 % New Velocity
@@ -14,6 +14,10 @@ FI = mass*((vec_mag(velocityEnd) - vec_mag(velocityHit))/T);
 deltalKE=0.5*mass*(vec_mag(velocityEnd)^2 - vec_mag(velocityHit)^2);
 deltarKE=0.5*momentOfInertia*((quatA_next/(2*pi))^2 - (quatA_ground/(2*pi))^2);
 deltaKE = deltalKE+deltarKE;
+% Kinetic Energy
+PastKE = EndingKE;
+EndingKE = EndingKE + deltaKE;
+LostKE = PastKE-EndingKE;
 
 % Deformation
 Y_avg = (YM(S(1),S(2))+YM(S_new(1),S_new(2)))/2;
@@ -42,5 +46,6 @@ areaGround = pi*((diameter/2)^2-((diameter/2)-deformation)^2);
 % Cooling coefficient (1/s)
 cooling = heatTransfer*(areaGround/heatCapacity);
 % New Temperature (K)
-TP_new = TE_avg+(TP-TE_avg)*exp(-cooling*T);
+TP_between = TE_avg+(TP-TE_avg)*exp(-cooling*T);
+
 end

@@ -7,17 +7,17 @@ close all
 % set the maximum limits of their for loops.  If jitMax is too 
 % low (meaning it registers as still continuing along the 
 % ground), the result will be an error.
-iitMax = 4;
-jitMax = 30;
+iitMax = 3;
+jitMax = 5;
 % Acceptable range of velocity to be considered 0 and stop
 stopRange = 0.05;
 % Limits of surface mesh minimum, maximum, and interval
-domainMin = -20;
-domainMax = 20;
+domainMin = 0;
+domainMax = 300;
 domainInt = 1;
 % Limits (time) of trajectory display
 trajectoryMin = 0;
-trajectoryMax = 2;
+trajectoryMax = 15;
 % Minimum ignore condition for timeImpact (timeImpact can't be below)
 minimumIgnore = 0.05;
 % Minimum ignore condition for next iteration (velocity gap must be over)
@@ -31,7 +31,7 @@ minimumStep = 0.01;
 minimumEqual = 0.008;
 
 % Terrain (Surface Topology)
-L = @(x,y) -0.000000000000000000000000000000000001*x+-0.000000000000000000000000000000000001*y;
+L = @(x,y) 0.000000000000000000000000000000000001*x+0.000000000000000000000000000000000001*y;
 % Terrain (Coefficient of Restitution)
 K = @(x,y) 0*x + 0*y + 0.7;
 % Terrain (Proportion of Time of Coefficient of Restitution)
@@ -46,29 +46,31 @@ YM = @(x,y) 0*x + 0*y + 4180836470;
 G = @(x,y) 0*x + 0*y + 2141404040;
 
 % General
-mass = 0.14;
+mass = 0.14254;
 gravity = 9.81;
-airDensity = 1.2;
-surfaceArea = 0.012;
+airDensity = 1.225;
 dragCoefficient = 0.5;
 T = 1/10;
-diameter = 0.05715;
+diameter = 0.075;
 podYoungsMod = 265126210;
 podModRigidity = 219238980;
-momentOfInertia = 0.00009173009999999997;
+momentOfInertia = 0.13;
+HeatPercentage = 0.5;
 
 % Initial Conditions
-velocityStart = [0 0 1; 2.7 0 0];
-quatV_air = [velocityStart(1,1) velocityStart(1,2) velocityStart(1,3); 0 0 0];
+velocityStart = [0 0 0; 30 0 25];
+quatV_air = [velocityStart(1,1) velocityStart(1,2) velocityStart(1,3); 0 1 0];
 quatA_air = 0;
 
-% Initial pod temperature, to be changed with each on-ground iteration
-TP = 100;
-% Heat capacity
-heatCapacity = 200;
-% Temperature of ground
-TE = @(x,y) 0*x + 0*y + 40;
-% Thermal conductivity between pod and ground
-TC = @(x,y) 0*x + 0*y + 5000000;
+% Initial pod temperature, to be changed with each on-ground iteration (K)
+TP = 300;
+% Heat capacity (J/K)
+heatCapacity = 204;
+% Temperature of ground (K)
+TE = @(x,y) 0*x + 0*y + 400;
+% Thermal conductivity between pod and ground (W/(m⋅K))
+TC = @(x,y) 0*x + 0*y + 17;
+% Thermal conductivity between pod and atmosphere (W/(m⋅K))
+TCT = @(x,y) 0*x + 0*y + 20;
 
 run('control.m')

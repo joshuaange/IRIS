@@ -55,3 +55,5 @@ s{iit,jit}.vec_M = vpa(vec_M);
 s{iit,jit}.C_new = vpa(C_new);
 s{iit,jit}.W = vpa(W);
 s{iit,jit}.theta = vpa(theta);
+s{iit,jit}.EndingKE = vpa(EndingKE);
+s{iit,jit}.LostKE = vpa(LostKE);

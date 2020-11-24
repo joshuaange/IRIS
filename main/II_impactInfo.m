@@ -1,4 +1,4 @@
-function [dxt, dyt, dzt, velocityHit, S, quatV_ground, quatA_ground] = II_impactInfo(x_limit, y_limit, C, xt, yt, zt, quatV_air, quatA_air, timeImpact, X, Y, Z, L, minimumEqual)
+function [LostKE, dxt, dyt, dzt, velocityHit, S, quatV_ground, quatA_ground, EndingKE] = II_impactInfo(x_limit, y_limit, C, xt, yt, zt, quatV_air, quatA_air, timeImpact, X, Y, Z, L, minimumEqual, EndingKE, HeatPercentage)
 % Impact information
 %   Called by control.m
 % Differential of trajectory functions
@@ -30,6 +30,11 @@ velocityHit = [S(1) S(2) S(3) ; dxt(timeImpact) dyt(timeImpact) dzt(timeImpact)]
 % Spin
 quatV_ground = [S(1) S(2) S(3); quatV_air(2,1) quatV_air(2,2) quatV_air(2,3)];
 quatA_ground = quatA_air;
+
+% Kinetic Energy
+PastKE = EndingKE;
+EndingKE = 0.5*(vec_mag(velocityHit))^2;
+LostKE = PastKE-EndingKE;
 end
 
 
