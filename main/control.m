@@ -114,6 +114,7 @@ legend;
 axis equal;
 xlim([domainMin domainMax]);
 ylim([domainMin domainMax]);
+zlim([domainMin domainMax]);
 hold off;
 % Specific Graphs
 run('posTime');
@@ -122,6 +123,7 @@ run('KETime');
 run('reactionTime');
 run('temperatureTime');
 run('deformationTime');
+run('rotTime');
 
 
 display("END");

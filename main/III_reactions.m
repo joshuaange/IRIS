@@ -31,11 +31,12 @@ quatA_pInfluence = 2*pi*((-(vec_mag(vec_O))/(diameter/2))+(pJ/(diameter/2)));
 
 [ap, bp, cp, dp] = quat_toQuat(quatV_pInfluence, quatA_pInfluence);
 [ag, bg, cg, dg] = quat_toQuat(quatV_ground, quatA_ground);
-[quatV_nextFake, quatA_next] = quat_toVector(ap+ag, bp+bg, cp+cg, dp+dg, S(1), S(2), S(3));
+[aa, bb, cc, dd] = quat_add(ap, bp, cp, dp, ag, bg, cg, dg);
+[quatV_nextFake, quatA_next] = quat_toVector(aa, bb, cc, dd, S(1), S(2), S(3));
 quatV_next = vec_normalize(quatV_nextFake);
 
 vec_rotVelocityFake = [S_new(1) S_new(2) S_new(3); -quatV_next(2,2) quatV_next(2,1) N(S_new(1)-quatV_next(2,2), S_new(2)+quatV_next(2,1))-S_new(3)];
-vec_rotVelocity = [S_new(1) S_new(2) S_new(3); (diameter/2)*(quatA_next/(2*pi))*cos(vec_alpha(vec_rotVelocityFake)) (diameter/2)*(quatA_next/(2*pi))*cos(vec_beta(vec_rotVelocityFake)) (diameter/2)*(quatA_next/(2*pi))*cos(vec_gamma(vec_rotVelocityFake))];
+vec_rotVelocity = [S_new(1) S_new(2) S_new(3); -(diameter/2)*(quatA_next/(2*pi))*cos(vec_alpha(vec_rotVelocityFake)) -(diameter/2)*(quatA_next/(2*pi))*cos(vec_beta(vec_rotVelocityFake)) -(diameter/2)*(quatA_next/(2*pi))*cos(vec_gamma(vec_rotVelocityFake))];
 
 % Gravitational Reaction Vector
 vec_N_new_tangent = vec_normalize(vec_N_new);
