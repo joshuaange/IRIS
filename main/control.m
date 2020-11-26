@@ -3,10 +3,7 @@ domain = domainMin:domainInt:domainMax;
 % Dummy unit vector
 U = [0 0 0 ; 0 0 1];
 % Finds general conditions
-surfaceArea = (4*pi*(diameter/2)^2)/2; % frontal area
-[terminalVelocity, podPoisson, podMaterialProp, dLdx, dLdy] = I_main(mass,gravity,airDensity,surfaceArea,dragCoefficient,podYoungsMod,podModRigidity,L);
-StartingKE = 0.5*mass*(vec_mag(velocityStart))^2;
-EndingKE = StartingKE;
+[terminalVelocity, podPoisson, podMaterialProp, dLdx, dLdy, surfaceArea, StartingKE, EndingKE] = I_main(mass,gravity,airDensity,surfaceArea,dragCoefficient,podYoungsMod,podModRigidity,L,velocityStart,diameter);
 % Inter-iterative records
 b = cell(iitMax,1);
 s = cell(iitMax,jitMax);
