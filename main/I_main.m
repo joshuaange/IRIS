@@ -1,6 +1,8 @@
-function [terminalVelocity, podPoisson, podMaterialProp, dLdx, dLdy, surfaceArea, StartingKE, EndingKE] = I_main(mass,gravity,airDensity,surfaceArea,dragCoefficient,podYoungsMod,podModRigidity,L,velocityStart,diameter)
+function [U, terminalVelocity, podPoisson, podMaterialProp, dLdx, dLdy, surfaceArea, StartingKE, EndingKE] = I_main(mass,gravity,airDensity,surfaceArea,dragCoefficient,podYoungsMod,podModRigidity,L,velocityStart,diameter)
 % Finds general conditions
 %   Called by control.m
+U = [0 0 0 ; 0 0 1];
+
 surfaceArea = (4*pi*(diameter/2)^2)/2; % frontal area
 
 syms x y
