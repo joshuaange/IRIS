@@ -1,4 +1,4 @@
-function [U, terminalVelocity, podPoisson, podMaterialProp, dLdx, dLdy, surfaceArea, StartingKE, EndingKE] = I_main(mass,gravity,airDensity,surfaceArea,dragCoefficient,podYoungsMod,podModRigidity,L,velocityStart,diameter)
+function [U, terminalVelocity, podPoisson, podMaterialProp, dLdx, dLdy, surfaceArea, StartingKE, EndingKE] = I_main(mass,gravity,airDensity,dragCoefficient,podYoungsMod,podModRigidity,L,velocityStart,diameter)
 % Finds general conditions
 %   Called by control.m
 U = [0 0 0 ; 0 0 1];

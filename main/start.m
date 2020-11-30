@@ -8,7 +8,7 @@ close all
 % low (meaning it registers as still continuing along the 
 % ground), the result will be an error.
 iitMax = 1;
-jitMax = 40;
+jitMax = 1;
 % Acceptable range of velocity to be considered 0 and stop
 stopRange = 0.05;
 % Limits of surface mesh minimum, maximum, and interval

@@ -1,7 +1,7 @@
 % Graphing
 domain = domainMin:domainInt:domainMax;
 % Finds general conditions
-[U, terminalVelocity, podPoisson, podMaterialProp, dLdx, dLdy, surfaceArea, StartingKE, EndingKE] = I_main(mass,gravity,airDensity,surfaceArea,dragCoefficient,podYoungsMod,podModRigidity,L,velocityStart,diameter);
+[U, terminalVelocity, podPoisson, podMaterialProp, dLdx, dLdy, surfaceArea, StartingKE, EndingKE] = I_main(mass,gravity,airDensity,dragCoefficient,podYoungsMod,podModRigidity,L,velocityStart,diameter)
 % Inter-iterative records
 b = cell(iitMax,1);
 s = cell(iitMax,jitMax);
