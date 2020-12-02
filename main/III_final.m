@@ -1,12 +1,33 @@
-function [LostKE, TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation, deltarKE, EndingKE, Collision_Temp] = III_final(S_new, velocityHit, vec_VR, vec_VF, vec_VG, vec_VE, mass, T, YM, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP, vec_rotVelocity, momentOfInertia, quatA_next, quatA_ground, C_new, EndingKE, TCT, HeatPercentage, b, iit, jit)
+function [vec_VE, LostKE, TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, TP_new, velocityEnd, FI, deltalKE, deltaKE, Y_avg, G_avg, landPoisson, landMaterialProp, deformation, deltarKE, EndingKE, Collision_Temp] = III_final(vec_Norm, S_new, velocityHit, vec_VR, vec_VF, vec_VG, mass, T, YM, G, diameter, podMaterialProp, S, TE, TC, heatCapacity, TP, vec_rotVelocity, momentOfInertia, quatA_next, quatA_ground, C_new, EndingKE, TCT, HeatPercentage, b, iit, jit, K)
 % Final equations
 %   Called by control.m
 % New Velocity
 velocityEnd = [S_new(1) S_new(2) S_new(3); 0 0 0];
-velocityEnd(2,1) = (vec_rotVelocity(2,1) + velocityHit(2,1) + (vec_VR(2,1)) + vec_VF(2,1) + vec_VG(2,1) + vec_VE(2,1));
-velocityEnd(2,2) = (vec_rotVelocity(2,2) + velocityHit(2,2) + (vec_VR(2,2)) + vec_VF(2,2) + vec_VG(2,2) + vec_VE(2,2));
-velocityEnd(2,3) = (vec_rotVelocity(2,3) + velocityHit(2,3) + (vec_VR(2,3)) + vec_VF(2,3) + vec_VG(2,3) + vec_VE(2,3));
+velocityEnd(2,1) = (vec_Norm(2,1) + vec_rotVelocity(2,1) + velocityHit(2,1) + (vec_VR(2,1)) + vec_VF(2,1) + vec_VG(2,1));
+velocityEnd(2,2) = (vec_Norm(2,2) + vec_rotVelocity(2,2) + velocityHit(2,2) + (vec_VR(2,2)) + vec_VF(2,2) + vec_VG(2,2));
+velocityEnd(2,3) = (vec_Norm(2,3) + vec_rotVelocity(2,3) + velocityHit(2,3) + (vec_VR(2,3)) + vec_VF(2,3) + vec_VG(2,3));
+% Force of Impact
+FI = mass*((vec_mag(velocityEnd) - vec_mag(velocityHit))/T);
 
+% Deformation
+Y_avg = (YM(S(1),S(2))+YM(S_new(1),S_new(2)))/2;
+G_avg = (G(S(1),S(2))+G(S_new(1),S_new(2)))/2;
+landPoisson = ((Y_avg)/(2*G_avg))-1;
+landMaterialProp = (1-landPoisson^2)/(pi*Y_avg);
+deformation = ((((3*pi)/2)^(2/3))*abs((101.97*-FI)^(2/3))*((landMaterialProp+podMaterialProp)^(2/3))*((1/(1000*diameter))^(1/3)))/1000;
+if double(deformation)<0
+    deformation = ((((3*pi)/2)^(2/3))*((101.97*0)^(2/3))*((landMaterialProp+podMaterialProp)^(2/3))*((1/(1000*diameter))^(1/3)))/1000;
+end
+
+% Elasticity
+K_avg = ((K(S(1),S(2))+K(S_new(1),S_new(2)))/2);
+vec_VE = [S(1) S(2) S(3); (K_avg*deformation)*cos(vec_alpha(vec_VR)) (K_avg*deformation)*cos(vec_beta(vec_VR)) (K_avg*deformation)*cos(vec_gamma(vec_VR))];
+
+% Actual New Velocity
+velocityEnd = [S_new(1) S_new(2) S_new(3); 0 0 0];
+velocityEnd(2,1) = (vec_Norm(2,1) + vec_rotVelocity(2,1) + velocityHit(2,1) + (vec_VR(2,1)) + vec_VF(2,1) + vec_VG(2,1) + vec_VE(2,1));
+velocityEnd(2,2) = (vec_Norm(2,2) + vec_rotVelocity(2,2) + velocityHit(2,2) + (vec_VR(2,2)) + vec_VF(2,2) + vec_VG(2,2) + vec_VE(2,2));
+velocityEnd(2,3) = (vec_Norm(2,3) + vec_rotVelocity(2,3) + velocityHit(2,3) + (vec_VR(2,3)) + vec_VF(2,3) + vec_VG(2,3) + vec_VE(2,3));
 % Force of Impact
 FI = mass*((vec_mag(velocityEnd) - vec_mag(velocityHit))/T);
 
@@ -18,16 +39,6 @@ deltaKE = deltalKE+deltarKE;
 PastKE = EndingKE;
 EndingKE = EndingKE + deltaKE;
 LostKE = PastKE-EndingKE;
-
-% Deformation
-Y_avg = (YM(S(1),S(2))+YM(S_new(1),S_new(2)))/2;
-G_avg = (G(S(1),S(2))+G(S_new(1),S_new(2)))/2;
-landPoisson = ((Y_avg)/(2*G_avg))-1;
-landMaterialProp = (1-landPoisson^2)/(pi*Y_avg);
-deformation = ((((3*pi)/2)^(2/3))*((101.97*-FI)^(2/3))*((landMaterialProp+podMaterialProp)^(2/3))*((1/(1000*diameter))^(1/3)))/1000;
-if double(deformation)<0
-    deformation = ((((3*pi)/2)^(2/3))*((101.97*0)^(2/3))*((landMaterialProp+podMaterialProp)^(2/3))*((1/(1000*diameter))^(1/3)))/1000;
-end
 
 % Average values 
 TE_avg = (TE(S(1),S(2))+TE(S_new(1),S_new(2)))/2;
