@@ -1,16 +1,15 @@
 Test Output:
 i = 1
-"j (Ground) = 1, Velocity: 30660359.9282"
-              New Temperature = 301.0173
+"j (Air) = 1, Velocity: 5.9727"
+              New Temperature = 300.1962
               velocityHit = 5.4282
               vec_VR = 1.9275e-19
-              vec_VF = 1.1565e-19
-              vec_VG = 1.3734
-              vec_VE = 30660353.552
-"             Spin = [ 0.8758, -0.47941, -0.05613 ], 0.88489"
-"             POSITION = (3.4817, -1.3768e-19, 3.4817e-34)"
-ERROR : not enough jit
+              vec_VF = 3.737e-35
+              vec_VG = 0.13734
+              vec_VE = 11.5315
+"             Spin = [ -0.73451, 0.66842, -0.11708 ], 2.6573"
+"             POSITION = (1.5858, -1.3768e-19, 1.5858e-34)"
 END
-Time Elapsed: 1.5759s
-Kinetic Energy: 65804036964720.32 J
-Time Elapsed: 1.5759s
+Time Elapsed: 0.67587s
+Kinetic Energy: 15.1674 J
+Time Elapsed: 0.67587s

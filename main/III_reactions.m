@@ -1,4 +1,4 @@
-function [vec_VE, vec_Norm, W, vec_VR, vec_VG, vec_VF, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N, U, vec_N_new, L, mag, vec_P, minimumFlatness, vec_B)
+function [vec_VE, vec_Norm, W, vec_VR, vec_VG, vec_VF, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N, U, vec_N_new, L, mag, vec_P, minimumFlatness, vec_B, YM, G, podMaterialProp)
 %Reaction forces
 %   Called by control.m
 
@@ -31,8 +31,7 @@ if dLdyS < minimumFlatness
 end
 
 % Normal Vector 
-Norm = vec_mag(vec_VG_theta);
-vec_Norm = [S(1) S(2) S(3); vec_VG_theta(2,1) vec_VG_theta(2,2) vec_VG_theta(2,3)];
+vec_Norm = [S(1) S(2) S(3); vec_VG_theta(2,1)+vec_VR(2,1) vec_VG_theta(2,2)+vec_VR(2,2) vec_VG_theta(2,3)+vec_VR(2,3)];
 
 % Frictional Reaction Vector
 F_avg = ((F(S(1),S(2))+F(S_new(1),S_new(2)))/2);
@@ -62,7 +61,5 @@ K_calc = 2*(0.84798087*(K_avg^3) - 1.6885521*(K_avg^2) + 1.41395526*(K_avg) + 0.
 if K_avg <= minimumRestitution
     K_calc = 2*(-5208.3333*(K_avg^2) + 104.166666*(K_avg));
 end
-vec_VEFake = [vec_VR(1,1)+vec_VR(2,1) vec_VR(1,2)+vec_VR(2,2) vec_VR(1,3)+vec_VR(2,3); -K_calc*KT_avg*(velocityHit(2,1)+vec_VR(2,1)) -K_calc*KT_avg*(velocityHit(2,2)+vec_VR(2,2)) -K_calc*KT_avg*(velocityHit(2,3)+vec_VR(2,3))];
-vec_VE = [vec_VR(1,1)+vec_VR(2,1) vec_VR(1,2)+vec_VR(2,2) vec_VR(1,3)+vec_VR(2,3); vec_mag(vec_VEFake)*cos(vec_alpha(vec_VR)) vec_mag(vec_VEFake)*cos(vec_beta(vec_VR)) vec_mag(vec_VEFake)*cos(vec_gamma(vec_VR))];
-
+vec_VE = [vec_VR(1,1)+vec_VR(2,1) vec_VR(1,2)+vec_VR(2,2) vec_VR(1,3)+vec_VR(2,3); K_calc*KT_avg*(velocityHit(2,1)+vec_VR(2,1)) K_calc*KT_avg*(velocityHit(2,2)+vec_VR(2,2)) K_calc*KT_avg*(velocityHit(2,3)+vec_VR(2,3))];
 end

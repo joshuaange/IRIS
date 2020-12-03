@@ -8,7 +8,7 @@ close all
 % low (meaning it registers as still continuing along the 
 % ground), the result will be an error.
 iitMax = 1;
-jitMax = 1;
+jitMax = 5;
 % Acceptable range of velocity to be considered 0 and stop
 stopRange = 0.05;
 % Limits of surface mesh minimum, maximum, and interval
@@ -33,28 +33,28 @@ minimumEqual = 0.008;
 
 % Terrain (Surface Topology)
 L = @(x,y) 0.0000000000000000000000000000000001*x+0.0000000000000000000000000000000001*y;
-% Terrain (Spring Constant of Pod With Ground) (N/m2)
-K = @(x,y) 0*x + 0*y + 150;
-% Terrain (Proportion of Time of Coefficient of Restitution)
-KT = @(x,y) 0*x + 0*y + 1;
+% Terrain (Coefficient of Restitution of Pod With Ground)
+K = @(x,y) 0*x + 0*y + 1;
+% Terrain (Proportion of Time of Coefficient of Restitution) (not an input)
+KT = @(x,y) 0*x + 0*y + -1;
 % Terrain (Frictional Coefficient)
 F = @(x,y) 0*x + 0*y + 0.6;
 % Terrain (Proportion of Rolling Friction)
 R = @(x,y) 0*x + 0*y + 0;
 % Terrain (Young's Modulus) (gf/mm2) = N/m2 / (98.066501*100)
-YM = @(x,y) 0*x + 0*y + (7.5e+10)/ (98.066501*100);
+YM = @(x,y) 0*x + 0*y + 4180836470;
 % Terrain (Modulus of Rigidity) (gf/mm2) = N/m2 / (98.066501*100)
-G = @(x,y) 0*x + 0*y + (2.1e+10)/ (98.066501*100);
+G = @(x,y) 0*x + 0*y + 2141404040;
 
 % General
 mass = 0.14;
 gravity = 9.81;
 airDensity = 1.2;
 dragCoefficient = 0.5;
-T = 1;
+T = 0.1;
 diameter = 0.075;
-podYoungsMod = (1.75e+9)/ (98.066501*100); % (gf/mm2) = N/m2 / (98.066501*100)
-podModRigidity = (3e+9)/ (98.066501*100); % (gf/mm2) = N/m2 / (98.066501*100)
+podYoungsMod = 265126210; % (gf/mm2) = N/m2 / (98.066501*100)
+podModRigidity = 219238980; % (gf/mm2) = N/m2 / (98.066501*100)
 momentOfInertia = mass*(diameter/2)^2;
 HeatPercentage = 1;
 
