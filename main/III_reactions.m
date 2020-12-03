@@ -1,9 +1,10 @@
 function [vec_Norm, W, vec_VR, vec_VG, vec_VF, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N, U, vec_N_new, L, mag, vec_P, minimumFlatness, vec_B)
 %Reaction forces
 %   Called by control.m
+
 % Gravity
 W = mass*gravity;
-vec_VG = [S(1) S(2) S(3); 0 0 -W];
+vec_VG = [S(1) S(2) S(3); 0 0 -W*T];
 
 % Equal Reaction Vector
 %vec_VRfake = [(S(1)+(T)*velocityHit(2,1)) (S(2)+(T)*velocityHit(2,2)) (S(3)+(T)*velocityHit(2,3)); (S_new(1)-(S(1)+(T)*velocityHit(2,1))) (S_new(2)-(S(2)+(T)*velocityHit(2,2))) (S_new(3)-(S(3)+(T)*velocityHit(2,3)))];
@@ -28,10 +29,10 @@ end
 if dLdyS < minimumFlatness
     vec_VG_theta(2,2) = 0;
 end
-% Normal Vector 
-Norm = vec_mag(vec_VG_theta) + vec_mag(vec_VR);
-vec_Norm = [S(1) S(2) S(3); Norm*cos(vec_alpha(vec_VR)) Norm*cos(vec_beta(vec_VR)) Norm*cos(vec_gamma(vec_VR))];
 
+% Normal Vector 
+Norm = vec_mag(vec_VG_theta);
+vec_Norm = [S(1) S(2) S(3); vec_VG_theta(2,1) vec_VG_theta(2,2) vec_VG_theta(2,3)];
 
 % Frictional Reaction Vector
 F_avg = ((F(S(1),S(2))+F(S_new(1),S_new(2)))/2);

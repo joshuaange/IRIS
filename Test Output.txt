@@ -1,50 +1,16 @@
 Test Output:
 i = 1
-"j (Ground) = 1, Velocity: 5.8812"
-              New Temperature = 300.0157
-              velocityHit = 4.6319
-              vec_VR = 0.0051635
-              vec_VF = 0.0061962
+"j (Ground) = 1, Velocity: 6.7144"
+              New Temperature = 301.9443
+              velocityHit = 5.4282
+              vec_VR = 1.9275e-19
+              vec_VF = 1.1565e-19
               vec_VG = 1.3734
-              vec_VE = 0.00015958
-"             Spin = [ 0.7627, -0.64065, 0.088654 ], 2.8476"
-"             POSITION = (1.1366, -1.2391e-19, 1.1366e-34)"
-"j (Ground) = 2, Velocity: 7.1718"
-              New Temperature = 300.0314
-              velocityHit = 5.8812
-              vec_VR = 0.0035584
-              vec_VF = 0.00427
-              vec_VG = 1.3734
-              vec_VE = 0.00016309
-"             Spin = [ 0.3741, -0.84903, 0.37309 ], 5.7906"
-"             POSITION = (1.1546, -0.00010411, 1.1545e-34)"
-"j (Ground) = 3, Velocity: 8.5048"
-              New Temperature = 300.0471
-              velocityHit = 7.1718
-              vec_VR = 0.004191
-              vec_VF = 0.0050293
-              vec_VG = 1.3734
-              vec_VE = 0.00016663
-"             Spin = [ -0.77293, 0.6297, -0.077798 ], 3.721"
-"             POSITION = (1.1719, -0.0003195, 1.1716e-34)"
-"j (Ground) = 4, Velocity: 9.8498"
-              New Temperature = 300.0628
-              velocityHit = 8.5048
-              vec_VR = 0.004191
-              vec_VF = 0.0050293
-              vec_VG = 1.3734
-              vec_VE = 0.00016764
-"             Spin = [ -0.54071, 0.79559, -0.27327 ], 0.76637"
-"             POSITION = (1.1893, -0.00039667, 1.1889e-34)"
-"j (Ground) = 5, Velocity: 11.2023"
-              New Temperature = 300.0785
-              velocityHit = 9.8498
-              vec_VR = 0.004191
-              vec_VF = 0.0050293
-              vec_VG = 1.3734
-              vec_VE = 0.00016825
-"             Spin = [ 0.78385, -0.61745, 0.065865 ], 2.2753"
-"             POSITION = (1.2067, -0.00045309, 1.2062e-34)"
-Time Elapsed: 0.50466s
-Kinetic Energy: 20.2668 J
-Time Elapsed: 0.50466s
+              vec_VE = 6.5087e-05
+"             Spin = [ 0.8758, -0.47941, -0.05613 ], 0.88489"
+"             POSITION = (3.4817, -1.3768e-19, 3.4817e-34)"
+ERROR : not enough jit
+END
+Time Elapsed: 1.5759s
+Kinetic Energy: 15.8261 J
+Time Elapsed: 1.5759s
