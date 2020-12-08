@@ -51,7 +51,7 @@ mass = 0.14;
 gravity = 9.81;
 airDensity = 1.2;
 dragCoefficient = 0.5;
-T = 0.0001;
+T = 0.1;
 diameter = 0.075;
 podYoungsMod = 265126210; % (gf/mm2) = N/m2 / (98.066501*100)
 podModRigidity = 219238980; % (gf/mm2) = N/m2 / (98.066501*100)

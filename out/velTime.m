@@ -22,7 +22,14 @@ for iit = 1:iitMax
     end;
     for jit = 1:jitMax
         if isempty(s{iit,jit}) == 0
-            timeA = timeA + T;
+            %Middle point before launch
+            timeA = timeA + 0.5*T;
+            plot(timeA,0.5*(s{iit,jit}.velocityEnd(2,1)+b{iit}.velocityHit(2,1)),'o','Color','blue','HandleVisibility','off');
+            plot(timeA,0.5*(s{iit,jit}.velocityEnd(2,2)+b{iit}.velocityHit(2,2)),'^','Color','green','HandleVisibility','off');
+            plot(timeA,0.5*(s{iit,jit}.velocityEnd(2,3)+b{iit}.velocityHit(2,3)),'s','Color','red','HandleVisibility','off');
+            plot(timeA,0.5*(vec_mag(s{iit,jit}.velocityEnd)+vec_mag(b{iit}.velocityHit)),'+','Color','magenta','HandleVisibility','off');
+            %Normal Graph
+            timeA = timeA + 0.5*T;
             plot(timeA,s{iit,jit}.velocityEnd(2,1),'o','Color','blue','HandleVisibility','off');
             plot(timeA,s{iit,jit}.velocityEnd(2,2),'^','Color','green','HandleVisibility','off');
             plot(timeA,s{iit,jit}.velocityEnd(2,3),'s','Color','red','HandleVisibility','off');
