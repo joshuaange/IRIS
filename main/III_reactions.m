@@ -1,10 +1,11 @@
-function [vec_VE, vec_Norm, W, vec_VR, vec_VG, vec_VF, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N, U, vec_N_new, L, mag, vec_P, minimumFlatness, vec_B, YM, G, podMaterialProp)
+function [vec_VE, vec_Norm, W, vec_VR, vec_VG, vec_VF, quatV_pInfluence, quatA_pInfluence, quatV_next, quatA_next, vec_rotVelocity] = III_reactions(S, T, gravity, velocityHit, jit, S_new, K, s, iit, minimumRestitution, KT, vec_O, F, dLdxS, dLdyS, R, mass, diameter, quatV_ground, quatA_ground, N, U, vec_N_new, L, mag, vec_P, minimumFlatness, vec_B, YM, G, podMaterialProp, vec_PN)
 %Reaction forces
 %   Called by control.m
 
 % Gravity
 W = mass*gravity;
-vec_VG = [S(1) S(2) S(3); 0 0 -W*T];
+%vec_VG = [S(1) S(2) S(3); 0 0 -W*T];
+vec_VG = [S(1) S(2) S(3); 0 0 0];
 
 % Equal Reaction Vector
 %vec_VRfake = [(S(1)+(T)*velocityHit(2,1)) (S(2)+(T)*velocityHit(2,2)) (S(3)+(T)*velocityHit(2,3)); (S_new(1)-(S(1)+(T)*velocityHit(2,1))) (S_new(2)-(S(2)+(T)*velocityHit(2,2))) (S_new(3)-(S(3)+(T)*velocityHit(2,3)))];
@@ -57,9 +58,7 @@ vec_rotVelocity = [S_new(1) S_new(2) S_new(3); -(diameter/2)*(quatA_next/(2*pi))
 K_avg = ((K(S(1),S(2))+K(S_new(1),S_new(2)))/2);
 KT_avg = ((KT(S(1),S(2))+KT(S_new(1),S_new(2)))/2);
 % These calculations convert readable COR to usable COR
-K_calc = 2*(0.84798087*(K_avg^3) - 1.6885521*(K_avg^2) + 1.41395526*(K_avg) + 0.48879599);
-if K_avg <= minimumRestitution
-    K_calc = 2*(-5208.3333*(K_avg^2) + 104.166666*(K_avg));
-end
-vec_VE = [vec_VR(1,1)+vec_VR(2,1) vec_VR(1,2)+vec_VR(2,2) vec_VR(1,3)+vec_VR(2,3); K_calc*KT_avg*(velocityHit(2,1)+vec_VR(2,1)) K_calc*KT_avg*(velocityHit(2,2)+vec_VR(2,2)) K_calc*KT_avg*(velocityHit(2,3)+vec_VR(2,3))];
+K_calc = 100*(-K_avg)*((((1/T)-1)*vec_mag(vec_VR)));
+vec_VE = [vec_VR(1,1)+vec_VR(2,1) vec_VR(1,2)+vec_VR(2,2) vec_VR(1,3)+vec_VR(2,3); K_calc*cos(vec_alpha(vec_B)) K_calc*cos(vec_beta(vec_B)) K_calc*cos(vec_gamma(vec_B))];
+
 end

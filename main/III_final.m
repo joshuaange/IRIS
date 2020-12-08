@@ -14,7 +14,7 @@ Y_avg = (YM(S(1),S(2))+YM(S_new(1),S_new(2)))/2;
 G_avg = (G(S(1),S(2))+G(S_new(1),S_new(2)))/2;
 landPoisson = ((Y_avg)/(2*G_avg))-1;
 landMaterialProp = (1-landPoisson^2)/(pi*Y_avg);
-deformation = ((((3*pi)/2)^(2/3))*abs((101.97*-FI)^(2/3))*((landMaterialProp+podMaterialProp)^(2/3))*((1/(1000*diameter))^(1/3)))/1000;
+deformation = (((((3*pi)/2)^(2/3))*abs((101.97*-FI)^(2/3))*((landMaterialProp+podMaterialProp)^(2/3))*((1/(1000*diameter))^(1/3)))/1000);
 if double(deformation)<0
     deformation = ((((3*pi)/2)^(2/3))*((101.97*0)^(2/3))*((landMaterialProp+podMaterialProp)^(2/3))*((1/(1000*diameter))^(1/3)))/1000;
 end

@@ -7,13 +7,13 @@ close all
 % set the maximum limits of their for loops.  If jitMax is too 
 % low (meaning it registers as still continuing along the 
 % ground), the result will be an error.
-iitMax = 1;
-jitMax = 5;
+iitMax = 3;
+jitMax = 10;
 % Acceptable range of velocity to be considered 0 and stop
 stopRange = 0.05;
 % Limits of surface mesh minimum, maximum, and interval
-domainMin = -30;
-domainMax = 30;
+domainMin = -2;
+domainMax = 2;
 domainInt = 1;
 % Limits (time) of trajectory display
 trajectoryMin = 0;
@@ -36,9 +36,9 @@ L = @(x,y) 0.0000000000000000000000000000000001*x+0.0000000000000000000000000000
 % Terrain (Coefficient of Restitution of Pod With Ground)
 K = @(x,y) 0*x + 0*y + 1;
 % Terrain (Proportion of Time of Coefficient of Restitution) (not an input)
-KT = @(x,y) 0*x + 0*y + -1;
+KT = @(x,y) 0*x + 0*y + 1;
 % Terrain (Frictional Coefficient)
-F = @(x,y) 0*x + 0*y + 0.6;
+F = @(x,y) 0*x + 0*y + 0;
 % Terrain (Proportion of Rolling Friction)
 R = @(x,y) 0*x + 0*y + 0;
 % Terrain (Young's Modulus) (gf/mm2) = N/m2 / (98.066501*100)
@@ -61,7 +61,7 @@ HeatPercentage = 1;
 % Initial Conditions
 velocityStart = [0 0 1.5; 2.7 0 0];
 quatV_air = [velocityStart(1,1) velocityStart(1,2) velocityStart(1,3); 0.14 -0.87 0.48];
-quatA_air = -0.349066;
+quatA_air = 0;%-0.349066;
 
 % Initial pod temperature, to be changed with each on-ground iteration (K)
 TP = 300;
