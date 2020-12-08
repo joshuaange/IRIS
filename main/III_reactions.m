@@ -8,10 +8,8 @@ W = mass*gravity;
 vec_VG = [S(1) S(2) S(3); 0 0 0];
 
 % Equal Reaction Vector
-%vec_VRfake = [(S(1)+(T)*velocityHit(2,1)) (S(2)+(T)*velocityHit(2,2)) (S(3)+(T)*velocityHit(2,3)); (S_new(1)-(S(1)+(T)*velocityHit(2,1))) (S_new(2)-(S(2)+(T)*velocityHit(2,2))) (S_new(3)-(S(3)+(T)*velocityHit(2,3)))];
-%vec_VR = [vec_VRfake(1,1) vec_VRfake(1,2) vec_VRfake(1,3); ((jit)*vec_mag(vec_VRfake))*cos(vec_alpha(vec_VRfake)) ((jit)*vec_mag(vec_VRfake))*cos(vec_beta(vec_VRfake)) ((jit)*vec_mag(vec_VRfake))*cos(vec_gamma(vec_VRfake))];
-%vec_VR = [velocityHit(1,1)+T*velocityHit(2,1) velocityHit(1,2)+T*velocityHit(2,2) velocityHit(1,3)+T*velocityHit(2,3); T*mag*cos(vec_alpha(vec_B)) T*mag*cos(vec_beta(vec_B)) T*mag*cos(vec_gamma(vec_B))];
 vec_VR = [(S(1) + vec_P(2,1)) (S(2) + vec_P(2,2)) (S(3) + vec_P(2,3)); mag*cos(vec_alpha(vec_B)) mag*cos(vec_beta(vec_B)) mag*cos(vec_gamma(vec_B))];
+vec_VER = [(S(1)+(T)*velocityHit(2,1)) (S(2)+(T)*velocityHit(2,2)) (S(3)+(T)*velocityHit(2,3)); (S_new(1)-(S(1)+(T)*velocityHit(2,1))) (S_new(2)-(S(2)+(T)*velocityHit(2,2))) (S_new(3)-(S(3)+(T)*velocityHit(2,3)))];
 
 % Normal Vector (Gravity)
 vec_N_new_tangent = vec_normalize(vec_N_new);
@@ -58,7 +56,11 @@ vec_rotVelocity = [S_new(1) S_new(2) S_new(3); -(diameter/2)*(quatA_next/(2*pi))
 K_avg = ((K(S(1),S(2))+K(S_new(1),S_new(2)))/2);
 KT_avg = ((KT(S(1),S(2))+KT(S_new(1),S_new(2)))/2);
 % These calculations convert readable COR to usable COR
-K_calc = 100*(-K_avg)*((((1/T)-1)*vec_mag(vec_VR)));
-vec_VE = [vec_VR(1,1)+vec_VR(2,1) vec_VR(1,2)+vec_VR(2,2) vec_VR(1,3)+vec_VR(2,3); K_calc*cos(vec_alpha(vec_B)) K_calc*cos(vec_beta(vec_B)) K_calc*cos(vec_gamma(vec_B))];
+K_calc = 2*(0.84798087*(K_avg^3) - 1.6885521*(K_avg^2) + 1.41395526*(K_avg) + 0.48879599);
+if K_avg <= minimumRestitution
+    K_calc = 2*(-5208.3333*(K_avg^2) + 104.166666*(K_avg));
+end
+vec_VEFake = [vec_VER(1,1)+vec_VER(2,1) vec_VER(1,2)+vec_VER(2,2) vec_VER(1,3)+vec_VER(2,3); -K_calc*KT_avg*(velocityHit(2,1)+vec_VER(2,1)) -K_calc*KT_avg*(velocityHit(2,2)+vec_VER(2,2)) -K_calc*KT_avg*(velocityHit(2,3)+vec_VER(2,3))];
+vec_VE = [vec_VER(1,1)+vec_VER(2,1) vec_VER(1,2)+vec_VER(2,2) vec_VER(1,3)+vec_VER(2,3); vec_mag(vec_VEFake)*cos(vec_alpha(vec_VER)) vec_mag(vec_VEFake)*cos(vec_beta(vec_VER)) vec_mag(vec_VEFake)*cos(vec_gamma(vec_VER))];
 
 end

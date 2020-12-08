@@ -34,7 +34,7 @@ minimumEqual = 0.008;
 % Terrain (Surface Topology)
 L = @(x,y) 0.0000000000000000000000000000000001*x+0.0000000000000000000000000000000001*y;
 % Terrain (Coefficient of Restitution of Pod With Ground)
-K = @(x,y) 0*x + 0*y + 1;
+K = @(x,y) 0*x + 0*y + 0.5;
 % Terrain (Proportion of Time of Coefficient of Restitution) (not an input)
 KT = @(x,y) 0*x + 0*y + 1;
 % Terrain (Frictional Coefficient)
@@ -51,7 +51,7 @@ mass = 0.14;
 gravity = 9.81;
 airDensity = 1.2;
 dragCoefficient = 0.5;
-T = 0.1;
+T = 0.0001;
 diameter = 0.075;
 podYoungsMod = 265126210; % (gf/mm2) = N/m2 / (98.066501*100)
 podModRigidity = 219238980; % (gf/mm2) = N/m2 / (98.066501*100)
