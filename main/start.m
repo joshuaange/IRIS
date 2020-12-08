@@ -74,4 +74,12 @@ TC = @(x,y) 0*x + 0*y + 17;
 % Thermal conductivity between pod and atmosphere (W/(m⋅K))
 TCT = @(x,y) 0*x + 0*y + 20;
 
+% Limits
+tensileStrength = 400; %MPa
+elasticLimit = 250; %MPa
+fractureToughness = 28; %KIC
+maximumServiceTemperature = 604; %(K)
+podThickness = 0.02; %(m)
+maximumForce = 20; %(N)
+
 run('control.m')

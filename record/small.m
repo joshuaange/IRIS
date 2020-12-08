@@ -57,3 +57,4 @@ s{iit,jit}.W = vpa(W);
 s{iit,jit}.EndingKE = vpa(EndingKE);
 s{iit,jit}.LostKE = vpa(LostKE);
 s{iit,jit}.vec_Norm = vpa(vec_Norm);
+s{iit,jit}.TC_avg = vpa(TC_avg);

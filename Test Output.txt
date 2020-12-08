@@ -1,35 +1,37 @@
 Test Output:
 i = 1
-"j (Air) = 1, Velocity: 5.0949"
-              New Temperature = 300.1881
+"j (Air) = 1, Velocity: 4.3161"
+              New Temperature = 300.7168
               velocityHit = 5.4282
               vec_VR = 1.9275e-19
               vec_VF = 0
               vec_VG = 0
-              vec_VE = 9.4699
-"             Spin = [ 0.70711, -0.70711, 0 ], 3.5296"
-"             POSITION = (1.3962, -1.3768e-19, 1.3962e-34)"
+              vec_VE = 8.7466
+"             Spin = [ -0.70711, 0.70711, 0 ], 2.403"
+"             POSITION = (1.5858, -1.3768e-19, 1.5858e-34)"
 i = 2
-"j (Air) = 1, Velocity: 3.9593"
-              New Temperature = 300.311
-              velocityHit = 4.2222
-              vec_VR = 0.0030191
+"j (Air) = 1, Velocity: 3.0586"
+              New Temperature = 301.1016
+              velocityHit = 3.6485
+              vec_VR = 9.7118e-05
               vec_VF = 0
               vec_VG = 0
-              vec_VE = 7.3656
-"             Spin = [ -0.70711, 0.70711, 0 ], 6.0949"
-"             POSITION = (3.1312, -0.39855, 2.7327e-34)"
+              vec_VE = 5.8998
+"             Spin = [ -0.70711, 0.70711, 0 ], 1.0946"
+"             POSITION = (3.067, -0.03024, 3.0367e-34)"
 i = 3
-"j (Air) = 1, Velocity: 3.1786"
-              New Temperature = 300.3995
-              velocityHit = 3.3967
-              vec_VR = 0.0018854
+"j (Air) = 1, Velocity: 2.4008"
+              New Temperature = 301.3616
+              velocityHit = 2.6718
+              vec_VR = 0.00010559
               vec_VF = 0
               vec_VG = 0
-              vec_VE = 5.9201
-"             Spin = [ -0.70711, 0.70711, 0 ], 3.7861"
-"             POSITION = (4.191, -0.61133, 3.5797e-34)"
+              vec_VE = 4.344
+"             Spin = [ -0.70711, 0.70711, 0 ], 4.729"
+"             POSITION = (3.9168, -0.043352, 3.8734e-34)"
 END
-Time Elapsed: 2.124s
-Kinetic Energy: 5.6683 J
-Time Elapsed: 2.124s
+Time Elapsed: 2.0953s
+Kinetic Energy: 3.4731 J
+Time Elapsed: 2.0953s
+Survivability Metric: 1
+Survivability Metric: 0.49894
