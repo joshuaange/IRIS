@@ -12,8 +12,8 @@ jitMax = 10;
 % Acceptable range of velocity to be considered 0 and stop
 stopRange = 0.05;
 % Limits of surface mesh minimum, maximum, and interval
-domainMin = -2;
-domainMax = 2;
+domainMin = -20;
+domainMax = 20;
 domainInt = 1;
 % Limits (time) of trajectory display
 trajectoryMin = 0;

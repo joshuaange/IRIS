@@ -33,5 +33,4 @@ END
 Time Elapsed: 2.0953s
 Kinetic Energy: 3.4731 J
 Time Elapsed: 2.0953s
-Survivability Metric: 1
-Survivability Metric: 0.49894
+Breaking Metric: 0.49894

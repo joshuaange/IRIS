@@ -122,7 +122,6 @@ run('rotTime');
 
 %Impact
 run('breaking');
-run('breakingTime');
 
 
 display("END");

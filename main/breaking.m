@@ -27,7 +27,8 @@ for iit = 1:iitMax
         end;
     end;
 end;
-
+    
+    % MAX
 %Tensile Strength (4)
 tensileStrengthQuantity = max(MPaArray(loop)/tensileStrength);
 %Elastic Limit (3)
@@ -42,12 +43,50 @@ podThicknessQuantity = max(deformationArray(loop)/(podThickness));
 deformationQuantity = max(deformationArray(loop)/(0.5*diameter));
 %Maximum Force (4)
 maximumForceQuantity = max(impactArray(loop)/maximumForce);
+survivabilityMaxTemperature = (4*maximumServiceTemperatureQuantity)/4;
+survivabilityMaxImpact = (fractureToughnessQuantity+4*maximumForceQuantity)/5;
+survivabilityMaxDeformation = (4*tensileStrengthQuantity+3*elasticLimitQuantity+2*podThicknessQuantity+4*deformationQuantity)/13;
+survivabilityMax = double(max([survivabilityMaxTemperature,survivabilityMaxImpact,survivabilityMaxDeformation]));
+    % MEAN
+%Tensile Strength (4)
+tensileStrengthQuantity = mean(MPaArray(loop)/tensileStrength);
+%Elastic Limit (3)
+elasticLimitQuantity = mean(MPaArray(loop)/elasticLimit);
+%Fracture Toughness (1)
+fractureToughnessQuantity = mean((MPaArray(loop)*sqrt(pi*deformationRadius(loop)))/(fractureToughness));
+%Maximum Service Temperature (4)
+maximumServiceTemperatureQuantity = mean(temperatureArray(loop)/(maximumServiceTemperature));
+%Pod Thickness (2)
+podThicknessQuantity = mean(deformationArray(loop)/(podThickness));
+%Diameter (4)
+deformationQuantity = mean(deformationArray(loop)/(0.5*diameter));
+%Maximum Force (4)
+maximumForceQuantity = mean(impactArray(loop)/maximumForce);
+survivabilityMeanTemperature = (4*maximumServiceTemperatureQuantity)/4;
+survivabilityMeanImpact = (fractureToughnessQuantity+4*maximumForceQuantity)/5;
+survivabilityMeanDeformation = (4*tensileStrengthQuantity+3*elasticLimitQuantity+2*podThicknessQuantity+4*deformationQuantity)/13;
+survivabilityMean = double(mean([survivabilityMeanTemperature,survivabilityMeanImpact,survivabilityMeanDeformation]));
+    % MEDIAN
+%Tensile Strength (4)
+tensileStrengthQuantity = median(MPaArray(loop)/tensileStrength);
+%Elastic Limit (3)
+elasticLimitQuantity = median(MPaArray(loop)/elasticLimit);
+%Fracture Toughness (1)
+fractureToughnessQuantity = median((MPaArray(loop)*sqrt(pi*deformationRadius(loop)))/(fractureToughness));
+%Maximum Service Temperature (4)
+maximumServiceTemperatureQuantity = median(temperatureArray(loop)/(maximumServiceTemperature));
+%Pod Thickness (2)
+podThicknessQuantity = median(deformationArray(loop)/(podThickness));
+%Diameter (4)
+deformationQuantity = median(deformationArray(loop)/(0.5*diameter));
+%Maximum Force (4)
+maximumForceQuantity = median(impactArray(loop)/maximumForce);
+survivabilityMedianTemperature = (4*maximumServiceTemperatureQuantity)/4;
+survivabilityMedianImpact = (fractureToughnessQuantity+4*maximumForceQuantity)/5;
+survivabilityMedianDeformation = (4*tensileStrengthQuantity+3*elasticLimitQuantity+2*podThicknessQuantity+4*deformationQuantity)/13;
+survivabilityMedian = double(median([survivabilityMedianTemperature,survivabilityMedianImpact,survivabilityMedianDeformation]));
 
-survivabilityTemperature = (4*maximumServiceTemperatureQuantity)/4;
-survivabilityImpact = (fractureToughnessQuantity+4*maximumForceQuantity)/5;
-survivabilityDeformation = (4*tensileStrengthQuantity+3*elasticLimitQuantity+2*podThicknessQuantity+4*deformationQuantity)/13;
-
-survivability = double(max([survivabilityTemperature,survivabilityImpact,survivabilityDeformation]));
+survivability = max([survivabilityMedian,survivabilityMean,survivabilityMax]);
 
 writematrix("Breaking Metric: " + survivability,'Test Output','WriteMode','append');
 %Value of 1 means it will break
