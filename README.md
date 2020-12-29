@@ -10,9 +10,9 @@
 
 ## Authors
 
- - **Joshua Ange** : [Physics Math Modeling and Simulation, Overall Program Development](https://sites.google.com/view/lspis/about-us)
+ - **Joshua Ange** : [Physics Math Modeling, Computer Simulation, Overall Program Development](https://sites.google.com/view/lspis/about-us)
  - **Jonathan Andrews** : [User Interface Development, Output Animation Development](https://sites.google.com/view/lspis/about-us)
- - **Amber Glory** : [Pod Design and Integration, Publication Management](https://sites.google.com/view/lspis/about-us)
+ - **Amber Glory** : [Material Research, Pod Design and Integration, Publication Management](https://sites.google.com/view/lspis/about-us)
 
 ## Built With
 
@@ -25,7 +25,7 @@
 
 We use [SemVer](http://semver.org/) for versioning. 
  - **Pure Math Model** : [v0.0.1 - v1.2.5](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing) 
- - **Computer Model** : [v1.3.0 - v1.3.3](https://github.com/joshuaange/LSPIS/tags)
+ - **Computer Model** : [v1.3.0 - v1.3.5](https://github.com/joshuaange/LSPIS/tags)
 
 ## Example Usage
 
