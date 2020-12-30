@@ -31,4 +31,3 @@ xlabel('Time elapsed (s)');
 ylabel('Strength (m/s)');
 legend;
 hold off;
-writematrix("Time Elapsed: " + totalTimeA + "s",'Test Output','WriteMode','append');

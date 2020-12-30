@@ -4,8 +4,7 @@ function [vec_VE, vec_Norm, W, vec_VR, vec_VG, vec_VF, quatV_pInfluence, quatA_p
 
 % Gravity
 W = mass*gravity;
-%vec_VG = [S(1) S(2) S(3); 0 0 -W*T];
-vec_VG = [S(1) S(2) S(3); 0 0 0];
+vec_VG = [S(1) S(2) S(3); 0 0 -W*T];
 
 % Equal Reaction Vector
 vec_VR = [(S(1) + vec_P(2,1)) (S(2) + vec_P(2,2)) (S(3) + vec_P(2,3)); mag*cos(vec_alpha(vec_B)) mag*cos(vec_beta(vec_B)) mag*cos(vec_gamma(vec_B))];

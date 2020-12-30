@@ -38,7 +38,7 @@ K = @(x,y) 0*x + 0*y + 0.5;
 % Terrain (Proportion of Time of Coefficient of Restitution) (not an input)
 KT = @(x,y) 0*x + 0*y + 1;
 % Terrain (Frictional Coefficient)
-F = @(x,y) 0*x + 0*y + 0;
+F = @(x,y) 0*x + 0*y + 0.05;
 % Terrain (Proportion of Rolling Friction)
 R = @(x,y) 0*x + 0*y + 0;
 % Terrain (Young's Modulus) (gf/mm2) = N/m2 / (98.066501*100)
