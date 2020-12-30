@@ -121,7 +121,6 @@ run('deformationTime');
 run('rotTime');
 
 %Impact
-run('breaking');
-
+%run('breaking');
 
 display("END");
