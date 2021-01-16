@@ -12,7 +12,7 @@ vec_N = [S(1) S(2) S(3); -dLdxS -dLdyS 1];
 % Parallel Vector
 %vec_PN = [velocityHit(1,1)+velocityHit(2,1)+magTest*cos(vec_alpha(vec_N)) velocityHit(1,2)+velocityHit(2,2)+magTest*cos(vec_beta(vec_N)) velocityHit(1,3)+velocityHit(2,3)+magTest*cos(vec_gamma(vec_N))];
 vec_PN = (velocityHit(2,:))-(((velocityHit(2,:)).*(vec_N(2,:))/(vec_mag(vec_N))^2).*(vec_N(2,:)));
-vec_P = [S(1) S(2) S(3); T*(vec_PN(1)) T*(vec_PN(2)) T*(vec_PN(3))];
+ec_P = [S(1) S(2) S(3); T*(vec_PN(1)) T*(vec_PN(2)) T*(vec_PN(3))];
 % Perpendicular Vector
 vec_B = [(S(1) + vec_P(2,1)) (S(2) + vec_P(2,2)) (S(3) + vec_P(2,3)); dLdxS dLdyS -1];
 

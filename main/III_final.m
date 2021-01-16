@@ -3,9 +3,9 @@ function [LostKE, TE_avg, TC_avg, heatFlux, heatTransfer, areaGround, cooling, T
 %   Called by control.m
 % New Velocity
 velocityEnd = [S_new(1) S_new(2) S_new(3); 0 0 0];
-velocityEnd(2,1) = ( vec_rotVelocity(2,1) + velocityHit(2,1) + (vec_Norm(2,1)) + vec_VF(2,1) + vec_VG(2,1) + vec_VE(2,1));
-velocityEnd(2,2) = ( vec_rotVelocity(2,2) + velocityHit(2,2) + (vec_Norm(2,2)) + vec_VF(2,2) + vec_VG(2,2) + vec_VE(2,2));
-velocityEnd(2,3) = ( vec_rotVelocity(2,3) + velocityHit(2,3) + (vec_Norm(2,3)) + vec_VF(2,3) + vec_VG(2,3) + vec_VE(2,3));
+velocityEnd(2,1) = (vec_VG(2,1) + velocityHit(2,1) + vec_rotVelocity(2,1) + vec_Norm(2,1) + vec_VE(2,1) + vec_VF(2,1));
+velocityEnd(2,2) = (vec_VG(2,2) + velocityHit(2,2) + vec_rotVelocity(2,2) + vec_Norm(2,2) + vec_VE(2,2) + vec_VF(2,2));
+velocityEnd(2,3) = (vec_VG(2,3) + velocityHit(2,3) + vec_rotVelocity(2,3) + vec_Norm(2,3) + vec_VE(2,3) + vec_VF(2,3));
 
 % Force of Impact
 %FI = -mass*((vec_mag([velocityEnd(1,1)-velocityHit(1,1) velocityEnd(1,2)-velocityHit(1,2) velocityEnd(1,3)-velocityHit(1,3) ; velocityEnd(2,1)-velocityHit(2,1) velocityEnd(2,2)-velocityHit(2,2) velocityEnd(2,3)-velocityHit(2,3)]))/T);
