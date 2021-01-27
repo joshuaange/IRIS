@@ -1,16 +1,17 @@
-b{iit}.velocityStart = vpa(velocityStart);
-b{iit}.xt = (xt);
-b{iit}.yt = (yt);
-b{iit}.zt = (zt);
-b{iit}.timeImpact = timeImpact;
-b{iit}.dxt = (dxt);
-b{iit}.dyt = (dyt);
-b{iit}.dzt = (dzt);
-b{iit}.velocityHit = vpa(velocityHit);
-b{iit}.S = vpa(S);
-b{iit}.C = vpa(C);
-b{iit}.TP = vpa(TP);
-b{iit}.quatV_air = vpa(quatV_air);
-b{iit}.quatA_air = vpa(quatA_air);
-b{iit}.EndingKE = vpa(EndingKE);
-b{iit}.LostKE = double(LostKE);
+b{iit}.u_i
+b{iit}.qA_i
+b{iit}.qB_i
+b{iit}.qC_i
+b{iit}.qD_i
+b{iit}.qOmega_i
+b{iit}.T_i
+b{iit}.t_p_i
+b{iit}.C_i
+b{iit}.X_i
+b{iit}.Y_i
+b{iit}.Z_i
+b{iit}.t_f_i
+b{iit}.S_i
+b{iit}.v_i
+b{iit}.KE_s_i
+b{iit}.KE_f_i

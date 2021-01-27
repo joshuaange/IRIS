@@ -1,60 +1,104 @@
-s{iit,jit}.dLdx = vpa(dLdx);
-s{iit,jit}.dLdy = vpa(dLdy);
-s{iit,jit}.dLdxS = vpa(dLdxS);
-s{iit,jit}.dLdyS = vpa(dLdyS);
-s{iit,jit}.N = vpa(N);
-s{iit,jit}.vec_N = vpa(vec_N);
-s{iit,jit}.vec_PN = vpa(vec_PN);
-s{iit,jit}.vec_P = vpa(vec_P);
-s{iit,jit}.vec_B = vpa(vec_B);
-s{iit,jit}.mag = mag;
-s{iit,jit}.S_2 = vpa(S_2);
-s{iit,jit}.vec_O = vpa(vec_O);
-s{iit,jit}.velocityHit = vpa(velocityHit);
-s{iit,jit}.S = vpa(S);
-s{iit,jit}.vec_VR = vpa(vec_VR);
-s{iit,jit}.vec_VG = vpa(vec_VG);
-s{iit,jit}.vec_VE = vpa(vec_VE);
-s{iit,jit}.vec_VF = vpa(vec_VF);
-s{iit,jit}.velocityEnd = vpa(velocityEnd);
-s{iit,jit}.FI = vpa(FI);
-s{iit,jit}.deltalKE = vpa(deltalKE);
-s{iit,jit}.deltaKE = vpa(deltaKE);
-s{iit,jit}.Y_avg = vpa(Y_avg);
-s{iit,jit}.G_avg = vpa(G_avg);
-s{iit,jit}.landPoisson = vpa(landPoisson);
-s{iit,jit}.landMaterialProp = vpa(landMaterialProp);
-s{iit,jit}.deformation = vpa(deformation);
-s{iit,jit}.ret = ret;
-s{iit,jit}.TE_avg = vpa(TE_avg);
-s{iit,jit}.TC_avg = vpa(TC_avg);
-s{iit,jit}.heatFlux = vpa(heatFlux);
-s{iit,jit}.heatTransfer = vpa(heatTransfer);
-s{iit,jit}.areaGround = vpa(areaGround);
-s{iit,jit}.cooling = vpa(cooling);
-s{iit,jit}.TP_new = vpa(TP_new);
-s{iit,jit}.TP = vpa(TP);
-s{iit,jit}.quatV_pInfluence = vpa(quatV_pInfluence);
-s{iit,jit}.quatA_pInfluence = vpa(quatA_pInfluence);
-s{iit,jit}.quatV_ground = vpa(quatV_ground);
-s{iit,jit}.quatA_ground = vpa(quatA_ground);
-s{iit,jit}.quatV_next = vpa(quatV_next);
-s{iit,jit}.quatA_next = vpa(quatA_next);
-s{iit,jit}.vec_rotVelocity = vpa(vec_rotVelocity);
-s{iit,jit}.deltarKE = vpa(deltarKE);
-s{iit,jit}.vec_OM = vpa(vec_OM);
-s{iit,jit}.S_new = vpa(S_new);
-s{iit,jit}.X_new = vpa(X_new);
-s{iit,jit}.Y_new = vpa(Y_new);
-s{iit,jit}.Z_new = vpa(Z_new);
-s{iit,jit}.vec_N_new = vpa(vec_N_new);
-s{iit,jit}.X_newFinal = vpa(X_newFinal);
-s{iit,jit}.Y_newFinal = vpa(Y_newFinal);
-s{iit,jit}.Z_newFinal = vpa(Z_newFinal);
-s{iit,jit}.vec_M = vpa(vec_M);
-s{iit,jit}.C_new = vpa(C_new);
-s{iit,jit}.W = vpa(W);
-s{iit,jit}.EndingKE = vpa(EndingKE);
-s{iit,jit}.LostKE = vpa(LostKE);
-s{iit,jit}.vec_Norm = vpa(vec_Norm);
-s{iit,jit}.TC_avg = vpa(TC_avg);
+s{iit,jit}.KE_s_ij
+s{iit,jit}.qA_ij
+s{iit,jit}.qB_ij
+s{iit,jit}.qC_ij
+s{iit,jit}.qD_ij
+s{iit,jit}.qOmega_ij
+s{iit,jit}.S_ij
+s{iit,jit}.v_ij
+s{iit,jit}.C_ij
+s{iit,jit}.T_s_ij
+s{iit,jit}.NN_ij
+s{iit,jit}.N_ij
+s{iit,jit}.PN_ij
+s{iit,jit}.P_ij
+s{iit,jit}.B_ij
+s{iit,jit}.B_m_ij
+s{iit,jit}.M_ij
+s{iit,jit}.Rn_ij
+s{iit,jit}.O_ij
+s{iit,jit}.xn_ij
+s{iit,jit}.yn_ij
+s{iit,jit}.zn_ij
+s{iit,jit}.R_ij
+s{iit,jit}.Nn_ij
+s{iit,jit}.Xn_ij
+s{iit,jit}.Yn_ij
+s{iit,jit}.Zn_ij
+s{iit,jit}.Cn_ij
+s{iit,jit}.VG_ij
+s{iit,jit}.A_g_ij
+s{iit,jit}.A_n_ij
+s{iit,jit}.A_e_ij
+s{iit,jit}.A_G_ij
+s{iit,jit}.A_f_ij
+s{iit,jit}.pA_ij
+s{iit,jit}.pB_ij
+s{iit,jit}.pC_ij
+s{iit,jit}.pD_ij
+s{iit,jit}.pOmega_ij
+s{iit,jit}.QA_ij
+s{iit,jit}.QB_ij
+s{iit,jit}.QC_ij
+s{iit,jit}.QD_ij
+s{iit,jit}.QOmega_ij
+s{iit,jit}.VQ_ij
+s{iit,jit}.A_r_ij
+s{iit,jit}.V_ij
+s{iit,jit}.J_ij
+s{iit,jit}.FI_ij
+s{iit,jit}.sigma_l_ij
+s{iit,jit}.M_l_ij
+s{iit,jit}.D_ij
+s{iit,jit}.KE_f_ij
+s{iit,jit}.deltaKE_ij
+s{iit,jit}.h_f_ij
+s{iit,jit}.h_t_ij
+s{iit,jit}.h_c_ij
+s{iit,jit}.SA_g_ij
+s{iit,jit}.T_f_ij
+
+SA
+d
+Q
+m
+g
+rho
+C_d
+sigma_p
+Y_p
+G_p
+M_p
+L
+t_p_min
+t_step
+X_sphere
+Y_sphere
+Z_sphere
+A_limit
+B_limit
+X_moved
+Y_moved
+Z_moved
+m_A
+m_B
+s_min
+X_total
+Y_total
+Z_total
+c
+T
+Kt
+K
+rho_p
+F
+Y_l
+G_l
+I
+T_g
+T_c
+h_C
+h_R
+r
+v_min
+r_min
