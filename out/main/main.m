@@ -21,3 +21,4 @@ axis equal;
 xlim([domainMin domainMax]);
 ylim([domainMin domainMax]);
 zlim([domainMin domainMax]);
+hold off;

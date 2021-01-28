@@ -6,10 +6,10 @@ folder = pwd;
 load(strcat(folder,'\main\inputs\Bullet_Projectile_Motion.mat'))
 t_step = 0.2;
 L = @(x,y) 0.000000000000001*x + 0.000000000000001*y;
-T=0.01;
+T=1;
 domainMin=-19;
 domainMax=19;
-K = @(x,y) 0*x + 0*y + 0.875;
+K = @(x,y) 0*x + 0*y + 1;
 r_min = 0.0316;
 
 syms x y VAL t
@@ -27,6 +27,7 @@ Kt = (T/(d/((sqrt(9806.6501*Y_p))/(rho_p))));
 if Kt > 1
     Kt = 1;
 end
+Kt = 1;
 % Partial Derivatives
 dLdx = matlabFunction(diff(L,x),'Vars',[x y]);
 dLdy = matlabFunction(diff(L,y),'Vars',[x y]);
@@ -50,7 +51,7 @@ for iit = 1:i_max
             display("[" + iit + " + " + jit + "]");
 
             % Return
-            r = V_ij(2,3) + Cn_ij(3) - L(V_ij(2,1) + Cn_ij(1),V_ij(2,2) + Cn_ij(2));
+            r = T*V_ij(2,3) + Cn_ij(3) - L(T*V_ij(2,1) + Cn_ij(1),T*V_ij(2,2) + Cn_ij(2));
             display("Return: " + double(r) + ", Velocity: " + double(mag(V_ij)));
             
             % Stop
@@ -88,5 +89,6 @@ for iit = 1:i_max
 end
 
 run(strcat(folder,'\out\main\main.m'));
+run(strcat(folder,'\out\kineticEnergy.m'));
 
 display("END");

@@ -18,4 +18,7 @@ b{iit}.S_i = vpa(S_i);
 b{iit}.v_i = vpa(v_i);
 b{iit}.KE_s_i = vpa(KE_s_i);
 b{iit}.KE_f_i = vpa(KE_f_i);
+b{iit}.dx_i = (dx_idt);
+b{iit}.dy_i = (dy_idt);
+b{iit}.dz_i = (dz_idt);
 display("big.m");
