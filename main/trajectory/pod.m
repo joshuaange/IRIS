@@ -33,3 +33,5 @@ for m_A = 1:A_limit
 end
 % Impact
 S_i = [(X_total/c),(Y_total/c),(Z_total/c)];
+
+display("pod.m");

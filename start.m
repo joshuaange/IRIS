@@ -1,8 +1,13 @@
 clc
 clear all
-% Add inputs variable workspace
-load('empty.mat');
+folder = pwd;
+% Load Input .mat here
+load(strcat(folder,'\main\inputs\test.mat'))
+j_max = 10;
 
+syms x y VAL t
+b = cell(i_max,1);
+s = cell(i_max,j_max);
 % Initial
 SA = (4*pi*(d/2)^2)/2;
 Q = sqrt((2*m*g)/(rho*SA*C_d));
@@ -11,33 +16,35 @@ M_p = (1-sigma_p^2)/(pi*Y_p);
 [X_sphere,Y_sphere,Z_sphere] = sphere;
 A_limit = size(X_sphere,1);
 B_limit = size(Y_sphere,2);
-Kt = (sqrt((1019716212.97793*Y_p)/(rho_p*10^-4)))/36000;
+Kt = (sqrt((9806.6501*Y_p)/(rho_p)))/36000;
 % Partial Derivatives
 dLdx = matlabFunction(diff(L,x),'Vars',[x y]);
 dLdy = matlabFunction(diff(L,y),'Vars',[x y]);
 
 for iit = 1:i_max
     % Trajectory
-    run('trajectory');
-    run('pod');
-    run('final');
+    run(strcat(folder,'\main\trajectory\trajectory.m'));
+    run(strcat(folder,'\main\trajectory\pod.m'));
+    run(strcat(folder,'\main\trajectory\final.m'));
     % Record
-    run('big');
+    run(strcat(folder,'\record\big.m'));
+    display("[" + iit + "]");
         for jit = 1:j_max
             % Time Segments
-            run('directions');
-            run('pod');
-            run('reactions');
-            run('final');
+            run(strcat(folder,'\main\segment\directions.m'));
+            run(strcat(folder,'\main\segment\pod.m'));
+            run(strcat(folder,'\main\segment\reactions.m'));
+            run(strcat(folder,'\main\segment\final.m'));
             % Record
-            run('small');
+            run(strcat(folder,'\record\small.m'));
+            display("[" + iit + " + " + jit + "]");
 
             % Return
             r = T*V_ij(2,3) + Cn_ij(3) - L(T*V_ij(2,1) + Cn_ij(1),T*V_ij(2,2) + Cn_ij(2));
 
             % Stop
-            if -v_min<mag(V_ij)<=v_min
-                break;
+            if -v_min<double(mag(V_ij))<=v_min
+                break
             end
             % In-Air
             if r>r_min

@@ -19,3 +19,5 @@ S_ij = S_i;
 v_ij = v_i;
 C_ij = C_i;
 T_s_ij = T_i;
+
+display("final.m");
