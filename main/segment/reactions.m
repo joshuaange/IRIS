@@ -6,7 +6,7 @@ A_g_ij = [S_ij(1),S_ij(2),S_ij(3); (T*m*g*cos(pi-acos((dot([0,0,1],VG_ij(2,:)))/
 A_n_ij = [S_ij(1),S_ij(2),S_ij(3); -B_ij(2,1),-B_ij(2,2),-B_ij(2,3)];
 
 % Elasticity
-A_e_ij = [R_ij(1),R_ij(2),R_ij(3); Kt*((K(S_ij(1),S_ij(2))+K(R_ij(1),R_ij(2)))/2)*A_n_ij(2,1),Kt*((K(S_ij(1),S_ij(2))+K(R_ij(1),R_ij(2)))/2)*A_n_ij(2,2),Kt*((K(S_ij(1),S_ij(2))+K(R_ij(1),R_ij(2)))/2)*A_n_ij(2,3)];
+A_e_ij = [S_ij(1),S_ij(2),S_ij(3); 2*Kt*((K(S_ij(1),S_ij(2))+K(R_ij(1),R_ij(2)))/2)*A_n_ij(2,1)/T,2*Kt*((K(S_ij(1),S_ij(2))+K(R_ij(1),R_ij(2)))/2)*A_n_ij(2,2)/T,2*Kt*((K(S_ij(1),S_ij(2))+K(R_ij(1),R_ij(2)))/2)*A_n_ij(2,3)/T];
 
 % Friction
 A_G_ij = vpasolve(((mag(A_g_ij))^2)+(VAL^2)==(mag([S_ij(1),S_ij(2),S_ij(3); 0,0,-T*m*g]))^2, VAL);
@@ -24,5 +24,6 @@ pD_ij = (sin(pOmega_ij)*NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))/(sqrt((-O_ij
     % Vectors
 VQ_ij = [S_ij(1),S_ij(2),S_ij(3); (QC_ij)/(sin(QOmega_ij)),-(QB_ij)/(sin(QOmega_ij)),NN_ij(S_ij(1)+(QC_ij)/(sin(QOmega_ij)),S_ij(2)-(QB_ij)/(sin(QOmega_ij)))-S_ij(3)];
 A_r_ij = [S_ij(1),S_ij(2),S_ij(3); (d/2)*QOmega_ij*cos(falpha(VQ_ij)),(d/2)*QOmega_ij*cos(fbeta(VQ_ij)),(d/2)*QOmega_ij*cos(fgamma(VQ_ij))];
+A_r_ij = [S_ij(1),S_ij(2),S_ij(3); 0,0,0]
 
 display("reactions.m");

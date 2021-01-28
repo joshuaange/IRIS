@@ -18,5 +18,5 @@ end
 angle = acos(A);
 
 angle = angle + (2*pi)*(Anglep/(2*pi) + Angleg/(2*pi));
-angle = angle + positive - negative;
+angle = angle + acos(positive) - acos(negative);
 end

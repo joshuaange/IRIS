@@ -1,8 +1,16 @@
 clc
 clear all
+close all
 folder = pwd;
 % Load Input .mat here
 load(strcat(folder,'\main\inputs\Bullet_Projectile_Motion.mat'))
+t_step = 0.2;
+L = @(x,y) 0.000000000000001*x + 0.000000000000001*y;
+T=0.01;
+domainMin=-19;
+domainMax=19;
+K = @(x,y) 0*x + 0*y + 0.875;
+r_min = 0.0316;
 
 syms x y VAL t
 b = cell(i_max,1);
@@ -15,7 +23,7 @@ M_p = (1-sigma_p^2)/(pi*Y_p);
 [X_sphere,Y_sphere,Z_sphere] = sphere;
 A_limit = size(X_sphere,1);
 B_limit = size(Y_sphere,2);
-Kt = T/((d)/(sqrt((9806.6501*Y_p)/(rho_p))));
+Kt = (T/(d/((sqrt(9806.6501*Y_p))/(rho_p))));
 if Kt > 1
     Kt = 1;
 end
@@ -42,7 +50,7 @@ for iit = 1:i_max
             display("[" + iit + " + " + jit + "]");
 
             % Return
-            r = T*V_ij(2,3) + Cn_ij(3) - L(T*V_ij(2,1) + Cn_ij(1),T*V_ij(2,2) + Cn_ij(2));
+            r = V_ij(2,3) + Cn_ij(3) - L(V_ij(2,1) + Cn_ij(1),V_ij(2,2) + Cn_ij(2));
             display("Return: " + double(r) + ", Velocity: " + double(mag(V_ij)));
             
             % Stop
@@ -74,11 +82,11 @@ for iit = 1:i_max
                 S_ij = vpa(R_ij);
             end
         end
-    if -v_min<vpa(mag(V_ij))<=v_min
+    if -v_min<double(mag(V_ij))<=v_min
         break
     end
 end
 
-%run(strcat(folder,'\out\main\main.m'));
+run(strcat(folder,'\out\main\main.m'));
 
 display("END");

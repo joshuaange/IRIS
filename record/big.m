@@ -1,4 +1,7 @@
 b{iit}.u_i = vpa(u_i);
+b{iit}.x_i = (x_i);
+b{iit}.y_i = (y_i);
+b{iit}.z_i = (z_i);
 b{iit}.qA_i = vpa(qA_i);
 b{iit}.qB_i = vpa(qB_i);
 b{iit}.qC_i = vpa(qC_i);
