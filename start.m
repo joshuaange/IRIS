@@ -3,7 +3,6 @@ clear all
 folder = pwd;
 % Load Input .mat here
 load(strcat(folder,'\main\inputs\test.mat'))
-j_max = 10;
 
 syms x y VAL t
 b = cell(i_max,1);
@@ -41,37 +40,38 @@ for iit = 1:i_max
 
             % Return
             r = T*V_ij(2,3) + Cn_ij(3) - L(T*V_ij(2,1) + Cn_ij(1),T*V_ij(2,2) + Cn_ij(2));
-
+            display("Return: " + double(r) + ", Velocity: " + double(mag(V_ij)));
+            
             % Stop
             if -v_min<double(mag(V_ij))<=v_min
                 break
             end
             % In-Air
             if r>r_min
-                u_i = [Cn_ij(1),Cn_ij(2),Cn_ij(3); V_ij(2,1),V_ij(2,2),V_ij(2,3)];
-                qA_i = QA_ij;
-                qB_i = QB_ij;
-                qC_i = QC_ij;
-                qD_i = QD_ij;
-                qOmega_i = QOmega_ij;
-                T_i = T_f_ij;
+                u_i = [double(Cn_ij(1)),double(Cn_ij(2)),double(Cn_ij(3)); double(V_ij(2,1)),double(V_ij(2,2)),double(V_ij(2,3))];
+                qA_i = double(QA_ij);
+                qB_i = double(QB_ij);
+                qC_i = double(QC_ij);
+                qD_i = double(QD_ij);
+                qOmega_i = double(QOmega_ij);
+                T_i = double(T_f_ij);
                 break
             end
             % On-Ground
             if r<=r_min
-                KE_s_ij = KE_f_ij;
-                v_ij = V_ij;
-                qA_ij = QA_ij;
-                qB_ij = QB_ij;
-                qC_ij = QC_ij;
-                qD_ij = QD_ij;
-                qOmega_ij = QOmega_ij;
-                C_ij = Cn_ij;
-                T_s_ij = T_f_ij;
-                S_ij = R_ij;
+                KE_s_ij = double(KE_f_ij);
+                v_ij = double(V_ij);
+                qA_ij = double(QA_ij);
+                qB_ij = double(QB_ij);
+                qC_ij = double(QC_ij);
+                qD_ij = double(QD_ij);
+                qOmega_ij = double(QOmega_ij);
+                C_ij = double(Cn_ij);
+                T_s_ij = double(T_f_ij);
+                S_ij = double(R_ij);
             end
         end
-    if -v_min<mag(V_ij)<=v_min
+    if -v_min<double(mag(V_ij))<=v_min
         break
     end
 end

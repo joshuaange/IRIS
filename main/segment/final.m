@@ -18,13 +18,15 @@ deltaKE_ij = 0.5*m*(mag(V_ij) - mag(v_ij))^2 + 0.5*I*(QOmega_ij - pOmega_ij)^2;
 KE_f_ij = KE_s_ij + deltaKE_ij;
 
 % Temperature (Conductivity)
-h_f_ij = ((T_c(S_ij(1),S_ij(2))+T_c(R_ij(1),R_ij(2)))/2)*((T_s_ij-((T_g(S_ij(1),S_ij(2))+T_g(R_ij(1),R_ij(2)))/2))/D_ij);
 if D_ij==0
    h_f_ij = 0; 
+else
+   h_f_ij = ((T_c(S_ij(1),S_ij(2))+T_c(R_ij(1),R_ij(2)))/2)*((T_s_ij-((T_g(S_ij(1),S_ij(2))+T_g(R_ij(1),R_ij(2)))/2))/D_ij);
 end
-h_t_ij = (h_f_ij)/(T_s_ij-((T_g(S_ij(1),S_ij(2))+T_g(R_ij(1),R_ij(2)))/2));
 if T_s_ij==((T_g(S_ij(1),S_ij(2))+T_g(R_ij(1),R_ij(2)))/2)
     h_t_ij = 0;
+else
+    h_t_ij = (h_f_ij)/(T_s_ij-((T_g(S_ij(1),S_ij(2))+T_g(R_ij(1),R_ij(2)))/2));
 end
 SA_g_ij = pi*( (d/2)^2 * (d/2 - D_ij)^2 );
 h_c_ij = h_t_ij * (SA_g_ij / h_C);
