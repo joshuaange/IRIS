@@ -1,16 +1,16 @@
-% clc
-% clear all
-% close all
-% folder = pwd;
-% % Load Input .mat here
-% load(strcat(folder,'\main\inputs\Bullet_Projectile_Motion.mat'))
+clc
+clear all
+close all
+folder = pwd;
+% Load Input .mat here
+load(strcat(folder,'\main\inputs\Bullet_Projectile_Motion.mat'))
 t_step = 0.5;
 L = @(x,y) 0.000001*x + 0.000001*y;
-T=0.25;
-domainMin=0;
-domainMax=7;
+T=0.5;
+domainMin=-4;
+domainMax=4;
 K = @(x,y) 0*x + 0*y + 1;
-%F = @(x,y) 0*x + 0*y + 1;
+F = @(x,y) 0*x + 0*y + 0;
 r_min = 0.0316;
 j_max = 25;
 i_max = 2;
@@ -103,6 +103,5 @@ end
 
 run(strcat(folder,'\out\main\main.m'));
 %run(strcat(folder,'\out\kineticEnergy.m'));
-display(double(b{2}.u_i))
 
 display("END");
