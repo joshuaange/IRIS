@@ -10,11 +10,7 @@ KE_f_i = 0.5*m*mag(v_i)^2;
 
 % Prep for Time Segment
 KE_s_ij = KE_f_i;
-qA_ij = qA_i;
-qB_ij = qB_i;
-qC_ij = qC_i;
-qD_ij = qD_i;
-qOmega_ij = qOmega_i;
+q_ij = q_i;
 S_ij = S_i;
 v_ij = v_i;
 C_ij = C_i;

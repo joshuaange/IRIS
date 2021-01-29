@@ -16,6 +16,8 @@ j_max = 25;
 i_max = 2;
 r_edge = 5;
 B_m_min = 0.00000001;
+q_i = [0,0,0];
+F_r = @(x,y) 0*x + 0*y + 0;
 
 syms x y VAL t
 b = cell(i_max,1);
@@ -67,30 +69,18 @@ for iit = 1:i_max
             
             if r>r_min && jit>=Kt % In-Air
                 u_i = [vpa(Cn_ij(1)),vpa(Cn_ij(2)),vpa(Cn_ij(3)); vpa(V_ij(2,1)),vpa(V_ij(2,2)),vpa(V_ij(2,3))];
-                qA_i = vpa(QA_ij);
-                qB_i = vpa(QB_ij);
-                qC_i = vpa(QC_ij);
-                qD_i = vpa(QD_ij);
-                qOmega_i = vpa(QOmega_ij);
+                q_i = vpa(Q_ij);
                 T_i = vpa(T_f_ij);
                 break
             elseif r>r_edge % In-Air (Edge)
                 u_i = [vpa(Cn_ij(1)),vpa(Cn_ij(2)),vpa(Cn_ij(3)); vpa(V_ij(2,1)),vpa(V_ij(2,2)),vpa(V_ij(2,3))];
-                qA_i = vpa(QA_ij);
-                qB_i = vpa(QB_ij);
-                qC_i = vpa(QC_ij);
-                qD_i = vpa(QD_ij);
-                qOmega_i = vpa(QOmega_ij);
+                q_i = vpa(Q_ij);
                 T_i = vpa(T_f_ij);
                 break
             else % On-Ground
                 KE_s_ij = vpa(KE_f_ij);
                 v_ij = vpa(V_ij);
-                qA_ij = vpa(QA_ij);
-                qB_ij = vpa(QB_ij);
-                qC_ij = vpa(QC_ij);
-                qD_ij = vpa(QD_ij);
-                qOmega_ij = vpa(QOmega_ij);
+                q_ij = vpa(Q_ij);
                 C_ij = vpa(Cn_ij);
                 T_s_ij = vpa(T_f_ij);
                 S_ij = vpa(R_ij);

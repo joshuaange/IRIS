@@ -25,16 +25,12 @@ A_f_ij = [R_ij(1),R_ij(2),R_ij(3); (-0.31875*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij
 
 % Rotation
     % Influence
-pOmega_ij = ((mag(O_ij))/T)/(d/2) * (pi/180);
-pA_ij = cos(pOmega_ij);
-pB_ij = (sin(pOmega_ij)*(-O_ij(2,2)))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2));
-pC_ij = (sin(pOmega_ij)*(O_ij(2,1)))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2));
-pD_ij = (sin(pOmega_ij)*NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2));
-    % Multiply
-[QA_ij,QB_ij,QC_ij,QD_ij,QOmega_ij] = multiply(qA_ij,qB_ij,qC_ij,qD_ij,qOmega_ij,pA_ij,pB_ij,pC_ij,pD_ij,pOmega_ij);
-    % Vectors
-VQ_ij = [S_ij(1),S_ij(2),S_ij(3); (QC_ij)/(sin(QOmega_ij)),-(QB_ij)/(sin(QOmega_ij)),NN_ij(S_ij(1)+(QC_ij)/(sin(QOmega_ij)),S_ij(2)-(QB_ij)/(sin(QOmega_ij)))-S_ij(3)];
-A_r_ij = [S_ij(1),S_ij(2),S_ij(3); (d/2)*QOmega_ij*cos(falpha(VQ_ij)),(d/2)*QOmega_ij*cos(fbeta(VQ_ij)),(d/2)*QOmega_ij*cos(fgamma(VQ_ij))];
-A_r_ij = [S_ij(1),S_ij(2),S_ij(3); 0,0,0];
+length = ((mag(O_ij))/T)/(d/2);
+p_ij = [S_ij(1),S_ij(2),S_ij(3);((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*length*((-O_ij(2,2))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))),((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*length*((O_ij(2,1))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))),((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*length*((NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))) - S_ij(3)];
+    % New Angular Velocity
+Q_ij = [R_ij(1),R_ij(2),R_ij(3); p_ij(2,1)+q_ij(2,1),p_ij(2,2)+q_ij(2,2),p_ij(2,3)+q_ij(2,3)];
+    % Reactionary
+VQ_ij = [S_ij(1),S_ij(2),S_ij(3);((O_ij(2,2))/(sqrt((O_ij(2,2))^2 + (-O_ij(2,1))^2 + (NN_ij(S_ij(1)+O_ij(2,2),S_ij(2)-O_ij(2,1)))^2))),((-O_ij(2,1))/(sqrt((O_ij(2,2))^2 + (-O_ij(2,1))^2 + (NN_ij(S_ij(1)+O_ij(2,2),S_ij(2)-O_ij(2,1)))^2))),((NN_ij(S_ij(1)+O_ij(2,2),S_ij(2)-O_ij(2,1)))/(sqrt((O_ij(2,2))^2 + (-O_ij(2,1))^2 + (NN_ij(S_ij(1)+O_ij(2,2),S_ij(2)-O_ij(2,1)))^2))) - S_ij(3)];
+A_r_ij = [S_ij(1),S_ij(2),S_ij(3); (d/2)*mag(q_ij)*cos(falpha(VQ_ij)) (d/2)*mag(q_ij)*cos(fbeta(VQ_ij)) (d/2)*mag(q_ij)*cos(fgamma(VQ_ij))];
 
 display("reactions.m");

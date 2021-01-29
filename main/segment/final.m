@@ -14,7 +14,7 @@ if vpa(D_ij) < 0
 end
 
 % Kinetic Energy
-deltaKE_ij = 0.5*m*(mag(V_ij) - mag(v_ij))^2 + 0.5*I*(QOmega_ij - qOmega_ij)^2;
+deltaKE_ij = 0.5*m*(mag(V_ij) - mag(v_ij))^2 + 0.5*I*(mag(Q_ij) - mag(q_ij))^2;
 KE_f_ij = KE_s_ij + deltaKE_ij;
 
 % Temperature (Conductivity)
