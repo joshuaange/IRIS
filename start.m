@@ -4,13 +4,17 @@ close all
 folder = pwd;
 % Load Input .mat here
 load(strcat(folder,'\main\inputs\Bullet_Projectile_Motion.mat'))
-t_step = 0.2;
-L = @(x,y) 0.000000000000001*x + 0.000000000000001*y;
-T=1;
-domainMin=-19;
-domainMax=19;
+t_step = 0.5;
+L = @(x,y) 0.000000000001*x + 0.000000000001*y;
+T=0.1;
+domainMin=-2;
+domainMax=5;
 K = @(x,y) 0*x + 0*y + 1;
 r_min = 0.0316;
+j_max = 25;
+i_max = 2;
+r_edge = 5;
+B_m_min = 0.00000001;
 
 syms x y VAL t
 b = cell(i_max,1);
@@ -23,11 +27,12 @@ M_p = (1-sigma_p^2)/(pi*Y_p);
 [X_sphere,Y_sphere,Z_sphere] = sphere;
 A_limit = size(X_sphere,1);
 B_limit = size(Y_sphere,2);
-Kt = (T/(d/((sqrt(9806.6501*Y_p))/(rho_p))));
-if Kt > 1
-    Kt = 1;
+% Kt = ((d/((sqrt(9806.6501*Y_p))/(rho_p)))/T);
+Kt = ((d/(d))/T);
+if Kt < 1
+   Kt = 1; 
 end
-Kt = 1;
+Kt = round(Kt);
 % Partial Derivatives
 dLdx = matlabFunction(diff(L,x),'Vars',[x y]);
 dLdy = matlabFunction(diff(L,y),'Vars',[x y]);
@@ -58,8 +63,8 @@ for iit = 1:i_max
             if -v_min<double(mag(V_ij))<=v_min
                 break
             end
-            % In-Air
-            if r>r_min
+            
+            if r>r_min && jit>=Kt % In-Air
                 u_i = [vpa(Cn_ij(1)),vpa(Cn_ij(2)),vpa(Cn_ij(3)); vpa(V_ij(2,1)),vpa(V_ij(2,2)),vpa(V_ij(2,3))];
                 qA_i = vpa(QA_ij);
                 qB_i = vpa(QB_ij);
@@ -68,9 +73,16 @@ for iit = 1:i_max
                 qOmega_i = vpa(QOmega_ij);
                 T_i = vpa(T_f_ij);
                 break
-            end
-            % On-Ground
-            if r<=r_min
+            elseif r>r_edge % In-Air (Edge)
+                u_i = [vpa(Cn_ij(1)),vpa(Cn_ij(2)),vpa(Cn_ij(3)); vpa(V_ij(2,1)),vpa(V_ij(2,2)),vpa(V_ij(2,3))];
+                qA_i = vpa(QA_ij);
+                qB_i = vpa(QB_ij);
+                qC_i = vpa(QC_ij);
+                qD_i = vpa(QD_ij);
+                qOmega_i = vpa(QOmega_ij);
+                T_i = vpa(T_f_ij);
+                break
+            else % On-Ground
                 KE_s_ij = vpa(KE_f_ij);
                 v_ij = vpa(V_ij);
                 qA_ij = vpa(QA_ij);
@@ -89,6 +101,6 @@ for iit = 1:i_max
 end
 
 run(strcat(folder,'\out\main\main.m'));
-run(strcat(folder,'\out\kineticEnergy.m'));
+%run(strcat(folder,'\out\kineticEnergy.m'));
 
 display("END");

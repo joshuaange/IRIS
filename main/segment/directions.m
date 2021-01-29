@@ -9,6 +9,9 @@ PN_ij = v_ij(2,:)-((dot(v_ij(2,:),N_ij(2,:)))/((mag(N_ij))^2)).*N_ij(2,:);
 P_ij = [S_ij(1),S_ij(2),S_ij(3); T*PN_ij(1),T*PN_ij(2),T*PN_ij(3)];
 % Perpendicular Vector
 B_m_ij = max(vpasolve((mag([S_ij(1)+P_ij(2,1),S_ij(2)+P_ij(2,2),S_ij(3)+P_ij(2,3); T*VAL*dLdx(S_ij(1),S_ij(2)),T*VAL*dLdy(S_ij(1),S_ij(2)),T*VAL*(-1)]))^2 + (mag(P_ij))^2 == (T*mag(v_ij))^2, VAL));
+if B_m_ij == 0
+    B_m_ij = B_m_min;
+end;
 B_ij = [S_ij(1)+P_ij(2,1),S_ij(2)+P_ij(2,2),S_ij(3)+P_ij(2,3); T*B_m_ij*dLdx(S_ij(1),S_ij(2)),T*B_m_ij*dLdy(S_ij(1),S_ij(2)),T*B_m_ij*(-1)];
 % Magnitude to Surface
 M_ij = vpasolve(L(VAL*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),VAL*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2))==VAL*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3), VAL);
