@@ -1,7 +1,6 @@
 domain = domainMin:domainInt:domainMax;
 
 figure_main = figure('Name','Pod Motion','OuterPosition',[10 195 600 350]);
-view(3);
 fsurf(L,'DisplayName','Surface Topology','FaceAlpha',0.8);
 hold on;
 
@@ -21,4 +20,5 @@ axis equal;
 xlim([domainMin domainMax]);
 ylim([domainMin domainMax]);
 zlim([domainMin domainMax]);
+view(0,0);
 hold off;

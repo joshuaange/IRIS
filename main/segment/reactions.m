@@ -21,7 +21,7 @@ end
     
 % Friction
 A_G_ij = vpasolve((mag(A_g_ij))^2 + (VAL)^2 == (T*m*g)^2, VAL);
-A_f_ij = [R_ij(1),R_ij(2),R_ij(3); (-((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/4) * (max(A_G_ij)+mag(A_n_ij))) * cos(falpha(O_ij)),(-((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/4) * (max(A_G_ij)+mag(A_n_ij))) * cos(fbeta(O_ij)),(-((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/4) * (max(A_G_ij)+mag(A_n_ij))) * cos(fgamma(O_ij))];
+A_f_ij = [R_ij(1),R_ij(2),R_ij(3); (-0.31875*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2) * (max(A_G_ij)+mag(A_n_ij))) * cos(falpha(O_ij)),(-0.31875*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2) * (max(A_G_ij)+mag(A_n_ij))) * cos(fbeta(O_ij)),(-0.31875*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2) * (max(A_G_ij)+mag(A_n_ij))) * cos(fgamma(O_ij))];
 
 % Rotation
     % Influence
