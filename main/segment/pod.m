@@ -20,6 +20,7 @@ for m_A = 1:A_limit
 end
 % Impact
 R_ij = [(X_total/c),(Y_total/c),(Z_total/c)];
+O_ij = [S_ij(1),S_ij(2),S_ij(3); R_ij(1)-S_ij(1),R_ij(2)-S_ij(2),R_ij(3)-S_ij(3)];
 
 % Moving the pod up the normal vector
 Nn_ij = [R_ij(1),R_ij(2),R_ij(3); -dLdx(R_ij(1),R_ij(2)),-dLdy(R_ij(1),R_ij(2)),1];

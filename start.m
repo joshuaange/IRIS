@@ -5,11 +5,12 @@ folder = pwd;
 % Load Input .mat here
 load(strcat(folder,'\main\inputs\Bullet_Projectile_Motion.mat'))
 t_step = 0.5;
-L = @(x,y) 0.000000000001*x + 0.000000000001*y;
-T=0.1;
+L = @(x,y) 0.000001*x + 0.000001*y;
+T=0.25;
 domainMin=-2;
 domainMax=5;
-K = @(x,y) 0*x + 0*y + 1;
+K = @(x,y) 0*x + 0*y + 0.5;
+F = @(x,y) 0*x + 0*y + 1;
 r_min = 0.0316;
 j_max = 25;
 i_max = 2;
@@ -28,7 +29,7 @@ M_p = (1-sigma_p^2)/(pi*Y_p);
 A_limit = size(X_sphere,1);
 B_limit = size(Y_sphere,2);
 % Kt = ((d/((sqrt(9806.6501*Y_p))/(rho_p)))/T);
-Kt = ((d/(d))/T);
+Kt = ((d/(d/2))/T);
 if Kt < 1
    Kt = 1; 
 end
