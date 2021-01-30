@@ -15,9 +15,9 @@ s{iit,jit}.S_ij = vpa(S_ij);
 % Elasticity
 A_e_ij = [S_ij(1),S_ij(2),S_ij(3); 0, 0, 0];
 if jit <= Kt
-    A_e_ij(2,1) = ((K(s{iit,1}.S_ij(1),s{iit,1}.S_ij(2))+K(R_ij(1),R_ij(2)))/2)*(max(A_G_ij)+mag(s{iit,1}.A_n_ij)) * cos(falpha(A_n_ij));
-    A_e_ij(2,2) = ((K(s{iit,1}.S_ij(1),s{iit,1}.S_ij(2))+K(R_ij(1),R_ij(2)))/2)*(max(A_G_ij)+mag(s{iit,1}.A_n_ij)) * cos(fbeta(A_n_ij));
-    A_e_ij(2,3) = ((K(s{iit,1}.S_ij(1),s{iit,1}.S_ij(2))+K(R_ij(1),R_ij(2)))/2)*(max(A_G_ij)+mag(s{iit,1}.A_n_ij)) * cos(fgamma(A_n_ij));
+    A_e_ij(2,1) = ((K(s{iit,1}.S_ij(1),s{iit,1}.S_ij(2))+K(R_ij(1),R_ij(2)))/2)*((((Length(O_ij))/T)/(cos(pi/2)))*sin(pi/2)) * cos(falpha(A_n_ij));
+    A_e_ij(2,2) = ((K(s{iit,1}.S_ij(1),s{iit,1}.S_ij(2))+K(R_ij(1),R_ij(2)))/2)*((((Length(O_ij))/T)/(cos(pi/2)))*sin(pi/2)) * cos(fbeta(A_n_ij));
+    A_e_ij(2,3) = ((K(s{iit,1}.S_ij(1),s{iit,1}.S_ij(2))+K(R_ij(1),R_ij(2)))/2)*((((Length(O_ij))/T)/(cos(pi/2)))*sin(pi/2)) * cos(fgamma(A_n_ij));
 end
     
 % Friction

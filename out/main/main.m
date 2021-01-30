@@ -20,6 +20,6 @@ axis equal;
 xlim([domainMin domainMax]);
 ylim([domainMin domainMax]);
 zlim([domainMin domainMax]);
-view(3);
+view(0,0);
 legend;
 hold off;

@@ -4,16 +4,18 @@ close all
 folder = pwd;
 % Load Input .mat here
 load(strcat(folder,'\main\inputs\Lacrosse_Projectile_Motion.mat'))
-F = @(x,y) 0*x + 0*y + 0;
+F = @(x,y) 0*x + 0*y + 0.6;
 F_r = @(x,y) 0*x + 0*y + 0;
-K = @(x,y) 0*x + 0*y + 0.75;
+K = @(x,y) 0*x + 0*y + 0.8;
+u_i = [0,0,0.925; 2.6,0,0];
+T = 0.00000001;
+domainMax = 1.8;
 
 syms x y VAL t
 b = cell(i_max,1);
 s = cell(i_max,j_max);
 % Initial
-%SA = (4*pi*(d/2)^2)/2;
-SA = (pi*(d/2)^2)/2;
+SA = (pi*(d/2)^2);
 Q = sqrt((2*m*g)/(rho*SA*C_d));
 sigma_p = (Y_p/(2*G_p))-1;
 M_p = (1-sigma_p^2)/(pi*Y_p);
