@@ -3,7 +3,7 @@ clear all
 close all
 folder = pwd;
 % Load Input .mat here
-load(strcat(folder,'\main\inputs\Bullet_Projectile_Motion.mat'))
+load(strcat(folder,'\main\inputs\Lacrosse_Projectile_Motion.mat'))
 
 syms x y VAL t
 b = cell(i_max,1);
@@ -78,5 +78,8 @@ end
 
 run(strcat(folder,'\out\main\main.m'));
 run(strcat(folder,'\out\kineticEnergy.m'));
+run(strcat(folder,'\out\deformation.m'));
+run(strcat(folder,'\out\reactions.m'));
+run(strcat(folder,'\out\velocity.m'));
 
 display("END");
