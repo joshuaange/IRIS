@@ -4,12 +4,16 @@ close all
 folder = pwd;
 % Load Input .mat here
 load(strcat(folder,'\main\inputs\Lacrosse_Projectile_Motion.mat'))
+F = @(x,y) 0*x + 0*y + 0;
+F_r = @(x,y) 0*x + 0*y + 0;
+K = @(x,y) 0*x + 0*y + 0.75;
 
 syms x y VAL t
 b = cell(i_max,1);
 s = cell(i_max,j_max);
 % Initial
-SA = (4*pi*(d/2)^2)/2;
+%SA = (4*pi*(d/2)^2)/2;
+SA = (pi*(d/2)^2)/2;
 Q = sqrt((2*m*g)/(rho*SA*C_d));
 sigma_p = (Y_p/(2*G_p))-1;
 M_p = (1-sigma_p^2)/(pi*Y_p);
@@ -77,9 +81,11 @@ for iit = 1:i_max
 end
 
 run(strcat(folder,'\out\main\main.m'));
-run(strcat(folder,'\out\kineticEnergy.m'));
-run(strcat(folder,'\out\deformation.m'));
-run(strcat(folder,'\out\reactions.m'));
-run(strcat(folder,'\out\velocity.m'));
+%run(strcat(folder,'\out\kineticEnergy.m'));
+%run(strcat(folder,'\out\deformation.m'));
+%run(strcat(folder,'\out\reactions.m'));
+%run(strcat(folder,'\out\velocity.m'));
+
+save(strcat(folder,'\main\outputs\Lacrosse_Projectile_Motion.mat'))
 
 display("END");

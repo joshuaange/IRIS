@@ -21,4 +21,5 @@ xlim([domainMin domainMax]);
 ylim([domainMin domainMax]);
 zlim([domainMin domainMax]);
 view(3);
+legend;
 hold off;

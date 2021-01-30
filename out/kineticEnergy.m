@@ -24,4 +24,5 @@ grid minor;
 xlim([double(b{1}.t_f_i), double(timeA+T)]);
 xlabel('Time elapsed (s)');
 ylabel('Energy/Mass (J/kg)');
+legend;
 hold off;
