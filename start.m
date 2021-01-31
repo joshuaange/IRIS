@@ -3,13 +3,7 @@ clear all
 close all
 folder = pwd;
 % Load Input .mat here
-load(strcat(folder,'\main\inputs\Lacrosse_Projectile_Motion.mat'))
-F = @(x,y) 0*x + 0*y + 0.6;
-F_r = @(x,y) 0*x + 0*y + 0;
-K = @(x,y) 0*x + 0*y + 0.8;
-u_i = [0,0,0.925; 2.6,0,0];
-T = 0.00000001;
-domainMax = 1.8;
+load(strcat(folder,'\main\inputs\Bouncing_One.mat'))
 
 syms x y VAL t
 b = cell(i_max,1);
@@ -82,12 +76,12 @@ for iit = 1:i_max
     end
 end
 
-run(strcat(folder,'\out\main\main.m'));
+%run(strcat(folder,'\out\main\main.m'));
 %run(strcat(folder,'\out\kineticEnergy.m'));
 %run(strcat(folder,'\out\deformation.m'));
 %run(strcat(folder,'\out\reactions.m'));
-%run(strcat(folder,'\out\velocity.m'));
+run(strcat(folder,'\out\velocity.m'));
 
-save(strcat(folder,'\main\outputs\Lacrosse_Projectile_Motion.mat'))
+save(strcat(folder,'\main\outputs\Bouncing_One.mat'))
 
 display("END");
