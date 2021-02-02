@@ -4,8 +4,8 @@ timeA = 0;
 plot(0,double(b{1}.KE_s_i),'d','Color','blue','HandleVisibility','off','DisplayName',"Kinetic Energy");
 for iit = 1:i_max
     if isempty(b{iit}) == 0
-        for iteration = 1:floor(b{iit}.t_f_i/T)
-            multitude = iteration * T;
+        for iteration = 1:floor(b{iit}.t_f_i/T_units)
+            multitude = iteration * T_units;
             plot(double(timeA+multitude),double(0.5*m*mag([b{iit}.x_i(multitude) b{iit}.y_i(multitude) b{iit}.z_i(multitude); b{iit}.dx_i(multitude) b{iit}.dy_i(multitude) b{iit}.dz_i(multitude)])^2),'d','Color','blue','HandleVisibility','off');           
         end
         timeA = timeA + b{iit}.t_f_i;

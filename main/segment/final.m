@@ -9,9 +9,6 @@ FI_ij = -abs(J_ij/T);
 sigma_l_ij = (Y_l(S_ij(1),S_ij(2))+Y_l(R_ij(1),R_ij(2)))/(2*(G_l(S_ij(1),S_ij(2))+G_l(R_ij(1),R_ij(2)))) - 1;
 M_l_ij = (1-sigma_l_ij^2)/(pi*((Y_l(S_ij(1),S_ij(2))+Y_l(R_ij(1),R_ij(2)))/2));
 D_ij = ((((3*pi)/2)^(2/3))*((101.97*abs(FI_ij))^(2/3))*((M_l_ij+M_p)^(2/3))*((1/(1000*d))^(1/3)))/(1000);
-if vpa(D_ij) < 0
-   D_ij = 0; 
-end
 
 % Kinetic Energy
 deltaKE_ij = 0.5*m*(mag(V_ij) - mag(v_ij))^2 + 0.5*I*(mag(Q_ij) - mag(q_ij))^2;

@@ -1,9 +1,12 @@
-clc
-clear all
+% clc
+% clear all
 close all
-folder = pwd;
-% Load Input .mat here
-load(strcat(folder,'\main\inputs\Bouncing_One.mat'))
+% folder = pwd;
+% % Load Input .mat here
+% load(strcat(folder,'\main\inputs\Ping_Pong_One.mat'))
+F=@(x,y)0*x+0*y+1;
+F_r=@(x,y)0*x+0*y+1;
+g=9.81
 
 syms x y VAL t
 b = cell(i_max,1);
@@ -16,11 +19,6 @@ M_p = (1-sigma_p^2)/(pi*Y_p);
 [X_sphere,Y_sphere,Z_sphere] = sphere;
 A_limit = size(X_sphere,1);
 B_limit = size(Y_sphere,2);
-Kt = ((d/((sqrt(9806.6501*Y_p))/(rho_p)))/T);
-if Kt < 1
-   Kt = 1; 
-end
-Kt = round(Kt);
 % Partial Derivatives
 dLdx = matlabFunction(diff(L,x),'Vars',[x y]);
 dLdy = matlabFunction(diff(L,y),'Vars',[x y]);
@@ -52,7 +50,7 @@ for iit = 1:i_max
                 break
             end
             
-            if r>r_min && jit>=Kt % In-Air
+            if r>r_min && jit>=Kt_i % In-Air
                 u_i = [vpa(Cn_ij(1)),vpa(Cn_ij(2)),vpa(Cn_ij(3)); vpa(V_ij(2,1)),vpa(V_ij(2,2)),vpa(V_ij(2,3))];
                 q_i = vpa(Q_ij);
                 T_i = vpa(T_f_ij);
@@ -76,12 +74,12 @@ for iit = 1:i_max
     end
 end
 
-%run(strcat(folder,'\out\main\main.m'));
-%run(strcat(folder,'\out\kineticEnergy.m'));
-%run(strcat(folder,'\out\deformation.m'));
-%run(strcat(folder,'\out\reactions.m'));
-run(strcat(folder,'\out\velocity.m'));
+save(strcat(folder,'\main\outputs\Ping_Pong_One.mat'))
 
-save(strcat(folder,'\main\outputs\Bouncing_One.mat'))
+run(strcat(folder,'\out\main\main.m'));
+run(strcat(folder,'\out\kineticEnergy.m'));
+run(strcat(folder,'\out\deformation.m'));
+run(strcat(folder,'\out\reactions.m'));
+run(strcat(folder,'\out\velocity.m'));
 
 display("END");

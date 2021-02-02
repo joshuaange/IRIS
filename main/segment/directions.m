@@ -20,4 +20,14 @@ M_ij = vpasolve(L(VAL*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),VAL*cos(fbeta(B_ij))+P
 Rn_ij = [M_ij*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),M_ij*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2),M_ij*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)];
 O_ij = [S_ij(1),S_ij(2),S_ij(3); Rn_ij(1)-S_ij(1),Rn_ij(2)-S_ij(2),Rn_ij(3)-S_ij(3)];
 
+%Number of time segments
+if iit == 1 
+    Kt_i = ((2*d)/((mag(B_ij))/T))/T;
+    if Kt_i < 1
+       Kt_i = 1; 
+    end
+    Kt_i = round(Kt_i);
+    b{iit}.Kt_i = vpa(Kt_i);
+end
+
 display("directions.m");
