@@ -9,6 +9,7 @@ u_i = [0,0,0.1+d;0,0,0];
 F=@(x,y)0*x+0*y+1;
 F_r=@(x,y)0*x+0*y+1;
 g=9.81;
+d_max = 0.0011;
 
 syms x y VAL t
 b = cell(i_max,1);

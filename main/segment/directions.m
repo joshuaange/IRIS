@@ -26,7 +26,7 @@ if iit == 1
     if Kt_V > sqrt((9806.6501*Y_p)/(rho_p))
         Kt_V = sqrt((9806.6501*Y_p)/(rho_p));
     end
-    Kt_i = ((d/2)/(2*Kt_V))/T;
+    Kt_i = ((d_max)/(2*Kt_V))/T;
     Kt_i = round(Kt_i);
     if Kt_i < 1
        Kt_i = 1; 
