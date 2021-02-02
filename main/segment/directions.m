@@ -22,11 +22,15 @@ O_ij = [S_ij(1),S_ij(2),S_ij(3); Rn_ij(1)-S_ij(1),Rn_ij(2)-S_ij(2),Rn_ij(3)-S_ij
 
 %Number of time segments
 if iit == 1 
-    Kt_i = ((2*d)/((mag(B_ij))/T))/T;
+    Kt_V = mag(B_ij)/T;
+    if Kt_V > sqrt((9806.6501*Y_p)/(rho_p))
+        Kt_V = sqrt((9806.6501*Y_p)/(rho_p));
+    end
+    Kt_i = ((d/2)/(2*Kt_V))/T;
+    Kt_i = round(Kt_i);
     if Kt_i < 1
        Kt_i = 1; 
     end
-    Kt_i = round(Kt_i);
     b{iit}.Kt_i = vpa(Kt_i);
 end
 

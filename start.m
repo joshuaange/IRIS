@@ -1,12 +1,14 @@
-% clc
-% clear all
+clc
+clear all
 close all
-% folder = pwd;
-% % Load Input .mat here
-% load(strcat(folder,'\main\inputs\Ping_Pong_One.mat'))
+folder = pwd;
+% Load Input .mat here
+load(strcat(folder,'\main\inputs\Ping_Pong_One.mat'))
+T=0.000005;
+u_i = [0,0,0.1+d;0,0,0];
 F=@(x,y)0*x+0*y+1;
 F_r=@(x,y)0*x+0*y+1;
-g=9.81
+g=9.81;
 
 syms x y VAL t
 b = cell(i_max,1);
@@ -50,7 +52,7 @@ for iit = 1:i_max
                 break
             end
             
-            if r>r_min && jit>=Kt_i % In-Air
+            if r>r_min && jit>=Kt % In-Air
                 u_i = [vpa(Cn_ij(1)),vpa(Cn_ij(2)),vpa(Cn_ij(3)); vpa(V_ij(2,1)),vpa(V_ij(2,2)),vpa(V_ij(2,3))];
                 q_i = vpa(Q_ij);
                 T_i = vpa(T_f_ij);
