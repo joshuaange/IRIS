@@ -4,7 +4,7 @@ close all
 folder = pwd;
 % Load Input .mat here
 load(strcat(folder,'\main\inputs\Ping_Pong_One.mat'))
-T=0.000005;
+T=0.000001;
 u_i = [0,0,0.1+d;0,0,0];
 F=@(x,y)0*x+0*y+1;
 F_r=@(x,y)0*x+0*y+1;

@@ -22,16 +22,17 @@ O_ij = [S_ij(1),S_ij(2),S_ij(3); Rn_ij(1)-S_ij(1),Rn_ij(2)-S_ij(2),Rn_ij(3)-S_ij
 
 %Number of time segments
 if iit == 1 
-    Kt_V = mag(B_ij)/T;
-    if Kt_V > sqrt((9806.6501*Y_p)/(rho_p))
-        Kt_V = sqrt((9806.6501*Y_p)/(rho_p));
-    end
-    Kt_i = ((d_max)/(2*Kt_V))/T;
+    Kt_V = (mag(B_ij)/T);
+    k_lin = (pi/3.21)^2 * (m*(k_H^4)*(Kt_V^2))^(1/5);
+    T_HS = pi*sqrt(m/k_lin);
+    Kt_i = (T_HS)/T;
     Kt_i = round(Kt_i);
     if Kt_i < 1
        Kt_i = 1; 
     end
     b{iit}.Kt_i = vpa(Kt_i);
 end
+
+
 
 display("directions.m");
