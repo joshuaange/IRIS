@@ -21,7 +21,7 @@ Rn_ij = [M_ij*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),M_ij*cos(fbeta(B_ij))+P_ij(2,2
 O_ij = [S_ij(1),S_ij(2),S_ij(3); Rn_ij(1)-S_ij(1),Rn_ij(2)-S_ij(2),Rn_ij(3)-S_ij(3)];
 
 %Number of time segments
-if iit == 1 
+if jit == 1 
     Kt_V = (mag(B_ij)/T);
     k_lin = (pi/3.21)^2 * (m*(k_H^4)*(Kt_V^2))^(1/5);
     T_HS = pi*sqrt(m/k_lin);

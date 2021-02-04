@@ -27,8 +27,8 @@ A_f_ij = [R_ij(1),R_ij(2),R_ij(3); -(0.025*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2
 
 % Rotation
     % Influence
-length = ((mag(O_ij))/T)/(d/2);
-p_ij = [S_ij(1),S_ij(2),S_ij(3);((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*length*((-O_ij(2,2))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))),((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*length*((O_ij(2,1))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))),((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*length*((NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))) - S_ij(3)];
+Wlength = ((mag(O_ij))/T)/(d/2);
+p_ij = [S_ij(1),S_ij(2),S_ij(3);((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*((-O_ij(2,2))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))),((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*((O_ij(2,1))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))),((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*((NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))) - S_ij(3)];
     % New Angular Velocity
 Q_ij = [R_ij(1),R_ij(2),R_ij(3); p_ij(2,1)+q_ij(2,1),p_ij(2,2)+q_ij(2,2),p_ij(2,3)+q_ij(2,3)];
     % Reactionary

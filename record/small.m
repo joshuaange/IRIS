@@ -45,4 +45,7 @@ s{iit,jit}.h_t_ij = vpa(h_t_ij);
 s{iit,jit}.h_c_ij = vpa(h_c_ij);
 s{iit,jit}.SA_g_ij = vpa(SA_g_ij);
 s{iit,jit}.T_f_ij = vpa(T_f_ij);
+s{iit,jit}.S_pod = vpa(S_pod);
+s{iit,jit}.S_pod_ij = vpa(S_pod_ij);
+s{iit,jit}.S_contents_ij = vpa(S_contents_ij);
 display("small.m");

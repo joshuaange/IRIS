@@ -17,10 +17,10 @@ end
 
 grid minor;
 axis equal;
-xlim([domainMin domainMax]);
-ylim([domainMin domainMax]);
-zlim([domainMin domainMax]);
-view(0,0);
-%view(3);
+xlim([-5 5]);
+ylim([-5 5]);
+zlim([-5 5]);
+%view(0,0);
+view(3);
 legend;
 hold off;
