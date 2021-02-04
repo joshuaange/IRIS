@@ -27,4 +27,4 @@ for iit = 1:i_max
 end
 
 MAIN = table(timeArray,xArray,yArray,zArray);
-writetable(MAIN);
+writetable(MAIN,strcat(folder,'\out\arrays\positions.xlsx'));

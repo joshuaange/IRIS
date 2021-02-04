@@ -115,8 +115,6 @@ end
 
 save(strcat(folder,'\record\export.m'))
 
-save(strcat(folder,'\main\outputs\Ping_Pong_One.mat'))
-
 run(strcat(folder,'\out\main\main.m'));
 run(strcat(folder,'\out\kineticEnergy.m'));
 run(strcat(folder,'\out\deformation.m'));
