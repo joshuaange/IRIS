@@ -1,12 +1,12 @@
-# LSPIS
-<img src="https://i.imgur.com/b68WLn6.png" alt="LSPIS" img align="right" width="275"> The Lunar Supply Pod Impact Simulation (LSPIS) is a computer model meant to simulate collisions from a supply pod onto the lunar (or Martian) surface without fuel or pre-existing structures. We hope to discover if this method of delivery is a practical possibility to deliver supplies to residents on the moon. It calculates in-air trajectories, changes in velocity, changing environment, changes in spin, deformation, elasticity, and both elastic and inelastic collisions from different initial conditions and demonstrates the forces and survivability of the pod (and its contents) when dropped onto the surface. 
+# IRIS
+<img src="https://i.imgur.com/b68WLn6.png" alt="IRIS" img align="right" width="275"> The Interactive Resource Impacts Simulation (IRIS) is a computer model meant to simulate collisions from a supply pod onto the lunar (or Martian) surface without fuel or pre-existing structures. We hope to discover if this method of delivery is a practical possibility to deliver supplies to residents on the moon. It calculates in-air trajectories, changes in velocity, changing environment, changes in spin, deformation, elasticity, and both elastic and inelastic collisions from different initial conditions and demonstrates the forces and survivability of the pod (and its contents) when dropped onto the surface. 
 
- **[Project Description](https://sites.google.com/view/lspis/home)** |
- **[Research](https://sites.google.com/view/lspis/research)** |
- **[Development](https://sites.google.com/view/lspis/development)** |
- **[Pod Design](https://sites.google.com/view/lspis/pod-design)** |
- **[Misc.](https://sites.google.com/view/lspis/misc)** |
- **[About Us](https://sites.google.com/view/lspis/about-us)**
+ **[Project Description](https://sites.google.com/view/lunariris/home)** |
+ **[Research](https://sites.google.com/view/lunariris/research)** |
+ **[Development](https://sites.google.com/view/lunariris/development)** |
+ **[Pod Design](https://sites.google.com/view/lunariris/pod-design)** |
+ **[Misc.](https://sites.google.com/view/lunariris/misc)** |
+ **[About Us](https://sites.google.com/view/lunariris/about-us)**
 
 ## Authors
 
@@ -16,22 +16,22 @@
 
 ## Built With
 
-<img src="https://www.mathworks.com/company/newsletters/articles/the-mathworks-logo-is-an-eigenfunction-of-the-wave-equation/_jcr_content/mainParsys/image_2.adapt.480.high.gif/1469941373397.gif" alt="LSPIS" width="20"> **[MATLAB](https://www.mathworks.com/products/matlab.html)**
+<img src="https://www.mathworks.com/company/newsletters/articles/the-mathworks-logo-is-an-eigenfunction-of-the-wave-equation/_jcr_content/mainParsys/image_2.adapt.480.high.gif/1469941373397.gif" alt="IRIS" width="20"> **[MATLAB](https://www.mathworks.com/products/matlab.html)**
  
-<img src="https://upload.wikimedia.org/wikipedia/en/3/36/Simulink_Logo_%28non-wordmark%29.png" alt="LSPIS" width="20"> **[Simulink](https://www.mathworks.com/products/simulink.html)**
+<img src="https://upload.wikimedia.org/wikipedia/en/3/36/Simulink_Logo_%28non-wordmark%29.png" alt="IRIS" width="20"> **[Simulink](https://www.mathworks.com/products/simulink.html)**
 
 
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. 
  - **Pure Math Model** : [v0.0.1 - v1.2.5](https://drive.google.com/drive/folders/1FzgV2VZ2vUqmJMdBZwvcKxr8KKvC1Fx6?usp=sharing) 
- - **Computer Model** : [v1.3.0 - v2.0.0](https://github.com/joshuaange/LSPIS/tags)
+ - **Computer Model** : [v1.3.0 - v2.0.0](https://github.com/joshuaange/IRIS/tags)
 
 ## Example Usage
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. As of current experimental development, the project requires a MATLAB and Simulink license to run.
 
-1. Download the [latest release](https://github.com/joshuaange/LSPIS/releases)
+1. Download the [latest release](https://github.com/joshuaange/IRIS/releases)
 2. Clear *Test Output* document
 3. Open *start.m* and input the initial conditions
 
