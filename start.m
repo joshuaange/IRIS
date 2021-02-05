@@ -67,7 +67,7 @@ for iit = 1:i_max
             gg = (FI_ij/(D_ij^2))/F_tu;
             S_pod = [aa,aaa,bb,cc,dd,ee,ff,gg];
             S_pod_ij = max(double(real(S_pod)));
-            % Contents Survivability
+            % Contents Survivability 
             hh = FI_ij/FI_max_c;
             ii = D_ij/d_shell;
             jj = T_s_ij/T_max_c;
