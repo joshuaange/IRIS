@@ -8,7 +8,7 @@ s{iit,jit}.B_ij = vpa(B_ij);
 if jit <= Kt_i
     A_n_ij = [S_ij(1),S_ij(2),S_ij(3); (-(mag(s{iit,1}.B_ij))/T)/Kt_i * cos(falpha(B_ij)),(-(mag(s{iit,1}.B_ij))/T)/Kt_i * cos(fbeta(B_ij)),(-(mag(s{iit,1}.B_ij))/T)/Kt_i * cos(fgamma(B_ij))];
 else
-    A_n_ij = [S_ij(1),S_ij(2),S_ij(3); (-(mag(B_ij))/T)/Kt_i * cos(falpha(B_ij)),(-(mag(B_ij))/T)/Kt_i * cos(fbeta(B_ij)),(-(mag(B_ij))/T)/Kt_i * cos(fgamma(B_ij))];
+    A_n_ij = [S_ij(1),S_ij(2),S_ij(3); (-(mag(B_ij))/T) * cos(falpha(B_ij)),(-(mag(B_ij))/T) * cos(fbeta(B_ij)),(-(mag(B_ij))/T) * cos(fgamma(B_ij))];
 end
 s{iit,jit}.A_n_ij = vpa(A_n_ij);
 s{iit,jit}.S_ij = vpa(S_ij);   
