@@ -4,6 +4,7 @@ close all
 folder = pwd;
 % Load Input .mat here
 load(strcat(folder,'\main\inputs\Ping_Pong_One.mat'))
+syms x y VAL t L(x,y) dLdx(x,y) dLdy(x,y)
 T=0.001;
 u_i = [0,0,5;1,0,0.5];
 F=@(x,y)0*x+0*y+1;
@@ -25,8 +26,12 @@ k_H = 10^5;
 j_max = 5;
 i_max = 4;
 t_step = 0.1;
+t_p_max = 100;
+s_min = 0.01;
+M_range = 1;
+%L(x,y) = piecewise((x>0), 3*y+2*x, (x<=0 & y>0), 1*y+1*x, (x<=0 & y<=0), 10*y+10*x);
+L(x,y) = 0.0000001*x+0.0000001*y;
 
-syms x y VAL t
 b = cell(i_max,1);
 s = cell(i_max,j_max);
 % Initial
@@ -38,8 +43,8 @@ M_p = (1-sigma_p^2)/(pi*Y_p);
 A_limit = size(X_sphere,1);
 B_limit = size(Y_sphere,2);
 % Partial Derivatives
-dLdx = matlabFunction(diff(L,x),'Vars',[x y]);
-dLdy = matlabFunction(diff(L,y),'Vars',[x y]);
+dLdx(x,y) = diff(L(x,y),x);
+dLdy(x,y) = diff(L(x,y),y);
 
 for iit = 1:i_max
     % Trajectory
