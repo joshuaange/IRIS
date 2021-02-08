@@ -27,10 +27,10 @@ else
 end
 SA_g_ij = pi*( (d/2)^2 * (d/2 - D_ij)^2 );
 h_c_ij = h_t_ij * (SA_g_ij / h_C);
-T_f_ij = ((T_g(S_ij(1),S_ij(2))+T_g(R_ij(1),R_ij(2)))/2)+(-(((T_g(S_ij(1),S_ij(2))+T_g(R_ij(1),R_ij(2)))/2)+T_s_ij))*exp(-T*h_c_ij);
+T_f_ij = ((T_g(S_ij(1),S_ij(2))+T_g(R_ij(1),R_ij(2)))/2)+(T_s_ij-((T_g(S_ij(1),S_ij(2))+T_g(R_ij(1),R_ij(2)))/2))*exp(-T*h_c_ij);
 % Temperature (Kinetic Energy)
 if deltaKE_ij < 0
-    T_f_ij = T_f_ij - (h_R*deltaKE_ij)/(h_C/(1000*m));
+    T_f_ij = T_f_ij + (h_R*deltaKE_ij)/(h_C/(1000*m));
 end
 
 display("final.m");

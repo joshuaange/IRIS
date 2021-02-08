@@ -2,7 +2,7 @@ clc
 clear all
 close all
 folder = pwd;
-file = 'Ping_Pong_One';
+file = 'Bullet_Projectile_Motion';
 % Load Input .mat here
 syms x y VAL t L(x,y) dLdx(x,y) dLdy(x,y)
 load(strcat(folder,'\main\inputs\',file,'.mat'))
@@ -37,10 +37,10 @@ for iit = 1:i_max
             run(strcat(folder,'\main\segment\final.m'));
             
             % Pod Survivability
-            aa = T_s_ij/T_max;
-            aaa = T_f_ij/T_max;
+            aa = (T_s_ij-273.15)/(T_max-273.15);
+            aaa = (T_f_ij-273.15)/(T_max-273.15);
             bb = abs(T_f_ij-T_s_ij)/deltaT;
-            cc = D_ij/d_shell;
+            cc = (abs(D_ij))/d_shell;
             dd = (FI_ij/(D_ij^2))/E_l;
             ee = (((FI_ij/(D_ij^2))/1000000)*(sqrt(D_ij)))/K_c;
             ff = FI_ij/FI_max;
@@ -49,9 +49,9 @@ for iit = 1:i_max
             S_pod_ij = max(double(real(S_pod)));
             % Contents Survivability 
             hh = FI_ij/FI_max_c;
-            ii = D_ij/d_shell;
-            jj = T_s_ij/T_max_c;
-            jjj = T_f_ij/T_max_c;
+            ii = (abs(D_ij))/d_shell;
+            jj = (T_s_ij-273.15)/(T_max_c-273.15);
+            jjj = (T_f_ij-273.15)/(T_max_c-273.15);
             kk = mag(Q_ij)/omega_max_c;
             S_contents = [hh,ii,jj,jjj,kk];
             S_contents_ij = max(double(real(S_contents)));
@@ -101,5 +101,7 @@ run(strcat(folder,'\out\kineticEnergy.m'));
 run(strcat(folder,'\out\deformation.m'));
 run(strcat(folder,'\out\reactions.m'));
 run(strcat(folder,'\out\velocity.m'));
+run(strcat(folder,'\out\temperature.m'));
+run(strcat(folder,'\out\survivability.m'));
 
 display("END");
