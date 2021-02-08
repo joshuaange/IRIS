@@ -3,34 +3,8 @@ clear all
 close all
 folder = pwd;
 % Load Input .mat here
-load(strcat(folder,'\main\inputs\Ping_Pong_One.mat'))
 syms x y VAL t L(x,y) dLdx(x,y) dLdy(x,y)
-T=0.001;
-u_i = [0,0,5;1,0,0.5];
-F=@(x,y)0*x+0*y+1;
-K=@(x,y)0*x+0*y+1;
-F_r=@(x,y)0*x+0*y+1;
-g=9.81;
-d_max = 0.0011;
-T_max = 1;
-deltaT = 1;
-d_shell = 1;
-E_l = 1;
-K_c = 1;
-FI_max = 1;
-F_tu = 1;
-FI_max_c = 1;
-T_max_c = 1;
-omega_max_c = 1;
-k_H = 10^5;
-j_max = 5;
-i_max = 4;
-t_step = 0.1;
-t_p_max = 100;
-s_min = 0.01;
-M_range = 1;
-%L(x,y) = piecewise((x>0), 3*y+2*x, (x<=0 & y>0), 1*y+1*x, (x<=0 & y<=0), 10*y+10*x);
-L(x,y) = 0.0000001*x+0.0000001*y;
+load(strcat(folder,'\main\inputs\Ping_Pong_One.mat'))
 
 b = cell(i_max,1);
 s = cell(i_max,j_max);
