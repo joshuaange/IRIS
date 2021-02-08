@@ -17,9 +17,8 @@ end
 
 grid minor;
 axis equal;
-xlim([-5 5]);
-ylim([-5 5]);
-zlim([-5 5]);
+xlim([domainMin domainMax]);
+ylim([domainMin domainMax]);
 %view(0,0);
 view(3);
 legend;
