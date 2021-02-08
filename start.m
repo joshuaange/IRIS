@@ -2,9 +2,10 @@ clc
 clear all
 close all
 folder = pwd;
+file = 'Ping_Pong_One';
 % Load Input .mat here
 syms x y VAL t L(x,y) dLdx(x,y) dLdy(x,y)
-load(strcat(folder,'\main\inputs\Ping_Pong_One.mat'))
+load(strcat(folder,'\main\inputs\',file,'.mat'))
 
 b = cell(i_max,1);
 s = cell(i_max,j_max);
@@ -92,6 +93,7 @@ for iit = 1:i_max
     end
 end
 
+save(strcat(folder,'\main\outputs\',file,'.mat'))
 save(strcat(folder,'\record\export.m'))
 
 run(strcat(folder,'\out\main\main.m'));
