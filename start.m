@@ -40,7 +40,6 @@ for iit = 1:i_max
             aa = (T_s_ij-273.15)/(T_max-273.15);
             aaa = (T_f_ij-273.15)/(T_max-273.15);
             bb = abs(T_f_ij-T_s_ij)/deltaT;
-            cc = (abs(D_ij))/d_shell;
             dd = (FI_ij/(D_ij^2))/E_l;
             ee = (((FI_ij/(D_ij^2))/1000000)*(sqrt(D_ij)))/K_c;
             ff = FI_ij/FI_max;
