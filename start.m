@@ -2,7 +2,7 @@ clc
 clear all
 close all
 folder = pwd;
-file = 'Bullet_Projectile_Motion';
+file = 'Frictionless_Racquetball_One';
 % Load Input .mat here
 syms x y VAL t L(x,y) dLdx(x,y) dLdy(x,y)
 load(strcat(folder,'\main\inputs\',file,'.mat'))
@@ -42,12 +42,12 @@ for iit = 1:i_max
             bb = abs(T_f_ij-T_s_ij)/deltaT;
             dd = (FI_ij/(D_ij^2))/E_l;
             ee = (((FI_ij/(D_ij^2))/1000000)*(sqrt(D_ij)))/K_c;
-            ff = FI_ij/FI_max;
+            ff = (FI_ij/SA_g_ij)/FI_max;
             gg = (FI_ij/(D_ij^2))/F_tu;
-            S_pod = [aa,aaa,bb,cc,dd,ee,ff,gg];
+            S_pod = [aa,aaa,bb,dd,ee,ff,gg];
             S_pod_ij = max(double(real(S_pod)));
             % Contents Survivability 
-            hh = FI_ij/FI_max_c;
+            hh = (FI_ij/SA_g_ij)/FI_max_c;
             ii = (abs(D_ij))/d_shell;
             jj = (T_s_ij-273.15)/(T_max_c-273.15);
             jjj = (T_f_ij-273.15)/(T_max_c-273.15);

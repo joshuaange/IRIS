@@ -15,7 +15,7 @@ for iit = 1:i_max
 end
 
 grid minor;
-xlim([double(b{1}.t_f_i), double(timeA+T)]);
+xlim([0, double(timeA+T)]);
 xlabel('Time elapsed (s)');
 ylabel('Elastic Compression (m)');
 hold off;
