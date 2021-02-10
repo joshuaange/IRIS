@@ -15,10 +15,10 @@ for iit = 1:i_max
             plot(timeA+multitude,mag([0,0,0;b{iit}.dx_i(multitude),b{iit}.dy_i(multitude),b{iit}.dz_i(multitude)]),'+','Color','magenta','HandleVisibility','off');
         end
         timeA = timeA + b{iit}.t_f_i;
-        plot(timeA,b{iit}.u_i(2,1),'o','Color','blue','HandleVisibility','off');
-        plot(timeA,b{iit}.u_i(2,2),'^','Color','green','HandleVisibility','off');
-        plot(timeA,b{iit}.u_i(2,3),'s','Color','red','HandleVisibility','off');
-        plot(timeA,mag(b{iit}.u_i),'+','Color','magenta','HandleVisibility','off');
+        plot(timeA,b{iit}.v_i(2,1),'o','Color','blue','HandleVisibility','off');
+        plot(timeA,b{iit}.v_i(2,2),'^','Color','green','HandleVisibility','off');
+        plot(timeA,b{iit}.v_i(2,3),'s','Color','red','HandleVisibility','off');
+        plot(timeA,mag(b{iit}.v_i),'+','Color','magenta','HandleVisibility','off');
     end
     for jit = 1:j_max
         if isempty(s{iit,jit}) == 0
@@ -37,7 +37,9 @@ for iit = 1:i_max
 end
 
 grid minor;
-xlim([0, double(timeA+T)]);
+%xlim([0, double(timeA+T)]);
+xlim([0,1.1]);
+ylim([-3.5 3.5]);
 xlabel('Time elapsed (s)');
 ylabel('Velocity (m/s)');
 legend;
