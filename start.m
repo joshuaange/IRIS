@@ -76,22 +76,22 @@ for iit = 1:i_max
             end
             
             if r>r_min && jit>=Kt_i % In-Air
-                u_i = [vpa(Cn_ij(1)),vpa(Cn_ij(2)),vpa(Cn_ij(3)); vpa(V_ij(2,1)),vpa(V_ij(2,2)),vpa(V_ij(2,3))];
-                q_i = vpa(Q_ij);
-                T_i = vpa(T_f_ij);
+                u_i = [double(Cn_ij(1)),double(Cn_ij(2)),double(Cn_ij(3)); double(V_ij(2,1)),double(V_ij(2,2)),double(V_ij(2,3))];
+                q_i = double(Q_ij);
+                T_i = double(T_f_ij);
                 break
             elseif r>r_edge % In-Air (Edge)
-                u_i = [vpa(Cn_ij(1)),vpa(Cn_ij(2)),vpa(Cn_ij(3)); vpa(V_ij(2,1)),vpa(V_ij(2,2)),vpa(V_ij(2,3))];
-                q_i = vpa(Q_ij);
-                T_i = vpa(T_f_ij);
+                u_i = [double(Cn_ij(1)),double(Cn_ij(2)),double(Cn_ij(3)); double(V_ij(2,1)),double(V_ij(2,2)),double(V_ij(2,3))];
+                q_i = double(Q_ij);
+                T_i = double(T_f_ij);
                 break
             else % On-Ground
                 KE_s_ij = vpa(KE_f_ij);
-                v_ij = vpa(V_ij);
-                q_ij = vpa(Q_ij);
-                C_ij = vpa(Cn_ij);
-                T_s_ij = vpa(T_f_ij);
-                S_ij = vpa(R_ij);
+                v_ij = double(V_ij);
+                q_ij = double(Q_ij);
+                C_ij = double(Cn_ij);
+                T_s_ij = double(T_f_ij);
+                S_ij = double(R_ij);
             end
         end
     if -v_min<double(mag(V_ij))<=v_min
@@ -108,6 +108,7 @@ run(strcat(folder,'\out\deformation.m'));
 run(strcat(folder,'\out\reactions.m'));
 run(strcat(folder,'\out\velocity.m'));
 run(strcat(folder,'\out\temperature.m'));
+run(strcat(folder,'\out\spin.m'));
 run(strcat(folder,'\out\survivability.m'));
 
 display("END");
