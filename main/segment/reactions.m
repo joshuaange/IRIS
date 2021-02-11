@@ -27,12 +27,12 @@ A_f_ij = [R_ij(1),R_ij(2),R_ij(3); -(0.025*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2
 
 % Rotation
     % Influence
-Wlength = ((mag(O_ij))/T)/(d/2);
+Wlength = (mag(O_ij))/(d/2);
 p_ij = [S_ij(1),S_ij(2),S_ij(3);(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*((-O_ij(2,2))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))),(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*((O_ij(2,1))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))),(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*((NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))) - S_ij(3)];
     % New Angular Velocity
 Q_ij = [R_ij(1),R_ij(2),R_ij(3); p_ij(2,1)+q_ij(2,1),p_ij(2,2)+q_ij(2,2),p_ij(2,3)+q_ij(2,3)];
     % Reactionary
 VQ_ij = [S_ij(1),S_ij(2),S_ij(3); q_ij(2,2),-q_ij(2,1),NN_ij(S_ij(1)+q_ij(2,2),S_ij(2)-q_ij(2,1))-S_ij(3)];
-A_r_ij = [S_ij(1),S_ij(2),S_ij(3); (d*2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(p_ij))*T *-cos(falpha(VQ_ij)), (d*2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(p_ij))*T *-cos(fbeta(VQ_ij)), (d*2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(p_ij))*T *-cos(fgamma(VQ_ij))];
+A_r_ij = [S_ij(1),S_ij(2),S_ij(3); -(d*2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(p_ij))*T *cos(falpha(VQ_ij)), -(d*2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(p_ij))*T *cos(fbeta(VQ_ij)), -(d*2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(p_ij))*T *cos(fgamma(VQ_ij))];
 
 display("reactions.m");
