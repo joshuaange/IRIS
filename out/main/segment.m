@@ -1,5 +1,6 @@
 % Traced Segment Path
 quiver3(s{iit,jit}.O_ij(1,1),s{iit,jit}.O_ij(1,2),s{iit,jit}.O_ij(1,3),s{iit,jit}.O_ij(2,1),s{iit,jit}.O_ij(2,2),s{iit,jit}.O_ij(2,3),'lineWidth',0.5,'Color','blue','MaxHeadSize',0.5,'DisplayName','Traced Path Segment');
+quiver3(s{iit,jit}.N_ij(1,1),s{iit,jit}.N_ij(1,2),s{iit,jit}.N_ij(1,3),s{iit,jit}.N_ij(2,1),s{iit,jit}.N_ij(2,2),s{iit,jit}.N_ij(2,3),'lineWidth',0.5,'Color','black','MaxHeadSize',0.5,'DisplayName','Normal Vector');
 % Velocity
 quiver3(s{iit,jit}.v_ij(1,1),s{iit,jit}.v_ij(1,2),s{iit,jit}.v_ij(1,3),s{iit,jit}.v_ij(2,1),s{iit,jit}.v_ij(2,2),s{iit,jit}.v_ij(2,3),'lineWidth',0.5,'Color','green','MaxHeadSize',0.5,'DisplayName','Initial Velocity');
 quiver3(s{iit,jit}.V_ij(1,1),s{iit,jit}.V_ij(1,2),s{iit,jit}.V_ij(1,3),s{iit,jit}.V_ij(2,1),s{iit,jit}.V_ij(2,2),s{iit,jit}.V_ij(2,3),'lineWidth',0.5,'Color','green','MaxHeadSize',0.5,'DisplayName','Final Velocity');
@@ -12,6 +13,7 @@ quiver3(s{iit,jit}.p_ij_direction(1,1),s{iit,jit}.p_ij_direction(1,2),s{iit,jit}
 
 % Gravity
 quiver3(s{iit,jit}.A_g_ij(1,1),s{iit,jit}.A_g_ij(1,2),s{iit,jit}.A_g_ij(1,3),s{iit,jit}.A_g_ij(2,1),s{iit,jit}.A_g_ij(2,2),s{iit,jit}.A_g_ij(2,3),'lineWidth',2,'Color','red','MaxHeadSize',0.5,'DisplayName','Gravity Application','LineStyle',':');
+quiver3(s{iit,jit}.VG_ij(1,1),s{iit,jit}.VG_ij(1,2),s{iit,jit}.VG_ij(1,3),s{iit,jit}.VG_ij(2,1),s{iit,jit}.VG_ij(2,2),s{iit,jit}.VG_ij(2,3),'lineWidth',0.5,'Color','yellow','MaxHeadSize',0.1,'DisplayName','Gravity Application Direction','LineStyle','--');
 % Normal
 quiver3(s{iit,jit}.A_n_ij(1,1),s{iit,jit}.A_n_ij(1,2),s{iit,jit}.A_n_ij(1,3),s{iit,jit}.A_n_ij(2,1),s{iit,jit}.A_n_ij(2,2),s{iit,jit}.A_n_ij(2,3),'lineWidth',1,'Color','black','MaxHeadSize',0.5,'DisplayName','Normal Application','LineStyle',':');
 % Elasticity

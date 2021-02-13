@@ -8,7 +8,7 @@ dNNdy = matlabFunction(diff(NN_ij,y),'Vars',[x y]);
 PN_ij = v_ij(2,:)-((dot(v_ij(2,:),N_ij(2,:)))/((mag(N_ij))^2)).*N_ij(2,:);
 P_ij = [S_ij(1),S_ij(2),S_ij(3); T*PN_ij(1),T*PN_ij(2),T*PN_ij(3)];
 % Perpendicular Vector
-B_m_ij = max(vpasolve((mag([S_ij(1)+P_ij(2,1),S_ij(2)+P_ij(2,2),S_ij(3)+P_ij(2,3); T*VAL*dLdx(S_ij(1),S_ij(2)),T*VAL*dLdy(S_ij(1),S_ij(2)),T*VAL*(-1)]))^2 + (mag(P_ij))^2 == (T*mag(v_ij))^2, VAL));
+B_m_ij = max(real(vpasolve((mag([S_ij(1)+P_ij(2,1),S_ij(2)+P_ij(2,2),S_ij(3)+P_ij(2,3); T*VAL*dLdx(S_ij(1),S_ij(2)),T*VAL*dLdy(S_ij(1),S_ij(2)),T*VAL*(-1)]))^2 + (mag(P_ij))^2 == (T*mag(v_ij))^2, VAL)));
 if B_m_ij == 0
     B_m_ij = B_m_min;
 end

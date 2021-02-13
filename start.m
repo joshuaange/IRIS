@@ -6,6 +6,10 @@ file = 'Cycloid_P1';
 % Load Input .mat here
 syms x y VAL t L(x,y) dLdx(x,y) dLdy(x,y)
 load(strcat(folder,'\main\inputs\',file,'.mat'))
+u_i = [0,0,0.01;1,0,-(205)/307];
+r_min = 4*d;
+K = @(x,y) 0*x + 0*y;
+L(x,y) = -(205*x)/307 + 2*y; %+ 0.0000000000000000000000000000000000000000001*y;
 
 b = cell(i_max,1);
 s = cell(i_max,j_max);
@@ -60,7 +64,7 @@ for iit = 1:i_max
             display("[" + iit + " + " + jit + "]");
 
             % Return
-            r = t_step*V_ij(2,3) + Cn_ij(3) - L(t_step*V_ij(2,1) + Cn_ij(1),t_step*V_ij(2,2) + Cn_ij(2));
+            r = T*V_ij(2,3) + Cn_ij(3) - L(T*V_ij(2,1) + Cn_ij(1),T*V_ij(2,2) + Cn_ij(2));
             display("Return: " + double(r) + ", Velocity: " + double(mag(V_ij)));
             
             % Stop
