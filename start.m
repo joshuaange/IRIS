@@ -2,7 +2,7 @@ clc
 clear all
 close all
 folder = pwd;
-file = 'Ping_Pong_Ball_One';
+file = 'Cycloid_P1';
 % Load Input .mat here
 syms x y VAL t L(x,y) dLdx(x,y) dLdy(x,y)
 load(strcat(folder,'\main\inputs\',file,'.mat'))
@@ -93,15 +93,5 @@ for iit = 1:i_max
 end
 
 save(strcat(folder,'\main\outputs\',file,'.mat'))
-save(strcat(folder,'\record\export.m'))
-
-run(strcat(folder,'\out\main\main.m'));
-run(strcat(folder,'\out\kineticEnergy.m'));
-run(strcat(folder,'\out\deformation.m'));
-run(strcat(folder,'\out\reactions.m'));
-run(strcat(folder,'\out\velocity.m'));
-run(strcat(folder,'\out\temperature.m'));
-run(strcat(folder,'\out\spin.m'));
-run(strcat(folder,'\out\survivability.m'));
 
 display("END");
