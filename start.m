@@ -6,14 +6,17 @@ file = 'Ping_Pong_Ball_One';
 % Load Input .mat here
 syms x y VAL t L(x,y) dLdx(x,y) dLdy(x,y)
 load(strcat(folder,'\main\inputs\',file,'.mat'))
-t_p_min = 0.1;
+t_p_min = 0.15;
 t_step = 0.2;
 j_max = 1000;
 k_H = 24500011;
-T = 0.00001;
+T = 0.000001;
 G_l = @(x,y)0*x+0*y+3000000000/9806;
 L(x,y) = x/10000000000000000000000000000000000000 + y/10000000000000000000000000000000000000;
-u_i = [0,0,0.1+d/2;0,0,0];
+u_i = [0,0,0.5+d;0,0,0];
+domainMin = -1;
+domainMax = 1;
+q_i = [0,0,0.5+d;0,0,0];
 
 b = cell(i_max,1);
 s = cell(i_max,j_max);

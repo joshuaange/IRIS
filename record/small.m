@@ -29,6 +29,7 @@ s{iit,jit}.A_e_ij = double(A_e_ij);
 %s{iit,jit}.A_G_ij = double(A_G_ij);
 s{iit,jit}.A_f_ij = double(A_f_ij);
 s{iit,jit}.p_ij = double(p_ij);
+s{iit,jit}.p_ij_direction = double(p_ij_direction);
 s{iit,jit}.Q_ij = double(Q_ij);
 s{iit,jit}.VQ_ij = double(VQ_ij);
 s{iit,jit}.A_r_ij = double(A_r_ij);

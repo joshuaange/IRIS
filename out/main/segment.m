@@ -4,7 +4,11 @@ quiver3(s{iit,jit}.O_ij(1,1),s{iit,jit}.O_ij(1,2),s{iit,jit}.O_ij(1,3),s{iit,jit
 quiver3(s{iit,jit}.v_ij(1,1),s{iit,jit}.v_ij(1,2),s{iit,jit}.v_ij(1,3),s{iit,jit}.v_ij(2,1),s{iit,jit}.v_ij(2,2),s{iit,jit}.v_ij(2,3),'lineWidth',0.5,'Color','green','MaxHeadSize',0.5,'DisplayName','Initial Velocity');
 quiver3(s{iit,jit}.V_ij(1,1),s{iit,jit}.V_ij(1,2),s{iit,jit}.V_ij(1,3),s{iit,jit}.V_ij(2,1),s{iit,jit}.V_ij(2,2),s{iit,jit}.V_ij(2,3),'lineWidth',0.5,'Color','green','MaxHeadSize',0.5,'DisplayName','Final Velocity');
 % Spin Quaternion
-quiver3(s{iit,jit}.Q_ij(1,1),s{iit,jit}.Q_ij(1,2),s{iit,jit}.Q_ij(1,3),s{iit,jit}.Q_ij(2,1),s{iit,jit}.Q_ij(2,2),s{iit,jit}.Q_ij(2,3),'lineWidth',0.5,'Color','black','MaxHeadSize',0.1,'DisplayName','Ground Spin Quaternion','LineStyle','--');
+quiver3(s{iit,jit}.p_ij(1,1),s{iit,jit}.p_ij(1,2),s{iit,jit}.p_ij(1,3),s{iit,jit}.p_ij(2,1),s{iit,jit}.p_ij(2,2),s{iit,jit}.p_ij(2,3),'lineWidth',0.5,'Color','red','MaxHeadSize',0.1,'DisplayName','Influence Quaternion','LineStyle','--');
+quiver3(s{iit,jit}.q_ij(1,1),s{iit,jit}.q_ij(1,2),s{iit,jit}.q_ij(1,3),s{iit,jit}.q_ij(2,1),s{iit,jit}.q_ij(2,2),s{iit,jit}.q_ij(2,3),'lineWidth',0.5,'Color','black','MaxHeadSize',0.1,'DisplayName','Ground Spin Quaternion 1','LineStyle','--');
+quiver3(s{iit,jit}.VQ_ij(1,1),s{iit,jit}.VQ_ij(1,2),s{iit,jit}.VQ_ij(1,3),s{iit,jit}.VQ_ij(2,1),s{iit,jit}.VQ_ij(2,2),s{iit,jit}.VQ_ij(2,3),'lineWidth',0.5,'Color','green','MaxHeadSize',0.1,'DisplayName','Ground Spin Direction','LineStyle','--');
+quiver3(s{iit,jit}.Q_ij(1,1),s{iit,jit}.Q_ij(1,2),s{iit,jit}.Q_ij(1,3),s{iit,jit}.Q_ij(2,1),s{iit,jit}.Q_ij(2,2),s{iit,jit}.Q_ij(2,3),'lineWidth',0.5,'Color','blue','MaxHeadSize',0.1,'DisplayName','Ground Spin Quaternion 2','LineStyle','--');
+quiver3(s{iit,jit}.p_ij_direction(1,1),s{iit,jit}.p_ij_direction(1,2),s{iit,jit}.p_ij_direction(1,3),s{iit,jit}.p_ij_direction(2,1),s{iit,jit}.p_ij_direction(2,2),s{iit,jit}.p_ij_direction(2,3),'lineWidth',0.5,'Color','yellow','MaxHeadSize',0.1,'DisplayName','Influence Direction','LineStyle','--');
 
 % Gravity
 quiver3(s{iit,jit}.A_g_ij(1,1),s{iit,jit}.A_g_ij(1,2),s{iit,jit}.A_g_ij(1,3),s{iit,jit}.A_g_ij(2,1),s{iit,jit}.A_g_ij(2,2),s{iit,jit}.A_g_ij(2,3),'lineWidth',2,'Color','red','MaxHeadSize',0.5,'DisplayName','Gravity Application','LineStyle',':');

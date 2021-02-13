@@ -31,6 +31,7 @@ if jit == 1
        Kt_i = 1; 
     end
     b{iit}.Kt_i = vpa(Kt_i);
+    display("DURATION: " + double(Kt_i));
 end
 
 
