@@ -93,5 +93,7 @@ for iit = 1:i_max
 end
 
 save(strcat(folder,'\main\outputs\',file,'.mat'))
+folder = pwd;
+file = 'App';
 
 display("END");
