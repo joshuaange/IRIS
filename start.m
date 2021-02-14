@@ -1,15 +1,11 @@
 clc
 clear all
 close all
-folder = pwd;
-file = 'Cycloid_P1';
-% Load Input .mat here
 syms x y VAL t L(x,y) dLdx(x,y) dLdy(x,y)
+% Load Input .mat here
+folder = pwd;
+file = 'App';
 load(strcat(folder,'\main\inputs\',file,'.mat'))
-u_i = [0,0,0.01;1,0,-(205)/307];
-r_min = 4*d;
-K = @(x,y) 0*x + 0*y;
-L(x,y) = -(205*x)/307 + 2*y; %+ 0.0000000000000000000000000000000000000000001*y;
 
 b = cell(i_max,1);
 s = cell(i_max,j_max);
