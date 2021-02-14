@@ -25,7 +25,7 @@ for iit = 1:i_max
         end
     end
 end
-% Writing to file
+% Writing to script
 fid = fopen('MATLAB_Movement.cs','wt');
 fprintf(fid, 'public GameObject g;\n');
 fprintf(fid, 'Vector3[] points;\n');
