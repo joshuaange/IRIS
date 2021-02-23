@@ -35,7 +35,7 @@ p_ij = [S_ij(1),S_ij(2),S_ij(3);(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2
 Q_ij = [R_ij(1),R_ij(2),R_ij(3); p_ij(2,1)+q_ij(2,1),p_ij(2,2)+q_ij(2,2),p_ij(2,3)+q_ij(2,3)];
     % Reactionary
 VQ_ij = [S_ij(1),S_ij(2),S_ij(3); q_ij(2,2),-q_ij(2,1),NN_ij(S_ij(1)+q_ij(2,2),S_ij(2)-q_ij(2,1))-S_ij(3)];
-A_r_ij = [S_ij(1),S_ij(2),S_ij(3); -(d*2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(p_ij))*T *cos(falpha(VQ_ij)), -(d*2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(p_ij))*T *cos(fbeta(VQ_ij)), -(d*2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(p_ij))*T *cos(fgamma(VQ_ij))];
+A_r_ij = [S_ij(1),S_ij(2),S_ij(3); -(d/2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T *cos(falpha(VQ_ij)), -(d/2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T *cos(fbeta(VQ_ij)), -(d/2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T *cos(fgamma(VQ_ij))];
 
 
 display("reactions.m");
