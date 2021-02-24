@@ -85,8 +85,8 @@ fprintf(fid, '    private void Awake() {\n');
 fprintf(fid, '        xSize = %i;\n', (round(domainMax)-round(domainMin)));
 fprintf(fid, '        zSize = %i;\n', (round(domainMax)-round(domainMin)));
 fprintf(fid, '        StartCoroutine(Generate());\n');
-fprintf(fid, '        transform.rotation = Quaternion.Euler(0, 90, 180);;\n');
-fprintf(fid, '        transform.position = new Vector3(%i, 0, %i);;\n', round(domainMin), round(domainMin));
+%fprintf(fid, '        transform.rotation = Quaternion.Euler(0, 90, 180);;\n');
+fprintf(fid, '        transform.position = new Vector3(0, 0, 0);\n');
 fprintf(fid, '    }\n');
 fprintf(fid, '\n');
 fprintf(fid, '    private Vector3[] vertices;\n');
@@ -104,7 +104,7 @@ indexNumber = ((round(domainMax)-round(domainMin))+1)^2;
 for XValue = domainMin:domainMax
     for YValue = domainMin:domainMax
         indexNumber = indexNumber - 1;
-        fprintf(fid, '                if (i == %i) { vertices[i] = new Vector3(%ff, %ff, %ff); }\n', indexNumber, double(XValue), -double(L(XValue,YValue)), double(YValue));
+        fprintf(fid, '                if (i == %i) { vertices[i] = new Vector3(%ff, %ff, %ff); }\n', indexNumber, double(XValue), double(L(XValue,YValue)), double(YValue));
     end
 end
 fprintf(fid, '                yield return wait;\n');

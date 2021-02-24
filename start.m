@@ -4,7 +4,7 @@ close all
 syms x y VAL t L(x,y) dLdx(x,y) dLdy(x,y)
 % Load Input .mat here
 folder = pwd;
-file = 'App';
+file = 'PT_Flat';
 load(strcat(folder,'\main\inputs\',file,'.mat'))
 
 b = cell(i_max,1);

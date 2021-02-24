@@ -8,6 +8,6 @@ public class MoveScript : MonoBehaviour
 
     void Update()
     {
-        transform.position = transform.position + new Vector3(13.900000f, 0.000000f, 0.000000f);
+        transform.position = transform.position + new Vector3(1.000000f, 0.000000f, 0.000000f);
     }
 }

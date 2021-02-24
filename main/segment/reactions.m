@@ -30,12 +30,24 @@ A_f_ij = [R_ij(1),R_ij(2),R_ij(3); -(0.025*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2
 Wlength = (mag(O_ij))/(d/2);
 %p_ij = [S_ij(1),S_ij(2),S_ij(3);(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*((-O_ij(2,2))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))),(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*((O_ij(2,1))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2))),(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*((NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))/(sqrt((-O_ij(2,2))^2 + (O_ij(2,1))^2 + (NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))^2)))];
 p_ij_direction = [S_ij(1),S_ij(2),S_ij(3);(-O_ij(2,2)), (O_ij(2,1)),(NN_ij(S_ij(1)-O_ij(2,2),S_ij(2)+O_ij(2,1)))-S_ij(3)];
-p_ij = [S_ij(1),S_ij(2),S_ij(3);(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*cos(falpha(p_ij_direction)),(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*cos(fbeta(p_ij_direction)),(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*cos(fgamma(p_ij_direction))];
+XROT = cos(falpha(p_ij_direction));
+YROT = cos(fbeta(p_ij_direction));
+ZROT = cos(fgamma(p_ij_direction));
+if XROT == cos(pi/2)
+    XROT = 0;
+end
+if YROT == cos(pi/2)
+    YROT = 0;
+end
+if ZROT == cos(pi/2)
+    ZROT = 0;
+end
+p_ij = [S_ij(1),S_ij(2),S_ij(3);(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*XROT,(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*YROT,(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*Wlength*ZROT];
     % New Angular Velocity
 Q_ij = [R_ij(1),R_ij(2),R_ij(3); p_ij(2,1)+q_ij(2,1),p_ij(2,2)+q_ij(2,2),p_ij(2,3)+q_ij(2,3)];
     % Reactionary
 VQ_ij = [S_ij(1),S_ij(2),S_ij(3); q_ij(2,2),-q_ij(2,1),NN_ij(S_ij(1)+q_ij(2,2),S_ij(2)-q_ij(2,1))-S_ij(3)];
-A_r_ij = [S_ij(1),S_ij(2),S_ij(3); -(d/2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T *cos(falpha(VQ_ij)), -(d/2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T *cos(fbeta(VQ_ij)), -(d/2)*(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T *cos(fgamma(VQ_ij))];
+A_r_ij = [S_ij(1),S_ij(2),S_ij(3); -(d/2)*((1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T *cos(falpha(VQ_ij)), -(d/2)*((1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T *cos(fbeta(VQ_ij)), -(d/2)*((1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T *cos(fgamma(VQ_ij))];
 
 
 display("reactions.m");
