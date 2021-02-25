@@ -1,6 +1,6 @@
 % Gravity
 VG_ij = [S_ij(1),S_ij(2),S_ij(3); -(dNNdx(S_ij(1),S_ij(2))),-(dNNdy(S_ij(1),S_ij(2))),NN_ij(S_ij(1)-(dNNdx(S_ij(1),S_ij(2))),S_ij(2)-(dNNdy(S_ij(1),S_ij(2))))-S_ij(3)];
-A_g_ij = [S_ij(1),S_ij(2),S_ij(3); ((T*m*g)*((dot([0,0,-1],VG_ij(2,:)))/(mag(VG_ij))))*cos(falpha(VG_ij)),((T*m*g)*((dot([0,0,-1],VG_ij(2,:)))/(mag(VG_ij))))*cos(fbeta(VG_ij)),((T*m*g)*((dot([0,0,-1],VG_ij(2,:)))/(mag(VG_ij))))*cos(fgamma(VG_ij))];
+A_g_ij = [S_ij(1),S_ij(2),S_ij(3); ((T*m*g)*((dot([0,0,-1],VG_ij(2,:)))/(mag(VG_ij))))*T*cos(falpha(VG_ij)),((T*m*g)*((dot([0,0,-1],VG_ij(2,:)))/(mag(VG_ij))))*T*cos(fbeta(VG_ij)),((T*m*g)*((dot([0,0,-1],VG_ij(2,:)))/(mag(VG_ij))))*T*cos(fgamma(VG_ij))];
 %A_G_ij = vpasolve((mag(A_g_ij))^2 + (VAL)^2 == (T*m*g)^2, VAL);
 
 % Normal
@@ -47,7 +47,7 @@ p_ij = [S_ij(1),S_ij(2),S_ij(3);(1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2
 Q_ij = [R_ij(1),R_ij(2),R_ij(3); p_ij(2,1)+q_ij(2,1),p_ij(2,2)+q_ij(2,2),p_ij(2,3)+q_ij(2,3)];
     % Reactionary
 VQ_ij = [S_ij(1),S_ij(2),S_ij(3); q_ij(2,2),-q_ij(2,1),NN_ij(S_ij(1)+q_ij(2,2),S_ij(2)-q_ij(2,1))-S_ij(3)];
-A_r_ij = [S_ij(1),S_ij(2),S_ij(3); -(d/2)*((1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T *cos(falpha(VQ_ij)), -(d/2)*((1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T *cos(fbeta(VQ_ij)), -(d/2)*((1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T *cos(fgamma(VQ_ij))];
+A_r_ij = [S_ij(1),S_ij(2),S_ij(3); -(d/2)*((1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T^2 *cos(falpha(VQ_ij)), -(d/2)*((1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T^2 *cos(fbeta(VQ_ij)), -(d/2)*((1-(F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*mag(q_ij))*T^2 *cos(fgamma(VQ_ij))];
 
 
 display("reactions.m");

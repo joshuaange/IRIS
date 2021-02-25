@@ -4,7 +4,7 @@ close all
 syms x y VAL t L(x,y) dLdx(x,y) dLdy(x,y)
 % Load Input .mat here
 folder = pwd;
-file = 'PT_Flat';
+file = 'App';
 load(strcat(folder,'\main\inputs\',file,'.mat'))
 
 b = cell(i_max,1);
@@ -37,8 +37,8 @@ for iit = 1:i_max
             run(strcat(folder,'\main\segment\final.m'));
             
             % Pod Survivability
-            aa = (T_s_ij-273.15)/(T_max-273.15);
-            aaa = (T_f_ij-273.15)/(T_max-273.15);
+            aa = (T_s_ij)/(T_max);
+            aaa = (T_f_ij)/(T_max);
             bb = abs(T_f_ij-T_s_ij)/deltaT;
             dd = (FI_ij/(SA_g_ij))/E_l;
             ee = (((FI_ij/(SA_g_ij^2))/1000000)*(sqrt(SA_g_ij)))/K_c;
@@ -49,8 +49,8 @@ for iit = 1:i_max
             % Contents Survivability 
             hh = (FI_ij/SA_g_ij)/FI_max_c;
             ii = (abs(D_ij))/d_shell;
-            jj = (T_s_ij-273.15)/(T_max_c-273.15);
-            jjj = (T_f_ij-273.15)/(T_max_c-273.15);
+            jj = (T_s_ij)/(T_max_c);
+            jjj = (T_f_ij)/(T_max_c);
             kk = mag(Q_ij)/omega_max_c;
             S_contents = [hh,ii,jj,jjj,kk];
             S_contents_ij = max(double(real(S_contents)));

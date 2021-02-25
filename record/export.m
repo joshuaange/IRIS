@@ -7,7 +7,7 @@ yArray = [double(b{1}.u_i(1,2))];
 zArray = [double(b{1}.u_i(1,3))];
 for iit = 1:i_max
     if isempty(b{iit}) == 0
-        for iteration = 1:floor(double(b{iit}.t_f_i)/t_step)
+        for iteration = 1:floor(double(b{iit}.t_f_i)/T)
             multitude = iteration * T;
             time = time + T;
             timeArray(length(timeArray)+1,1) = time;
@@ -53,7 +53,7 @@ fprintf(fid, '    }\n');
 fprintf(fid, '}');
 fclose(fid);
 
-%% PLANE
+% PLANE
 
 fid = fopen('MoveScript.cs','wt');
 fprintf(fid, 'using UnityEngine;\n');
@@ -85,7 +85,7 @@ fprintf(fid, '    private void Awake() {\n');
 fprintf(fid, '        xSize = %i;\n', (round(domainMax)-round(domainMin)));
 fprintf(fid, '        zSize = %i;\n', (round(domainMax)-round(domainMin)));
 fprintf(fid, '        StartCoroutine(Generate());\n');
-%fprintf(fid, '        transform.rotation = Quaternion.Euler(0, 90, 180);;\n');
+fprintf(fid, '        transform.rotation = Quaternion.Euler(0, 0, 0);;\n');
 fprintf(fid, '        transform.position = new Vector3(0, 0, 0);\n');
 fprintf(fid, '    }\n');
 fprintf(fid, '\n');
