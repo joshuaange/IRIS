@@ -1,25 +1,45 @@
 clc
 clear all
-close all
-syms x y VAL t L(x,y) dLdx(x,y) dLdy(x,y)
+%close all
+syms x y VAL t
+global L_x L_y L_z L_domain bicubic_Interval
 % Load Input .mat here
 folder = pwd;
-file = 'App';
+file = 'PTHeight_CraterTest';
 load(strcat(folder,'\main\inputs\',file,'.mat'))
+
+u_i = [113310, 108600, 24840; 1600, 0, -490];
+
+t_p_min= 0.00000001;
+s_min = 0.5;
+M_step = 0.01;
+M_range = 100000;
+T = 0.1;
+j_max = 4;
+derivative_min = 0.0000000001;
+
+L_range = 12000*2;
+L_domain = 300000;
+bicubic_Interval = 0.001;
+
+% Heightmap Reading
+L_z = double((imread('Surface.png')))*L_range/255;
+L_x = 0:(L_domain/size(L_z,2)):(L_domain-(L_domain/size(L_z,2)));
+L_y = 0:(L_domain/size(L_z,1)):(L_domain-(L_domain/size(L_z,1)));
 
 b = cell(i_max,1);
 s = cell(i_max,j_max);
 % Initial
 SA = (pi*(d/2)^2);
 Q = sqrt((2*m*g)/(rho*SA*C_d));
+if Q > 10000000
+    Q = 10000000;
+end
 sigma_p = (Y_p/(2*G_p))-1;
 M_p = (1-sigma_p^2)/(pi*Y_p);
 [X_sphere,Y_sphere,Z_sphere] = sphere;
 A_limit = size(X_sphere,1);
 B_limit = size(Y_sphere,2);
-% Partial Derivatives
-dLdx(x,y) = diff(L(x,y),x);
-dLdy(x,y) = diff(L(x,y),y);
 
 for iit = 1:i_max
     % Trajectory

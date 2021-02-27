@@ -1,25 +1,31 @@
-domain = domainMin:domainInt:domainMax;
+try
+    figure(figure_main);
+catch
+    figure_main = figure('Name','Pod Motion');
+end
 
-figure_main = figure('Name','Pod Motion','OuterPosition',[10 195 600 350]);
-fsurf(L,'DisplayName','Surface Topology','FaceAlpha',0.8);
+surfc(L_x, L_y, L_z,'EdgeAlpha',0.1,'DisplayName','Surface Topology') % Mesh Plot
+colormap(gray) 
 hold on;
 
- for iit = 1:i_max
-     if isempty(b{iit}) == 0
-         run(strcat(folder,'\out\main\trajectory.m'));
-     end
-     for jit = 1:j_max
-         if isempty(s{iit,jit}) == 0
-             run(strcat(folder,'\out\main\segment.m'));
-         end
-     end
- end
+fplot3(x_i,y_i,z_i,[0 148])
+
+%  for iit = 1:i_max
+%      if isempty(b{iit}) == 0
+%          run(strcat(folder,'\out\main\trajectory.m'));
+%      end
+%      for jit = 1:j_max
+%          if isempty(s{iit,jit}) == 0
+%              run(strcat(folder,'\out\main\segment.m'));
+%          end
+%      end
+% end
 
 grid minor;
-axis equal;
-xlim([domainMin domainMax]);
-ylim([domainMin domainMax]);
-zlim([domainMin domainMax]);
+%axis equal;
+xlim([0 L_domain]);
+ylim([0 L_domain]);
+zlim([0 L_range]);
 view(3);
-legend;
+%legend;
 hold off;
