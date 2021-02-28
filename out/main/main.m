@@ -20,9 +20,10 @@ hold on;
 end
 
 grid minor;
-axis equal;
+%axis equal;
 xlim([0 L_domain]);
 ylim([0 L_domain]);
+zlim([0 L_range*2]);
 view(3);
 %legend;
-%hold off;
+hold off;
