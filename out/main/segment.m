@@ -1,6 +1,6 @@
 % Traced Segment Path
 quiver3(s{iit,jit}.O_ij(1,1),s{iit,jit}.O_ij(1,2),s{iit,jit}.O_ij(1,3),s{iit,jit}.O_ij(2,1),s{iit,jit}.O_ij(2,2),s{iit,jit}.O_ij(2,3),'lineWidth',1,'Color','black','MaxHeadSize',0.5,'DisplayName','Traced Path Segment');
-quiver3(s{iit,jit}.N_ij(1,1),s{iit,jit}.N_ij(1,2),s{iit,jit}.N_ij(1,3),s{iit,jit}.N_ij(2,1),s{iit,jit}.N_ij(2,2),s{iit,jit}.N_ij(2,3),'lineWidth',0.5,'Color','black','MaxHeadSize',0.5,'DisplayName','Normal Vector');
+quiver3(s{iit,jit}.N_ij(1,1),s{iit,jit}.N_ij(1,2),s{iit,jit}.N_ij(1,3),s{iit,jit}.N_ij(2,1),s{iit,jit}.N_ij(2,2),s{iit,jit}.N_ij(2,3),'lineWidth',2,'Color','red','MaxHeadSize',0.5,'DisplayName','Normal Vector');
 % Velocity
 quiver3(s{iit,jit}.v_ij(1,1),s{iit,jit}.v_ij(1,2),s{iit,jit}.v_ij(1,3),s{iit,jit}.v_ij(2,1),s{iit,jit}.v_ij(2,2),s{iit,jit}.v_ij(2,3),'lineWidth',0.5,'Color','green','MaxHeadSize',0.5,'DisplayName','Initial Velocity');
 quiver3(s{iit,jit}.V_ij(1,1),s{iit,jit}.V_ij(1,2),s{iit,jit}.V_ij(1,3),s{iit,jit}.V_ij(2,1),s{iit,jit}.V_ij(2,2),s{iit,jit}.V_ij(2,3),'lineWidth',0.5,'Color','green','MaxHeadSize',0.5,'DisplayName','Final Velocity');

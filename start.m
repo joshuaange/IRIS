@@ -8,20 +8,6 @@ folder = pwd;
 file = 'PTHeight_CraterTest';
 load(strcat(folder,'\main\inputs\',file,'.mat'))
 
-u_i = [113310, 108600, 24840; 1600, 0, -490];
-
-t_p_min= 0.00000001;
-s_min = 0.5;
-M_step = 0.01;
-M_range = 100000;
-T = 0.1;
-j_max = 4;
-derivative_min = 0.0000000001;
-
-L_range = 12000*2;
-L_domain = 300000;
-bicubic_Interval = 0.001;
-
 % Heightmap Reading
 L_z = double((imread('Surface.png')))*L_range/255;
 L_x = 0:(L_domain/size(L_z,2)):(L_domain-(L_domain/size(L_z,2)));

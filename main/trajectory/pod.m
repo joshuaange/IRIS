@@ -6,7 +6,7 @@ for t_p = t_p_i:-t_step:t_p_min
     Z_moved = Z_sphere*(d/2)+z_i(t_p);
     for m_A = 1:A_limit
         for m_B = 1:B_limit
-            if abs(L(X_moved(m_A,m_B),Y_moved(m_A,m_B))-Z_moved(m_B,m_A))<s_min
+            if abs(L(X_moved(m_A,m_B),Y_moved(m_A,m_B))-Z_moved(m_A,m_B))<s_min
                 display("Collision! at " + double(t_p));
                 C_i = [x_i(t_p),y_i(t_p),z_i(t_p)];
                 X_i = X_moved;
@@ -25,7 +25,7 @@ Z_total = 0;
 c = 0;
 for m_A = 1:A_limit
     for m_B = 1:B_limit
-        if abs(L(X_i(m_A,m_B),Y_i(m_A,m_B))-Z_i(m_B,m_A))<s_min
+        if abs(L(X_i(m_A,m_B),Y_i(m_A,m_B))-Z_i(m_A,m_B))<s_min
             c = c+1;
             X_total = X_total+X_i(m_A,m_B);
             Y_total = Y_total+Y_i(m_A,m_B);

@@ -15,7 +15,7 @@ L_y_phi = round(phi/bicubic_Interval) * bicubic_Interval;
 % Interpolation
 [Xq, Yq] = meshgrid(0:bicubic_Interval:1);
 Vq = interp2([0 1],[0 1],[L_z(L_y_floor-1,L_x_floor) L_z(L_y_floor-1,L_x_floor+1);L_z(L_y_floor,L_x_floor) L_z(L_y_floor,L_x_floor+1)],Xq,Yq);
-Z = Vq(L_y_phi/bicubic_Interval + 1,L_x_phi/bicubic_Interval + 1);
+Z = Vq(L_y_phi/bicubic_Interval+1,L_x_phi/bicubic_Interval+1);
 
 end
 
