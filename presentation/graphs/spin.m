@@ -49,4 +49,4 @@ xlim([0, double(timeA+T)]);
 xlabel('Time elapsed (s)');
 ylabel('Velocity (rad/s)');
 legend;
-hold off;
+%hold off;
