@@ -15,6 +15,8 @@ L_z = double((imread('Surface.png')))*L_range/255;
 L_x = 0:(L_domain/size(L_z,2)):(L_domain-(L_domain/size(L_z,2)));
 L_y = 0:(L_domain/size(L_z,1)):(L_domain-(L_domain/size(L_z,1)));
 % Record Matrices
+C_d = 0.5;
+h_R = 0.75;
 b = cell(i_max,1);
 s = cell(i_max,j_max);
 % Initial
