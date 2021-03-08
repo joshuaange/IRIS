@@ -46,5 +46,14 @@ end
 while I_ij(2,3) > 2*pi
     I_ij(2,3) = I_ij(2,3) - 2*pi;
 end
+while I_ij(2,1) < -2*pi
+    I_ij(2,1) = I_ij(2,1) + 2*pi;
+end
+while I_ij(2,2) < -2*pi
+    I_ij(2,2) = I_ij(2,2) + 2*pi;
+end
+while I_ij(2,3) < -2*pi
+    I_ij(2,3) = I_ij(2,3) + 2*pi;
+end
 
 display("final.m");
