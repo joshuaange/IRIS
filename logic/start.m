@@ -85,6 +85,6 @@ for iit = 1:i_max
 end
 
 display("Saving output .mat file");
-save(strcat(folder,'\data\outputs\',file,'.mat'))
+%save(strcat(folder,'\data\outputs\',file,'.mat'))
 
 display("End");

@@ -33,7 +33,18 @@ T_g_ij = ((T_g(S_ij(1),S_ij(2))+T_g(R_ij(1),R_ij(2)))/2);
 if deltaKE_ij < 0
     T_g_ij = ((T_g(S_ij(1),S_ij(2))+T_g(R_ij(1),R_ij(2)))/2) - ((h_R*deltaKE_ij)/(1000*m))/h_C;
 end
-
 T_f_ij = T_g_ij+(T_s_ij-T_g_ij)*exp(-T*h_c_ij);
+
+% Rotation
+I_ij = [R_ij(1),R_ij(2),R_ij(3); (q_ij(2,1)+Q_ij(2,1))/2 * T, (q_ij(2,2)+Q_ij(2,2))/2 * T, (q_ij(2,3)+Q_ij(2,3))/2 * T];
+while I_ij(2,1) > 2*pi
+    I_ij(2,1) = I_ij(2,1) - 2*pi;
+end
+while I_ij(2,2) > 2*pi
+    I_ij(2,2) = I_ij(2,2) - 2*pi;
+end
+while I_ij(2,3) > 2*pi
+    I_ij(2,3) = I_ij(2,3) - 2*pi;
+end
 
 display("final.m");

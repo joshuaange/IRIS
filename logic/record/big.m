@@ -17,4 +17,5 @@ b{iit}.KE_f_i = double(KE_f_i);
 b{iit}.dx_i = (dx_idt);
 b{iit}.dy_i = (dy_idt);
 b{iit}.dz_i = (dz_idt);
+b{iit}.I_i = double(I_i);
 display("big.m");

@@ -50,4 +50,5 @@ s{iit,jit}.S_pod = double(S_pod);
 s{iit,jit}.S_pod_ij = double(S_pod_ij);
 s{iit,jit}.S_contents = double(S_contents);
 s{iit,jit}.S_contents_ij = double(S_contents_ij);
+s{iit,jit}.I_ij = double(I_ij);
 display("small.m");
