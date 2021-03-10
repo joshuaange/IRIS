@@ -1,8 +1,5 @@
 display("Finding final derivative and time segment values");
 % Velocity
-dx_idt = matlabFunction(diff(x_i(t)),'Vars',t);
-dy_idt = matlabFunction(diff(y_i(t)),'Vars',t);
-dz_idt = matlabFunction(diff(z_i(t)),'Vars',t);
 v_i = [S_i(1),S_i(2),S_i(3); dx_idt(t_f_i),dy_idt(t_f_i),dz_idt(t_f_i)];
 
 % Rotation

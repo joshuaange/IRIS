@@ -1,7 +1,7 @@
 % Tangent Plane and Normal Vector
 display("Finding derivatives and tangent plane...");
-dNNdx = double(dLdx(S_ij(1),S_ij(2)));
-dNNdy = double(dLdy(S_ij(1),S_ij(2)));
+dNNdx = double(dLdx(vpa(S_ij(1)),vpa(S_ij(2))));
+dNNdy = double(dLdy(vpa(S_ij(1)),vpa(S_ij(2))));
 if dNNdx == 0
     dNNdx = derivative_min;
 end

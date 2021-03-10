@@ -1,13 +1,19 @@
 clc
 clear all
 close all
-syms x y VAL t
-global L_x L_y L_z L_domain Bi_Int
 % Load Input .mat here
 display("Reading input .mat file");
 folder = pwd;
 file = 'PTHeight_CraterTest';
 load(strcat(folder,'\data\inputs\',file,'.mat'))
+syms x y VAL t x_i(t) y_i(t) z_i(t)
+global L_x L_y L_z L_domain Bi_Int
+i_max = 1;
+j_max = 1;
+t_o = 18;
+Q_o = 40;
+u_i = [134940,11600,24840;1600,199,-499];
+t_p_max = 1000;
 
 display("Initializing general variables");
 % Heightmap Reading
