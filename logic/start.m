@@ -8,12 +8,6 @@ file = 'PTHeight_CraterTest';
 load(strcat(folder,'\data\inputs\',file,'.mat'))
 syms x y VAL t x_i(t) y_i(t) z_i(t)
 global L_x L_y L_z L_domain Bi_Int
-i_max = 1;
-j_max = 1;
-t_o = 18;
-Q_o = 40;
-u_i = [134940,11600,24840;1600,199,-499];
-t_p_max = 1000;
 
 display("Initializing general variables");
 % Heightmap Reading
@@ -27,6 +21,10 @@ b = cell(i_max,1);
 s = cell(i_max,j_max);
 % Initial
 A_s = (pi*(d/2)^2);
+Q_o = sqrt((2*(m+m_o)*g)/(rho*(A_o+A_s)*C_d_o));
+if Q_o > 10000000
+    Q_o = 10000000;
+end
 Q = sqrt((2*m*g)/(rho*A_s*C_d));
 if Q > 10000000
     Q = 10000000;
