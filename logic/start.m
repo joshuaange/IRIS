@@ -16,6 +16,9 @@ if parachute == 1
     q_i(2,2) = 0;
     q_i(2,3) = 0;
     Q_o = sqrt((2*(m+m_o)*g)/(rho*(A_o+A_s)*C_d_o));
+    if Q_o > 10000000
+        Q_o = 10000000;
+    end
 end
 % Heightmap Reading
 L_z = double((imread('Surface.png')))*L_range/255;
@@ -28,9 +31,6 @@ b = cell(i_max,1);
 s = cell(i_max,j_max);
 % Initial
 A_s = (pi*(d/2)^2);
-if Q_o > 10000000
-    Q_o = 10000000;
-end
 Q = sqrt((2*m*g)/(rho*A_s*C_d));
 if Q > 10000000
     Q = 10000000;
