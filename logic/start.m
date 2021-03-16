@@ -10,6 +10,12 @@ syms x y VAL t x_i(t) y_i(t) z_i(t)
 global L_x L_y L_z L_domain Bi_Int
 
 display("Initializing general variables");
+% Parachute
+if parachute == 1
+    q_i(2,1) = 0;
+    q_i(2,2) = 0;
+    q_i(2,3) = 0;
+end
 % Heightmap Reading
 L_z = double((imread('Surface.png')))*L_range/255;
 L_x = 0:(L_domain/size(L_z,2)):(L_domain-(L_domain/size(L_z,2)));
