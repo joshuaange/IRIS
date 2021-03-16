@@ -10,16 +10,6 @@ syms x y VAL t x_i(t) y_i(t) z_i(t)
 global L_x L_y L_z L_domain Bi_Int
 
 display("Initializing general variables");
-% Parachute
-if parachute == 1
-    q_i(2,1) = 0;
-    q_i(2,2) = 0;
-    q_i(2,3) = 0;
-    Q_o = sqrt((2*(m+m_o)*g)/(rho*(A_o+A_s)*C_d_o));
-    if Q_o > 10000000
-        Q_o = 10000000;
-    end
-end
 % Heightmap Reading
 L_z = double((imread('Surface.png')))*L_range/255;
 L_x = 0:(L_domain/size(L_z,2)):(L_domain-(L_domain/size(L_z,2)));
@@ -37,6 +27,16 @@ if Q > 10000000
 end
 sigma_p = (Y_p/(2*G_p))-1;
 M_p = (1-sigma_p^2)/(pi*Y_p);
+% Parachute
+if parachute == 1
+    q_i(2,1) = 0;
+    q_i(2,2) = 0;
+    q_i(2,3) = 0;
+    Q_o = sqrt((2*(m+m_o)*g)/(rho*(A_o+A_s)*C_d_o));
+    if Q_o > 10000000
+        Q_o = 10000000;
+    end
+end
 % Pod Conditions
 [X_sphere,Y_sphere,Z_sphere] = sphere;
 A_limit = size(X_sphere,1);
