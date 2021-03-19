@@ -1,9 +1,10 @@
-% Directly translated pod coordinates
+% Directly translated pod coordinates to head of traced segment vector (O_ij)
 xn_ij = X_sphere*(d/2) + double(C_ij(1)+O_ij(2,1));
 yn_ij = Y_sphere*(d/2) + double(C_ij(2)+O_ij(2,2));
 zn_ij = Z_sphere*(d/2) + double(C_ij(3)+O_ij(2,3));
 
-% Find averaged ending point
+% Find averaged ending point of translated pod coordinates (similar to
+% trajectory/pod.m)
 X_total = 0;
 Y_total = 0;
 Z_total = 0;
@@ -29,8 +30,9 @@ R_ij = [(X_total/c),(Y_total/c),L((X_total/c),(Y_total/c))];
 O_ij = [S_ij(1),S_ij(2),S_ij(3); R_ij(1)-S_ij(1),R_ij(2)-S_ij(2),L(R_ij(1),R_ij(2))-S_ij(3)];
 
 display("Moving the pod across the normal vector...");
-% Moving the pod up the normal vector
-dRdx = double(dLdx(R_ij(1),R_ij(2)));
+% Moving the pod up the normal vector as to not be intersectionary with
+% terrain (simple tangential to surface)
+dRdx = double(dLdx(R_ij(1),R_ij(2))); % Derivative values of ending position
 dRdy = double(dLdy(R_ij(1),R_ij(2)));
 if dRdx == 0
     dRdx = derivative_min;
@@ -38,8 +40,8 @@ end
 if dRdy == 0
     dRdy = derivative_min;
 end
-Nn_ij = [R_ij(1),R_ij(2),R_ij(3); -dRdx,-dRdy,1];
-Xn_ij = X_sphere*(d/2)+R_ij(1)+(d/2)*cos(falpha(Nn_ij));
+Nn_ij = [R_ij(1),R_ij(2),R_ij(3); -dRdx,-dRdy,1]; % Normal vector of ending position
+Xn_ij = X_sphere*(d/2)+R_ij(1)+(d/2)*cos(falpha(Nn_ij)); % Final pod positions
 Yn_ij = Y_sphere*(d/2)+R_ij(2)+(d/2)*cos(fbeta(Nn_ij));
 Zn_ij = Z_sphere*(d/2)+R_ij(3)+(d/2)*cos(fgamma(Nn_ij));
 Cn_ij = [R_ij(1)+(d/2)*cos(falpha(Nn_ij)),R_ij(2)+(d/2)*cos(fbeta(Nn_ij)),R_ij(3)+(d/2)*cos(fgamma(Nn_ij))];

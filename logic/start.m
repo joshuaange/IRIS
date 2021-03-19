@@ -18,21 +18,22 @@ L_y = 0:(L_domain/size(L_z,1)):(L_domain-(L_domain/size(L_z,1)));
 b = cell(i_max,1);
 s = cell(i_max,j_max);
 % Initial
-C_d = 0.5;
-h_R = 0.75;
-A_s = (pi*(d/2)^2);
-Q = sqrt((2*m*g)/(rho*A_s*C_d));
+C_d = 0.5; % Drag coefficient of pod (generally 0.5)
+h_R = 0.75; % "Heat ratio" - amount of kinetic energy applied as heat
+A_s = (pi*(d/2)^2); % Cross-sectional area of sphere
+Q = sqrt((2*m*g)/(rho*A_s*C_d)); % Terminal velocity from https://www.grc.nasa.gov/www/k-12/airplane/termv.html
 if Q > 10000000
     Q = 10000000;
-end
+end 
 sigma_p = (Y_p/(2*G_p))-1;
 M_p = (1-sigma_p^2)/(pi*Y_p);
 % Parachute
-if parachute == 1
-    q_i(2,1) = 0;
+if parachute == 1 
+    %C_d_o = 1.5; % Parachute drag coefficient is 1.75. With pod, we estimate it as 1.5
+    q_i(2,1) = 0; % No initial spin with parachute
     q_i(2,2) = 0;
     q_i(2,3) = 0;
-    Q_o = sqrt((2*(m+m_o)*g)/(rho*(A_o+A_s)*C_d_o));
+    Q_o = sqrt((2*(m+m_o)*g)/(rho*(A_o)*C_d_o)); % Terminal velocity with parachute
     if Q_o > 10000000
         Q_o = 10000000;
     end
@@ -46,19 +47,19 @@ display("Beginning i loop");
 for iit = 1:i_max
     display("Start: " + "[" + iit + "]");
     % Trajectory
-    run(strcat(folder,'\logic\trajectory\trajectory.m'));
-    run(strcat(folder,'\logic\trajectory\pod.m'));
-    run(strcat(folder,'\logic\trajectory\final.m'));
+    run(strcat(folder,'\logic\trajectory\trajectory.m')); % Trajectory and impact
+    run(strcat(folder,'\logic\trajectory\pod.m')); % Real collision point
+    run(strcat(folder,'\logic\trajectory\final.m')); % Final values and setup
     % Record
     run(strcat(folder,'\logic\record\big.m'));
     display("Beginning j loop");
     for jit = 1:j_max
         display("Start: " + "[" + iit + " + " + jit + "]");
         % Time Segments
-        run(strcat(folder,'\logic\segments\directions.m'));
-        run(strcat(folder,'\logic\segments\pod.m'));
-        run(strcat(folder,'\logic\segments\reactions.m'));
-        run(strcat(folder,'\logic\segments\final.m'));
+        run(strcat(folder,'\logic\segments\directions.m')); % Planes, vectors, and full duration
+        run(strcat(folder,'\logic\segments\pod.m')); % Moves pod to ending position along traced segment vector
+        run(strcat(folder,'\logic\segments\reactions.m')); % 
+        run(strcat(folder,'\logic\segments\final.m')); % 
         % Survivability
         run(strcat(folder,'\logic\segments\survivability.m'));
         % Record
