@@ -25,8 +25,8 @@ Q = sqrt((2*m*g)/(rho*A_s*C_d)); % Terminal velocity from https://www.grc.nasa.g
 if Q > 10000000
     Q = 10000000;
 end 
-sigma_p = (Y_p/(2*G_p))-1;
-M_p = (1-sigma_p^2)/(pi*Y_p);
+sigma_p = (Y_p/(2*G_p))-1; % Poisson's Ratio (https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf)
+M_p = (1-sigma_p^2)/(pi*Y_p); % Other Calculated Material Property (https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf)
 % Parachute
 if parachute == 1 
     %C_d_o = 1.5; % Parachute drag coefficient is 1.75. With pod, we estimate it as 1.5
