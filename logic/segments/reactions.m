@@ -2,7 +2,7 @@
 display("...Gravity");
 VG_ij = [S_ij(1),S_ij(2),S_ij(3); -(dNNdx),-(dNNdy),NN_ij(S_ij(1)-(dNNdx),S_ij(2)-(dNNdy))-S_ij(3)]; % Gradient descent vector
 A_g_ij = [S_ij(1),S_ij(2),S_ij(3); ((T*m*g)*((dot([0,0,-1],VG_ij(2,:)))/(mag(VG_ij))))*cos(falpha(VG_ij)),((T*m*g)*((dot([0,0,-1],VG_ij(2,:)))/(mag(VG_ij))))*cos(fbeta(VG_ij)),((T*m*g)*((dot([0,0,-1],VG_ij(2,:)))/(mag(VG_ij))))*cos(fgamma(VG_ij))]; % Dot product finds how long the gravity vector should be (hypotenuse is [0,0,-Tmg])
-A_G_ij = vpasolve((mag(A_g_ij))^2 + (VAL)^2 == (T*m*g)^2, VAL); % Vector finishes gravity right triangle
+A_G_ij = T*max(vpasolve((mag(A_g_ij))^2 + (VAL)^2 == (T*m*g)^2, VAL)); % Vector finishes gravity right triangle
 
 % Normal - base calculations from (http://hyperphysics.phy-astr.gsu.edu/hbase/frict.html)
 display("...Normal");
@@ -36,11 +36,17 @@ end
 % Friction - base calculations from (http://hyperphysics.phy-astr.gsu.edu/hbase/frict.html)
 display("...Friction");
 %A_f_ij = [R_ij(1),R_ij(2),R_ij(3); (-0.31875*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2) * (max(A_G_ij)+mag(A_n_ij))) * cos(falpha(O_ij)),(-0.31875*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2) * (max(A_G_ij)+mag(A_n_ij))) * cos(fbeta(O_ij)),(-0.31875*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2) * (max(A_G_ij)+mag(A_n_ij))) * cos(fgamma(O_ij))];
-A_f_ij = [R_ij(1),R_ij(2),R_ij(3);-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag([A_n_ij(1,1),A_n_ij(1,2),A_n_ij(1,3);A_n_ij(2,1)+A_G_ij(2,1),A_n_ij(2,2)+A_G_ij(2,2),A_n_ij(2,3)+A_G_ij(2,3)])))*cos(falpha(O_ij)), -(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag([A_n_ij(1,1),A_n_ij(1,2),A_n_ij(1,3);A_n_ij(2,1)+A_G_ij(2,1),A_n_ij(2,2)+A_G_ij(2,2),A_n_ij(2,3)+A_G_ij(2,3)])))*cos(fbeta(O_ij)), -(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag([A_n_ij(1,1),A_n_ij(1,2),A_n_ij(1,3);A_n_ij(2,1)+A_G_ij(2,1),A_n_ij(2,2)+A_G_ij(2,2),A_n_ij(2,3)+A_G_ij(2,3)])))*cos(fgamma(O_ij))];
+if jit == 1
+    A_f_ij = [R_ij(1),R_ij(2),R_ij(3);-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)))*cos(falpha(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)))*cos(fbeta(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)))*cos(fgamma(O_ij))];
+else
+    A_f_ij = [R_ij(1),R_ij(2),R_ij(3);-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(falpha(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fbeta(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fgamma(O_ij))];
+end
 % Movement in direction opposite to traced segment vector, magnitude of
 % average coefficient of friction multiplied by applied Normal velocity 
 % change added to the finishing right triangle vector of gravity (which
 % forms the total Normal Velocity impact)
+% !! We don't include gravity for the first segment, because the impact
+% velocity includes it
 
 % Rotation
 display("...Rotation");
@@ -63,7 +69,7 @@ end
 % Finding influence vector from velocity (similar to freefall equations)
 % >>look at https://physics.stackexchange.com/questions/66106/slowdown-rate-of-rotating-body-due-to-friction-force/66116#:~:text=Slowdown%20rate%20of%20rotating%20body%20due%20to%20friction%20force%20%5Bclosed%5D&text=a%3DF%2Fm%2C%20the,a%3D%E2%88%92f%2Fm.
 % and https://www.khanacademy.org/science/high-school-physics/torque-and-angular-momentum/rotational-inertia-and-angular-second-law/a/rotational-inertia-ap1
-A_fr_ij = [R_ij(1),R_ij(2),R_ij(3);-(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*(mag([A_n_ij(1,1),A_n_ij(1,2),A_n_ij(1,3);A_n_ij(2,1)+A_G_ij(2,1),A_n_ij(2,2)+A_G_ij(2,2),A_n_ij(2,3)+A_G_ij(2,3)])))*cos(falpha(O_ij)), -(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*(mag([A_n_ij(1,1),A_n_ij(1,2),A_n_ij(1,3);A_n_ij(2,1)+A_G_ij(2,1),A_n_ij(2,2)+A_G_ij(2,2),A_n_ij(2,3)+A_G_ij(2,3)])))*cos(fbeta(O_ij)), -(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*(mag([A_n_ij(1,1),A_n_ij(1,2),A_n_ij(1,3);A_n_ij(2,1)+A_G_ij(2,1),A_n_ij(2,2)+A_G_ij(2,2),A_n_ij(2,3)+A_G_ij(2,3)])))*cos(fgamma(O_ij))];
+A_fr_ij = [R_ij(1),R_ij(2),R_ij(3);-(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(falpha(O_ij)),-(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fbeta(O_ij)),-(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fgamma(O_ij))];
 % Find torque from the rotational-friction force (found above), we then
 % divide it by the moment of inertia (I) to find the angular acceleration
 % as a result of friction, which we can use in a free-fall formula to find

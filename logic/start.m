@@ -28,6 +28,7 @@ end
 sigma_p = (Y_p/(2*G_p))-1; % Poisson's Ratio (https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf)
 M_p = (1-sigma_p^2)/(pi*Y_p); % Other Calculated Material Property (https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf)
 % Parachute
+parachute = 0;
 if parachute == 1 
     %C_d_o = 1.5; % Parachute drag coefficient is 1.75. With pod, we estimate it as 1.5
     q_i(2,1) = 0; % No initial spin with parachute
@@ -58,7 +59,7 @@ for iit = 1:i_max
         % Time Segments
         run(strcat(folder,'\logic\segments\directions.m')); % Planes, vectors, and full duration
         run(strcat(folder,'\logic\segments\pod.m')); % Moves pod to ending position along traced segment vector
-        run(strcat(folder,'\logic\segments\reactions.m')); % 
+        run(strcat(folder,'\logic\segments\reactions.m')); % Reactions along time segment
         run(strcat(folder,'\logic\segments\final.m')); % 
         % Survivability
         run(strcat(folder,'\logic\segments\survivability.m'));
