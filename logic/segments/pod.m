@@ -26,7 +26,7 @@ if c == 0
     pause
 end
 % Impact
-R_ij = [(X_total/c),(Y_total/c),L((X_total/c),(Y_total/c))];
+R_ij = [(X_total/c),(Y_total/c),(Z_total/c)];
 O_ij = [S_ij(1),S_ij(2),S_ij(3); R_ij(1)-S_ij(1),R_ij(2)-S_ij(2),L(R_ij(1),R_ij(2))-S_ij(3)];
 
 display("Moving the pod across the normal vector...");

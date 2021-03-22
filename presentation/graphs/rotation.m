@@ -1,4 +1,4 @@
-figure_main = figure('Name','Spin','OuterPosition',[10 195 600 350]);
+figure_main = figure('Name','Rotation','OuterPosition',[10 195 600 350]);
 hold on;
 timeA = 0;
 plot(0,I_i(2,1),'o','Color','blue','DisplayName',"X");
