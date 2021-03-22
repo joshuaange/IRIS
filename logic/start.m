@@ -60,9 +60,9 @@ for iit = 1:i_max
         run(strcat(folder,'\logic\segments\directions.m')); % Planes, vectors, and full duration
         run(strcat(folder,'\logic\segments\pod.m')); % Moves pod to ending position along traced segment vector
         run(strcat(folder,'\logic\segments\reactions.m')); % Reactions along time segment
-        run(strcat(folder,'\logic\segments\final.m')); % 
+        run(strcat(folder,'\logic\segments\final.m')); % Final values and setup
         % Survivability
-        run(strcat(folder,'\logic\segments\survivability.m'));
+        run(strcat(folder,'\logic\segments\survivability.m')); % Finding survivability with pod
         % Record
         run(strcat(folder,'\logic\record\small.m'));
         % Return
