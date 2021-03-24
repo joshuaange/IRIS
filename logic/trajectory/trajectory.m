@@ -32,7 +32,7 @@ for t_testone = t_p_i:100:t_p_max
         t_p_i = t_testone;
     end
 end
-for t_testtwo =t_p_i-100:1:t_p_i+100
+for t_testtwo = max(0,t_p_i-100):1:t_p_i+100
     display("Intersection Time 2:  " + double(t_testtwo));
     if abs(L(x_i(t_testtwo),y_i(t_testtwo))-z_i(t_testtwo)) < GAP
         GAP = abs(L(x_i(t_testtwo),y_i(t_testtwo))-z_i(t_testtwo));
@@ -40,7 +40,7 @@ for t_testtwo =t_p_i-100:1:t_p_i+100
         t_p_i = t_testtwo;
     end
 end
-for t_testthree = t_p_i-5:0.1:t_p_i+5
+for t_testthree = max(0,t_p_i-5):0.1:t_p_i+5
     display("Intersection Time 3:  " + double(t_testthree));
     if abs(L(x_i(t_testthree),y_i(t_testthree))-z_i(t_testthree)) < GAP
         GAP = abs(L(x_i(t_testthree),y_i(t_testthree))-z_i(t_testthree));
@@ -48,7 +48,7 @@ for t_testthree = t_p_i-5:0.1:t_p_i+5
         t_p_i = t_testthree;
     end
 end
-for t_testfour = t_p_i-0.5:0.01:t_p_i+0.5
+for t_testfour = max(0,t_p_i-0.5):0.01:t_p_i+0.5
     display("Intersection Time 4:  " + double(t_testfour));
     if abs(L(x_i(t_testfour),y_i(t_testfour))-z_i(t_testfour)) < GAP
         GAP = abs(L(x_i(t_testfour),y_i(t_testfour))-z_i(t_testfour));
@@ -56,7 +56,7 @@ for t_testfour = t_p_i-0.5:0.01:t_p_i+0.5
         t_p_i = t_testfour;
     end
 end
-for t_testfive = t_p_i-0.05:0.001:t_p_i+0.05
+for t_testfive = max(0,t_p_i-0.05):0.001:t_p_i+0.05
     display("Intersection Time 5:  " + double(t_testfive));
     if abs(L(x_i(t_testfive),y_i(t_testfive))-z_i(t_testfive)) < GAP
         GAP = abs(L(x_i(t_testfive),y_i(t_testfive))-z_i(t_testfive));
@@ -64,7 +64,7 @@ for t_testfive = t_p_i-0.05:0.001:t_p_i+0.05
         t_p_i = t_testfive;
     end
 end
-for t_testsix = t_p_i-0.005:0.0001:t_p_i+0.005
+for t_testsix = max(0,t_p_i-0.005):0.0001:t_p_i+0.005
     display("Intersection Time 6:  " + double(t_testsix));
     if abs(L(x_i(t_testsix),y_i(t_testsix))-z_i(t_testsix)) < GAP
         GAP = abs(L(x_i(t_testsix),y_i(t_testsix))-z_i(t_testsix));
@@ -72,7 +72,7 @@ for t_testsix = t_p_i-0.005:0.0001:t_p_i+0.005
         t_p_i = t_testsix;
     end
 end
-for t_testseven = t_p_i-0.0005:0.00001:t_p_i+0.0005
+for t_testseven = max(0,t_p_i-0.0005):0.00001:t_p_i+0.0005
     display("Intersection Time 7:  " + double(t_testseven));
     if abs(L(x_i(t_testseven),y_i(t_testseven))-z_i(t_testseven)) < GAP
         GAP = abs(L(x_i(t_testseven),y_i(t_testseven))-z_i(t_testseven));
@@ -80,7 +80,7 @@ for t_testseven = t_p_i-0.0005:0.00001:t_p_i+0.0005
         t_p_i = t_testseven;
     end
 end
-for t_testeight = t_p_i-0.00005:0.000001:t_p_i+0.00005
+for t_testeight = max(0,t_p_i-0.00005):0.000001:t_p_i+0.00005
     display("Intersection Time 8:  " + double(t_testeight));
     if abs(L(x_i(t_testeight),y_i(t_testeight))-z_i(t_testeight)) < GAP
         GAP = abs(L(x_i(t_testeight),y_i(t_testeight))-z_i(t_testeight));
@@ -88,7 +88,7 @@ for t_testeight = t_p_i-0.00005:0.000001:t_p_i+0.00005
         t_p_i = t_testeight;
     end
 end
-for t_testnine = t_p_i-0.000005:0.0000001:t_p_i+0.000005
+for t_testnine = max(0,t_p_i-0.000005):0.0000001:t_p_i+0.000005
     display("Intersection Time 9:  " + double(t_testnine));
     if abs(L(x_i(t_testnine),y_i(t_testnine))-z_i(t_testnine)) < GAP
         GAP = abs(L(x_i(t_testnine),y_i(t_testnine))-z_i(t_testnine));
@@ -96,7 +96,7 @@ for t_testnine = t_p_i-0.000005:0.0000001:t_p_i+0.000005
         t_p_i = t_testnine;
     end
 end
-for t_testten = t_p_i-0.0000005:t_p_min:t_p_i+0.0000005
+for t_testten = max(0,t_p_i-0.0000005):t_p_min:t_p_i+0.0000005
     display("Intersection Time 10: " + double(t_testten));
     if abs(L(x_i(t_testten),y_i(t_testten))-z_i(t_testten)) < GAP
         GAP = abs(L(x_i(t_testten),y_i(t_testten))-z_i(t_testten));
