@@ -1,4 +1,4 @@
-figure_main = figure('Name','Reactions','OuterPosition',[10 195 600 350]);
+bfigure_main = figure('Name','Reactions','OuterPosition',[10 195 600 350]);
 hold on;
 timeA = 0;
 plot(0,0,'o','Color','green','DisplayName',"Initial Velocity");

@@ -69,9 +69,9 @@ end
 
 grid minor;
 %axis equal;
-xlim([0 L_domain]);
-ylim([0 L_domain]);
-zlim([0 L_range]);
+xlim([0 Domain]);
+ylim([0 Domain]);
+zlim([0 L_max]);
 view(3);
 %legend;
 hold off;
