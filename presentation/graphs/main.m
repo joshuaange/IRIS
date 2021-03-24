@@ -7,6 +7,13 @@ end
 surfc(L_x, L_y, L_z,'EdgeAlpha',0.1,'FaceAlpha',1,'DisplayName','Surface Topology') % Mesh Plot
 colormap(gray) 
 hold on;
+%surfc(F_x, F_y, F_z,'EdgeAlpha',0.1,'FaceAlpha',1,'DisplayName','Coefficient of Friction') % Mesh Plot
+%surfc(F_r_x, F_r_y, F_r_z,'EdgeAlpha',0.1,'FaceAlpha',1,'DisplayName','Coefficient of Rolling Friction') % Mesh Plot
+%surfc(G_l_x, G_l_y, G_l_z,'EdgeAlpha',0.1,'FaceAlpha',1,'DisplayName','Modulus of Rigidity') % Mesh Plot
+%surfc(K_x, K_y, K_z,'EdgeAlpha',0.1,'FaceAlpha',1,'DisplayName','Coefficient of Restitution') % Mesh Plot
+%surfc(T_c_x, T_c_y, T_c_z,'EdgeAlpha',0.1,'FaceAlpha',1,'DisplayName','Conductivity') % Mesh Plot
+%surfc(T_g_x, T_g_y, T_g_z,'EdgeAlpha',0.1,'FaceAlpha',1,'DisplayName','Temperature') % Mesh Plot
+%surfc(Y_l_x, Y_l_y, Y_l_z,'EdgeAlpha',0.1,'FaceAlpha',1,'DisplayName','Youngs Modulus') % Mesh Plot
 
  for iit = 1:i_max
      if isempty(b{iit}) == 0
