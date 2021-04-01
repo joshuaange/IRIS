@@ -71,7 +71,7 @@ grid minor;
 %axis equal;
 xlim([0 Domain]);
 ylim([0 Domain]);
-zlim([0 L_max]);
+%zlim([0 L_max]);
 view(3);
 %legend;
 hold off;
