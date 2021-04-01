@@ -63,7 +63,7 @@ for iit = 1:i_max
         % Record
         run(strcat(folder,'\logic\record\small.m'));
         % Return
-        r = T*V_ij(2,3) + Cn_ij(3) - L(T*V_ij(2,1) + Cn_ij(1),T*V_ij(2,2) + Cn_ij(2));
+        r = V_ij(2,3) + Cn_ij(3) - L(V_ij(2,1) + Cn_ij(1),V_ij(2,2) + Cn_ij(2));
         display("Return: " + double(r) + ", Velocity: " + double(mag(V_ij)));
         % Stop
         if -v_min<double(mag(V_ij))<=v_min
