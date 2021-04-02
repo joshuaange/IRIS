@@ -48,7 +48,7 @@ for t_testthree = max(0,t_p_i-5):0.1:t_p_i+5
         t_p_i = t_testthree;
     end
 end
-for t_testfour = max(0,t_p_i-0.5):0.01:t_p_i+0.5
+for t_testfour = max(0,t_p_i-1.5):0.01:t_p_i+1.5
     display("Intersection Time 4:  " + double(t_testfour));
     if abs(L(x_i(t_testfour),y_i(t_testfour))-z_i(t_testfour)) < GAP
         GAP = abs(L(x_i(t_testfour),y_i(t_testfour))-z_i(t_testfour));
