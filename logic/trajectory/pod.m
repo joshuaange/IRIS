@@ -1,5 +1,60 @@
 % Aligned pod coordinates of first impact
-for t_p = t_p_i:-t_step:t_p_min % Cycles pod position from impact to starting value
+t_f_i = t_p_i;
+for t_p = t_p_i:-10:t_p_min % Cycles pod position from impact to starting value
+    display(double(t_p));
+    X_moved = X_sphere*(d/2)+x_i(t_p);
+    Y_moved = Y_sphere*(d/2)+y_i(t_p);
+    Z_moved = Z_sphere*(d/2)+z_i(t_p);
+    for m_A = 1:A_limit % Cycles through all discrete pod coordinates
+        for m_B = 1:B_limit
+            if abs(L(X_moved(m_A,m_B),Y_moved(m_A,m_B))-Z_moved(m_A,m_B))<s_min
+                display("Collision! at " + double(t_p) + " at pos: " + double(m_A) + ", " + double(m_B));
+                C_i = [x_i(t_p),y_i(t_p),z_i(t_p)];
+                X_i = X_moved;
+                Y_i = Y_moved;
+                Z_i = Z_moved;
+                t_f_i = t_p; % Finds earliest collision time with pod
+            end
+        end
+    end
+end
+for t_p = t_f_i:-1:t_f_i-10 % Cycles pod position from impact to starting value
+    display(double(t_p));
+    X_moved = X_sphere*(d/2)+x_i(t_p);
+    Y_moved = Y_sphere*(d/2)+y_i(t_p);
+    Z_moved = Z_sphere*(d/2)+z_i(t_p);
+    for m_A = 1:A_limit % Cycles through all discrete pod coordinates
+        for m_B = 1:B_limit
+            if abs(L(X_moved(m_A,m_B),Y_moved(m_A,m_B))-Z_moved(m_A,m_B))<s_min
+                display("Collision! at " + double(t_p) + " at pos: " + double(m_A) + ", " + double(m_B));
+                C_i = [x_i(t_p),y_i(t_p),z_i(t_p)];
+                X_i = X_moved;
+                Y_i = Y_moved;
+                Z_i = Z_moved;
+                t_f_i = t_p; % Finds earliest collision time with pod
+            end
+        end
+    end
+end
+for t_p = t_f_i:-0.1:t_f_i-1 % Cycles pod position from impact to starting value
+    display(double(t_p));
+    X_moved = X_sphere*(d/2)+x_i(t_p);
+    Y_moved = Y_sphere*(d/2)+y_i(t_p);
+    Z_moved = Z_sphere*(d/2)+z_i(t_p);
+    for m_A = 1:A_limit % Cycles through all discrete pod coordinates
+        for m_B = 1:B_limit
+            if abs(L(X_moved(m_A,m_B),Y_moved(m_A,m_B))-Z_moved(m_A,m_B))<s_min
+                display("Collision! at " + double(t_p) + " at pos: " + double(m_A) + ", " + double(m_B));
+                C_i = [x_i(t_p),y_i(t_p),z_i(t_p)];
+                X_i = X_moved;
+                Y_i = Y_moved;
+                Z_i = Z_moved;
+                t_f_i = t_p; % Finds earliest collision time with pod
+            end
+        end
+    end
+end
+for t_p = t_f_i:-t_step:t_f_i-0.1 % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
