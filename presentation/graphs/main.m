@@ -32,7 +32,7 @@ hold on;
         % Center
         plot3(double(b{iit}.C_i(1)),double(b{iit}.C_i(2)),double(b{iit}.C_i(3)),'Marker','o','DisplayName','Center Point');
      end
-     for jit = 1:j_maxs
+     for jit = 1:j_max
          if isempty(s{iit,jit}) == 0
             % Traced Segment Path
             quiver3(s{iit,jit}.O_ij(1,1),s{iit,jit}.O_ij(1,2),s{iit,jit}.O_ij(1,3),s{iit,jit}.O_ij(2,1),s{iit,jit}.O_ij(2,2),s{iit,jit}.O_ij(2,3),'lineWidth',1,'Color','black','MaxHeadSize',0.5,'DisplayName','Traced Path Segment');
@@ -68,7 +68,7 @@ hold on;
 end
 
 grid minor;
-%axis equal;
+axis equal;
 xlim([0 Domain]);
 ylim([0 Domain]);
 %zlim([0 L_max]);

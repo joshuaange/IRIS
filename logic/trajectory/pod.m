@@ -1,5 +1,6 @@
 % Aligned pod coordinates of first impact
 t_f_i = t_p_i;
+display("-10 Interval");
 for t_p = t_p_i:-10:t_p_min % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
@@ -18,7 +19,8 @@ for t_p = t_p_i:-10:t_p_min % Cycles pod position from impact to starting value
         end
     end
 end
-for t_p = t_f_i:-1:t_f_i-10 % Cycles pod position from impact to starting value
+display("-1 Interval");
+for t_p = t_f_i:-1:max(t_p_min, t_f_i-10) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
@@ -36,7 +38,8 @@ for t_p = t_f_i:-1:t_f_i-10 % Cycles pod position from impact to starting value
         end
     end
 end
-for t_p = t_f_i:-0.1:t_f_i-1 % Cycles pod position from impact to starting value
+display("-0.1 Interval");
+for t_p = t_f_i:-0.1:max(t_p_min, t_f_i-1) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
@@ -54,7 +57,8 @@ for t_p = t_f_i:-0.1:t_f_i-1 % Cycles pod position from impact to starting value
         end
     end
 end
-for t_p = t_f_i:-t_step:t_f_i-0.1 % Cycles pod position from impact to starting value
+display(double(-t_step) + " Interval");
+for t_p = t_f_i:-t_step:max(t_p_min, t_f_i-0.1) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
