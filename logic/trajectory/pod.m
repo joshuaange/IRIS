@@ -57,8 +57,46 @@ for t_p = t_f_i:-0.1:max(t_p_min, t_f_i-1) % Cycles pod position from impact to 
         end
     end
 end
-display(double(-t_step) + " Interval");
-for t_p = t_f_i:-t_step:max(t_p_min, t_f_i-0.1) % Cycles pod position from impact to starting value
+display("-0.01 Interval");
+for t_p = t_f_i:-0.01:max(t_p_min, t_f_i-0.1) % Cycles pod position from impact to starting value
+    display(double(t_p));
+    X_moved = X_sphere*(d/2)+x_i(t_p);
+    Y_moved = Y_sphere*(d/2)+y_i(t_p);
+    Z_moved = Z_sphere*(d/2)+z_i(t_p);
+    for m_A = 1:A_limit % Cycles through all discrete pod coordinates
+        for m_B = 1:B_limit
+            if abs(L(X_moved(m_A,m_B),Y_moved(m_A,m_B))-Z_moved(m_A,m_B))<s_min
+                display("Collision! at " + double(t_p) + " at pos: " + double(m_A) + ", " + double(m_B));
+                C_i = [x_i(t_p),y_i(t_p),z_i(t_p)];
+                X_i = X_moved;
+                Y_i = Y_moved;
+                Z_i = Z_moved;
+                t_f_i = t_p; % Finds earliest collision time with pod
+            end
+        end
+    end
+end
+display("-0.001 Interval");
+for t_p = t_f_i:-0.001:max(t_p_min, t_f_i-0.01) % Cycles pod position from impact to starting value
+    display(double(t_p));
+    X_moved = X_sphere*(d/2)+x_i(t_p);
+    Y_moved = Y_sphere*(d/2)+y_i(t_p);
+    Z_moved = Z_sphere*(d/2)+z_i(t_p);
+    for m_A = 1:A_limit % Cycles through all discrete pod coordinates
+        for m_B = 1:B_limit
+            if abs(L(X_moved(m_A,m_B),Y_moved(m_A,m_B))-Z_moved(m_A,m_B))<s_min
+                display("Collision! at " + double(t_p) + " at pos: " + double(m_A) + ", " + double(m_B));
+                C_i = [x_i(t_p),y_i(t_p),z_i(t_p)];
+                X_i = X_moved;
+                Y_i = Y_moved;
+                Z_i = Z_moved;
+                t_f_i = t_p; % Finds earliest collision time with pod
+            end
+        end
+    end
+end
+display(double(t_step) + " Interval");
+for t_p = t_f_i:-t_step:max(t_p_min, t_f_i-0.001) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
