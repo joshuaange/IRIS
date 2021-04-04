@@ -36,11 +36,8 @@ end
 % Friction - base calculations from (http://hyperphysics.phy-astr.gsu.edu/hbase/frict.html)
 display("...Friction");
 %A_f_ij = [R_ij(1),R_ij(2),R_ij(3); (-0.31875*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2) * (max(A_G_ij)+mag(A_n_ij))) * cos(falpha(O_ij)),(-0.31875*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2) * (max(A_G_ij)+mag(A_n_ij))) * cos(fbeta(O_ij)),(-0.31875*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2) * (max(A_G_ij)+mag(A_n_ij))) * cos(fgamma(O_ij))];
-if jit == 1
-    A_f_ij = [R_ij(1),R_ij(2),R_ij(3);-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)))*cos(falpha(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)))*cos(fbeta(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)))*cos(fgamma(O_ij))];
-else
-    A_f_ij = [R_ij(1),R_ij(2),R_ij(3);-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(falpha(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fbeta(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fgamma(O_ij))];
-end
+%A_f_ij = [R_ij(1),R_ij(2),R_ij(3);-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(falpha(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fbeta(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fgamma(O_ij))];
+A_f_ij = [R_ij(1),R_ij(2),R_ij(3);-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(falpha(v_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fbeta(v_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fgamma(v_ij))];
 % Movement in direction opposite to traced segment vector, magnitude of
 % average coefficient of friction multiplied by applied Normal velocity 
 % change added to the finishing right triangle vector of gravity (which
@@ -82,3 +79,12 @@ VQ_ij = [S_ij(1),S_ij(2),S_ij(3); q_ij(2,2),-q_ij(2,1),NN_ij(S_ij(1)+q_ij(2,2),S
 A_r_ij = [S_ij(1),S_ij(2),S_ij(3); ((d/2)*mag(q_ij))*cos(falpha(VQ_ij)),((d/2)*mag(q_ij))*cos(fbeta(VQ_ij)),((d/2)*mag(q_ij))*cos(fgamma(VQ_ij))]; % Conversion to linear velocity
 
 display("reactions.m");
+
+TOTAL = s{1,1}.v_ij(2,3);
+for a = 1:21
+    TOTAL = TOTAL + s{1,a}.A_g_ij(2,3);
+    TOTAL = TOTAL + s{1,a}.A_n_ij(2,3);
+    TOTAL = TOTAL + s{1,a}.A_e_ij(2,3);
+    %TOTAL = TOTAL + s{1,a}.A_f_ij(2,3);
+    TOTAL = TOTAL + s{1,a}.A_r_ij(2,3);
+end
