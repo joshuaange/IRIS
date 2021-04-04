@@ -1,7 +1,7 @@
 function [Z] = T_g(X,Y)
 % T_g Finds the interpolated value on the heightmap for input coordinates
 
-global T_g_x T_g_y T_g_z Domain Bi_Int
+global T_g_x T_g_y T_g_z Domain Bi_Int Xq Yq
 syms VAT_g
 
 try
@@ -15,7 +15,7 @@ try
     T_g_y_phi = round(phi/Bi_Int) * Bi_Int;
 
     % Interpolation
-    [Xq, Yq] = meshgrid(0:Bi_Int:1);
+    %[Xq, Yq] = meshgrid(0:Bi_Int:1);
     Vq = interp2([0 1],[0 1],[T_g_z(T_g_y_floor-1,T_g_x_floor) T_g_z(T_g_y_floor-1,T_g_x_floor+1); T_g_z(T_g_y_floor,T_g_x_floor) T_g_z(T_g_y_floor,T_g_x_floor+1)],Xq,Yq);
     Z = Vq(T_g_y_phi/Bi_Int+1,T_g_x_phi/Bi_Int+1);
 catch

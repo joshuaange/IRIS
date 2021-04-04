@@ -1,8 +1,10 @@
 function [dY] = dLdy(X,Y)
 %DLDX Finds the partial y derivative for point X,Y
 
-PointMinus = L(X,Y-0.5);
-PointPlus = L(X,Y+0.5);
+global Bi_Int
+
+PointMinus = L(X,Y-Bi_Int);
+PointPlus = L(X,Y+Bi_Int);
 
 dY = (PointPlus - PointMinus);
 

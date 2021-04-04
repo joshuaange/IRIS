@@ -1,7 +1,7 @@
 function [Z] = K(X,Y)
 % K Finds the interpolated value on the heightmap for input coordinates
 
-global K_x K_y K_z Domain Bi_Int
+global K_x K_y K_z Domain Bi_Int Xq Yq
 syms VAK
 
 try
@@ -15,7 +15,7 @@ try
     K_y_phi = round(phi/Bi_Int) * Bi_Int;
 
     % Interpolation
-    [Xq, Yq] = meshgrid(0:Bi_Int:1);
+    %[Xq, Yq] = meshgrid(0:Bi_Int:1);
     Vq = interp2([0 1],[0 1],[K_z(K_y_floor-1,K_x_floor) K_z(K_y_floor-1,K_x_floor+1); K_z(K_y_floor,K_x_floor) K_z(K_y_floor,K_x_floor+1)],Xq,Yq);
     Z = Vq(K_y_phi/Bi_Int+1,K_x_phi/Bi_Int+1);
 catch
