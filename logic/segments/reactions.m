@@ -79,12 +79,3 @@ VQ_ij = [S_ij(1),S_ij(2),S_ij(3); q_ij(2,2),-q_ij(2,1),NN_ij(S_ij(1)+q_ij(2,2),S
 A_r_ij = [S_ij(1),S_ij(2),S_ij(3); ((d/2)*mag(q_ij))*cos(falpha(VQ_ij)),((d/2)*mag(q_ij))*cos(fbeta(VQ_ij)),((d/2)*mag(q_ij))*cos(fgamma(VQ_ij))]; % Conversion to linear velocity
 
 display("reactions.m");
-
-TOTAL = s{1,1}.v_ij(2,3);
-for a = 1:21
-    TOTAL = TOTAL + s{1,a}.A_g_ij(2,3);
-    TOTAL = TOTAL + s{1,a}.A_n_ij(2,3);
-    TOTAL = TOTAL + s{1,a}.A_e_ij(2,3);
-    %TOTAL = TOTAL + s{1,a}.A_f_ij(2,3);
-    TOTAL = TOTAL + s{1,a}.A_r_ij(2,3);
-end
