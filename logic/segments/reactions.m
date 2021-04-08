@@ -37,7 +37,7 @@ end
 display("...Friction");
 %A_f_ij = [R_ij(1),R_ij(2),R_ij(3); (-0.31875*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2) * (max(A_G_ij)+mag(A_n_ij))) * cos(falpha(O_ij)),(-0.31875*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2) * (max(A_G_ij)+mag(A_n_ij))) * cos(fbeta(O_ij)),(-0.31875*((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2) * (max(A_G_ij)+mag(A_n_ij))) * cos(fgamma(O_ij))];
 %A_f_ij = [R_ij(1),R_ij(2),R_ij(3);-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(falpha(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fbeta(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fgamma(O_ij))];
-A_f_ij = [R_ij(1),R_ij(2),R_ij(3);-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(falpha(v_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fbeta(v_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fgamma(v_ij))];
+A_f_ij = [R_ij(1),R_ij(2),R_ij(3);-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(falpha(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fbeta(O_ij)),-(((F(S_ij(1),S_ij(2))+F(R_ij(1),R_ij(2)))/2)*(mag(A_n_ij)+(A_G_ij)))*cos(fgamma(O_ij))];
 % Movement in direction opposite to traced segment vector, magnitude of
 % average coefficient of friction multiplied by applied Normal velocity 
 % change added to the finishing right triangle vector of gravity (which
