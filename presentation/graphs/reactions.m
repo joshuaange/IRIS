@@ -28,6 +28,7 @@ end
 
 grid minor;
 xlim([0, double(timeA+T)]);
+ylim([0 5]);
 xlabel('Time elapsed (s)');
 ylabel('Velocity Influence (m/s)');
 legend;
