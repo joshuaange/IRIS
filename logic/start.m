@@ -9,6 +9,8 @@
 load(strcat(folder,'\data\inputs\',file,'.mat'))
 syms x y VAL t x_i(t) y_i(t) z_i(t)
 T = 0.01;
+K_min = 0.9;
+K_max = 0.9;
 
 %run(strcat(folder,'\logic\terrain.m'));
 display("Initializing general variables");

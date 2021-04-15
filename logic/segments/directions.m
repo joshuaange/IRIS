@@ -22,6 +22,7 @@ if B_m_ij == 0
 end
 B_ij = [S_ij(1)+P_ij(2,1),S_ij(2)+P_ij(2,2),S_ij(3)+P_ij(2,3); T*B_m_ij*dNNdx,T*B_m_ij*dNNdy,T*B_m_ij*(-1)];
 % Magnitude to Surface
+P_ij = [S_ij(1),S_ij(2),S_ij(3); 0.5*T*PN_ij(1),0.5*T*PN_ij(2),0.5*T*PN_ij(3)]; % Divided value of P_ij so the pod doesn't not change velocity over the course of O_ij
 mGAP = abs(L(-M_range*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),-M_range*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - -M_range*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3));
 M_ij = -M_range; % Similar to finding intersection point, must use searching algorithm
 display("Default M Mag:  " + double(M_range));
@@ -74,6 +75,9 @@ display("Finding traced segment path...");
 % Traced Path - assumes that no velocity is lost in process of movement
 Rn_ij = [M_ij*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),M_ij*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2),M_ij*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)];
 O_ij = [S_ij(1),S_ij(2),S_ij(3); Rn_ij(1)-S_ij(1),Rn_ij(2)-S_ij(2),L(Rn_ij(1),Rn_ij(2))-S_ij(3)];
+
+% Returning to non-divided value of P_ij
+P_ij = [S_ij(1),S_ij(2),S_ij(3); T*PN_ij(1),T*PN_ij(2),T*PN_ij(3)];
 
 % Number of time segments - simple estimation
 %(from https://www.researchgate.net/publication/270681194_Estimation_of_the_Impact_Duration_for_Several_Types_of_Structures)

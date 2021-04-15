@@ -4,7 +4,6 @@ b{iit}.y_i = (y_i);
 b{iit}.z_i = (z_i);
 b{iit}.q_i = double(q_i);
 b{iit}.T_i = double(T_i);
-b{iit}.t_p_i = double(t_p_i);
 b{iit}.C_i = double(C_i);
 b{iit}.X_i = double(X_i);
 b{iit}.Y_i = double(Y_i);

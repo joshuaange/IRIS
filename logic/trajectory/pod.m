@@ -1,7 +1,29 @@
-% Aligned pod coordinates of first impact
-t_f_i = t_p_i;
+% Intersection Time of Pod Shape
+% Finding intersection point between trajectory and land, we must use this
+% search algorithm because the terrain utilizes bicubic interpolation with
+% the heightmap rather than a continuous function
+t_f_i = t_p_max;
+display("-100 Interval");
+for t_p = t_p_max:-100:t_p_min % Cycles pod position from impact to starting value
+    display(double(t_p));
+    X_moved = X_sphere*(d/2)+x_i(t_p);
+    Y_moved = Y_sphere*(d/2)+y_i(t_p);
+    Z_moved = Z_sphere*(d/2)+z_i(t_p);
+    for m_A = 1:A_limit % Cycles through all discrete pod coordinates
+        for m_B = 1:B_limit
+            if abs(L(X_moved(m_A,m_B),Y_moved(m_A,m_B))-Z_moved(m_A,m_B))<s_min
+                display("Collision! at " + double(t_p) + " at pos: " + double(m_A) + ", " + double(m_B));
+                C_i = [x_i(t_p),y_i(t_p),z_i(t_p)];
+                X_i = X_moved;
+                Y_i = Y_moved;
+                Z_i = Z_moved;
+                t_f_i = t_p; % Finds earliest collision time with pod
+            end
+        end
+    end
+end
 display("-10 Interval");
-for t_p = t_p_i:-10:t_p_min % Cycles pod position from impact to starting value
+for t_p = t_f_i:-10:max(t_p_min, t_f_i-100) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
@@ -152,7 +174,7 @@ for t_p = t_f_i:-0.000001:max(t_p_min, t_f_i-0.00001) % Cycles pod position from
         end
     end
 end
-display(t_step + " Interval!");
+display(t_step + " Interval! (minimum value)");
 for t_p = t_f_i:-t_step:max(t_p_min, t_f_i-0.000001) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
@@ -171,7 +193,12 @@ for t_p = t_f_i:-t_step:max(t_p_min, t_f_i-0.000001) % Cycles pod position from 
         end
     end
 end
-
+display("FINAL TIME VALUE: " + double(t_f_i));
+% Warnings for if impacts cannot be found
+if t_f_i == t_p_max
+    display("! ! ! No Initial Impact Can Be Found ! ! !");
+    pause
+end
 
 % Find averaged impact point
 display("Finding averaged impact point");
