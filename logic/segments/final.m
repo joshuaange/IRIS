@@ -31,10 +31,10 @@ SA_g_ij = pi*( (d/2)^2 * (d/2 - D_ij)^2 ); % Area of heat transfer
 h_c_ij = h_t_ij * (SA_g_ij / h_C); % Cooling constant
 
 T_g_ij = ((T_g(S_ij(1),S_ij(2))+T_g(R_ij(1),R_ij(2)))/2); % Ground temperature
+T_f_ij = T_g_ij+(T_s_ij-T_g_ij)*exp(-T*h_c_ij); % Final temperature conduction
 if deltaKE_ij < 0
-    T_f_ij = ((T_g(S_ij(1),S_ij(2))+T_g(R_ij(1),R_ij(2)))/2) - ((h_R*deltaKE_ij)/(h_C*m)); % Adding temperature from shifting kinetic energy to ground
+    T_f_ij = T_f_ij - ((h_R*deltaKE_ij)/(h_C*m)); % Adding temperature from shifting kinetic energy to ground
 end
-T_f_ij = T_f_ij+(T_s_ij-T_g_ij)*exp(-T*h_c_ij); % Final temperature conduction
 
 % Rotation
 I_ij = [R_ij(1),R_ij(2),R_ij(3); (q_ij(2,1)+Q_ij(2,1))/2 * T, (q_ij(2,2)+Q_ij(2,2))/2 * T, (q_ij(2,3)+Q_ij(2,3))/2 * T];
