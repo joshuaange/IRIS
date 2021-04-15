@@ -23,7 +23,7 @@ for t_p = t_p_max:-100:t_p_min % Cycles pod position from impact to starting val
     end
 end
 display("-10 Interval");
-for t_p = t_f_i:-10:max(t_p_min, t_f_i-100) % Cycles pod position from impact to starting value
+for t_p = t_f_i:-10:max(t_p_min, t_f_i-101) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
@@ -42,7 +42,7 @@ for t_p = t_f_i:-10:max(t_p_min, t_f_i-100) % Cycles pod position from impact to
     end
 end
 display("-1 Interval");
-for t_p = t_f_i:-1:max(t_p_min, t_f_i-10) % Cycles pod position from impact to starting value
+for t_p = t_f_i:-1:max(t_p_min, t_f_i-11) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
@@ -61,7 +61,7 @@ for t_p = t_f_i:-1:max(t_p_min, t_f_i-10) % Cycles pod position from impact to s
     end
 end
 display("-0.1 Interval");
-for t_p = t_f_i:-0.1:max(t_p_min, t_f_i-1) % Cycles pod position from impact to starting value
+for t_p = t_f_i:-0.1:max(t_p_min, t_f_i-1.1) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
@@ -80,7 +80,7 @@ for t_p = t_f_i:-0.1:max(t_p_min, t_f_i-1) % Cycles pod position from impact to 
     end
 end
 display("-0.01 Interval");
-for t_p = t_f_i:-0.01:max(t_p_min, t_f_i-0.1) % Cycles pod position from impact to starting value
+for t_p = t_f_i:-0.01:max(t_p_min, t_f_i-0.11) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
@@ -99,7 +99,7 @@ for t_p = t_f_i:-0.01:max(t_p_min, t_f_i-0.1) % Cycles pod position from impact 
     end
 end
 display("-0.001 Interval");
-for t_p = t_f_i:-0.001:max(t_p_min, t_f_i-0.01) % Cycles pod position from impact to starting value
+for t_p = t_f_i:-0.001:max(t_p_min, t_f_i-0.011) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
@@ -118,7 +118,7 @@ for t_p = t_f_i:-0.001:max(t_p_min, t_f_i-0.01) % Cycles pod position from impac
     end
 end
 display("-0.0001 Interval");
-for t_p = t_f_i:-0.0001:max(t_p_min, t_f_i-0.001) % Cycles pod position from impact to starting value
+for t_p = t_f_i:-0.0001:max(t_p_min, t_f_i-0.0011) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
@@ -137,7 +137,7 @@ for t_p = t_f_i:-0.0001:max(t_p_min, t_f_i-0.001) % Cycles pod position from imp
     end
 end
 display("-0.00001 Interval");
-for t_p = t_f_i:-0.00001:max(t_p_min, t_f_i-0.0001) % Cycles pod position from impact to starting value
+for t_p = t_f_i:-0.00001:max(t_p_min, t_f_i-0.00011) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
@@ -156,7 +156,7 @@ for t_p = t_f_i:-0.00001:max(t_p_min, t_f_i-0.0001) % Cycles pod position from i
     end
 end
 display("-0.000001 Interval");
-for t_p = t_f_i:-0.000001:max(t_p_min, t_f_i-0.00001) % Cycles pod position from impact to starting value
+for t_p = t_f_i:-0.000001:max(t_p_min, t_f_i-0.000011) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
@@ -175,7 +175,7 @@ for t_p = t_f_i:-0.000001:max(t_p_min, t_f_i-0.00001) % Cycles pod position from
     end
 end
 display(t_step + " Interval! (minimum value)");
-for t_p = t_f_i:-t_step:max(t_p_min, t_f_i-0.000001) % Cycles pod position from impact to starting value
+for t_p = t_f_i:-t_step:max(t_p_min, t_f_i-0.0000011) % Cycles pod position from impact to starting value
     display(double(t_p));
     X_moved = X_sphere*(d/2)+x_i(t_p);
     Y_moved = Y_sphere*(d/2)+y_i(t_p);
