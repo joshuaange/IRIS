@@ -73,7 +73,7 @@ A_fr_ij = [R_ij(1),R_ij(2),R_ij(3);-(((F_r(S_ij(1),S_ij(2))+F_r(R_ij(1),R_ij(2))
 % the ending angular velocity
 A_fr_direction = [R_ij(1),R_ij(2),R_ij(3);(-A_fr_ij(2,2)), (A_fr_ij(2,1)),(NN_ij(R_ij(1)-A_fr_ij(2,2),R_ij(2)+A_fr_ij(2,1)))-R_ij(3)]; % Right-angle vector to frictional force vector
     % Ground Friction Angular Velocity - Ideal Spin Plus Applied Friction
-p_ij = [S_ij(1),S_ij(2),S_ij(3);(Wlength*XROT) + (mag(A_fr_ij)/(d/2))*cos(falpha(A_fr_direction)), (Wlength*YROT) + (mag(A_fr_ij)/(d/2))*cos(fbeta(A_fr_direction)), (Wlength*ZROT) + (mag(A_fr_ij)/(d/2))*cos(fgamma(A_fr_direction))];
+p_ij = [S_ij(1),S_ij(2),S_ij(3);(Wlength*XROT) + T*(mag(A_fr_ij)/(d/2))*cos(falpha(A_fr_direction)), (Wlength*YROT) + T*(mag(A_fr_ij)/(d/2))*cos(fbeta(A_fr_direction)), (Wlength*ZROT) + T*(mag(A_fr_ij)/(d/2))*cos(fgamma(A_fr_direction))];
     % New Angular Velocity
 Q_ij = [R_ij(1),R_ij(2),R_ij(3); q_ij(2,1)+p_ij(2,1),q_ij(2,2)+p_ij(2,2),q_ij(2,3)+p_ij(2,3)];
 % Reactionary
