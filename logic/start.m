@@ -9,11 +9,14 @@
 load(strcat(folder,'\data\inputs\',file,'.mat'))
 syms x y VAL t x_i(t) y_i(t) z_i(t)
 T = 0.01;
-K_min = 0.9;
-K_max = 0.9;
+K_min = 0.74;
+K_max = 0.74;
 
 %run(strcat(folder,'\logic\terrain.m'));
 display("Initializing general variables");
+% Considerations for K_min and K_max
+K_min = K_min/(2/3);
+K_max = K_max/(2/3);
 % Record Matrices
 b = cell(i_max,1);
 s = cell(i_max,j_max);
@@ -96,6 +99,10 @@ for iit = 1:i_max
         break
     end
 end
+
+% Unconsiderations for K_min and K_max
+K_min = K_min*(2/3);
+K_max = K_max*(2/3);
 
 display("Saving output .mat file");
 save(strcat(folder,'\data\outputs\',file,'.mat'))

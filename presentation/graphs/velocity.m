@@ -1,4 +1,4 @@
-figure_main = figure('Name','Velocity','OuterPosition',[10 195 600 350]);
+sfigure_main = figure('Name','Velocity','OuterPosition',[10 195 600 350]);
 hold on;
 timeA = 0;
 plot(0,u_i(2,1),'o','Color','blue','DisplayName',"X");
