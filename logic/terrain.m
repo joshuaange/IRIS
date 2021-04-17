@@ -13,9 +13,13 @@ F_r_z = double((imread(strcat(folder,'\RollingFriction.png'))))*(F_r_max-F_r_min
 F_r_x = 0:(Domain/size(F_r_z,2)):(Domain-(Domain/size(F_r_z,2)));
 F_r_y = 0:(Domain/size(F_r_z,1)):(Domain-(Domain/size(F_r_z,1)));
 % Heightmap Reading - K (Coefficient of Restitution)
+K_min = K_min/(2/3);
+K_max = K_max/(2/3);
 K_z = double((imread(strcat(folder,'\Restitution.png'))))*(K_max-K_min)/255 + K_min;
 K_x = 0:(Domain/size(K_z,2)):(Domain-(Domain/size(K_z,2)));
 K_y = 0:(Domain/size(K_z,1)):(Domain-(Domain/size(K_z,1)));
+K_min = K_min*(2/3);
+K_max = K_max*(2/3);
 % Heightmap Reading - T_c (Thermal Conductivity)
 T_c_z = double((imread(strcat(folder,'\Conductivity.png'))))*(T_c_max-T_c_min)/255 + T_c_min;
 T_c_x = 0:(Domain/size(T_c_z,2)):(Domain-(Domain/size(T_c_z,2)));

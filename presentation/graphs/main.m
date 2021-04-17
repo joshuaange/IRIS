@@ -1,4 +1,4 @@
-try
+ try
     figure(figure_main);
 catch
     figure_main = figure('Name','Pod Motion');
