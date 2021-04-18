@@ -74,4 +74,4 @@ ylim([0 Domain]);
 %zlim([0 L_max]);
 view(3);
 %legend;
-hold off;
+%hold off;
