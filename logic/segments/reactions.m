@@ -78,7 +78,7 @@ p_ij = [S_ij(1),S_ij(2),S_ij(3);(Wlength*XROT) + T*(mag(A_fr_ij)/(d/2))*cos(falp
 Q_ij = [R_ij(1),R_ij(2),R_ij(3); q_ij(2,1)+p_ij(2,1),q_ij(2,2)+p_ij(2,2),q_ij(2,3)+p_ij(2,3)];
 % Reactionary
 VQ_ij = [S_ij(1),S_ij(2),S_ij(3); q_ij(2,2),-q_ij(2,1),NN_ij(S_ij(1)+q_ij(2,2),S_ij(2)-q_ij(2,1))-S_ij(3)]; % Direction vector back to linear movement
-A_r_ij = [S_ij(1),S_ij(2),S_ij(3); ((d/2)*mag(q_ij))*cos(falpha(VQ_ij)),((d/2)*mag(q_ij))*cos(fbeta(VQ_ij)),((d/2)*mag(q_ij))*cos(fgamma(VQ_ij))]; % Conversion to linear velocity
+A_r_ij = [S_ij(1),S_ij(2),S_ij(3); -((d/2)*mag(q_ij))*cos(falpha(VQ_ij)),-((d/2)*mag(q_ij))*cos(fbeta(VQ_ij)),-((d/2)*mag(q_ij))*cos(fgamma(VQ_ij))]; % Conversion to linear velocity
 % Re-including ideal spin
 
 
