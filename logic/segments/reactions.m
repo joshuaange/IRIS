@@ -28,9 +28,9 @@ S_ij = vpa(S_ij);
 display("...Elasticity");
 A_e_ij = [S_ij(1),S_ij(2),S_ij(3); 0, 0, 0];
 if jit <= Kt_i % Normal force multiplied by average Coefficient of Restitution
-    A_e_ij(2,1) = ((K(S_ij(1),S_ij(2))+K(R_ij(1),R_ij(2)))/2)*(mag(s{iit,1}.A_n_ij)+A_G_ij) * cos(falpha(A_n_ij));
-    A_e_ij(2,2) = ((K(S_ij(1),S_ij(2))+K(R_ij(1),R_ij(2)))/2)*(mag(s{iit,1}.A_n_ij)+A_G_ij) * cos(fbeta(A_n_ij));
-    A_e_ij(2,3) = ((K(S_ij(1),S_ij(2))+K(R_ij(1),R_ij(2)))/2)*(mag(s{iit,1}.A_n_ij)+A_G_ij) * cos(fgamma(A_n_ij));
+    A_e_ij(2,1) = ((K(S_ij(1),S_ij(2))+K(R_ij(1),R_ij(2)))/2)*(mag(s{iit,1}.A_n_ij)) * cos(falpha(A_n_ij));
+    A_e_ij(2,2) = ((K(S_ij(1),S_ij(2))+K(R_ij(1),R_ij(2)))/2)*(mag(s{iit,1}.A_n_ij)) * cos(fbeta(A_n_ij));
+    A_e_ij(2,3) = ((K(S_ij(1),S_ij(2))+K(R_ij(1),R_ij(2)))/2)*(mag(s{iit,1}.A_n_ij)) * cos(fgamma(A_n_ij));
 end
 
 % Friction - base calculations from (http://hyperphysics.phy-astr.gsu.edu/hbase/frict.html)

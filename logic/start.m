@@ -39,7 +39,7 @@ if parachute == 1
 end
 % Pod Conditions
 [Xq, Yq] = meshgrid(0:Bi_Int:1);
-[X_sphere,Y_sphere,Z_sphere] = sphere;
+[X_sphere,Y_sphere,Z_sphere] = sphere(6);
 A_limit = size(X_sphere,1);
 B_limit = size(Y_sphere,2);
 
