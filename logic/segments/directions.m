@@ -59,12 +59,36 @@ for mVALfour = M_ij-50:1:M_ij+50
         display("Successful Movement 4:  " + M_ij + ", Movement Gap: " + double(mGAP));
     end
 end
-display("Magnitude Test 5:  " + double(M_ij-0.5) + " : " + double(M_step) + " : " + double(M_ij+0.5));
-for mVALfive = M_ij-0.5:M_step:M_ij+0.5
+display("Magnitude Test 5:  " + double(M_ij-0.5) + " : 0.1 : " + double(M_ij+0.5));
+for mVALfive = M_ij-0.5:0.1:M_ij+0.5
     if abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
         mGAP = abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
         M_ij = mVALfive;
         display("Successful Movement 5:  " + M_ij + ", Movement Gap: " + double(mGAP));
+    end
+end
+display("Magnitude Test 6:  " + double(M_ij-0.05) + " : 0.01 : " + double(M_ij+0.05));
+for mVALfive = M_ij-0.05:0.01:M_ij+0.05
+    if abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
+        mGAP = abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
+        M_ij = mVALfive;
+        display("Successful Movement 6:  " + M_ij + ", Movement Gap: " + double(mGAP));
+    end
+end
+display("Magnitude Test 7:  " + double(M_ij-0.005) + " : 0.001 : " + double(M_ij+0.005));
+for mVALfive = M_ij-0.005:0.001:M_ij+0.005
+    if abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
+        mGAP = abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
+        M_ij = mVALfive;
+        display("Successful Movement 7:  " + M_ij + ", Movement Gap: " + double(mGAP));
+    end
+end
+display("Magnitude Test 8:  " + double(M_ij-0.0005) + " : " + double(M_step) + " : " + double(M_ij+0.0005));
+for mVALfive = M_ij-0.0005:M_step:M_ij+0.0005
+    if abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
+        mGAP = abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
+        M_ij = mVALfive;
+        display("Successful Movement 8:  " + M_ij + ", Movement Gap: " + double(mGAP));
     end
 end
 
