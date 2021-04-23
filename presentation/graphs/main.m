@@ -4,7 +4,7 @@ catch
     figure_main = figure('Name','Pod Motion');
 end
 
-surfc(L_x, L_y, L_z,'EdgeAlpha',0,'FaceAlpha',1,'DisplayName','Surface Topology') % Mesh Plot
+surfc(L_x, L_y, L_z(:,:,1),'EdgeAlpha',0,'FaceAlpha',1,'DisplayName','Surface Topology') % Mesh Plot
 colormap(gray) 
 hold on;
 %surfc(F_x, F_y, F_z,'EdgeAlpha',0.1,'FaceAlpha',1,'DisplayName','Coefficient of Friction') % Mesh Plot
