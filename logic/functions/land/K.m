@@ -5,6 +5,8 @@ global K_x K_y K_z Domain Bi_Int Xq Yq
 syms VAK
 
 try
+    X = double(X);
+    Y = double(Y);
     % Finding X Index
     K_x_floor = find(K_x==floor(X/(Domain/size(K_z,1))) * (Domain/size(K_z,1)));
     phi = vpasolve(K_x(K_x_floor) + (Domain/size(K_z,1))*VAK == X,VAK);

@@ -5,8 +5,8 @@
 % display("Reading input .mat file");
 % global Xq Yq L_x L_y L_z F_x F_y F_z F_r_x F_r_y F_r_z K_x K_y K_z T_c_x T_c_y T_c_z G_l_x G_l_y G_l_z T_g_x T_g_y T_g_z Y_l_x Y_l_y Y_l_z Domain Bi_Int
 % folder = pwd;
-% file = 'Empty';
-load(strcat(folder,'\data\inputs\',file,'.mat'))
+% file = 'File';
+% load(strcat(folder,'\data\inputs\',file,'.mat'))
 syms x y VAL t x_i(t) y_i(t) z_i(t)
 
 %run(strcat(folder,'\logic\terrain.m'));
@@ -17,6 +17,7 @@ s = cell(i_max,j_max);
 % Initial
 C_d = 0.5; % Drag coefficient of pod (generally 0.5)
 h_R = 0.75; % "Heat ratio" - amount of kinetic energy applied as heat
+HalfArea = (4*pi*(d/2)^2)/2;
 A_s = (pi*(d/2)^2); % Cross-sectional area of sphere
 Q = sqrt((2*m*g)/(rho*A_s*C_d)); % Terminal velocity from https://www.grc.nasa.gov/www/k-12/airplane/termv.html
 if Q > 10000000
@@ -88,13 +89,20 @@ for iit = 1:i_max
             T_s_ij = double(T_f_ij);
             S_ij = double(R_ij);
         end
+        if jit == j_max
+           break
+        end
     end
     if -v_min<double(mag(V_ij))<=v_min
         break
+    end
+    if jit == j_max
+           break
     end
 end
 
 display("Saving output .mat file");
 save(strcat(folder,'\data\outputs\',file,'.mat'))
+
 
 display("End");

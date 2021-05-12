@@ -1,6 +1,6 @@
 figure_main = figure('Name','Temperature','OuterPosition',[10 195 600 350]);
 hold on;
-timeA = 0;
+timeA = 350;
 for iit = 1:i_max
     if isempty(b{iit}) == 0
         for iteration = 1:floor(double(b{iit}.t_f_i)/T_units)
@@ -19,7 +19,7 @@ for iit = 1:i_max
 end
 
 grid minor;
-xlim([0, double(timeA+T)]);
+xlim([350+22, double(timeA+T)]);
 xlabel('Time elapsed (s)');
 ylabel('Temperature (K)');
 legend;

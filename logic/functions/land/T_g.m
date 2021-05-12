@@ -5,6 +5,8 @@ global T_g_x T_g_y T_g_z Domain Bi_Int Xq Yq
 syms VAT_g
 
 try
+    X = double(X);
+    Y = double(Y);
     % Finding X Index
     T_g_x_floor = find(T_g_x==floor(X/(Domain/size(T_g_z,1))) * (Domain/size(T_g_z,1)));
     phi = vpasolve(T_g_x(T_g_x_floor) + (Domain/size(T_g_z,1))*VAT_g == X,VAT_g);

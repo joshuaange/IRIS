@@ -5,6 +5,8 @@ global G_l_x G_l_y G_l_z Domain Bi_Int Xq Yq
 syms VAG_l
 
 try
+    X = double(X);
+    Y = double(Y);
     % Finding X Index
     G_l_x_floor = find(G_l_x==floor(X/(Domain/size(G_l_z,1))) * (Domain/size(G_l_z,1)));
     phi = vpasolve(G_l_x(G_l_x_floor) + (Domain/size(G_l_z,1))*VAG_l == X,VAG_l);

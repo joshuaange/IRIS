@@ -37,7 +37,7 @@ for iit = 1:i_max
 end
 
 grid minor;
-xlim([0, double(timeA+T)]);
+xlim([361, double(timeA+T)]);
 xlabel('Time elapsed (s)');
 ylabel('Velocity (m/s)');
 legend;

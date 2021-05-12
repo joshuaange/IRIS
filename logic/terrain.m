@@ -34,3 +34,4 @@ Y_l_x = 0:(Domain/size(Y_l_z,2)):(Domain-(Domain/size(Y_l_z,2)));
 Y_l_y = 0:(Domain/size(Y_l_z,1)):(Domain-(Domain/size(Y_l_z,1)));
 
 save(strcat(folder,'\data\inputs\',file,'.mat'))
+

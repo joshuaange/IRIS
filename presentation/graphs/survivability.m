@@ -1,6 +1,6 @@
-figure_main = figure('Name','Survivability','OuterPosition',[10 195 600 350]);
+sfigure_main = figure('Name','Survivability','OuterPosition',[10 195 600 350]);
 hold on;
-timeA = 0;
+timeA = 350;
 plot(0,0,'o','Color','blue','DisplayName',"Pod");
 plot(0,0,'^','Color','red','DisplayName',"Contents");
 for iit = 1:i_max
@@ -17,7 +17,7 @@ for iit = 1:i_max
 end
 
 grid minor;
-xlim([0, double(timeA+T)]);
+xlim([350+22, double(timeA+T)]);
 xlabel('Time elapsed (s)');
 ylabel('Survivability Metric');
 legend;

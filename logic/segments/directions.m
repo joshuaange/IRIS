@@ -22,43 +22,48 @@ if B_m_ij == 0
 end
 B_ij = [S_ij(1)+P_ij(2,1),S_ij(2)+P_ij(2,2),S_ij(3)+P_ij(2,3); T*B_m_ij*dNNdx,T*B_m_ij*dNNdy,T*B_m_ij*(-1)];
 % Magnitude to Surface
-P_ij = [S_ij(1),S_ij(2),S_ij(3); 0.5*T*PN_ij(1),0.5*T*PN_ij(2),0.5*T*PN_ij(3)]; % Divided value of P_ij so the pod doesn't not change velocity over the course of O_ij
-mGAP = abs(L(-M_range*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),-M_range*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - -M_range*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3));
-M_ij = -M_range; % Similar to finding intersection point, must use searching algorithm
+P_ij = [S_ij(1),S_ij(2),S_ij(3); 0.9*T*PN_ij(1),0.9*T*PN_ij(2),0.9*T*PN_ij(3)]; % Divided value of P_ij so the pod doesn't not change velocity over the course of O_ij
+mGAP = abs(L(0*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),0*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - 0*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3));
+M_ij = 0; % Similar to finding intersection point, must use searching algorithm
 display("Default M Mag:  " + double(M_range));
 display("Default M Gap:  " + double(mGAP));
 display("Magnitude Test 1:  " + double(-M_range) + " : 10000 : " + double(M_range));
-for mVALone = -M_range:10000:M_range
+if M_step <= 1000
+for mVALone = double(-M_range):1000:double(M_range)
     if abs(L(mVALone*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALone*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALone*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
         mGAP = abs(L(mVALone*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALone*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALone*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
         M_ij = mVALone;
         display("Successful Movement 1:  " + M_ij + ", Movement Gap: " + double(mGAP));
     end
 end
+if M_step <= 100
 display("Magnitude Test 2:  " + double(M_ij-5000) + " : 1000 : " + double(M_ij+5000));
-for mVALtwo = M_ij-5000:1000:M_ij+5000
+for mVALtwo = M_ij-500:100:M_ij+500
     if abs(L(mVALtwo*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALtwo*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALtwo*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
         mGAP = abs(L(mVALtwo*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALtwo*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALtwo*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
         M_ij = mVALtwo;
         display("Successful Movement 2:  " + M_ij + ", Movement Gap: " + double(mGAP));
     end
 end
+if M_step <= 10
 display("Magnitude Test 3:  " + double(M_ij-500) + " : 100 : " + double(M_ij+500));
-for mVALthree = M_ij-500:100:M_ij+500
+for mVALthree = M_ij-50:10:M_ij+50
     if abs(L(mVALthree*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALthree*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALthree*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
         mGAP = abs(L(mVALthree*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALthree*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALthree*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
         M_ij = mVALthree;
         display("Successful Movement 3:  " + M_ij + ", Movement Gap: " + double(mGAP));
     end
 end
+if M_step <= 1
 display("Magnitude Test 4:  " + double(M_ij-50) + " : 1 : " + double(M_ij+50));
-for mVALfour = M_ij-50:1:M_ij+50
+for mVALfour = M_ij-5:1:M_ij+5
     if abs(L(mVALfour*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfour*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfour*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
         mGAP = abs(L(mVALfour*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfour*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfour*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
         M_ij = mVALfour;
         display("Successful Movement 4:  " + M_ij + ", Movement Gap: " + double(mGAP));
     end
 end
+if M_step <= 0.1
 display("Magnitude Test 5:  " + double(M_ij-0.5) + " : 0.1 : " + double(M_ij+0.5));
 for mVALfive = M_ij-0.5:0.1:M_ij+0.5
     if abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
@@ -67,6 +72,7 @@ for mVALfive = M_ij-0.5:0.1:M_ij+0.5
         display("Successful Movement 5:  " + M_ij + ", Movement Gap: " + double(mGAP));
     end
 end
+if M_step <= 0.01
 display("Magnitude Test 6:  " + double(M_ij-0.05) + " : 0.01 : " + double(M_ij+0.05));
 for mVALfive = M_ij-0.05:0.01:M_ij+0.05
     if abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
@@ -75,6 +81,7 @@ for mVALfive = M_ij-0.05:0.01:M_ij+0.05
         display("Successful Movement 6:  " + M_ij + ", Movement Gap: " + double(mGAP));
     end
 end
+if M_step <= 0.001
 display("Magnitude Test 7:  " + double(M_ij-0.005) + " : 0.001 : " + double(M_ij+0.005));
 for mVALfive = M_ij-0.005:0.001:M_ij+0.005
     if abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
@@ -83,6 +90,7 @@ for mVALfive = M_ij-0.005:0.001:M_ij+0.005
         display("Successful Movement 7:  " + M_ij + ", Movement Gap: " + double(mGAP));
     end
 end
+if M_step <= 0.0001
 display("Magnitude Test 8:  " + double(M_ij-0.0005) + " : " + double(M_step) + " : " + double(M_ij+0.0005));
 for mVALfive = M_ij-0.0005:M_step:M_ij+0.0005
     if abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
@@ -91,9 +99,17 @@ for mVALfive = M_ij-0.0005:M_step:M_ij+0.0005
         display("Successful Movement 8:  " + M_ij + ", Movement Gap: " + double(mGAP));
     end
 end
+end
+end
+end
+end
+end
+end
+end
+end
 
-display("FINAL M MAG VALUE:  " + double(mGAP));
-display("FINAL M GAP VALUE:  " + M_ij);
+display("FINAL M MAG VALUE:  " + M_ij);
+display("FINAL M GAP VALUE:  " + double(mGAP));
 
 display("Finding traced segment path...");
 % Traced Path - assumes that no velocity is lost in process of movement
@@ -117,6 +133,5 @@ if jit == 1
     b{iit}.Kt_i = vpa(Kt_i);
     display("DURATION: " + double(Kt_i));
 end
-
 
 display("directions.m");
