@@ -31,3 +31,11 @@ We use [SemVer](http://semver.org/) for versioning.
 - **Michael Hayes** : [iSchool of Lewisville (CAPSTONE / Engineering)](https://sites.google.com/responsiveed.com/capstoneengineering)
 - **Glenn Johnson** : [NASA Hunch Mentor](glenn.f.johnson@nasa.gov)
 - **Ally Westover** : [NASA Hunch Mentor](allison.r.westover@nasa.gov)
+
+## Documentation
+
+### Overall Program Structure
+
+This software follows a nested iterative looping structure.  The `iit` loop iterates from 1 to `i_max`, with each iteration defining a continuous path of motion of the center of mass of the spherical supply pod above the surface. Within each `iit` loop will be an undefined number of `jit` loops, which each define a vector of motion of the supply pod along the surface following the `iit` loop.
+
+The majority of inputs can be entered as simple variables or vectors (which, in this case, is treated as `[<X position of tail>, <Y position of tail>, <Z position of tail>; <X magnitude>, <Y magnitude>, <Z magnitude>]`). The characteristics of the terrain are entered as black-and-white images with variables defining their width and maximum and minimum values. For instance, the general surface is defined in-script with arrays `L_x`, `L_y`, and `L_z`, which are defined _terrain.m_ with the image _surface.png_ alongside variables `Domain`, `L_max`, and `L_min`.
