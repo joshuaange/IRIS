@@ -6,14 +6,13 @@ display("Reading input .mat file");
 global Xq Yq L_x L_y L_z F_x F_y F_z F_r_x F_r_y F_r_z K_x K_y K_z T_c_x T_c_y T_c_z G_l_x G_l_y G_l_z T_g_x T_g_y T_g_z Y_l_x Y_l_y Y_l_z Domain Bi_Int
 syms x y VAL t x_i(t) y_i(t) z_i(t)
 folder = pwd;
-file = 'Example';
+file = 'Empty';
+% Loading variable .mat
+load(strcat(folder,'\data\inputs\',file,'\variables.mat'))
 % Creating and opening log file
 fid = fopen(strcat(folder,'\data\outputs\',file,'\log.txt'),'w');
 fid = fopen(strcat(folder,'\data\outputs\',file,'\log.txt'),'wt');
 fprintf(fid, 'Open...\n');
-% Loading variable .mat
-load(strcat(folder,'\data\inputs\',file,'\variables.mat'))
-fprintf(fid, strcat('...\\data\\inputs\\',file,'\\variables.mat',' loaded\n'));
 % Capturing and interpreting images defining surface characteristics
 run(strcat(folder,'\logic\terrain.m'));
 fprintf(fid, strcat('...\\data\\inputs\\',file,'\\... images converted to matrices\n'));
@@ -26,26 +25,25 @@ s = cell(i_max,j_max);
 C_d = 0.5; % Drag coefficient of pod is 0.5 for spherical objects
 h_R = 0.75; % Percentage of lost kinetic energy transformed to heat (must be found experimentally, so assumed to be 75%)
 A_s = (pi*(d/2)^2); % Cross-sectional area of sphere
-g(x) = (((6.67430*10^-11)*(planet_mass))/(x)^2); % Finds gravity from radius from center
-Q(x) = sqrt((2*m*g(x))/(rho*A_s*C_d)); % Finds terminal velocity from radius from center (as derived from https://www.grc.nasa.gov/www/k-12/airplane/termv.html)
+g(x) = (((6.67430*10^-11)*(m_p))/(x+L_min)^2); % Finds gravity from altitude above L_min
+Q(x) = sqrt((2*m*g(x))/(rho*A_s*C_d)); % Finds terminal velocity from altitude above L_min (https://www.grc.nasa.gov/www/k-12/airplane/termv.html)
 sigma_p = (Y_p/(2*G_p))-1; % Poisson's Ratio (https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf)
-M_p = (1-sigma_p^2)/(pi*Y_p); % Other Calculated Material Property (https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf)
+M_p = (1-sigma_p^2)/(pi*Y_p); % Other Material Property (https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf)
 % Parachute
 if parachute == 1 
     C_d_o = 1.5; % Parachute drag coefficient is 1.75. With pod, we estimate it as 1.5
     q_i(2,1) = 0; % No initial spin with parachute
     q_i(2,2) = 0;
     q_i(2,3) = 0;
-    Q_o = sqrt((2*(m+m_o)*g)/(rho*(A_o)*C_d_o)); % Terminal velocity with parachute
-    if Q_o > 10000000
-        Q_o = 10000000;
-    end
+    Q_o(x) = sqrt((2*(m+m_o)*g(x))/(rho*A_o*C_d_o)); % Terminal velocity with parachute
+    fprintf(fid, 'Parachute found!\n');
+    fprintf(fid, strcat('     Mass: ',m_o,' Area: ',A_o,'m^2'));
 else
-    fprintf(fid, 'No parachute found\n');
+    fprintf(fid, 'No parachute found!\n');
 end
-% Pod Conditions
+% Pod and Interpolation Conditions
 [Xq, Yq] = meshgrid(0:Bi_Int:1);
-[X_sphere,Y_sphere,Z_sphere] = sphere(6);
+[X_sphere,Y_sphere,Z_sphere] = sphere(p_num);
 A_limit = size(X_sphere,1);
 B_limit = size(Y_sphere,2);
 
