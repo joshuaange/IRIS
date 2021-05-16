@@ -9,14 +9,8 @@ folder = pwd;
 file = 'Empty';
 % Loading variable .mat
 load(strcat(folder,'\data\inputs\',file,'\variables.mat'))
-% Creating and opening log file
-fid = fopen(strcat(folder,'\data\outputs\',file,'\log.txt'),'w');
-fid = fopen(strcat(folder,'\data\outputs\',file,'\log.txt'),'wt');
-fprintf(fid, 'Open...\n');
 % Capturing and interpreting images defining surface characteristics
 run(strcat(folder,'\logic\terrain.m'));
-fprintf(fid, strcat('...\\data\\inputs\\',file,'\\... images converted to matrices\n'));
-fprintf(fid, ' \n');
 
 % Record Matrices
 b = cell(i_max,1);
@@ -25,8 +19,8 @@ s = cell(i_max,j_max);
 C_d = 0.5; % Drag coefficient of pod is 0.5 for spherical objects
 h_R = 0.75; % Percentage of lost kinetic energy transformed to heat (must be found experimentally, so assumed to be 75%)
 A_s = (pi*(d/2)^2); % Cross-sectional area of sphere
-g(x) = (((6.67430*10^-11)*(m_p))/(x+L_min)^2); % Finds gravity from altitude above L_min
-Q(x) = sqrt((2*m*g(x))/(rho*A_s*C_d)); % Finds terminal velocity from altitude above L_min (https://www.grc.nasa.gov/www/k-12/airplane/termv.html)
+g(x) = (((6.67430*10^-11)*(m_p))/(x)^2); % Finds gravity from distance to center of planet
+Q(x) = sqrt((2*m*g(x))/(rho*A_s*C_d)); % Finds terminal velocity from distance to center of planet (https://www.grc.nasa.gov/www/k-12/airplane/termv.html)
 sigma_p = (Y_p/(2*G_p))-1; % Poisson's Ratio (https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf)
 M_p = (1-sigma_p^2)/(pi*Y_p); % Other Material Property (https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf)
 % Parachute
@@ -36,10 +30,6 @@ if parachute == 1
     q_i(2,2) = 0;
     q_i(2,3) = 0;
     Q_o(x) = sqrt((2*(m+m_o)*g(x))/(rho*A_o*C_d_o)); % Terminal velocity with parachute
-    fprintf(fid, 'Parachute found!\n');
-    fprintf(fid, strcat('     Mass: ',m_o,' Area: ',A_o,'m^2'));
-else
-    fprintf(fid, 'No parachute found!\n');
 end
 % Pod and Interpolation Conditions
 [Xq, Yq] = meshgrid(0:Bi_Int:1);
