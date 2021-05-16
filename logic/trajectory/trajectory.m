@@ -20,8 +20,8 @@ t_A_end = 0;
 t_A_last = -0.0000000000001; t_A_vel = u_i(2,3); t_A_pos = u_i(1,3)+L_min; %Start pos, vel, and time
 
 % x_i and y_i continuous functions
-fprintf(fid,strcat('x_i(t) = (',string(u_i(2,1)),'*Q(',string(t_A_pos),'))/g(',string(t_A_pos),') * (1-exp((-g(',string(t_A_pos),')*t)/Q(',string(t_A_pos),'))) + ',string(u_i(1,1)),';\n'));
-fprintf(fid,strcat('y_i(t) = (',string(u_i(2,2)),'*Q(',string(t_A_pos),'))/g(',string(t_A_pos),') * (1-exp((-g(',string(t_A_pos),')*t)/Q(',string(t_A_pos),'))) + ',string(u_i(1,2)),';\n'));
+fprintf(fid,strcat('x_i(t) = (',string(u_i(2,1)),'*Q(',string((t_A_pos+L_min)/2),'))/g(',string((t_A_pos+L_min)/2),') * (1-exp((-g(',string((t_A_pos+L_min)/2),')*t)/Q(',string((t_A_pos+L_min)/2),'))) + ',string(u_i(1,1)),';\n'));
+fprintf(fid,strcat('y_i(t) = (',string(u_i(2,2)),'*Q(',string((t_A_pos+L_min)/2),'))/g(',string((t_A_pos+L_min)/2),') * (1-exp((-g(',string((t_A_pos+L_min)/2),')*t)/Q(',string((t_A_pos+L_min)/2),'))) + ',string(u_i(1,2)),';\n'));
 % Looping through and constructing piecewise equation from intervals (z_i because there is a natural stopping point at L_min)
 fprintf(fid, 'z_i(t) = piecewise(');
 while t_A_end == 0
