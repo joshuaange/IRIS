@@ -41,7 +41,7 @@ display("Beginning i loop");
 for iit = 1:i_max
     display("Start: " + "[" + iit + "]");
     % Trajectory
-    run(strcat(folder,'\logic\trajectory\trajectory.m')); % Trajectory and impact
+    run(strcat(folder,'\logic\trajectory\trajectory.m')); % Forming trajectory from 0 to time below L_min
     run(strcat(folder,'\logic\trajectory\pod.m')); % Real collision point
     run(strcat(folder,'\logic\trajectory\final.m')); % Final values and setup
     % Record
