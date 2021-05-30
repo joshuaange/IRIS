@@ -17,9 +17,9 @@ b = cell(i_max,1);
 s = cell(i_max,j_max);
 % Initial
 C_d = 0.5; % Drag coefficient of pod is 0.5 for spherical objects
-h_R = 0.75; % Percentage of lost kinetic energy transformed to heat (must be found experimentally, so assumed to be 75%)
+h_R = 0.90; % Percentage of lost kinetic energy transformed to heat (must be found experimentally, so assumed to be 75%)
 A_s = (pi*(d/2)^2); % Cross-sectional area of sphere
-g(x) = (((6.67430*10^-11)*(m_p))/(x)^2); % Finds gravity from distance to center of planet
+g(x) = (6.67430*10^-11)*((m*m_p)/((x)^2)); % Finds gravity from distance to center of planet
 Q(x) = sqrt((2*m*g(x))/(rho*A_s*C_d)); % Finds terminal velocity from distance to center of planet (https://www.grc.nasa.gov/www/k-12/airplane/termv.html)
 sigma_p = (Y_p/(2*G_p))-1; % Poisson's Ratio (https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf)
 M_p = (1-sigma_p^2)/(pi*Y_p); % Other Material Property (https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf)
