@@ -1,7 +1,7 @@
 # IRIS
 <img src="https://i.imgur.com/b68WLn6.png" alt="IRIS" img align="right" width="275"> The Interactive Resource Impact Simulation (IRIS) is a computer simulation that mathematically models the physical collisions of spherical supply pods onto planetary surfaces. Its purpose is to discover if this dambusting bomb-esque method of landing a payload on the moon or Mars without excess fuel or engines is a practical, survivable possibility. 
 
- **[Project Description](https://sites.google.com/view/lunariris/home)** |
+ **[Home](https://sites.google.com/view/lunariris/home)** |
  **[Research](https://sites.google.com/view/lunariris/research)** |
  **[Development](https://sites.google.com/view/lunariris/development)** |
  **[Pod Design](https://sites.google.com/view/lunariris/pod-design)** |
@@ -34,7 +34,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Documentation
 
-### Overall Program Structure
+### Program Structure
 
 This software follows a nested iterative looping structure.  The `iit` loop iterates from 1 to `i_max`, with each iteration defining a continuous path of motion of the center of mass of the spherical supply pod above the surface. Within each `iit` loop will be an undefined number of `jit` loops, which each define a vector of motion of the supply pod along the surface following the `iit` loop. Over the course of each scenario, necessary values are recorded in cell arrays `b(iit)` and `s(iit,jit)` appropriately.
 
