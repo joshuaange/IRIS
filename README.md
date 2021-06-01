@@ -70,13 +70,14 @@ As it is probable for a "partial collision" prior to the intersection point, we 
 
 #### Ending Values
 
-Finally, the ending values of the trajectory can be determined. The ending velocity `v_i` is defined as `[S_i(1),S_i(2),S_i(3); dx_idt(t_f_i),dy_idt(t_f_i),dz_idt(t_f_i)]`. The ending rotation `I_i` (from assumed constant angular velocity `q_i`) is defined as `[S_i(1),S_i(2),S_i(3); q_i(2,1) * t_f_i, q_i(2,2) * t_f_i, q_i(2,3) * t_f_i]`. If any value in `I_i(2,*)` is `>= 2*pi`, `2*pi` is subtracted. If any value in `I_i(2,*)` is `<= 2*pi`, `2*pi` is added. The initial kinetic energy of the trajectory (`KE_s_i`) can be defined as `0.5*m*mag(u_i)^2` and the final kinetic energy of the trajectory (`KE_f_i`) can be defined as `0.5*m*mag(v_i)^2`.
+Finally, the ending values of the trajectory can be determined. The ending velocity `v_i` is defined as `[S_i(1),S_i(2),S_i(3); dx_idt(t_f_i),dy_idt(t_f_i),dz_idt(t_f_i)]` and ending acceleration `a_i` is defined as `[S_i(1),S_i(2),S_i(3); dx2_idt(t_f_i),dy2_idt(t_f_i),dz2_idt(t_f_i)]`, where `dx2_idt`, `dy2_idt`, and `dz2_idt` refer to the second position function derivatives. The ending rotation `I_i` (from assumed constant angular velocity `q_i`) is defined as `[S_i(1),S_i(2),S_i(3); q_i(2,1) * t_f_i, q_i(2,2) * t_f_i, q_i(2,3) * t_f_i]`. If any value in `I_i(2,*)` is `>= 2*pi`, `2*pi` is subtracted. If any value in `I_i(2,*)` is `<= 2*pi`, `2*pi` is added. The initial kinetic energy of the trajectory (`KE_s_i`) can be defined as `0.5*m*mag(u_i)^2` and the final kinetic energy of the trajectory (`KE_f_i`) can be defined as `0.5*m*mag(v_i)^2`.
 
-To prepare for the subsequent time segment, these values are translated into values for the jit loop, as in the initial kinetic energy (`KE_s_ij = KE_f_i`), angular velocity (`q_ij = q_i`), position along terrain (`S_ij = S_i`), velocity (`v_ij = v_i`), position of center of pod (`C_ij = C_i`), uniform temperature of pod shell (`T_s_ij = T_i`, where `T_i` defines the initial temperature of the pod shell for the trajectory), and rotation (`I_ij = I_i`).
+To prepare for the subsequent time segment, these values are translated into values for the jit loop, as in the initial kinetic energy (`KE_s_ij = KE_f_i`), angular velocity (`q_ij = q_i`), position along terrain (`S_ij = S_i`), velocity (`v_ij = v_i`), acceleration (`a_ij = a_i`), position of center of pod (`C_ij = C_i`), uniform temperature of pod shell (`T_s_ij = T_i`, where `T_i` defines the initial temperature of the pod shell for the trajectory), and rotation (`I_ij = I_i`).
 
 It is at this point that values are saved to cell array `b(iit)`.
 
 ### Segments
+
 
 
 ### Improvements
@@ -85,3 +86,6 @@ It is at this point that values are saved to cell array `b(iit)`.
 * Improving b and s cell arrays
 * Improving temperature calculations
 * Better log descriptions and graphs
+* Better survivability 
+* Is impact force right?
+* Add documentation for segments
