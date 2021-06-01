@@ -1,5 +1,4 @@
 % Tangent Plane and Normal Vector
-display("Finding derivatives and tangent plane...");
 dNNdx = double(dLdx(vpa(S_ij(1)),vpa(S_ij(2)))); % Derivative values of impact position
 dNNdy = double(dLdy(vpa(S_ij(1)),vpa(S_ij(2))));
 if dNNdx == 0
@@ -11,127 +10,35 @@ end
 NN_ij = @(x,y) dNNdx*(x-S_ij(1))+dNNdy*(y-S_ij(2))+S_ij(3); % Tangent plane to impact position
 N_ij = [S_ij(1),S_ij(2),S_ij(3); -dNNdx,-dNNdy,1]; % Normal vector of impact position
 
-display("Finding parallel and perpendicular vectors...");
-% Parallel Vector - along tangent plane in direction of velocity
-PN_ij = v_ij(2,:)-((dot(v_ij(2,:),N_ij(2,:)))/((mag(N_ij))^2)).*N_ij(2,:);
-P_ij = [S_ij(1),S_ij(2),S_ij(3); T*PN_ij(1),T*PN_ij(2),T*PN_ij(3)];
-% Perpendicular Vector - perpendicular to tangent plane (pointing downwards)
-B_m_ij = max(real(vpasolve((mag([S_ij(1)+P_ij(2,1),S_ij(2)+P_ij(2,2),S_ij(3)+P_ij(2,3); T*VAL*dNNdx,T*VAL*dNNdy,T*VAL*(-1)]))^2 + (mag(P_ij))^2 == (T*mag(v_ij))^2, VAL)));
+% Applied force (includes gravity if jit = 1)
+F_v_ij = [C_ij(1), C_ij(2), C_ij(3); m*a_ij(2,1), m*a_ij(2,2), m*a_ij(2,3)];
+% Gravitational force
+F_g_ij = [C_ij(1), C_ij(2), C_ij(3); 0, 0, -g(C_ij(3))];
+
+% Component vectors of initial force
+    % Parallel Vector - along tangent plane in direction of velocity
+PN_ij = F_v_ij(2,:)-((dot(F_v_ij(2,:),N_ij(2,:)))/((mag(N_ij))^2)).*N_ij(2,:);
+P_ij = [C_ij(1),C_ij(2),C_ij(3); PN_ij(1), PN_ij(2), PN_ij(3)];
+    % Perpendicular Vector - perpendicular to tangent plane (pointing downwards)
+B_m_ij = max(real(vpasolve((mag([C_ij(1)+P_ij(2,1),C_ij(2)+P_ij(2,2),C_ij(3)+P_ij(2,3); VAL*dNNdx,VAL*dNNdy,VAL*(-1)]))^2 + (mag(P_ij))^2 == (mag(F_v_ij))^2, VAL)));
 if B_m_ij == 0
     B_m_ij = B_m_min; % Distance between velocity and parallel vector head
 end
-B_ij = [S_ij(1)+P_ij(2,1),S_ij(2)+P_ij(2,2),S_ij(3)+P_ij(2,3); T*B_m_ij*dNNdx,T*B_m_ij*dNNdy,T*B_m_ij*(-1)];
-% Magnitude to Surface
-P_ij = [S_ij(1),S_ij(2),S_ij(3); 0.9*T*PN_ij(1),0.9*T*PN_ij(2),0.9*T*PN_ij(3)]; % Divided value of P_ij so the pod doesn't not change velocity over the course of O_ij
-mGAP = abs(L(0*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),0*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - 0*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3));
-M_ij = 0; % Similar to finding intersection point, must use searching algorithm
-display("Default M Mag:  " + double(M_range));
-display("Default M Gap:  " + double(mGAP));
-display("Magnitude Test 1:  " + double(-M_range) + " : 10000 : " + double(M_range));
-if M_step <= 1000
-for mVALone = double(-M_range):1000:double(M_range)
-    if abs(L(mVALone*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALone*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALone*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
-        mGAP = abs(L(mVALone*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALone*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALone*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
-        M_ij = mVALone;
-        display("Successful Movement 1:  " + M_ij + ", Movement Gap: " + double(mGAP));
-    end
-end
-if M_step <= 100
-display("Magnitude Test 2:  " + double(M_ij-5000) + " : 1000 : " + double(M_ij+5000));
-for mVALtwo = M_ij-500:100:M_ij+500
-    if abs(L(mVALtwo*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALtwo*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALtwo*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
-        mGAP = abs(L(mVALtwo*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALtwo*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALtwo*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
-        M_ij = mVALtwo;
-        display("Successful Movement 2:  " + M_ij + ", Movement Gap: " + double(mGAP));
-    end
-end
-if M_step <= 10
-display("Magnitude Test 3:  " + double(M_ij-500) + " : 100 : " + double(M_ij+500));
-for mVALthree = M_ij-50:10:M_ij+50
-    if abs(L(mVALthree*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALthree*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALthree*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
-        mGAP = abs(L(mVALthree*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALthree*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALthree*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
-        M_ij = mVALthree;
-        display("Successful Movement 3:  " + M_ij + ", Movement Gap: " + double(mGAP));
-    end
-end
-if M_step <= 1
-display("Magnitude Test 4:  " + double(M_ij-50) + " : 1 : " + double(M_ij+50));
-for mVALfour = M_ij-5:1:M_ij+5
-    if abs(L(mVALfour*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfour*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfour*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
-        mGAP = abs(L(mVALfour*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfour*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfour*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
-        M_ij = mVALfour;
-        display("Successful Movement 4:  " + M_ij + ", Movement Gap: " + double(mGAP));
-    end
-end
-if M_step <= 0.1
-display("Magnitude Test 5:  " + double(M_ij-0.5) + " : 0.1 : " + double(M_ij+0.5));
-for mVALfive = M_ij-0.5:0.1:M_ij+0.5
-    if abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
-        mGAP = abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
-        M_ij = mVALfive;
-        display("Successful Movement 5:  " + M_ij + ", Movement Gap: " + double(mGAP));
-    end
-end
-if M_step <= 0.01
-display("Magnitude Test 6:  " + double(M_ij-0.05) + " : 0.01 : " + double(M_ij+0.05));
-for mVALfive = M_ij-0.05:0.01:M_ij+0.05
-    if abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
-        mGAP = abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
-        M_ij = mVALfive;
-        display("Successful Movement 6:  " + M_ij + ", Movement Gap: " + double(mGAP));
-    end
-end
-if M_step <= 0.001
-display("Magnitude Test 7:  " + double(M_ij-0.005) + " : 0.001 : " + double(M_ij+0.005));
-for mVALfive = M_ij-0.005:0.001:M_ij+0.005
-    if abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
-        mGAP = abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
-        M_ij = mVALfive;
-        display("Successful Movement 7:  " + M_ij + ", Movement Gap: " + double(mGAP));
-    end
-end
-if M_step <= 0.0001
-display("Magnitude Test 8:  " + double(M_ij-0.0005) + " : " + double(M_step) + " : " + double(M_ij+0.0005));
-for mVALfive = M_ij-0.0005:M_step:M_ij+0.0005
-    if abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3))) < mGAP
-        mGAP = abs(L(mVALfive*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),mVALfive*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2)) - double(mVALfive*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)));
-        M_ij = mVALfive;
-        display("Successful Movement 8:  " + M_ij + ", Movement Gap: " + double(mGAP));
-    end
-end
-end
-end
-end
-end
-end
-end
-end
-end
+B_ij = [C_ij(1)+P_ij(2,1),C_ij(2)+P_ij(2,2),C_ij(3)+P_ij(2,3); B_m_ij*dNNdx,B_m_ij*dNNdy,B_m_ij*(-1)];
 
-display("FINAL M MAG VALUE:  " + M_ij);
-display("FINAL M GAP VALUE:  " + double(mGAP));
-
-display("Finding traced segment path...");
-% Traced Path - assumes that no velocity is lost in process of movement
-Rn_ij = [M_ij*cos(falpha(B_ij))+P_ij(2,1)+S_ij(1),M_ij*cos(fbeta(B_ij))+P_ij(2,2)+S_ij(2),M_ij*cos(fgamma(B_ij))+P_ij(2,3)+S_ij(3)];
-O_ij = [S_ij(1),S_ij(2),S_ij(3); Rn_ij(1)-S_ij(1),Rn_ij(2)-S_ij(2),L(Rn_ij(1),Rn_ij(2))-S_ij(3)];
-
-% Returning to non-divided value of P_ij
-P_ij = [S_ij(1),S_ij(2),S_ij(3); T*PN_ij(1),T*PN_ij(2),T*PN_ij(3)];
-
-% Number of time segments - simple estimation
-%(from https://www.researchgate.net/publication/270681194_Estimation_of_the_Impact_Duration_for_Several_Types_of_Structures)
-if jit == 1 
-    Kt_V = (mag(B_ij)/T); % Full impact velocity
-    k_lin = (pi/3.21)^2 * (m*(k_H^4)*(Kt_V^2))^(1/5); % Linear stiffness 
-    T_HS = pi*sqrt(m/k_lin); % Impact duration
-    Kt_i = (T_HS)/T; % Number of time segments (rounded)
-    Kt_i = round(Kt_i);
-    if Kt_i < 1
-       Kt_i = 1; 
-    end
-    b{iit}.Kt_i = vpa(Kt_i);
-    display("DURATION: " + double(Kt_i));
-end
+% % Number of time segments - simple estimation
+% %(from https://www.researchgate.net/publication/270681194_Estimation_of_the_Impact_Duration_for_Several_Types_of_Structures)
+% if jit == 1 
+%     Kt_V = (mag(B_ij)/T); % Full downwards impact velocity
+%     k_lin = (pi/3.21)^2 * (m*(k_H^4)*(Kt_V^2))^(1/5); % Linear stiffness 
+%     T_HS = pi*sqrt(m/k_lin); % Impact duration
+%     Kt_i = (T_HS)/T; % Number of time segments (rounded)
+%     Kt_i = round(Kt_i);
+%     if Kt_i < 1
+%        Kt_i = 1; 
+%     end
+%     b{iit}.Kt_i = vpa(Kt_i);
+%     display("DURATION: " + double(Kt_i));
+% end
 
 display("directions.m");

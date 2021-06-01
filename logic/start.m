@@ -50,17 +50,17 @@ for iit = 1:i_max
     for jit = 1:j_max
         display("Start: " + "[" + iit + " + " + jit + "]");
         % Time Segments
-        run(strcat(folder,'\logic\segments\directions.m')); % Planes, vectors, and full duration
-        run(strcat(folder,'\logic\segments\pod.m')); % Moves pod to ending position along traced segment vector
+        run(strcat(folder,'\logic\segments\directions.m')); % Velocity, gravity, tangent/normals, and duration
         run(strcat(folder,'\logic\segments\reactions.m')); % Reactions along time segment
+        run(strcat(folder,'\logic\segments\pod.m')); % Traced segment vector and tangential pod movement
         run(strcat(folder,'\logic\segments\final.m')); % Final values and setup
         % Survivability
         run(strcat(folder,'\logic\segments\survivability.m')); % Finding survivability with pod
         % Record
         run(strcat(folder,'\logic\record\small.m'));
+
         % Return
-        r = V_ij(2,3) + Cn_ij(3) - L(V_ij(2,1) + Cn_ij(1),V_ij(2,2) + Cn_ij(2));
-        display("Return: " + double(r) + ", Velocity: " + double(mag(V_ij)));
+        r = Cn_ij(3) - L(Cn_ij(1),Cn_ij(2));
         % Stop
         if -v_min<double(mag(V_ij))<=v_min
             break
@@ -78,6 +78,7 @@ for iit = 1:i_max
         else % On-Ground
             KE_s_ij = vpa(KE_f_ij);
             v_ij = double(V_ij);
+            a_ij = double(A_ij);
             q_ij = double(Q_ij);
             C_ij = double(Cn_ij);
             T_s_ij = double(T_f_ij);

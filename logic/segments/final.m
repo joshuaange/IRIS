@@ -1,6 +1,6 @@
-% New velocity
-display("...New Velocity"); % Adding up individual components of velocity
-V_ij = [R_ij(1),R_ij(2),R_ij(3); A_g_ij(2,1) + A_n_ij(2,1) + A_e_ij(2,1) + A_f_ij(2,1) + A_r_ij(2,1) + v_ij(2,1),A_g_ij(2,2) + A_n_ij(2,2) + A_e_ij(2,2) + A_f_ij(2,2) + A_r_ij(2,2) + v_ij(2,2),A_g_ij(2,3) + A_n_ij(2,3) + A_e_ij(2,3) + A_f_ij(2,3) + A_r_ij(2,3) + v_ij(2,3)];
+% New velocity and acceleration
+V_ij = [C_ij(1),C_ij(2),C_ij(3); v_ij(2,1) + (F_g_ij(2,1)+F_f_ij(2,1)+F_N_ij(2,1)+F_e_ij(2,1))/m * T, v_ij(2,2) + (F_g_ij(2,2)+F_f_ij(2,2)+F_N_ij(2,2)+F_e_ij(2,2))/m * T, v_ij(2,3) + (F_g_ij(2,3)+F_N_ij(2,3)+F_e_ij(2,3)+F_f_ij(2,3))/m * T];
+A_ij = [C_ij(1),C_ij(2),C_ij(3); (V_ij(2,1)^2 - v_ij(2,1)^2)/T, (V_ij(2,2)^2 - v_ij(2,2)^2)/T, (V_ij(2,3)^2 - v_ij(2,3)^2)/T];
 
 display("...Misc. Calculations");
 % Forces
