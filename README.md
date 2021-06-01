@@ -77,3 +77,11 @@ To prepare for the subsequent time segment, these values are translated into val
 It is at this point that values are saved to cell array `b(iit)`.
 
 ### Segments
+
+
+### Improvements
+
+* Fixing spin/rotation in segments
+* Improving b and s cell arrays
+* Improving temperature calculations
+* Better log descriptions and graphs
