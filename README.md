@@ -78,7 +78,25 @@ It is at this point that values are saved to cell array `b(iit)`.
 
 ### Segments
 
+#### directions.m
 
+The time segment `iit, jit` of the pod is defined with a series of calculations of forces and reactions from the impact along the surface. _direction.m_ calculates helpful values (such as the tangent plane and normal vector of initial position) and the initial applied force and gravitational force. At position `S_i`, we find the tangent plane `NN_ij` with `@(x,y) dNNdx*(x-S_ij(1))+dNNdy*(y-S_ij(2))+S_ij(3)` and the normal vector `N_ij` with `[S_ij(1),S_ij(2),S_ij(3); -dNNdx,-dNNdy,1]`, where `dNNdx` and `dNNdy` refer to partial derivative values along the x and y axes at the impact position with minimum value `derivative_min` (with `double(dLdx(vpa(S_ij(1)),vpa(S_ij(2))))` and `double(dLdy(vpa(S_ij(1)),vpa(S_ij(2))))`, respectively, where `dLdx(x,y)` and `dLdy(x,y)` find said partial derivative values at interval `2*Bi_Int`).
+
+We consider the force of initial impact (`F_v_ij`) to be equal to `[C_ij(1), C_ij(2), C_ij(3); m*a_ij(2,1), m*a_ij(2,2), m*a_ij(2,3)]`. We do not consider this value to be applicable to the motion of the pod, itself, only as a metric for the normal force. We consider the force of gravity (`F_g_ij`) to be equal to `[C_ij(1), C_ij(2), C_ij(3); 0, 0, -g(C_ij(3))]`.
+
+Lastly, for the sake of the normal force and, at one point an estimation of the full number of time segments, we calculate the component aspects of `F_v_ij` as `P_ij` and `B_ij` for the projected parallel and perpendicular components to the tangent plane `NN_ij`. "Parallel Vector" `P_ij` is found with `PN_ij = F_v_ij(2,:)-((dot(F_v_ij(2,:),N_ij(2,:)))/((mag(N_ij))^2)).*N_ij(2,:)` as is derived from _http://sites.science.oregonstate.edu/math/home/programs/undergrad/CalculusQuestStudyGuides/vcalc/dotprod/dotprod.html_, and `P_ij = [C_ij(1),C_ij(2),C_ij(3); PN_ij(1), PN_ij(2), PN_ij(3)]`. "Perpendicular Vector" `B_ij` is found first by solving for its magnitude (`B_m_ij`) with `max(real(vpasolve((mag([C_ij(1)+P_ij(2,1),C_ij(2)+P_ij(2,2),C_ij(3)+P_ij(2,3); VAL*dNNdx,VAL*dNNdy,VAL*(-1)]))^2 + (mag(P_ij))^2 == (mag(F_v_ij))^2, VAL)))` at a minimum of `B_m_min`. `B_ij` is then found with `[C_ij(1)+P_ij(2,1),C_ij(2)+P_ij(2,2),C_ij(3)+P_ij(2,3); B_m_ij*dNNdx,B_m_ij*dNNdy,B_m_ij*(-1)]`.
+
+Lastly, as is derived from _https://www.researchgate.net/publication/270681194_Estimation_of_the_Impact_Duration_for_Several_Types_of_Structures_, we estimate the proper number of time segments for an ideal elastic collision. `Kt_V`, the full downwards impact velocity, is found with `(mag(B_ij)/m)*T`, which is used to find the linear stiffness of the pod (`k_lin = (pi/3.21)^2 * (m*(k_H^4)*(Kt_V^2))^(1/5)`) and final impact duration (`T_HS = pi*sqrt(m/k_lin)`), which is, in turn, used to find the number of ideal time segments (`Kt_i = (T_HS)/T`, `Kt_i = round(Kt_i)`, and `if Kt_i < 1 \n Kt_i = 1 \n end`).
+
+#### reactions.m
+
+Similar to the component aspects of initial velocity (`P_ij` and `B_ij`), we find the component aspects of the gravitational force, using `PGN_ij` rather than `PN_ij`, `PG_ij` rather than `P_ij`, and `BG_ij` rather than `B_ij`. From `BG_ij` and `B_ij`, we can find the normal force (`F_N_ij`), as is derived from _http://hyperphysics.phy-astr.gsu.edu/hbase/frict.html_. If `jit<=Kt_i`, we consider the normal force as having ongoing impact and define it as `[C_ij(1) C_ij(2) C_ij(3); -(B_ij(2,1)+BG_ij(2,1))/Kt_i, -(B_ij(2,2)+BG_ij(2,2))/Kt_i, -(B_ij(2,3)+BG_ij(2,3))/Kt_i]`. Otherwise, we assume the duration is complete and define `F_N_ij = [C_ij(1) C_ij(2) C_ij(3); 0 0 0]`.
+
+The force of elasticity (`F_e_ij`) is simply calculated by multiplying the normal force by the Coefficient of Restitution. We define `F_e_ij = [C_ij(1),C_ij(2),C_ij(3); 0, 0, 0]` and if `jit<=Kt_i`, we set `F_e_ij(2,1) = K(S_ij(1),S_ij(2))*(mag(s{iit,jit}.F_N_ij)) * cos(falpha(F_N_ij))`, `F_e_ij(2,2) = K(S_ij(1),S_ij(2))*(mag(s{iit,jit}.F_N_ij)) * cos(fbeta(F_N_ij))`, and `F_e_ij(2,3) = K(S_ij(1),S_ij(2))*(mag(s{iit,jit}.F_N_ij)) * cos(fgamma(F_N_ij))`.
+
+To calculate the force of friction, as derived from _http://hyperphysics.phy-astr.gsu.edu/hbase/frict.html_, it must be applied in the opposite direction of a segment vector. We calculate a tentative traced segment vector `O_ij` with `[C_ij(1),C_ij(2),C_ij(3); v_ij(2,1)*T + 0.5*(F_g_ij(2,1)+F_N_ij(2,1)+F_e_ij(2,1))/m * T^2, v_ij(2,2)*T + 0.5*(F_g_ij(2,2)+F_N_ij(2,2)+F_e_ij(2,2))/m * T^2, v_ij(2,3)*T + 0.5*(F_g_ij(2,3)+F_N_ij(2,3)+F_e_ij(2,3))/m * T^2]`. From this, we can define the force of friction (`F_f_ij`) with `[C_ij(1),C_ij(2),C_ij(3); -F(S_ij(1),S_ij(2))*mag(f_N_ij)*cos(falpha(O_ij)), -F(S_ij(1),S_ij(2))*mag(f_N_ij)*cos(fbeta(O_ij)), -F(S_ij(1),S_ij(2))*mag(f_N_ij)*cos(fgamma(O_ij))]`.
+
+#### pod.m
 
 ### Improvements
 
