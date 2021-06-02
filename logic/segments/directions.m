@@ -26,19 +26,19 @@ if B_m_ij == 0
 end
 B_ij = [C_ij(1)+P_ij(2,1),C_ij(2)+P_ij(2,2),C_ij(3)+P_ij(2,3); B_m_ij*dNNdx,B_m_ij*dNNdy,B_m_ij*(-1)];
 
-% % Number of time segments - simple estimation
-% %(from https://www.researchgate.net/publication/270681194_Estimation_of_the_Impact_Duration_for_Several_Types_of_Structures)
-% if jit == 1 
-%     Kt_V = (mag(B_ij)/T); % Full downwards impact velocity
-%     k_lin = (pi/3.21)^2 * (m*(k_H^4)*(Kt_V^2))^(1/5); % Linear stiffness 
-%     T_HS = pi*sqrt(m/k_lin); % Impact duration
-%     Kt_i = (T_HS)/T; % Number of time segments (rounded)
-%     Kt_i = round(Kt_i);
-%     if Kt_i < 1
-%        Kt_i = 1; 
-%     end
-%     b{iit}.Kt_i = vpa(Kt_i);
-%     display("DURATION: " + double(Kt_i));
-% end
+% Number of time segments - simple estimation
+%(from https://www.researchgate.net/publication/270681194_Estimation_of_the_Impact_Duration_for_Several_Types_of_Structures)
+if jit == 1 
+    Kt_V = (mag(B_ij)/m)*T; % Full downwards impact velocity
+    k_lin = (pi/3.21)^2 * (m*(k_H^4)*(Kt_V^2))^(1/5); % Linear stiffness 
+    T_HS = pi*sqrt(m/k_lin); % Impact duration
+    Kt_i = (T_HS)/T; % Number of time segments (rounded)
+    Kt_i = round(Kt_i);
+    if Kt_i < 1
+       Kt_i = 1; 
+    end
+    b{iit}.Kt_i = vpa(Kt_i);
+    display("DURATION: " + double(Kt_i));
+end
 
 display("directions.m");

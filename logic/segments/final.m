@@ -4,7 +4,7 @@ A_ij = [C_ij(1),C_ij(2),C_ij(3); (V_ij(2,1) - v_ij(2,1))/T, (V_ij(2,2) - v_ij(2,
 
 display("...Misc. Calculations");
 % Impact Force is perpendicular of initial applied force
-FI_ij = B_ij;
+FI_ij = F_N_ij;
 % Deformation - Elastic compression between a sphere and plane
 % From https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf
 sigma_l_ij = (Y_l(S_ij(1),S_ij(2))+Y_l(R_ij(1),R_ij(2)))/(2*(G_l(S_ij(1),S_ij(2))+G_l(R_ij(1),R_ij(2)))) - 1;
