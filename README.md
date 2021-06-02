@@ -97,13 +97,3 @@ The force of elasticity (`F_e_ij`) is simply calculated by multiplying the norma
 To calculate the force of friction, as derived from _http://hyperphysics.phy-astr.gsu.edu/hbase/frict.html_, it must be applied in the opposite direction of a segment vector. We calculate a tentative traced segment vector `O_ij` with `[C_ij(1),C_ij(2),C_ij(3); v_ij(2,1)*T + 0.5*(F_g_ij(2,1)+F_N_ij(2,1)+F_e_ij(2,1))/m * T^2, v_ij(2,2)*T + 0.5*(F_g_ij(2,2)+F_N_ij(2,2)+F_e_ij(2,2))/m * T^2, v_ij(2,3)*T + 0.5*(F_g_ij(2,3)+F_N_ij(2,3)+F_e_ij(2,3))/m * T^2]`. From this, we can define the force of friction (`F_f_ij`) with `[C_ij(1),C_ij(2),C_ij(3); -F(S_ij(1),S_ij(2))*mag(f_N_ij)*cos(falpha(O_ij)), -F(S_ij(1),S_ij(2))*mag(f_N_ij)*cos(fbeta(O_ij)), -F(S_ij(1),S_ij(2))*mag(f_N_ij)*cos(fgamma(O_ij))]`.
 
 #### pod.m
-
-### Improvements
-
-* Fixing spin/rotation in segments
-* Improving b and s cell arrays
-* Improving temperature calculations
-* Better log descriptions and graphs
-* Better survivability 
-* Is impact force right?
-* Add documentation for segments
