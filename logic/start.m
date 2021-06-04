@@ -65,12 +65,12 @@ for iit = 1:i_max
         if -v_min<double(mag(V_ij))<=v_min
             break
         end
-        if r>r_min && jit>=Kt_i % In-Air
+        if r>(d/2+r_min) && jit>=Kt_i % In-Air
             u_i = [double(Cn_ij(1)),double(Cn_ij(2)),double(Cn_ij(3)); double(V_ij(2,1)),double(V_ij(2,2)),double(V_ij(2,3))];
             q_i = double(Q_ij);
             T_i = double(T_f_ij);
             break
-        elseif r>r_edge % In-Air (Edge)
+        elseif r>(d/2+r_edge) % In-Air (Edge)
             u_i = [double(Cn_ij(1)),double(Cn_ij(2)),double(Cn_ij(3)); double(V_ij(2,1)),double(V_ij(2,2)),double(V_ij(2,3))];
             q_i = double(Q_ij);
             T_i = double(T_f_ij);
