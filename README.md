@@ -98,12 +98,30 @@ To calculate the force of friction, as derived from _http://hyperphysics.phy-ast
 
 #### pod.m
 
-### Improvements
+We then find the pod's ending movement for segment `iit,jit` with segment vector `O_ij`, which we define as `[C_ij(1),C_ij(2),C_ij(3); v_ij(2,1)*T + 0.5*(F_g_ij(2,1)+F_f_ij(2,1)+F_N_ij(2,1)+F_e_ij(2,1))/m * T^2, v_ij(2,2)*T + 0.5*(F_g_ij(2,2)+F_f_ij(2,2)+F_N_ij(2,2)+F_e_ij(2,2))/m * T^2, v_ij(2,3)*T + 0.5*(F_g_ij(2,3)+F_N_ij(2,3)+F_e_ij(2,3)+F_f_ij(2,3))/m * T^2`. This finds the movement of the pod following formula for displacement `s = u*t + 0.5*a*t^2`, which provides the end result of motion given the initial velocity and applied forces for `T` seconds if there was no terrain. We first find the new pod coordinates `Xn_ij`, `Yn_ij`, and `Zn_ij` and center point `Cn_ij` as a direct translation from the tail to the head of the `O_ij`. These values are calculated with `X_sphere*(d/2) + double(C_ij(1)+O_ij(2,1))`, `Y_sphere*(d/2) + double(C_ij(2)+O_ij(2,2))`, `Z_sphere*(d/2) + double(C_ij(3)+O_ij(2,3))`, and `C_ij + O_ij`, respectively.
 
-* Fixing spin/rotation in segments
-* Improving b and s cell arrays
-* Improving temperature calculations
-* Better log descriptions and graphs
-* Better survivability 
-* Is impact force right?
-* Add documentation for segments
+We first calculate the new pod position if the center of the displaced pod is under the terrain (if `if Cn_ij(3) < L(Cn_ij(1),Cn_ij(2))`) We calculate `R_ij = [Cn_ij(1),Cn_ij(2),L(Cn_ij(1),Cn_ij(2))]` as the center position of the pod translated onto the terrain. This is inaccurate for long distances, as the position is only translated directly vertically, not tangentially to the terrain, but suits smaller values of `T` fine. We know the normal vector of this position will be `Nn_ij = [R_ij(1),R_ij(2),R_ij(3); -dRdx,-dRdy,1]`, where `dRdx` and `dRdy` refer to partial derivative values along the x and y axes at `R_ij` with minimum value `derivative_min` (with `double(dLdx(R_ij(1),R_ij(2)))` and `double(dLdy(R_ij(1),R_ij(2)))`, respectively). From this, we find the values of `Xn_ij`, `Yn_ij`, `Zn_ij` and `Cn_ij` with `X_sphere*(d/2)+R_ij(1)+(d/2)*cos(falpha(Nn_ij))`, `Y_sphere*(d/2)+R_ij(2)+(d/2)*cos(fbeta(Nn_ij))`, `Z_sphere*(d/2)+R_ij(3)+(d/2)*cos(fgamma(Nn_ij))`, and `[R_ij(1)+(d/2)*cos(falpha(Nn_ij)),R_ij(2)+(d/2)*cos(fbeta(Nn_ij)),R_ij(3)+(d/2)*cos(fgamma(Nn_ij))]`, respectively, which essentially sets the pod shape one `d/2` in the normal direction of `R_ij`.
+
+There is additionally the possibility that the pod lies someone intersecting with the terrain, which allows us to act with more specificity than `R_ij = [Cn_ij(1),Cn_ij(2),L(Cn_ij(1),Cn_ij(2))]`. As such, we utilize a `try/catch/end` function in which we cycle through every discrete pod coordinate with `m_A` and `m_B` and if `abs(L(Xn_ij(m_A,m_B),Yn_ij(m_A,m_B))-Zn_ij(m_A,m_B)) < s_min` for any point, we add `c+1` to `c`, `X_total+Xn_ij(m_A,m_B)` to `X_total`, `Y_total+Yn_ij(m_A,m_B)` to `Y_total`, and `Z_total+Zn_ij(m_A,m_B)` to `Z_total`. `R_ij` can then be found with `[(X_total/c),(Y_total/c),(Z_total/c)];`. This averages every intersecting point of the pod with the terrain, to find the ideal center position. We know the normal vector of this position will be `Nn_ij = [R_ij(1),R_ij(2),R_ij(3); -dRdx,-dRdy,1]`, where `dRdx` and `dRdy` refer to partial derivative values along the x and y axes at `R_ij` with minimum value `derivative_min` (with `double(dLdx(R_ij(1),R_ij(2)))` and `double(dLdy(R_ij(1),R_ij(2)))`, respectively). From this, we find the values of `Xn_ij`, `Yn_ij`, `Zn_ij` and `Cn_ij` with `X_sphere*(d/2)+R_ij(1)+(d/2)*cos(falpha(Nn_ij))`, `Y_sphere*(d/2)+R_ij(2)+(d/2)*cos(fbeta(Nn_ij))`, `Z_sphere*(d/2)+R_ij(3)+(d/2)*cos(fgamma(Nn_ij))`, and `[R_ij(1)+(d/2)*cos(falpha(Nn_ij)),R_ij(2)+(d/2)*cos(fbeta(Nn_ij)),R_ij(3)+(d/2)*cos(fgamma(Nn_ij))]`, respectively, which essentially sets the pod shape one `d/2` in the normal direction of `R_ij`.
+
+Lastly, the final segment vector displacement is found with these new positions with `O_ij = [C_ij(1),C_ij(2),C_ij(3); Cn_ij(1)-C_ij(1),Cn_ij(2)-C_ij(2),Cn_ij(3)-C_ij(3)]`.
+
+#### final.m
+
+Finally, we're able to calculate the necessary values for the subsequent collision. We can find the ending velocity (`V_ij`) with `[C_ij(1),C_ij(2),C_ij(3); v_ij(2,1) + (F_g_ij(2,1)+F_f_ij(2,1)+F_N_ij(2,1)+F_e_ij(2,1))/m * T, v_ij(2,2) + (F_g_ij(2,2)+F_f_ij(2,2)+F_N_ij(2,2)+F_e_ij(2,2))/m * T, v_ij(2,3) + (F_g_ij(2,3)+F_N_ij(2,3)+F_e_ij(2,3)+F_f_ij(2,3))/m * T]` and acceleration (`A_ij`) with `[C_ij(1),C_ij(2),C_ij(3); (V_ij(2,1) - v_ij(2,1))/T, (V_ij(2,2) - v_ij(2,2))/T, (V_ij(2,3) - v_ij(2,3))/T]`.
+
+To find the deformation of the pod, we calculate the elastic compression of a sphere and plane with formulas from _https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf_. The tangential impact force `FI_ij` is `-mag(F_N_ij)`. Similar to `sigma_p` and `M_p`, we can find `sigma_l_ij` and `M_l_ij` with `(Y_l(S_ij(1),S_ij(2))+Y_l(R_ij(1),R_ij(2)))/(2*(G_l(S_ij(1),S_ij(2))+G_l(R_ij(1),R_ij(2)))) - 1` and `(1-sigma_l_ij^2)/(pi*((Y_l(S_ij(1),S_ij(2))+Y_l(R_ij(1),R_ij(2)))/2))`, respectively. As such, the elastic compressibility `D_ij` (m) is found with derived formula `((((3*pi)/2)^(2/3))*((101.97*abs(FI_ij))^(2/3))*((M_l_ij+M_p)^(2/3))*((1/(1000*d))^(1/3)))/(1000)`.
+
+Lastly, the change in Kinetic Energy `deltaKE_ij` and final Kinetic Energy `KE_f_ij` for the time segment can be found with `0.5*m*(mag(V_ij) - mag(v_ij))^2 + 0.5*I*(mag(Q_ij) - mag(q_ij))^2` and `KE_f_ij = KE_s_ij + deltaKE_ij`, respectively, where `I` is the moment of inertia of pod (kg m^2), which could be found at _http://hyperphysics.phy-astr.gsu.edu/hbase/isph.html_.
+
+#### survivability.m
+
+It is at this point that values are saved to cell array `s(iit,jit)`.
+
+#### Return
+
+We find return value `r` with `Cn_ij(3) - L(Cn_ij(1),Cn_ij(2))` to denote distance above the terrain. If `-v_min<double(mag(V_ij))<=v_min`, the pod has halted movement and we exit the loop.
+
+If `r>(d/2+r_min) && jit>=Kt_i` or `r>(d/2+r_edge)`, a subsequent "in-air trajectory" is considered. The former condition describes the end of an "ideal" trajectory and pod position above the terrain, while the latter denotes a form of unpredictable movement (such as the pod rolling off a cliff). As such, we translate current values of velocity, rotational velocity, and temperature with `u_i = [double(Cn_ij(1)),double(Cn_ij(2)),double(Cn_ij(3)); double(V_ij(2,1)),double(V_ij(2,2)),double(V_ij(2,3))]`, `q_i = double(Q_ij)`, and `T_i = double(T_f_ij)`.
+
+If none of the above conditions are satisfied, we follow a subsequent `jit` loop and time segment. Prior to this, we translate kinetic energy (`KE_s_ij = vpa(KE_f_ij)`), velocity (`v_ij = double(V_ij)`), acceleration (`a_ij = double(A_ij)`), rotational velocity (`q_ij = double(Q_ij)`), center point of pod (`C_ij = double(Cn_ij)`), pod shell temperature (`T_s_ij = double(T_f_ij)`), and impact position (`S_ij = double(R_ij)`) for the subsequent time segment.
