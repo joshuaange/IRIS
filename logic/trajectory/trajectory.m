@@ -35,9 +35,9 @@ while t_A_end == 0
     fprintf(fid,strcat('(',string((t_A_last)),'<=t<',string((t_A_last)+t_A_int),'), (',string(double(Q(t_A_pos))),'/',string(double(g(t_A_pos))),') * ((',string((t_A_vel)),')+',string(double(Q(t_A_pos))),') * (1-exp((-',string(double(g(t_A_pos))),'*(t-',string(double(t_A_last)),'))/',string(double(Q(t_A_pos))),')) - (',string(double(Q(t_A_pos))),'*(t-',string(double(t_A_last)),')) + ',string((t_A_pos)))); 
 
     % Finding start conditions for subsequent loop
-    t_A_pos = double(z_i(t_A_int));
+    t_A_pos = vpa(z_i(t_A_int));
     t_A_diff = diff(z_i); 
-    t_A_vel = double(t_A_diff(t_A_int));
+    t_A_vel = vpa(t_A_diff(t_A_int));
 
     % End condition
     if t_A_pos <= L_min

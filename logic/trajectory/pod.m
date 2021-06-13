@@ -16,10 +16,15 @@ for t_p = (t_A_last + t_A_int - t_step):-t_int_step:0 %From bottom to 0
     end
 end
 
+% In case below interval
+if exist('t_p_min','var') == 0
+    t_p_min = 0;
+end
+
 % Collision Time of Pod Shape
 % Moving from t_inter to t_p_min at increasingly smaller intervals to find
 % pod collision point with terrain
-t_inter = t_f_i
+t_inter = t_f_i;
 t_move = t_stride; % "move" defines the interval
 t_p_end = 0;
 while t_p_end == 0
