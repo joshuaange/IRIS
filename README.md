@@ -34,13 +34,13 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Documentation
 
-### Program Structure
+### 1 Program Structure
 
 This software follows a nested iterative looping structure.  The `iit` loop iterates from 1 to `i_max`, with each iteration defining a continuous path of motion of the center of mass of the spherical supply pod above the surface. Within each `iit` loop will be an undefined number of `jit` loops, which each define a vector of motion of the supply pod along the surface following the `iit` loop. Over the course of each scenario, necessary values are recorded in cell arrays `b(iit)` and `s(iit,jit)` appropriately.
 
 The majority of inputs can be entered as simple variables or vectors (which, in this case, is treated as `[<X position of tail>, <Y position of tail>, <Z position of tail>; <X magnitude>, <Y magnitude>, <Z magnitude>]`). The characteristics of the terrain are entered as grayscale images with variables defining their width and maximum and minimum values. For instance, the general surface is defined in-script with arrays `L_x`, `L_y`, and `L_z`, which are defined in _terrain.m_ with the image _Surface.png_ alongside variables `domain` (which refers to the horizontal width of considered terrain (m)) and `L_max` and `L_min` (which refer to the maximum and minimum values represented in the heightmap image). For _Surface.png_, which defines the surface terrain, we use `L_max` and `L_min`. For _Friction.png_, which defines the coefficient of friction between the pod and surface, we use `F_max` and `F_min`. For _RollingFriction.png_, which defines the coefficient of rolling friction between the pod and surface, we use `F_r_max` and `F_r_min`. For _Restitution.png_, which defines the coefficient of restitution between the pod and surface, we use `K_max` and `K_min`. For _Conductivity.png_, which defines the thermal conductivity between the pod and surface (W/mK), we use `T_c_max` and `T_c_min`. For _ModulusOfRigidity.png_, which defines the modulus of rigidity of the surface (gf/mm^2), we use `G_l_max` and `G_l_min`. For _Temperature.png_, which defines the temperature of the surface (K), we use `T_g_max` and `T_g_min`. For _YoungsModulus.png_, which defines Young's Modulus of the surface (gf/mm^2), we use `Y_l_max` and `Y_l_min`. We interpolate the values of these heightmaps with the functions `L`, `F`, `F_r`, `K`, `T_c`, `G_l`, `T_g`, and `Y_l` at interpolation interval `Bi_Int`.
 
-### Initial Conditions
+### 2 Initial Conditions
 
 All input variables can be found in _Variables.xlsx_. _start.m_ begins the simulation with a clear of prior variables and opened windows. Assuming the input _.m_ and landscape-definining images for scenario "Example" are placed within folder `\data\inputs\Example\`, simply set `file = 'Example'` to ensure the proper input variables are used.
 
@@ -54,21 +54,21 @@ One possibility allowed is that of a parachute becoming engaged prior to the pod
 
 Lastly, we define a sphere with `p_num`-by-`p_num` faces with matrices `X_sphere`, `Y_sphere`, and `Z_sphere` and its dimensional sizes with `A_limit` and `B_limit`.
 
-### Trajectory
+### 3 Trajectory
 
-#### Parametric Equations of Motion
+#### 3.1 Parametric Equations of Motion
 
 The trajectory of the pod is defined, first of all, with the simple parametric equations of motion. As gravity and terminal velocity becomes dynamic over the course of changing altitude, we use _trajectory.m_ to construct _construct.m_, which defines the trajectory. As `u_i` defines the initial velocity for this trajectory, we define `t_A_last = -0.0000000000001`, `t_A_vel = u_i(2,3)`, and `t_A_pos = u_i(1,3)+L_min`, which act as the last "time", "velocity", and "altitude" for a looping dynamic function. We take the position functions including atmospheric resistance from _http://farside.ph.utexas.edu/teaching/336k/Newtonhtml/node29.html_. For the horizontal directions `x_i(t)` and `y_i(t)`, we assume the gravity and terminal velocity to be constant between an average of the minimum value of the terrain and the trajectory's initial altitude for simplicity and define them as `(u_i(2,1)*Q((t_A_pos+L_min)/2))/g((t_A_pos+L_min)/2)*(1-exp((-g((t_A_pos+L_min)/2)*t)/Q((t_A_pos+L_min)/2)))+u_i(1,1)` and `(u_i(2,2)*Q((t_A_pos+L_min)/2))/g((t_A_pos+L_min)/2)*(1-exp((-g((t_A_pos+L_min)/2)*t)/Q((t_A_pos+L_min)/2)))+u_i(1,2)`, respectively.
 
 For `z_i(t)`, we define a piecewise function, where `(Q(t_A_pos)/g(t_A_pos)) * ((t_A_vel)+Q(t_A_pos)) * (1-exp((-g(t_A_pos)*(t-t_A_last))/Q(t_A_pos))) - (Q(t_A_pos)*(t-t_A_last)) + t_A_pos` (where values of variables are printed rather than kept as variables) is true for `t_A_last<=t<t_A_last+t_A_int`, where `t_A_int` is the interval of time used where gravity and terminal velocity are constant (s). Subsequently, we define `t_A_pos = double(z_i(t_A_int))`, `t_A_diff = diff(z_i)`, and `t_A_vel = double(t_A_diff(t_A_int))` for the subsequent position and beginning velocity. `t_A_last` is stepped forward by `t_A_int`. If `t_A_pos <= L_min`, meaning the trajectory has reached a point below the minimum altitude of the surface, we close the loop and the position function derivatives are defined as `dx_idt = diff(x_i)`, `dy_idt = diff(y_i)`, and `dz_idt = diff(z_i)`. If `parachute = 1`, a similar process as above is engaged once more, where the above equations for `x_i(t)`, `y_i(t)`, and `z_i(t)` are transformed into similar piecewise functions after `t_o`, where terminal velocity becomes defined by `Q_o(x)` rather than `Q(x)`.
 
-#### Finding Collision Along Trajectory
+#### 3.2 Finding Collision Along Trajectory
 
 In _pod.m_, we find the collision point along the trajectory with the terrain. This begins with the intersection point between the position function and `L(x)`. We define `GAP = abs(L(x_i((t_A_last + t_A_int - t_step)),y_i((t_A_last + t_A_int - t_step)))-z_i((t_A_last + t_A_int - t_step)))`, where `t_step` is the smallest interval used to step along the trajectory (s), `t_int_step` is the interval used to find the intersection of the trajectory (s), and `GAP` is the distance between the altitude of the trajectory function and the terrain at the same horizontal coordinates (m). The variable `t_p` is stepped by `-t_int_step` from `(t_A_last + t_A_int - t_step)` (the time of the trajectory below `L_min`) to `0`. If `abs(L(x_i(t_p),y_i(t_p))-z_i(t_p)) < GAP`, we know this point in the trajectory is closer to the surface than the previously recorded one, so its value becomes `GAP` and `t_f_i` (the point of intersection) becomes `t_p`. Once `z_i(t_p) > L_max`, we know the trajectory will not encounter any more terrain, so break the loop and set `t_p_min = t_p`.
 
 As it is probable for a "partial collision" prior to the intersection point, we can search for the collision of a three-dimensional pod shape in sections ranging from intervals of `t_stride` (the largest interval used to step along the trajectory (s)) to `t_step`. We define `t_move` first as `t_stride`. The variable `t_p` is stepped by `-t_move` from `min(t_inter,t_f_i+11*t_move)` to `max(t_p_min, t_f_i-11*t_move)` and we define the spherical pod shape for `t_p` with `X_moved = X_sphere*(d/2)+x_i(t_p)`, `Y_moved = Y_sphere*(d/2)+y_i(t_p)`, and `Z_moved = Z_sphere*(d/2)+z_i(t_p)`. We cycle through every discrete pod coordinate with `m_A` and `m_B` and if `abs(L(X_moved(m_A,m_B),Y_moved(m_A,m_B))-Z_moved(m_A,m_B)) <= GAP` for any point, we consider `t_p` to be a closer collision (bearing in mind that `GAP` must be `>=d/2`). When this is true, we define `C_i = [x_i(t_p),y_i(t_p),z_i(t_p)]` (the center point for the pod), `X_i = X_moved`, `Y_i = Y_moved`, `Z_i = Z_moved` (the arrays dictating edge points of the pod), and `t_f_i = t_p`. Once every value of `t_p` is "looped through", we divide `t_move` by 10 and repeat the iterative process. This continues until `t_move <= t_step`, at which point the final collision time (`t_f_i`) and gap value (`GAP`) can be defined. The average impact point of the pod with the terrain (`S_i`) can then be defined by cycling through every discrete pod coordinate with`m_A` and `m_B` and forming the average of points that satisfy the conditions when `abs(L(X_i(m_A,m_B),Y_i(m_A,m_B))-Z_i(m_A,m_B)) < s_min`.
 
-#### Ending Values
+#### 3.3 Ending Values
 
 Finally, the ending values of the trajectory can be determined. The ending velocity `v_i` is defined as `[S_i(1),S_i(2),S_i(3); dx_idt(t_f_i),dy_idt(t_f_i),dz_idt(t_f_i)]` and ending acceleration `a_i` is defined as `[S_i(1),S_i(2),S_i(3); dx2_idt(t_f_i),dy2_idt(t_f_i),dz2_idt(t_f_i)]`, where `dx2_idt`, `dy2_idt`, and `dz2_idt` refer to the second position function derivatives. The ending rotation `I_i` (from assumed constant angular velocity `q_i`) is defined as `[S_i(1),S_i(2),S_i(3); q_i(2,1) * t_f_i, q_i(2,2) * t_f_i, q_i(2,3) * t_f_i]`. If any value in `I_i(2,*)` is `>= 2*pi`, `2*pi` is subtracted. If any value in `I_i(2,*)` is `<= 2*pi`, `2*pi` is added. The initial kinetic energy of the trajectory (`KE_s_i`) can be defined as `0.5*m*mag(u_i)^2` and the final kinetic energy of the trajectory (`KE_f_i`) can be defined as `0.5*m*mag(v_i)^2`.
 
@@ -76,9 +76,9 @@ To prepare for the subsequent time segment, these values are translated into val
 
 It is at this point that values are saved to cell array `b(iit)`.
 
-### Segments
+### 4 Segments
 
-#### directions.m
+#### 4.1 directions.m
 
 The time segment `iit, jit` of the pod is defined with a series of calculations of forces and reactions from the impact along the surface. _direction.m_ calculates helpful values (such as the tangent plane and normal vector of initial position) and the initial applied force and gravitational force. At position `S_i`, we find the tangent plane `NN_ij` with `@(x,y) dNNdx*(x-S_ij(1))+dNNdy*(y-S_ij(2))+S_ij(3)` and the normal vector `N_ij` with `[S_ij(1),S_ij(2),S_ij(3); -dNNdx,-dNNdy,1]`, where `dNNdx` and `dNNdy` refer to partial derivative values along the x and y axes at the impact position with minimum value `derivative_min` (with `double(dLdx(vpa(S_ij(1)),vpa(S_ij(2))))` and `double(dLdy(vpa(S_ij(1)),vpa(S_ij(2))))`, respectively, where `dLdx(x,y)` and `dLdy(x,y)` find said partial derivative values at interval `2*Bi_Int`).
 
@@ -88,7 +88,7 @@ Lastly, for the sake of the normal force and, at one point an estimation of the 
 
 Lastly, as is derived from _https://www.researchgate.net/publication/270681194_Estimation_of_the_Impact_Duration_for_Several_Types_of_Structures_, we estimate the proper number of time segments for an ideal elastic collision. `Kt_V`, the full downwards impact velocity, is found with `(mag(B_ij)/m)*T`, which is used to find the linear stiffness of the pod (`k_lin = (pi/3.21)^2 * (m*(k_H^4)*(Kt_V^2))^(1/5)`) and final impact duration (`T_HS = pi*sqrt(m/k_lin)`), which is, in turn, used to find the number of ideal time segments (`Kt_i = (T_HS)/T`, `Kt_i = round(Kt_i)`, and `if Kt_i < 1 \n Kt_i = 1 \n end`).
 
-#### reactions.m
+#### 4.2 reactions.m
 
 Similar to the component aspects of initial velocity (`P_ij` and `B_ij`), we find the component aspects of the gravitational force, using `PGN_ij` rather than `PN_ij`, `PG_ij` rather than `P_ij`, and `BG_ij` rather than `B_ij`. From `BG_ij` and `B_ij`, we can find the normal force (`F_N_ij`), as is derived from _http://hyperphysics.phy-astr.gsu.edu/hbase/frict.html_. If `jit<=Kt_i`, we consider the normal force as having ongoing impact and define it as `[C_ij(1) C_ij(2) C_ij(3); -(B_ij(2,1)+BG_ij(2,1)), -(B_ij(2,2)+BG_ij(2,2)), -(B_ij(2,3)+BG_ij(2,3))]`. Otherwise, we assume the duration is complete and define `F_N_ij = [C_ij(1) C_ij(2) C_ij(3); 0 0 0]`.
 
@@ -98,7 +98,7 @@ To calculate the force of friction, as derived from _http://hyperphysics.phy-ast
 
 We additionally calculate the change in spin and its impact on linear velocity. We define the angular acceleration (`p_ij`) with `[S_ij(1),S_ij(2),S_ij(3);((d/2)*B_ij(2,1))/I, ((d/2)*B_ij(2,2))/I, ((d/2)*B_ij(2,3))/I]`, from the torque of the applied force `F_v_ij` and `I`, the moment of inertia of pod (kg m^2), which can be found at _http://hyperphysics.phy-astr.gsu.edu/hbase/isph.html_. This value can be used to find the new angular velocity after `T` seconds (`Q_ij`) with `[S_ij(1),S_ij(2),S_ij(3);q_ij(2,1)+p_ij(2,1)*T,q_ij(2,2)+p_ij(2,2)*T,q_ij(2,3)+p_ij(2,3)*T]`, where `q_ij` is the pre-existing angular velocity. To find how this impacts the linear velocity, we must know the "time to rolling without slipping" for each axis (`t_R_x`, `t_R_y`, and `t_R_z`), which is calculated with a tentative final linear velocity (as found from `V_ij = [C_ij(1),C_ij(2),C_ij(3); v_ij(2,1) + (F_g_ij(2,1)+F_f_ij(2,1)+F_N_ij(2,1)+F_e_ij(2,1))/m * T, v_ij(2,2) + (F_g_ij(2,2)+F_f_ij(2,2)+F_N_ij(2,2)+F_e_ij(2,2))/m * T, v_ij(2,3) + (F_g_ij(2,3)+F_N_ij(2,3)+F_e_ij(2,3)+F_f_ij(2,3))/m * T]`). `t_R_x`, `t_R_y`, and `t_R_z` are then found with `vpasolve((V_ij(2,1)-v_ij(2,1))/T * t + v_ij(2,1) == (d/2)*((Q_ij(2,1)-q_ij(2,1))/T * t + q_ij(2,1)))`, `vpasolve((V_ij(2,2)-v_ij(2,2))/T * t + v_ij(2,2) == (d/2)*((Q_ij(2,2)-q_ij(2,2))/T * t + q_ij(2,2)))`, and `vpasolve((V_ij(2,3)-v_ij(2,3))/T * t + v_ij(2,3) == (d/2)*((Q_ij(2,3)-q_ij(2,3))/T * t + q_ij(2,3)))`, respectively. We find the force applied to linear velocity with `F_R_ij = [S_ij(1),S_ij(2),S_ij(3);m*(q_ij(2,2)*(d/2)-V_ij(2,1))/t_R_x,m*(-q_ij(2,1)*(d/2)-V_ij(2,2))/t_R_y,m*(NN_ij(S_ij(1)+q_ij(2,2)*(d/2)-V_ij(2,1),S_ij(2)-q_ij(2,1)*(d/2)-V_ij(2,2))-S_ij(3)-V_ij(2,3))/t_R_z]`, which calculates a clockwise orthogonal vector to `q_ij` (with the `z` component placed along the terrain) and find its difference with `V_ij`, which tells us the change in velocity across the "time to rolling without slipping" (and is subsequently multiplied by `m`for the force).
 
-#### pod.m
+#### 4.3 pod.m
 
 We then find the pod's ending movement for segment `iit,jit` with segment vector `O_ij`, which we define as `[C_ij(1),C_ij(2),C_ij(3); v_ij(2,1)*T + 0.5*(F_g_ij(2,1)+F_f_ij(2,1)+F_N_ij(2,1)+F_e_ij(2,1))/m * T^2, v_ij(2,2)*T + 0.5*(F_g_ij(2,2)+F_f_ij(2,2)+F_N_ij(2,2)+F_e_ij(2,2))/m * T^2, v_ij(2,3)*T + 0.5*(F_g_ij(2,3)+F_N_ij(2,3)+F_e_ij(2,3)+F_f_ij(2,3))/m * T^2`. This finds the movement of the pod following formula for displacement `s = u*t + 0.5*a*t^2`, which provides the end result of motion given the initial velocity and applied forces for `T` seconds if there was no terrain. We first find the new pod coordinates `Xn_ij`, `Yn_ij`, and `Zn_ij` and center point `Cn_ij` as a direct translation from the tail to the head of the `O_ij`. These values are calculated with `X_sphere*(d/2) + double(C_ij(1)+O_ij(2,1))`, `Y_sphere*(d/2) + double(C_ij(2)+O_ij(2,2))`, `Z_sphere*(d/2) + double(C_ij(3)+O_ij(2,3))`, and `C_ij + O_ij`, respectively.
 
@@ -108,7 +108,7 @@ There is additionally the possibility that the pod lies someone intersecting wit
 
 Lastly, the final segment vector displacement is found with these new positions with `O_ij = [C_ij(1),C_ij(2),C_ij(3); Cn_ij(1)-C_ij(1),Cn_ij(2)-C_ij(2),Cn_ij(3)-C_ij(3)]`.
 
-#### final.m
+#### 4.4 final.m
 
 Finally, we're able to calculate the necessary values for the subsequent collision. We can find the ending velocity (`V_ij`) with `[C_ij(1),C_ij(2),C_ij(3); v_ij(2,1) + (F_g_ij(2,1)+F_R_ij(2,1)+F_f_ij(2,1)+F_N_ij(2,1)+F_e_ij(2,1))/m * T, v_ij(2,2) + (F_g_ij(2,2)+F_R_ij(2,2)+F_f_ij(2,2)+F_N_ij(2,2)+F_e_ij(2,2))/m * T, v_ij(2,3) + (F_g_ij(2,3)+F_R_ij(2,3)+F_N_ij(2,3)+F_e_ij(2,3)+F_f_ij(2,3))/m * T]` and acceleration (`A_ij`) with `[C_ij(1),C_ij(2),C_ij(3); (V_ij(2,1) - v_ij(2,1))/T, (V_ij(2,2) - v_ij(2,2))/T, (V_ij(2,3) - v_ij(2,3))/T]`.
 
@@ -118,7 +118,7 @@ The change in Kinetic Energy `deltaKE_ij` and final Kinetic Energy `KE_f_ij` for
 
 Lastly, we calculate the change in temperature from `T_s_ij` to `T_f_ij`. To perform this, we utilize Newton's Law of Cooling (as provided by _https://www.omnicalculator.com/physics/newtons-law-of-cooling#:~:text=Newton's%20law%20of%20cooling%20formula,-The%20Newton's%20law&text=T%20%5BK%5D%20is%20the%20temperature,object%20at%20the%20time%20t%20%2C&text=T_initial%20%5BK%5D%20is%20the%20initial,the%20time%20of%20the%20cooling._) for conduction and Specific Heat Capacity (as provided by _https://www.omnicalculator.com/physics/specific-heat_) for lost kinetic energy. As such, the final temperature (from conduction) is calculated with `T_f_ij = (T_g(S_ij(1),S_ij(2))) + (T_s_ij - (T_g(S_ij(1),S_ij(2)))) * exp(- h_c_ij * T)`, where `h_c_ij`,the cooling coefficient (1/s), is calculated with `h_t_ij * (SA_g_ij / h_C)` (where `h_C` is the heat capacity of the pod's external material in J/K) and `SA_g_ij`, the area of heat transfer (and area of spherical cap `D_ij` in m^2), is calculated with `2*pi*(d/2)*D_ij`. In these formulas, we utilize the heat transfer coefficient `h_t_ij` (W/m^2K) as found with `(h_f_ij)/(T_s_ij-(T_g(S_ij(1),S_ij(2))))` (unless `T_s_ij=(T_g(S_ij(1),S_ij(2)))`, in which chase `h_t_ij=0`) and heat flux `h_f_ij` (W/m^2) as found with Fourier's Law in the form `(T_c(S_ij(1),S_ij(2)))*(T_s_ij-T_g(S_ij(1),S_ij(2)))/D_ij` (unless `D_ij=0`, in which chase `h_f_ij=0`). We additionally calculate the temperature change as arising from lost kinetic energy with `T_f_ij = T_f_ij + (m*((1/3 * pi * (D_ij)^2 * (3*(d/2) - D_ij))/(4/3 * pi * (d/2)^3)))*((h_R*deltaKE_ij)/(h_C*m))` if `deltaKE_ij<0`. In this case, the change in temperature is found by multiplying a  modified specific heat capacity value (in K/kg), where `h_R` refers to the ratio of lost kinetic energy that is converted into thermal energy, by the average mass of the spherical cap defined by `D_ij`.
 
-#### survivability.m
+#### 4.5 survivability.m
 
 With the values we've calculated, we're able to find the likelihood of destruction for the pod and its contents.
 
@@ -126,7 +126,7 @@ For the pod, we calculate comparisons to the maximum service temperature (K) `T_
 
 It is at this point that values are saved to cell array `s(iit,jit)`.
 
-#### Return
+#### 4.6 Return
 
 We find return value `r` with `Cn_ij(3) - L(Cn_ij(1),Cn_ij(2))` to denote distance above the terrain. If `-v_min<double(mag(V_ij))<=v_min`, the pod has halted movement and we exit the loop.
 
