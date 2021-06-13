@@ -19,7 +19,7 @@ hh = ((abs(FI_ij))/(A_s))/FI_max_c; % Maximum froce
 ii = (abs(D_ij))/d_shell; % Shell thickness
 jj = (T_s_ij)/(T_max_c); % Maximum service temperature
 jjj = (T_f_ij)/(T_max_c); % Maximum service temperature
-kk = mag(Q_ij)/omega_max_c; % Maximum angular acceleration
+kk = mag(p_ij)/omega_max_c; % Maximum angular acceleration
 ll = (abs(T_f_ij-T_s_ij)/T)/deltaT_c; % Maximum rate of temperature change
 
 S_contents = [hh,ii,jj,jjj,kk,ll];
