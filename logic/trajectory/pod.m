@@ -19,6 +19,7 @@ end
 % Collision Time of Pod Shape
 % Moving from t_inter to t_p_min at increasingly smaller intervals to find
 % pod collision point with terrain
+t_inter = t_f_i
 t_move = t_stride; % "move" defines the interval
 t_p_end = 0;
 while t_p_end == 0

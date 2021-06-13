@@ -7,10 +7,10 @@ L_y = 0:(domain/size(L_z,1)):(domain-(domain/size(L_z,1)));
 F_z = double((imread(strcat(folder,'\data\inputs\',file,'\Friction.png'))))*(F_max-F_min)/255 + F_min;
 F_x = 0:(domain/size(F_z,2)):(domain-(domain/size(F_z,2)));
 F_y = 0:(domain/size(F_z,1)):(domain-(domain/size(F_z,1)));
-% Heightmap Reading - F_r (Coefficient of Rolling Friction)
-F_r_z = double((imread(strcat(folder,'\data\inputs\',file,'\RollingFriction.png'))))*(F_r_max-F_r_min)/255 + F_r_min;
-F_r_x = 0:(domain/size(F_r_z,2)):(domain-(domain/size(F_r_z,2)));
-F_r_y = 0:(domain/size(F_r_z,1)):(domain-(domain/size(F_r_z,1)));
+% % Heightmap Reading - F_r (Coefficient of Rolling Friction)
+% F_r_z = double((imread(strcat(folder,'\data\inputs\',file,'\RollingFriction.png'))))*(F_r_max-F_r_min)/255 + F_r_min;
+% F_r_x = 0:(domain/size(F_r_z,2)):(domain-(domain/size(F_r_z,2)));
+% F_r_y = 0:(domain/size(F_r_z,1)):(domain-(domain/size(F_r_z,1)));
 % Heightmap Reading - K (Coefficient of Restitution)
 K_z = double((imread(strcat(folder,'\data\inputs\',file,'\Restitution.png'))))*(K_max-K_min)/255 + K_min;
 K_x = 0:(domain/size(K_z,2)):(domain-(domain/size(K_z,2)));
