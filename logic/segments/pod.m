@@ -1,11 +1,11 @@
 % Traced segment vector
-O_ij = [C_ij(1),C_ij(2),C_ij(3); v_ij(2,1)*T + 0.5*(F_g_ij(2,1)+F_f_ij(2,1)+F_N_ij(2,1)+F_e_ij(2,1))/m * T^2, v_ij(2,2)*T + 0.5*(F_g_ij(2,2)+F_f_ij(2,2)+F_N_ij(2,2)+F_e_ij(2,2))/m * T^2, v_ij(2,3)*T + 0.5*(F_g_ij(2,3)+F_N_ij(2,3)+F_e_ij(2,3)+F_f_ij(2,3))/m * T^2];
+O_ij = [C_ij(1),C_ij(2),C_ij(3); v_ij(2,1)*T + 0.5*(F_g_ij(2,1)+F_R_ij(2,1)+F_f_ij(2,1)+F_N_ij(2,1)+F_e_ij(2,1))/m * T^2, v_ij(2,2)*T + 0.5*(F_g_ij(2,2)+F_R_ij(2,2)+F_f_ij(2,2)+F_N_ij(2,2)+F_e_ij(2,2))/m * T^2, v_ij(2,3)*T + 0.5*(F_g_ij(2,3)+F_R_ij(2,3)+F_N_ij(2,3)+F_e_ij(2,3)+F_f_ij(2,3))/m * T^2];
 
 % Directly translated pod coordinates to head of traced segment vector (O_ij)
 Xn_ij = X_sphere*(d/2) + double(C_ij(1)+O_ij(2,1));
 Yn_ij = Y_sphere*(d/2) + double(C_ij(2)+O_ij(2,2));
 Zn_ij = Z_sphere*(d/2) + double(C_ij(3)+O_ij(2,3));
-Cn_ij = C_ij + O_ij;
+Cn_ij = C_ij + O_ij(2,:);
 
 % IF BELOW TERRAIN
 if Cn_ij(3) < L(Cn_ij(1),Cn_ij(2))

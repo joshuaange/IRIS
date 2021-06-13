@@ -49,13 +49,13 @@ F_f_ij = [C_ij(1),C_ij(2),C_ij(3); -F(S_ij(1),S_ij(2))*mag(F_N_ij)*cos(falpha(O_
     t_R_z = vpasolve((V_ij(2,3)-v_ij(2,3))/T * t + v_ij(2,3) == (d/2)*((Q_ij(2,3)-q_ij(2,3))/T * t + q_ij(2,3)));
     % Force as a result of pre-existing spin
     F_R_ij = [S_ij(1),S_ij(2),S_ij(3);m*(q_ij(2,2)*(d/2)-V_ij(2,1))/t_R_x,m*(-q_ij(2,1)*(d/2)-V_ij(2,2))/t_R_y,m*(NN_ij(S_ij(1)+q_ij(2,2)*(d/2)-V_ij(2,1),S_ij(2)-q_ij(2,1)*(d/2)-V_ij(2,2))-S_ij(3)-V_ij(2,3))/t_R_z];
-    if t_R_x == 0
+    if t_R_x <= 0
         F_R_ij(2,1) = 0;
     end
-    if t_R_y == 0
+    if t_R_y <= 0
         F_R_ij(2,2) = 0;
     end
-    if t_R_z == 0
+    if t_R_z <= 0
         F_R_ij(2,3) = 0;
     end
     
