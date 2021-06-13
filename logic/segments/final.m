@@ -38,27 +38,4 @@ if deltaKE_ij < 0
     % specific heat capacity in K/kg
 end
 
-
-% % Rotation
-% I_ij = [R_ij(1),R_ij(2),R_ij(3); (q_ij(2,1)+Q_ij(2,1))/2 * T, (q_ij(2,2)+Q_ij(2,2))/2 * T, (q_ij(2,3)+Q_ij(2,3))/2 * T];
-% % Considerations for unit circle equivalencies in angle
-% while I_ij(2,1) > 2*pi
-%     I_ij(2,1) = I_ij(2,1) - 2*pi;
-% end
-% while I_ij(2,2) > 2*pi
-%     I_ij(2,2) = I_ij(2,2) - 2*pi;
-% end
-% while I_ij(2,3) > 2*pi
-%     I_ij(2,3) = I_ij(2,3) - 2*pi;
-% end
-% while I_ij(2,1) < -2*pi
-%     I_ij(2,1) = I_ij(2,1) + 2*pi;
-% end
-% while I_ij(2,2) < -2*pi
-%     I_ij(2,2) = I_ij(2,2) + 2*pi;
-% end
-% while I_ij(2,3) < -2*pi
-%     I_ij(2,3) = I_ij(2,3) + 2*pi;
-% end
-
 display("final.m");
