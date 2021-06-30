@@ -16,6 +16,14 @@ try
     phi = vpasolve(K_y(K_y_floor) + (Domain/size(K_z,2))*VAK == Y,VAK);
     K_y_phi = round(phi/Bi_Int) * Bi_Int;
 
+    % Border considerations
+    if K_y_floor == 1
+        K_y_floor = 2;
+    end
+    if K_x_floor == size(K_y,2)
+        K_x_floor = size(K_y,2)-1;
+    end
+
     % Interpolation
     %[Xq, Yq] = meshgrid(0:Bi_Int:1);
     Vq = interp2([0 1],[0 1],[K_z(K_y_floor-1,K_x_floor) K_z(K_y_floor-1,K_x_floor+1); K_z(K_y_floor,K_x_floor) K_z(K_y_floor,K_x_floor+1)],Xq,Yq);

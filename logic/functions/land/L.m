@@ -17,11 +17,11 @@ try
     L_y_phi = round(phi/Bi_Int) * Bi_Int;
     
     % Border considerations
-    if L_y_floor == size(L_x,1)
-        L_y_floor = size(L_x,1)+1;
+    if L_y_floor == 1
+        L_y_floor = 2;
     end
-    if L_x_floor == size(L_x,2)
-        L_x_floor = size(L_x,2)-1;
+    if L_x_floor == size(L_y,2)
+        L_x_floor = size(L_y,2)-1;
     end
 
     % Interpolation
