@@ -4,21 +4,25 @@ function [Z] = Y_l(X,Y)
 global Y_l_x Y_l_y Y_l_z Domain Bi_Int Xq Yq
 syms VAY_l
 
+biggerX = 0;
+biggerY = 0;
+
 try
     X = double(X);
     Y = double(Y);
     % Finding X Index
     if X >= Domain/2
         biggerX = 1;
-        X = X - Domain;
+        X = X - Domain/2;
     end
     if Y >= Domain/2
         biggerY = 1;
-        Y = Y - Domain;
+        Y = Y - Domain/2;
     end
     Y_l_x_floor = find(Y_l_x==floor(X/(Domain/size(Y_l_z,1))) * (Domain/size(Y_l_z,1)));
     if biggerX == 1
         Y_l_x_floor = Y_l_x_floor + size(Y_l_z,1)/2;
+        X = X + Domain/2;
     end
     phi = vpasolve(Y_l_x(Y_l_x_floor) + (Domain/size(Y_l_z,1))*VAY_l == X,VAY_l);
     Y_l_x_phi = round(phi/Bi_Int) * Bi_Int;
@@ -26,6 +30,7 @@ try
     Y_l_y_floor = find(Y_l_y==floor(Y/(Domain/size(Y_l_z,2))) * (Domain/size(Y_l_z,2)));
     if biggerY == 1
         Y_l_y_floor = Y_l_y_floor + size(Y_l_z,2)/2;
+        Y = Y + Domain/2;
     end
     phi = vpasolve(Y_l_y(Y_l_y_floor) + (Domain/size(Y_l_z,2))*VAY_l == Y,VAY_l);
     Y_l_y_phi = round(phi/Bi_Int) * Bi_Int;

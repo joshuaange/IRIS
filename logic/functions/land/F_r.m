@@ -4,21 +4,25 @@ function [Z] = F_r(X,Y)
 global F_r_x F_r_y F_r_z Domain Bi_Int Xq Yq
 syms VAF_r
 
+biggerX = 0;
+biggerY = 0;
+
 try
     X = double(X);
     Y = double(Y);
     % Finding X Index
     if X >= Domain/2
         biggerX = 1;
-        X = X - Domain;
+        X = X - Domain/2;
     end
     if Y >= Domain/2
         biggerY = 1;
-        Y = Y - Domain;
+        Y = Y - Domain/2;
     end
     F_r_x_floor = find(F_r_x==floor(X/(Domain/size(F_r_z,1))) * (Domain/size(F_r_z,1)));
     if biggerX == 1
         F_r_x_floor = F_r_x_floor + size(F_r_z,1)/2;
+        X = X + Domain/2;
     end
     phi = vpasolve(F_r_x(F_r_x_floor) + (Domain/size(F_r_z,1))*VAF_r == X,VAF_r);
     F_r_x_phi = round(phi/Bi_Int) * Bi_Int;
@@ -26,6 +30,7 @@ try
     F_r_y_floor = find(F_r_y==floor(Y/(Domain/size(F_r_z,2))) * (Domain/size(F_r_z,2)));
     if biggerY == 1
         F_r_y_floor = F_r_y_floor + size(F_r_z,2)/2;
+        Y = Y + Domain/2;
     end
     phi = vpasolve(F_r_y(F_r_y_floor) + (Domain/size(F_r_z,2))*VAF_r == Y,VAF_r);
     F_r_y_phi = round(phi/Bi_Int) * Bi_Int;

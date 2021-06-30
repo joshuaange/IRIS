@@ -4,21 +4,25 @@ function [Z] = K(X,Y)
 global K_x K_y K_z Domain Bi_Int Xq Yq
 syms VAK
 
+biggerX = 0;
+biggerY = 0;
+
 try
     X = double(X);
     Y = double(Y);
     % Finding X Index
     if X >= Domain/2
         biggerX = 1;
-        X = X - Domain;
+        X = X - Domain/2;
     end
     if Y >= Domain/2
         biggerY = 1;
-        Y = Y - Domain;
+        Y = Y - Domain/2;
     end
     K_x_floor = find(K_x==floor(X/(Domain/size(K_z,1))) * (Domain/size(K_z,1)));
     if biggerX == 1
         K_x_floor = K_x_floor + size(K_z,1)/2;
+        X = X + Domain/2;
     end
     phi = vpasolve(K_x(K_x_floor) + (Domain/size(K_z,1))*VAK == X,VAK);
     K_x_phi = round(phi/Bi_Int) * Bi_Int;
@@ -26,6 +30,7 @@ try
     K_y_floor = find(K_y==floor(Y/(Domain/size(K_z,2))) * (Domain/size(K_z,2)));
     if biggerY == 1
         K_y_floor = K_y_floor + size(K_z,2)/2;
+        Y = Y + Domain/2;
     end
     phi = vpasolve(K_y(K_y_floor) + (Domain/size(K_z,2))*VAK == Y,VAK);
     K_y_phi = round(phi/Bi_Int) * Bi_Int;
