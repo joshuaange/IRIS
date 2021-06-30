@@ -59,7 +59,7 @@ fclose(fid);
 run(strcat(folder,'\logic\trajectory\construct.m')); 
 fid = fopen(strcat(folder,'\logic\trajectory\construct.m'),'a+');
 
-if parachute == 1 && jit == 1
+if parachute == 1 && iit == 1
     fprintf(fid, '\n');
     fprintf(fid, '%% Parachute... \n');
 
