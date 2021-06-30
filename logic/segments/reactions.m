@@ -4,11 +4,11 @@
     PGN_ij = F_g_ij(2,:)-((dot(F_g_ij(2,:),N_ij(2,:)))/((mag(N_ij))^2)).*N_ij(2,:);
     PG_ij = [C_ij(1),C_ij(2),C_ij(3); PGN_ij(1), PGN_ij(2), PGN_ij(3)];
         % Perpendicular Vector - perpendicular to tangent plane (pointing downwards)
-    B_m_ij = max(real(vpasolve((mag([C_ij(1)+PG_ij(2,1),C_ij(2)+PG_ij(2,2),C_ij(3)+PG_ij(2,3); VAL*dNNdx,VAL*dNNdy,VAL*(-1)]))^2 + (mag(PG_ij))^2 == (mag(F_v_ij))^2, VAL)));
-    if B_m_ij == 0
-        B_m_ij = B_m_min; % Distance between velocity and parallel vector head
+    B_mG_ij = max(real(vpasolve((mag([C_ij(1)+PG_ij(2,1),C_ij(2)+PG_ij(2,2),C_ij(3)+PG_ij(2,3); VAL*dNNdx,VAL*dNNdy,VAL*(-1)]))^2 + (mag(PG_ij))^2 == (mag(F_v_ij))^2, VAL)));
+    if B_mG_ij == 0
+        B_mG_ij = B_m_min; % Distance between velocity and parallel vector head
     end
-    BG_ij = [C_ij(1)+PG_ij(2,1),C_ij(2)+PG_ij(2,2),C_ij(3)+PG_ij(2,3); B_m_ij*dNNdx,B_m_ij*dNNdy,B_m_ij*(-1)];
+    BG_ij = [C_ij(1)+PG_ij(2,1),C_ij(2)+PG_ij(2,2),C_ij(3)+PG_ij(2,3); B_mG_ij*dNNdx,B_mG_ij*dNNdy,B_mG_ij*(-1)];
 if jit <= Kt_i
     F_N_ij = [C_ij(1) C_ij(2) C_ij(3); -(B_ij(2,1)+BG_ij(2,1)), -(B_ij(2,2)+BG_ij(2,2)), -(B_ij(2,3)+BG_ij(2,3))];
     if jit == 1

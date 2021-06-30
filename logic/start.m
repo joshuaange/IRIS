@@ -56,11 +56,10 @@ for iit = 1:i_max
         run(strcat(folder,'\logic\segments\final.m')); % Final values and setup
         % Survivability
         run(strcat(folder,'\logic\segments\survivability.m')); % Finding survivability with pod
-        % Record
-        run(strcat(folder,'\logic\record\small.m'));
-
         % Return
         r = Cn_ij(3) - L(Cn_ij(1),Cn_ij(2));
+        % Record
+        run(strcat(folder,'\logic\record\small.m'));
         % Stop
         if -v_min<double(mag(V_ij))<=v_min
             break

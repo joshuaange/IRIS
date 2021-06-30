@@ -37,6 +37,9 @@ if jit == 1
     if Kt_i < 1
        Kt_i = 1; 
     end
+    b{iit}.Kt_V = vpa(Kt_V);
+    b{iit}.k_lin = vpa(k_lin);
+    b{iit}.T_HS = vpa(T_HS);
     b{iit}.Kt_i = vpa(Kt_i);
     display("DURATION: " + double(Kt_i));
 end
