@@ -11,8 +11,8 @@ plot(0,0,'s','Color','black','DisplayName',"Z Angular Acceleration");
 plot(0,0,'+','Color','black','DisplayName',"Total Angular Acceleration");
 for iit = 1:i_max
     if isempty(b{iit}) == 0
-        for iteration = 1:floor(double(b{iit}.t_f_i)/t_int_step)
-            multitude = iteration * t_int_step;
+        for iteration = 1:floor(double(b{iit}.t_f_i)/((t_stride+t_step)/2))
+            multitude = iteration * ((t_stride+t_step)/2);
             plot(timeA+multitude,b{iit}.q_i(2,1),'o','Color','blue','HandleVisibility','off');
             plot(timeA+multitude,b{iit}.q_i(2,2),'^','Color','green','HandleVisibility','off');
             plot(timeA+multitude,b{iit}.q_i(2,3),'s','Color','red','HandleVisibility','off');

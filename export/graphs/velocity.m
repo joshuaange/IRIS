@@ -7,12 +7,12 @@ plot(0,b{1}.u_i(2,3),'s','Color','red','DisplayName',"Z");
 plot(0,mag(b{1}.u_i),'+','Color','magenta','DisplayName',"Total");
 for iit = 1:i_max
     if isempty(b{iit}) == 0
-        for iteration = 1:floor(double(b{iit}.t_f_i)/t_int_step)
-            multitude = iteration * t_int_step;
-            plot(timeA+multitude,b{iit}.dx_i(multitude),'o','Color','blue','HandleVisibility','off');
-            plot(timeA+multitude,b{iit}.dy_i(multitude),'^','Color','green','HandleVisibility','off');
-            plot(timeA+multitude,b{iit}.dz_i(multitude),'s','Color','red','HandleVisibility','off');
-            plot(timeA+multitude,mag([0,0,0;b{iit}.dx_i(multitude),b{iit}.dy_i(multitude),b{iit}.dz_i(multitude)]),'+','Color','magenta','HandleVisibility','off');
+        for iteration = 1:floor(double(b{iit}.t_f_i)/((t_stride+t_step)/2))
+            multitude = iteration * ((t_stride+t_step)/2);
+            plot(timeA+multitude,b{iit}.dx_idt(multitude),'o','Color','blue','HandleVisibility','off');
+            plot(timeA+multitude,b{iit}.dy_idt(multitude),'^','Color','green','HandleVisibility','off');
+            plot(timeA+multitude,b{iit}.dz_idt(multitude),'s','Color','red','HandleVisibility','off');
+            plot(timeA+multitude,mag([0,0,0;b{iit}.dx_idt(multitude),b{iit}.dy_idt(multitude),b{iit}.dz_idt(multitude)]),'+','Color','magenta','HandleVisibility','off');
         end
         timeA = timeA + b{iit}.t_f_i;
         plot(timeA,b{iit}.v_i(2,1),'o','Color','blue','HandleVisibility','off');
