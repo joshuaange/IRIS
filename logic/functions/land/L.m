@@ -8,11 +8,25 @@ try
     X = double(X);
     Y = double(Y);
     % Finding X Index
+    if X >= Domain/2
+        biggerX = 1;
+        X = X - Domain;
+    end
+    if Y >= Domain/2
+        biggerY = 1;
+        Y = Y - Domain;
+    end
     L_x_floor = find(L_x==floor(X/(Domain/size(L_z,1))) * (Domain/size(L_z,1)));
+    if biggerX == 1
+        L_x_floor = L_x_floor + size(L_z,1)/2;
+    end
     phi = vpasolve(L_x(L_x_floor) + (Domain/size(L_z,1))*VAL == X,VAL);
     L_x_phi = round(phi/Bi_Int) * Bi_Int;
     % Finding Y Index
     L_y_floor = find(L_y==floor(Y/(Domain/size(L_z,2))) * (Domain/size(L_z,2)));
+    if biggerY == 1
+        L_y_floor = L_y_floor + size(L_z,2)/2;
+    end
     phi = vpasolve(L_y(L_y_floor) + (Domain/size(L_z,2))*VAL == Y,VAL);
     L_y_phi = round(phi/Bi_Int) * Bi_Int;
     

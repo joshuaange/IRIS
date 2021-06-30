@@ -28,7 +28,6 @@ if Cn_ij(3) < L(Cn_ij(1),Cn_ij(2))
     Cn_ij = [R_ij(1)+(d/2)*cos(falpha(Nn_ij)),R_ij(2)+(d/2)*cos(fbeta(Nn_ij)),R_ij(3)+(d/2)*cos(fgamma(Nn_ij))];
 end
 
-try
     % ON THE LINE
     % Find averaged ending point of translated pod coordinates (similar to
     % trajectory/pod.m)
@@ -50,7 +49,10 @@ try
     end
     % Impact
     R_ij = [(X_total/c),(Y_total/c),(Z_total/c)];
-    
+if exist('R_ij(1)','var') == 1
+if exist('R_ij(2)','var') == 1
+if exist('R_ij(3)','var') == 1
+    display("hi")
     % Moving the pod up the normal vector as to not be intersectionary with
     % terrain (simple tangential to surface)
     dRdx = double(dLdx(R_ij(1),R_ij(2))); % Derivative values of ending position
@@ -67,7 +69,8 @@ try
     Yn_ij = Y_sphere*(d/2)+R_ij(2)+(d/2)*cos(fbeta(Nn_ij));
     Zn_ij = Z_sphere*(d/2)+R_ij(3)+(d/2)*cos(fgamma(Nn_ij));
     Cn_ij = [R_ij(1)+(d/2)*cos(falpha(Nn_ij)),R_ij(2)+(d/2)*cos(fbeta(Nn_ij)),R_ij(3)+(d/2)*cos(fgamma(Nn_ij))];
-catch
+end
+end
 end
 
 % Final movement of pod with this vector
