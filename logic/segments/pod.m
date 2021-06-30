@@ -5,7 +5,7 @@ O_ij = [C_ij(1),C_ij(2),C_ij(3); v_ij(2,1)*T + 0.5*(F_g_ij(2,1)+F_R_ij(2,1)+F_f_
 Xn_ij = X_sphere*(d/2) + double(C_ij(1)+O_ij(2,1));
 Yn_ij = Y_sphere*(d/2) + double(C_ij(2)+O_ij(2,2));
 Zn_ij = Z_sphere*(d/2) + double(C_ij(3)+O_ij(2,3));
-Cn_ij = C_ij + O_ij(2,:);
+Cn_ij = [C_ij(1) + O_ij(2,1),C_ij(2) + O_ij(2,2),C_ij(3) + O_ij(2,3)];
 
 % IF BELOW TERRAIN
 if Cn_ij(3) < L(Cn_ij(1),Cn_ij(2))
