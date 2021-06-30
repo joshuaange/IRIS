@@ -15,6 +15,14 @@ try
     L_y_floor = find(L_y==floor(Y/(Domain/size(L_z,2))) * (Domain/size(L_z,2)));
     phi = vpasolve(L_y(L_y_floor) + (Domain/size(L_z,2))*VAL == Y,VAL);
     L_y_phi = round(phi/Bi_Int) * Bi_Int;
+    
+    % Border considerations
+    if L_y_floor == size(L_x,1)
+        L_y_floor = size(L_x,1)+1;
+    end
+    if L_x_floor == size(L_x,2)
+        L_x_floor = size(L_x,2)-1;
+    end
 
     % Interpolation
     %[Xq, Yq] = meshgrid(0:Bi_Int:1);

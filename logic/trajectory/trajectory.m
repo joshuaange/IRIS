@@ -10,9 +10,9 @@ fprintf(fid, '%% This script is automatically constructed by trajectory.m \n');
 % and works for small conditions, where it is assumed to be constant
 % anyways
 
-%fplot(L_min,[0,100000],'Color','blue');
+%fplot(L_min,[0,500],'Color','blue');
 %hold on;
-%fplot(L_max,[0,100000],'Color','blue','LineStyle',':');
+%fplot(L_max,[0,500],'Color','blue','LineStyle',':');
 
 fprintf(fid, '\n');
 fprintf(fid, '%% No parachute... \n');
@@ -28,7 +28,7 @@ fprintf(fid, 'z_i(t) = piecewise(');
 while t_A_end == 0
     % Creating equation for position based on interval
     z_i(t) = (Q(t_A_pos)/g(t_A_pos)) * ((t_A_vel)+Q(t_A_pos)) * (1-exp((-g(t_A_pos)*(t))/Q(t_A_pos))) - (Q(t_A_pos)*(t)) + t_A_pos;
-    %fplot(z_i,[0,100000],'Color','yellow');
+    %fplot(z_i,[0,50],'Color','yellow');
     %plot(t_A_last,t_A_pos,'d');
     
     % Printing to construct.m
@@ -56,7 +56,9 @@ while t_A_end == 0
 end
 
 fclose(fid);
+
 run(strcat(folder,'\logic\trajectory\construct.m')); 
+
 fid = fopen(strcat(folder,'\logic\trajectory\construct.m'),'a+');
 
 if parachute == 1 && iit == 1
@@ -75,7 +77,7 @@ if parachute == 1 && iit == 1
     while t_A_end == 0
         % Creating equation for position based on interval
         z_iParachute(t) = (Q_o(t_A_pos)/g(t_A_pos)) * ((t_A_vel)+Q_o(t_A_pos)) * (1-exp((-g(t_A_pos)*(t))/Q_o(t_A_pos))) - (Q_o(t_A_pos)*(t)) + t_A_pos;
-        %fplot(z_iParachute,[0,100000],'Color','green');
+        %fplot(z_iParachute,[0,500],'Color','green');
         %plot(t_A_last,t_A_pos,'s');
 
         % Printing to construct.m
@@ -126,4 +128,4 @@ end
 fclose(fid);
 run(strcat(folder,'\logic\trajectory\construct.m')); 
 
-%fplot(z_i,[0,100000],'Color','red');
+%fplot(z_i,[0,500],'Color','red');

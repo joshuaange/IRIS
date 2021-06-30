@@ -20,6 +20,15 @@ end
 if exist('t_p_min','var') == 0
     t_p_min = 0;
 end
+% If t_f_i and t_p_min should be the same
+if exist('t_f_i','var') == 0
+    t_f_i = t_p_min;
+    abs(L(x_i(t_f_i),y_i(t_f_i))-z_i(t_f_i))
+end
+% GAP consideration
+if GAP < d/2
+GAP = d/2;
+end
 
 % Collision Time of Pod Shape
 % Moving from t_inter to t_p_min at increasingly smaller intervals to find
@@ -65,7 +74,6 @@ display("FINAL GAP VALUE:  " + double(GAP));
 % Warnings for if impacts cannot be found
 if t_f_i == (t_A_last + t_A_int - t_step)
     display("! ! ! No Initial Impact Can Be Found ! ! !");
-    pause
 end
 % if d/2 < GAP
 %     display("! ! ! Impact is Not Small Enough ! ! !");

@@ -7,8 +7,8 @@ display("...Misc. Calculations");
 FI_ij = -mag(F_N_ij);
 % Deformation - Elastic compression between a sphere and plane
 % From https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf
-sigma_l_ij = (Y_l(S_ij(1),S_ij(2))+Y_l(R_ij(1),R_ij(2)))/(2*(G_l(S_ij(1),S_ij(2))+G_l(R_ij(1),R_ij(2)))) - 1;
-M_l_ij = (1-sigma_l_ij^2)/(pi*((Y_l(S_ij(1),S_ij(2))+Y_l(R_ij(1),R_ij(2)))/2));
+sigma_l_ij = (Y_l(S_ij(1),S_ij(2))+Y_l(S_ij(1),S_ij(2)))/(2*(G_l(S_ij(1),S_ij(2))+G_l(S_ij(1),S_ij(2)))) - 1;
+M_l_ij = (1-sigma_l_ij^2)/(pi*((Y_l(S_ij(1),S_ij(2))+Y_l(S_ij(1),S_ij(2)))/2));
 D_ij = ((((3*pi)/2)^(2/3))*((101.97*abs(FI_ij))^(2/3))*((M_l_ij+M_p)^(2/3))*((1/(1000*d))^(1/3)))/(1000);
 
 % Kinetic Energy % Change in linear energy + rotational

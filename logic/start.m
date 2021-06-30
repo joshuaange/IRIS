@@ -6,7 +6,7 @@ display("Reading input .mat file");
 global Xq Yq L_x L_y L_z F_x F_y F_z F_r_x F_r_y F_r_z K_x K_y K_z T_c_x T_c_y T_c_z G_l_x G_l_y G_l_z T_g_x T_g_y T_g_z Y_l_x Y_l_y Y_l_z Domain Bi_Int
 syms x y VAL t x_i(t) y_i(t) z_i(t)
 folder = pwd;
-file = 'Vostok';
+file = 'HighballTrial';
 % Loading variable .mat
 load(strcat(folder,'\data\inputs\',file,'\variables.mat'))
 % Capturing and interpreting images defining surface characteristics
@@ -19,7 +19,7 @@ s = cell(i_max,j_max);
 C_d = 0.5; % Drag coefficient of pod is 0.5 for spherical objects
 h_R = 0.90; % Percentage of lost kinetic energy transformed to heat (must be found experimentally, so assumed to be 75%)
 A_s = (pi*(d/2)^2); % Cross-sectional area of sphere
-g(x) = (6.67430*10^-11)*((m*m_p)/((x)^2)); % Finds gravity from distance to center of planet
+g(x) = ((6.67430*10^-11)*((m*m_p)/((x)^2)))/m; % Finds gravity from distance to center of planet
 Q(x) = sqrt((2*m*g(x))/(rho*A_s*C_d)); % Finds terminal velocity from distance to center of planet (https://www.grc.nasa.gov/www/k-12/airplane/termv.html)
 sigma_p = (Y_p/(2*G_p))-1; % Poisson's Ratio (https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf)
 M_p = (1-sigma_p^2)/(pi*Y_p); % Other Material Property (https://emtoolbox.nist.gov/publications/nationalstandardslaboratorytechnicalpaperno25.pdf)

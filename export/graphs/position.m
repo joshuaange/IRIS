@@ -34,6 +34,6 @@ end
 grid minor;
 xlim([0, double(timeA+T)]);
 xlabel('Time elapsed (s)');
-ylabel('Velocity (m/s)');
+ylabel('Position (m)');
 legend;
 hold off;
