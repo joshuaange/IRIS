@@ -2,6 +2,9 @@
 % Finding intersection point between trajectory and land (bearing in mind
 % the limitations of L_min and L_max
 GAP = abs(L(x_i((t_A_last + t_A_int - t_step)),y_i((t_A_last + t_A_int - t_step)))-z_i((t_A_last + t_A_int - t_step)));
+if GAP < d/2
+    GAP = d/2;
+end
 for t_p = (t_A_last + t_A_int - t_step):-t_int_step:0 %From bottom to 0
     display(double(t_p));
     if abs(L(x_i(t_p),y_i(t_p))-z_i(t_p)) < GAP
@@ -27,7 +30,7 @@ if exist('t_f_i','var') == 0
 end
 % GAP consideration
 if GAP < d/2
-GAP = d/2;
+    GAP = d/2;
 end
 
 % Collision Time of Pod Shape

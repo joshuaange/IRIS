@@ -49,9 +49,9 @@ end
     end
     % Impact
     R_ij = [(X_total/c),(Y_total/c),(Z_total/c)];
-if exist('R_ij(1)','var') == 1
-if exist('R_ij(2)','var') == 1
-if exist('R_ij(3)','var') == 1
+if isnan(R_ij(1)) == 0
+if isnan(R_ij(2)) == 0
+if isnan(R_ij(3)) == 0
     display("hi")
     % Moving the pod up the normal vector as to not be intersectionary with
     % terrain (simple tangential to surface)
