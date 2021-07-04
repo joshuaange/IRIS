@@ -31,10 +31,10 @@ for iit = 1:i_max
             plot(timeA,s{iit,jit}.q_ij(2,3),'s','Color','red','HandleVisibility','off');
             plot(timeA,mag(s{iit,jit}.q_ij),'+','Color','magenta','HandleVisibility','off');
             timeA = timeA + 0.5*T;
-            plot(timeA,s{iit,jit}.p_ij(2,1),'o','Color','black','HandleVisibility','off');
-            plot(timeA,s{iit,jit}.p_ij(2,2),'^','Color','black','HandleVisibility','off');
-            plot(timeA,s{iit,jit}.p_ij(2,3),'s','Color','black','HandleVisibility','off');
-            plot(timeA,mag(s{iit,jit}.p_ij),'+','Color','black','HandleVisibility','off');
+            plot(timeA,s{iit,jit}.p_ij(2,1)/m,'o','Color','black','HandleVisibility','off');
+            plot(timeA,s{iit,jit}.p_ij(2,2)/m,'^','Color','black','HandleVisibility','off');
+            plot(timeA,s{iit,jit}.p_ij(2,3)/m,'s','Color','black','HandleVisibility','off');
+            plot(timeA,mag(s{iit,jit}.p_ij)/m,'+','Color','black','HandleVisibility','off');
             timeA = timeA + 0.5*T;
             plot(timeA,s{iit,jit}.Q_ij(2,1),'o','Color','blue','HandleVisibility','off');
             plot(timeA,s{iit,jit}.Q_ij(2,1),'^','Color','green','HandleVisibility','off');

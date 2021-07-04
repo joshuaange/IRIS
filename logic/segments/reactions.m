@@ -37,7 +37,7 @@ F_f_ij = [C_ij(1),C_ij(2),C_ij(3); -F(S_ij(1),S_ij(2))*mag(F_N_ij)*cos(falpha(O_
 
 % Spin
     % angular acceleration
-    p_ij = [S_ij(1),S_ij(2),S_ij(3);((d/2)*B_ij(2,1))/I, ((d/2)*B_ij(2,2))/I, ((d/2)*B_ij(2,3))/I];
+    p_ij = [S_ij(1),S_ij(2),S_ij(3);((d/2)*P_ij(2,2))/I, ((d/2)*P_ij(2,1))/I, -q_ij(2,3)];
     % new angular velocity
     Q_ij = [S_ij(1),S_ij(2),S_ij(3);q_ij(2,1)+p_ij(2,1)*T,q_ij(2,2)+p_ij(2,2)*T,q_ij(2,3)+p_ij(2,3)*T];
 % Influence on linear

@@ -37,6 +37,7 @@ if jit == 1
     if Kt_i < 1
        Kt_i = 1; 
     end
+    Kt_i
     b{iit}.Kt_V = vpa(Kt_V);
     b{iit}.k_lin = vpa(k_lin);
     b{iit}.T_HS = vpa(T_HS);
