@@ -81,7 +81,7 @@ for iit = 1:i_max
             q_ij = double(Q_ij);
             C_ij = double(Cn_ij);
             T_s_ij = double(T_f_ij);
-            S_ij = double(R_ij);
+            S_ij = [double(R_ij(1)),double(R_ij(2)),L(R_ij(1),R_ij(2))];
         end
         if jit == j_max
            break

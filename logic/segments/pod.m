@@ -73,6 +73,14 @@ end
 end
 end
 
+if isnan(R_ij(1)) == 1
+if isnan(R_ij(2)) == 1
+if isnan(R_ij(3)) == 1
+    R_ij = [Cn_ij(1),Cn_ij(2),L(Cn_ij(1),Cn_ij(2))];
+end
+end
+end
+
 % Final movement of pod with this vector
 O_ij = [C_ij(1),C_ij(2),C_ij(3); Cn_ij(1)-C_ij(1),Cn_ij(2)-C_ij(2),Cn_ij(3)-C_ij(3)];
 
