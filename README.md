@@ -7,6 +7,8 @@
  **[Pod Design](https://sites.google.com/view/lunariris/pod-design)** |
  **[Misc.](https://sites.google.com/view/lunariris/misc)** |
  **[About Us](https://sites.google.com/view/lunariris/about-us)**
+ 
+**[PRESENTATION AVAILABLE HERE](https://docs.google.com/presentation/d/e/2PACX-1vSZSZP6bcHCz4olNMzHJXmxrrG64-hv_8pT3gQnEfOz6olKuaB1ZJW2XiWl6VSvz9sKIsSN3lBQZ-uy/pub?start=false&loop=false&delayms=3000)**
 
 ### Author
 
